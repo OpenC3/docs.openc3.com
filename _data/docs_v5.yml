@@ -1,0 +1,58 @@
+- title: Getting Started
+  docs:
+    - tools
+    - installation
+    - gettingstarted
+    - upgrading
+    - requirements
+    - podman
+
+- title: Configuration
+  docs:
+    - plugins
+    - target
+    - command
+    - telemetry
+    - interfaces
+    - protocols
+    - ssl_tls
+
+- title: Tool User Manuals
+  docs:
+    - cmd_sender
+    - cmd_tlm_server
+    - data_extractor
+    - data_viewer
+    - limits_monitor
+    - packet_viewer
+    - script_runner
+    - tlm_grapher
+    - tlm_viewer
+    - screens
+    - calendar
+    - autonomic
+
+- title: Guides
+  docs:
+    - logging
+    - custom_widgets
+    - scripting
+    - scripting_best_practices
+    - monitoring
+    - cfs
+    - raspberrypi
+
+- title: Development
+  docs:
+    - development
+    - testing
+    - json_api
+    - streaming_api
+    - log_structure
+    - host_install
+
+- title: Meta
+  docs:
+    - contributing
+    - philosophy
+    - xtce

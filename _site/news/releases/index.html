@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Releases</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="current">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid wider">
+    <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
+      <h1>
+        <a href="/">
+          <span class="sr-only">OpenC3</span>
+          <img src="/img/OpenC3.png" height="100" alt="OpenC3 Logo">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit three-fourths hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="current">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid wider">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog...</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+    </optgroup>
+  </select>
+</div>
+
+
+      <div class="unit four-fifths">
+        
+
+      </div>
+
+      <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="/news/">All News</a>
+      </li>
+      <li class="current">
+        <a href="/news/releases/">OpenC3 Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+      
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+
+  <footer role="contentinfo">
+  <div class="grid wider">
+    <div class="unit one-third center-on-mobiles">
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
+    </div>
+    <div class="unit two-thirds align-right center-on-mobiles">
+      <p>
+        <gcse:search></gcse:search>
+        Proudly hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,2460 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Tools</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid wider">
+    <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
+      <h1>
+        <a href="/">
+          <span class="sr-only">OpenC3</span>
+          <img src="/img/OpenC3.png" height="100" alt="OpenC3 Logo">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit three-fourths hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+  <section class="docs">
+  <div class="grid wider">
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
+        
+        
+        <div class="improve right">
+          <span class="version-badge">v5</span>
+        </div>
+         
+        <div class="toc"><ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#navigation">Navigation</a></li>
+<li class="toc-entry toc-h2"><a href="#command-and-telemetry-server">Command and Telemetry Server</a></li>
+<li class="toc-entry toc-h2"><a href="#limits-monitor">Limits Monitor</a></li>
+<li class="toc-entry toc-h2"><a href="#command-sender">Command Sender</a></li>
+<li class="toc-entry toc-h2"><a href="#script-runner">Script Runner</a></li>
+<li class="toc-entry toc-h2"><a href="#packet-viewer">Packet Viewer</a></li>
+<li class="toc-entry toc-h2"><a href="#telemetry-viewer">Telemetry Viewer</a></li>
+<li class="toc-entry toc-h2"><a href="#telemetry-grapher">Telemetry Grapher</a></li>
+<li class="toc-entry toc-h2"><a href="#data-extractor">Data Extractor</a></li>
+<li class="toc-entry toc-h2"><a href="#data-viewer">Data Viewer</a></li>
+<li class="toc-entry toc-h2"><a href="#timeline">Timeline</a></li>
+</ul></div>
+        
+        <h1>Tools</h1>
+        <h2 id="navigation">
+<a class="anchor" href="#navigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Navigation</h2>
+
+<p>The left side of every OpenC3 web page can be opened up to display the available tools.
+This list is updated when new OpenC3 gems are installed which add tools.</p>
+
+<h2 id="command-and-telemetry-server">
+<a class="anchor" href="#command-and-telemetry-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command and Telemetry Server</h2>
+
+<p>Displays information about the active targets and interfaces.</p>
+
+<p><img src="/img/v5/cmd_tlm_server/cmd_tlm_server.png" alt="Command and Telemetry Server"></p>
+
+<ul>
+  <li>Displays interfaces and associated counters</li>
+  <li>Displays raw versions of commands/telemetry packets</li>
+</ul>
+
+<h2 id="limits-monitor">
+<a class="anchor" href="#limits-monitor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limits Monitor</h2>
+
+<p>Situational awareness of everything that is currently out of limits in your system and everything that has temporarily gone out of limits since it was started.</p>
+
+<p><img src="/img/v5/limits_monitor/limits_monitor.png" alt="Limits Monitor"></p>
+
+<ul>
+  <li>Limits bar widget used to show where in the limits range you are</li>
+  <li>Packets and Items can be ignored</li>
+</ul>
+
+<h2 id="command-sender">
+<a class="anchor" href="#command-sender" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Sender</h2>
+
+<p>Easily send individual commands.</p>
+
+<p><img src="/img/v5/command_sender/command_sender.png" alt="Command Sender"></p>
+
+<ul>
+  <li>Select any command by target and command name and then fill out a form with the command parameters</li>
+  <li>Command history can be used to resend the same or slightly modified commands</li>
+</ul>
+
+<h2 id="script-runner">
+<a class="anchor" href="#script-runner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Runner</h2>
+
+<p>Develop and execute test procedures with line highlighting, syntax checking, and more. Also supports organization of scripts into repeatable scripts with an auto-generated report.</p>
+
+<p><img src="/img/v5/script_runner/script_runner.png" alt="Script Runner"></p>
+
+<ul>
+  <li>Simple API to send commands and check telemetry</li>
+  <li>Query the user for information</li>
+  <li>Currently executing line is highlighted</li>
+  <li>Full power of the Ruby programming language available</li>
+  <li>Disconnect mode for offline testing</li>
+  <li>Debugger for step execution</li>
+  <li>Script organization by Script, Group, Suite</li>
+  <li>Automatic report generation</li>
+</ul>
+
+<h2 id="packet-viewer">
+<a class="anchor" href="#packet-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Viewer</h2>
+
+<p>View any telemetry packet in the system with no extra configuration necessary.</p>
+
+<p><img src="/img/v5/packet_viewer/packet_viewer.png" alt="Packet Viewer"></p>
+
+<ul>
+  <li>Automatically contains all defined targets, packets, and telemetry items</li>
+  <li>Right click to get detailed item information</li>
+</ul>
+
+<h2 id="telemetry-viewer">
+<a class="anchor" href="#telemetry-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Viewer</h2>
+
+<p>Easily create custom telemetry screens with simple configuration text files.</p>
+
+<p><img src="/img/v5/telemetry_viewer/telemetry_viewer.png" alt="Telemetry Viewer"></p>
+
+<ul>
+  <li>Advanced widgets available to display data</li>
+  <li>Modular to allow for creating your own custom widgets</li>
+</ul>
+
+<h2 id="telemetry-grapher">
+<a class="anchor" href="#telemetry-grapher" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Grapher</h2>
+
+<p>Realtime or offline graphing of any telemetry item.</p>
+
+<p><img src="/img/v5/telemetry_grapher/telemetry_grapher.png" alt="Telemetry Grapher"></p>
+
+<ul>
+  <li>One or more telemetry points per graph</li>
+  <li>Spread data across multiple graphs</li>
+  <li>Easily save and restore configurations</li>
+</ul>
+
+<h2 id="data-extractor">
+<a class="anchor" href="#data-extractor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Extractor</h2>
+
+<p>Quickly extract command and telemetry into CSV files with just the data you care about.</p>
+
+<p><img src="/img/v5/data_extractor/data_extractor.png" alt="Data Extractor"></p>
+
+<ul>
+  <li>Process items into CSV data for analysis in other tools (Excel, Matlab, etc)</li>
+  <li>Add individual items, whole packets, and every packet from a given target</li>
+</ul>
+
+<h2 id="data-viewer">
+<a class="anchor" href="#data-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Viewer</h2>
+
+<p>Quickly view the data you care about.</p>
+
+<p><img src="/img/v5/data_viewer/data_viewer.png" alt="Data Viewer"></p>
+
+<ul>
+  <li>View both raw and decomed data.</li>
+  <li>Save and load configurations.</li>
+</ul>
+
+<h2 id="timeline">
+<a class="anchor" href="#timeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline</h2>
+
+<p>Schedule commands and scripts to be run.</p>
+
+<p><img src="/img/v5/timeline/timeline.png" alt="Timeline"></p>
+
+<ul>
+  <li>View activities and timelines</li>
+  <li>Set times for scripts or cmds to be run</li>
+</ul>
+
+      </article>
+    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <!-- Only display the version links for versioned content -->
+    
+    <ul>
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
+      <li>
+        <!-- Only create links to collections which aren't our own  -->
+        
+      </li>
+      
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
+      
+    </ul>
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Getting Started</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="current">
+    <a href="/docs/v5/tools">Tools</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/installation">Installation</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+  <li class="">
+    <a href="/docs/v5/gettingstarted">Getting Started</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/upgrading">Upgrading</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/requirements">Requirements and Design</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/podman">Podman</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Configuration</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/plugins">Plugins</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/target">Target Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/command">Command Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/telemetry">Telemetry Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/interfaces">Interface Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/protocols">Protocol Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/ssl-tls">SSL-TLS</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Tool User Manuals</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cmd-tlm-server">Command and Telemetry Server</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/limits-monitor">Limits Monitor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/script-runner">Script Runner</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/screens">Telemetry Screens</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/calendar">Calendar</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/autonomic">Autonomic</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/logging">Logging</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/scripting">Scripting Guide</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/monitoring">Monitoring</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Development</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/development">Developing OpenC3</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/testing">Testing OpenC3</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/json-api">JSON API</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/streaming-api">Streaming API</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/log-structure">Log Structure</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/host-install">Host Install</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Meta</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/contributing">Contributing</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/philosophy">Philosophy</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/xtce">XTCE Support</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+  </aside>
+</div>
+
+
+    <div class="clear"></div>
+  </div>
+</section>
+
+
+  <footer role="contentinfo">
+  <div class="grid wider">
+    <div class="unit one-third center-on-mobiles">
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
+    </div>
+    <div class="unit two-thirds align-right center-on-mobiles">
+      <p>
+        <gcse:search></gcse:search>
+        Proudly hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,2679 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>OpenC3 and NASA cFS</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid wider">
+    <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
+      <h1>
+        <a href="/">
+          <span class="sr-only">OpenC3</span>
+          <img src="/img/OpenC3.png" height="100" alt="OpenC3 Logo">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit three-fourths hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+  <section class="docs">
+  <div class="grid wider">
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
+        
+        
+        <div class="improve right">
+          <span class="version-badge">v5</span>
+        </div>
+         
+        <div class="toc"><ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#working-configuration">Working configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#setting-up-openc3">Setting up OpenC3</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#configuring-openc3">Configuring OpenC3</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#setting-up-cfs">Setting up cFS</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#clone-cfs">Clone cFS</a></li>
+<li class="toc-entry toc-h3"><a href="#create-dockerfile-in-cfs-dir">Create Dockerfile in cFS dir</a></li>
+<li class="toc-entry toc-h3"><a href="#build-and-run-cfs">Build and run cFS</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#creating-a-openc3-plugin-for-tmtc-interface-with-cfs">Creating a OpenC3 plugin for TM/TC interface with cFS</a></li>
+<li class="toc-entry toc-h2"><a href="#creating-tmtc-definitions">Creating TM/TC definitions</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#enabling-telemetry">Enabling Telemetry</a></li>
+<li class="toc-entry toc-h5"><a href="#plugin-versioning">Plugin versioning</a></li>
+<li class="toc-entry toc-h5"><a href="#plugin-parameters">Plugin parameters</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#uploading-the-plugin">Uploading the plugin</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#port-subscription">Port subscription</a></li>
+<li class="toc-entry toc-h5"><a href="#typo-errors">Typo errors</a></li>
+</ul>
+</li>
+</ul></div>
+        
+        <h1>OpenC3 and NASA cFS</h1>
+        <h2 id="working-configuration">
+<a class="anchor" href="#working-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working configuration</h2>
+
+<p>This tutorial has been tested using the following components:</p>
+
+<ul>
+  <li>OpenC3 v5 release <a href="https://github.com/OpenC3/openc3/releases/tag/v5.0.6">5.0.6</a>
+</li>
+  <li>cFS master-branch commit: 561b128 (June 1, 2022)</li>
+  <li>Docker Desktop 4.9.0 on Windows</li>
+</ul>
+
+<p>Replace all <code class="language-plaintext highlighter-rouge">&lt;xxxxxx&gt;</code> with your matching paths and names. Example: <code class="language-plaintext highlighter-rouge">&lt;USERNAME&gt;</code>.</p>
+
+<h2 id="setting-up-openc3">
+<a class="anchor" href="#setting-up-openc3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up OpenC3</h2>
+
+<p>Install OpenC3 according to the official <a href="/docs/v5/installation">installation</a> instructions.</p>
+
+<h3 id="configuring-openc3">
+<a class="anchor" href="#configuring-openc3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring OpenC3</h3>
+
+<p>Change the Docker configuration for the interoperability with NASA cFS. For
+subscribing to the telemetry, you have to append a port binding in the file
+<code class="language-plaintext highlighter-rouge">compose.yaml</code> under the section <code class="language-plaintext highlighter-rouge">openc3-operator</code>. The port number has to
+match with the port number cFS is sending the telemetry on.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">openc3-operator</span><span class="pi">:</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">1235:1235/udp"</span>
+</code></pre></div></div>
+
+<p>Run OpenC3, the first run takes a while (~15 min).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3.sh start
+</code></pre></div></div>
+
+<p>When started, connect with a browser to <a href="http://localhost:2900">http://localhost:2900</a>.</p>
+
+<p>For shutting down OpenC3:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3.sh stop
+</code></pre></div></div>
+
+<h2 id="setting-up-cfs">
+<a class="anchor" href="#setting-up-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up cFS</h2>
+
+<p>To run <a href="https://github.com/nasa/cFS">NASA cFS</a> as a Docker container do the following:</p>
+
+<h3 id="clone-cfs">
+<a class="anchor" href="#clone-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone cFS</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--recurse-submodules</span> https://github.com/nasa/cFS.git
+</code></pre></div></div>
+
+<h3 id="create-dockerfile-in-cfs-dir">
+<a class="anchor" href="#create-dockerfile-in-cfs-dir" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create Dockerfile in cFS dir</h3>
+
+<div class="language-docker highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:22.10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+
+<span class="k">ARG</span><span class="s"> DEBIAN_FRONTEND=noninteractive</span>
+<span class="k">ARG</span><span class="s"> SIMULATION=native</span>
+<span class="k">ENV</span><span class="s"> SIMULATION=${SIMULATION}</span>
+<span class="k">ARG</span><span class="s"> BUILDTYPE=debug</span>
+<span class="k">ENV</span><span class="s"> BUILDTYPE=${BUILDTYPE}</span>
+<span class="k">ARG</span><span class="s"> OMIT_DEPRECATED=true</span>
+<span class="k">ENV</span><span class="s"> OMIT_DEPRECATED=${OMIT_DEPRECATED}</span>
+
+<span class="k">RUN </span><span class="se">\
+</span>  apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  apt-get <span class="nt">-y</span> upgrade <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  apt-get <span class="nb">install</span> <span class="nt">-y</span> build-essential git cmake <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  <span class="nb">rm</span> <span class="nt">-rf</span> /var/lib/apt/lists/<span class="k">*</span>
+
+<span class="k">WORKDIR</span><span class="s"> /cFS</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+
+<span class="k">RUN </span>git submodule init <span class="se">\
+</span>  <span class="o">&amp;&amp;</span> git submodule update <span class="se">\
+</span>  <span class="o">&amp;&amp;</span> <span class="nb">cp </span>cfe/cmake/Makefile.sample Makefile <span class="se">\
+</span>  <span class="o">&amp;&amp;</span> <span class="nb">cp</span> <span class="nt">-r</span> cfe/cmake/sample_defs .
+
+<span class="k">RUN </span>make prep
+<span class="k">RUN </span>make
+<span class="k">RUN </span>make <span class="nb">install</span>
+
+<span class="k">FROM</span><span class="s"> ubuntu:22.10</span>
+<span class="k">COPY</span><span class="s"> --from=builder /cFS/build /cFS/build</span>
+<span class="k">WORKDIR</span><span class="s"> /cFS/build/exe/cpu1</span>
+<span class="k">ENTRYPOINT</span><span class="s"> [ "./core-cpu1" ]</span>
+</code></pre></div></div>
+
+<h3 id="build-and-run-cfs">
+<a class="anchor" href="#build-and-run-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build and run cFS</h3>
+
+<p>Note we’re connecting to the OpenC3 network (<code class="language-plaintext highlighter-rouge">docker network ls</code>) and exposing the cFS ports.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> cfs <span class="nb">.</span>
+docker run <span class="nt">--cap-add</span> CAP_SYS_RESOURCE <span class="nt">--net</span><span class="o">=</span>openc3_default <span class="nt">--name</span> cfs <span class="nt">-p1234</span>:1234 <span class="nt">-p1235</span>:1235 cfs
+</code></pre></div></div>
+
+<h2 id="creating-a-openc3-plugin-for-tmtc-interface-with-cfs">
+<a class="anchor" href="#creating-a-openc3-plugin-for-tmtc-interface-with-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a OpenC3 plugin for TM/TC interface with cFS</h2>
+
+<p>The detailed instructions how to create a plugin, can be found
+<a href="/docs/v5/gettingstarted">here</a>, in the chapter “Interfacing with Your Hardware”.</p>
+
+<p>Create a new plugin with the name <code class="language-plaintext highlighter-rouge">CFS</code>. <code class="language-plaintext highlighter-rouge">CFS</code> is the name of the plugin and
+must be in capital letters according to the OpenC3 documentation. This command
+should create the plugin structure.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd .. to the location of the cfs dir</span>
+<span class="nv">$PATH_TO_OPENC3</span>/openc3.sh openc3-cli generate plugin CFS
+</code></pre></div></div>
+
+<p>If you’re on Linux, change the rights of this newly created plugin, because the OpenC3 script
+creates the plugin to be owned by the root user.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nt">-R</span> &lt;USERNAME&gt;:&lt;USERGROUP&gt; openc3-cfs
+</code></pre></div></div>
+
+<p>In this newly created plugin, change the <code class="language-plaintext highlighter-rouge">plugin.txt</code> file, so that the
+communication happens over UDP. <code class="language-plaintext highlighter-rouge">port_tm</code> is the port number on which cFS
+sends the telemetry messages. <code class="language-plaintext highlighter-rouge">port_tc</code> indicates the port on which cFS listens to the
+telecommands.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VARIABLE ip 127.0.0.1
+VARIABLE port_tm 1235
+VARIABLE port_tc 1234
+VARIABLE cfs_target_name CFS
+
+TARGET CFS &lt;%<span class="o">=</span> cfs_target_name %&gt;
+<span class="c"># hostname   write_dest_port   read_port   write_src_port   interface_address   ttl   write_timeout   read_timeout   bind_address</span>
+INTERFACE &lt;%<span class="o">=</span> cfs_target_name %&gt;_INT udp_interface.rb &lt;%<span class="o">=</span> ip %&gt; &lt;%<span class="o">=</span> port_tc %&gt; &lt;%<span class="o">=</span> port_tm %&gt; nil nil 128 nil nil
+  MAP_TARGET &lt;%<span class="o">=</span> cfs_target_name %&gt;
+</code></pre></div></div>
+
+<p>Note that the two arguments to the <code class="language-plaintext highlighter-rouge">TARGET</code> parameter are:</p>
+
+<ol>
+  <li>
+    <p>the physical target name that should match the name of the plugin, i.e. <code class="language-plaintext highlighter-rouge">CFS</code>.
+This name must match the folder name in the <code class="language-plaintext highlighter-rouge">targets</code> folder. Example: for the
+<code class="language-plaintext highlighter-rouge">CFS</code> plugin, the target specifications must be under
+<code class="language-plaintext highlighter-rouge">openc3-cfs/targets/CFS</code>. If you don’t follow this
+convention, the server will refuse to install your plugin at the following steps.</p>
+  </li>
+  <li>
+    <p>the name of your target and how it is shown in the user interface.</p>
+  </li>
+</ol>
+
+<p>In this example, we keep both names to be <code class="language-plaintext highlighter-rouge">CFS</code>.</p>
+
+<h2 id="creating-tmtc-definitions">
+<a class="anchor" href="#creating-tmtc-definitions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating TM/TC definitions</h2>
+
+<p>Change to the target folder and remove the existing files and create own files.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>openc3-cfs/targets/CFS/cmd_tlm
+<span class="nb">rm</span> <span class="k">*</span>
+<span class="nb">touch </span>cfs_cmds.txt
+<span class="nb">touch </span>cfs_tlm.txt
+<span class="nb">touch </span>to_lab_cmds.txt
+</code></pre></div></div>
+
+<p>Open these newly created files in a text editor and fill them with following
+content.</p>
+
+<p><code class="language-plaintext highlighter-rouge">to_lab_cmds.txt</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND CFS TO_LAB_ENABLE BIG_ENDIAN <span class="s2">"Enable telemetry"</span>
+  <span class="c">#                   NAME      BITS TYPE   min VAL     max VAL    init VAL  DESCRIPTION</span>
+  APPEND_ID_PARAMETER STREAM_ID  16  UINT   0x1880      0x1880     0x1880    <span class="s2">"Stream ID"</span>
+    FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER    SEQUENCE   16  UINT   0xC000      MAX_UINT16 0xC000    <span class="s2">""</span>
+    FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER    PKT_LEN    16  UINT   0x0001      0xFFFF     0x0012    <span class="s2">"length of the packet"</span>
+  APPEND_PARAMETER    CMD_ID      8  UINT   6           6          6         <span class="s2">""</span>
+  APPEND_PARAMETER    CHECKSUM    8  UINT   MIN_UINT8   MAX_UINT8  0x98      <span class="s2">""</span>
+    FORMAT_STRING <span class="s2">"0x%2X"</span>
+  APPEND_PARAMETER    DEST_IP   144  STRING <span class="s2">"127.0.0.1"</span>                      <span class="s2">"Destination IP, i.e. 172.16.9.112, pc-57"</span>
+</code></pre></div></div>
+
+<div class="note info">
+  <h5>
+<a class="anchor" href="#enabling-telemetry" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enabling Telemetry</h5>
+  <p>The command `0x1880` is needed to enable telemetry. When the cFS receives
+  this command, it starts sending telemetry to the IP address provided via the
+  `DEST_IP` field.</p>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">cfs_cmds.txt</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND CFS NOOP BIG_ENDIAN <span class="s2">"NOOP Command"</span>
+  <span class="c"># cFS primary header</span>
+  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
+      FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
+      FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER       PKT_LEN     16   UINT   0x0001      0x0001      0x0001      <span class="s2">"Packet length"</span>
+  <span class="c"># cFS CMD secondary header</span>
+  APPEND_PARAMETER       CMD_ID       8   UINT   0           0           0           <span class="s2">""</span>
+  APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
+
+COMMAND CFS RESET BIG_ENDIAN <span class="s2">"Reset Counters Command"</span>
+  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
+      FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
+      FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER       PKT_LEN     16   UINT   0x0001      0x0001      0x0001      <span class="s2">"Packet length"</span>
+  APPEND_PARAMETER       CMD_ID       8   UINT   1           1           1           <span class="s2">""</span>
+  APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
+
+COMMAND CFS PROCESS BIG_ENDIAN <span class="s2">"Process Command"</span>
+  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
+      FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
+      FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_PARAMETER       PKT_LEN     16   UINT   0x0001      0x0001      0x0001      <span class="s2">"Packet length"</span>
+  APPEND_PARAMETER       CMD_ID       8   UINT   2           2           2           <span class="s2">""</span>
+  APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">cfs_tlm.txt</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY CFS HK BIG_ENDIAN <span class="s2">"housekeeping telemetry"</span>
+  <span class="c">#                NAME       BITS  TYPE    ID      DESCRIPTION</span>
+  APPEND_ID_ITEM   STREAM_ID   16   UINT    0x0883  <span class="s2">"Stream ID"</span>
+    FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_ITEM      SEQUENCE    16   UINT            <span class="s2">"Packet Sequence"</span>
+    FORMAT_STRING <span class="s2">"0x%04X"</span>
+  APPEND_ITEM      PKT_LEN     16   UINT            <span class="s2">"Length of the packet"</span>
+  <span class="c"># telemetry secondary header</span>
+  APPEND_ITEM      SECONDS     32   UINT            <span class="s2">""</span>
+        UNITS Seconds sec
+  APPEND_ITEM      SUBSECS     16   UINT            <span class="s2">""</span>
+        UNITS Milliseconds ms
+  <span class="c"># some bytes not known for what</span>
+  APPEND_ITEM      SPARE2ALIGN 32   UINT            <span class="s2">"Spares"</span>
+  <span class="c"># payload</span>
+  APPEND_ITEM      CMD_ERRS     8   UINT            <span class="s2">"Command Error Counter"</span>
+  APPEND_ITEM      CMD_CNT      8   UINT            <span class="s2">"Command Counter"</span>
+  <span class="c"># spare / alignment</span>
+  APPEND_ITEM      SPARE       16   UINT            <span class="s2">"Spares"</span>
+</code></pre></div></div>
+
+<p>Build the plugin from the base of your plugin folder:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd openc3-cfs</span>
+<span class="nv">$PATH_TO_OPENC3</span>/openc3.sh openc3-cli rake build <span class="nv">VERSION</span><span class="o">=</span>1.0.0
+</code></pre></div></div>
+
+<div class="note info">
+  <h5>
+<a class="anchor" href="#plugin-versioning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin versioning</h5>
+  <p>Do not forget to change the version number with every build if you want to
+  better distinguish between the versions of the plugin. When the version is
+  seen in the plugin's .gem file name, it is easier to visualize the existing
+  versions and the newly uploaded versions.</p>
+</div>
+
+<div class="note info">
+  <h5>
+<a class="anchor" href="#plugin-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin parameters</h5>
+  <p>Multiple parameters are available for the plugin configuration. See the
+    <a href="/docs/v5/plugins">plugin</a> page.</p>
+</div>
+
+<h2 id="uploading-the-plugin">
+<a class="anchor" href="#uploading-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Uploading the plugin</h2>
+
+<p>After the plugin has been built, you can import the plugin in the admin area of
+the page.</p>
+
+<p>Connect with a browser to
+<a href="http://localhost:2900/tools/admin">http://localhost:2900/tools/admin</a>.</p>
+
+<p>Click on the clip icon and navigate to where your plugin is stored and select
+the <code class="language-plaintext highlighter-rouge">openc3-cfs-1.0.0.xxx.gem</code> file. Right of the selection line click on <code class="language-plaintext highlighter-rouge">UPLOAD</code>.</p>
+
+<p>Determine the IP address the cFS container and OpenC3 operator container are running at:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker network <span class="nb">ls
+</span>NETWORK ID     NAME             DRIVER    SCOPE
+d842f813f1c7   openc3_default   bridge    <span class="nb">local
+
+</span>docker network inspect openc3_default
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"Name"</span>: <span class="s2">"openc3_default"</span>,
+        ...
+        <span class="s2">"Containers"</span>: <span class="o">{</span>
+            <span class="s2">"03cb6bf1b27c631fad1366e9342aeaa5b80f458a437195e4a95e674bb5f5983d"</span>: <span class="o">{</span>
+                <span class="s2">"Name"</span>: <span class="s2">"cfs"</span>,
+                <span class="s2">"IPv4Address"</span>: <span class="s2">"172.20.0.9/16"</span>,
+            <span class="o">}</span>,
+            <span class="s2">"ceb9ea99b00849fd8867dcd1646838fef3471f7d64b69014703dbedbcc8147fc"</span>: <span class="o">{</span>
+                <span class="s2">"Name"</span>: <span class="s2">"openc3_openc3-operator_1"</span>,
+                <span class="s2">"IPv4Address"</span>: <span class="s2">"172.20.0.8/16"</span>,
+            <span class="o">}</span>
+        <span class="o">}</span>
+        ...
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></div>
+
+<p>When using this plugin, make sure to change the <code class="language-plaintext highlighter-rouge">ip</code> variable during uploading
+to match where cFS is running. In the example above you would set it to 172.20.0.9.
+<code class="language-plaintext highlighter-rouge">port_tm</code> is the port number on which cFS is sending the telemetry messages.
+<code class="language-plaintext highlighter-rouge">port_tc</code> indicates the port on cFS is listening for telecommands.</p>
+
+<p>Under <code class="language-plaintext highlighter-rouge">cfs_target_name</code> you can change the target name of this plugin. This
+step is optional as long as you are fine with your plugin showing up as <code class="language-plaintext highlighter-rouge">CFS</code>.</p>
+
+<p><img src="/img/v5/guides/plugin-variables.png" alt="Plugin Variable Settings"></p>
+
+<div class="note warning">
+  <h5>
+<a class="anchor" href="#port-subscription" aria-hidden="true"><span class="octicon octicon-link"></span></a>Port subscription</h5>
+  <p>The last uploaded plugin on OpenC3 will subscribe to TM on port 1235.
+  Other plugins will not receive any TM anymore.</p>
+</div>
+
+<div class="note info">
+  <h5>
+<a class="anchor" href="#typo-errors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Typo errors</h5>
+  <p>Presence of typos in one of the plugin files can cause problems when uploading and installing
+the plugin's .gem file. Make sure your configuration is typo-free.</p>
+</div>
+
+<p>In the example above, the operator image is running at 172.20.0.8. To enable telemetry, go to the browser and connect to
+<a href="http://localhost:2900/tools/cmdsender/CFS/TO_LAB_ENABLE">http://localhost:2900/tools/cmdsender/CFS/TO_LAB_ENABLE</a>. Change the <code class="language-plaintext highlighter-rouge">DEST_IP</code> to the IP address of the operator image (172.20.0.8) and send the command.</p>
+
+<p>Under <a href="http://localhost:2900/tools/cmdtlmserver/tlm-packets">http://localhost:2900/tools/cmdtlmserver/tlm-packets</a>, you should see the incoming packets. Note in the CmdTlmServer you will also see CFS_INT UNKNOWN packets because we did not define the full cFS packet set. That exercise is left to the reader.</p>
+
+      </article>
+    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <!-- Only display the version links for versioned content -->
+    
+    <ul>
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
+      <li>
+        <!-- Only create links to collections which aren't our own  -->
+        
+      </li>
+      
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
+      
+    </ul>
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Getting Started</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tools">Tools</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/installation">Installation</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+  <li class="">
+    <a href="/docs/v5/gettingstarted">Getting Started</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/upgrading">Upgrading</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/requirements">Requirements and Design</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/podman">Podman</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Configuration</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/plugins">Plugins</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/target">Target Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/command">Command Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/telemetry">Telemetry Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/interfaces">Interface Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/protocols">Protocol Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/ssl-tls">SSL-TLS</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Tool User Manuals</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cmd-tlm-server">Command and Telemetry Server</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/limits-monitor">Limits Monitor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/script-runner">Script Runner</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/screens">Telemetry Screens</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/calendar">Calendar</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/autonomic">Autonomic</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/logging">Logging</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/scripting">Scripting Guide</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/monitoring">Monitoring</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="current">
+    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Development</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/development">Developing OpenC3</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/testing">Testing OpenC3</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/json-api">JSON API</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/streaming-api">Streaming API</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/log-structure">Log Structure</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/host-install">Host Install</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Meta</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/contributing">Contributing</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/philosophy">Philosophy</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/xtce">XTCE Support</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+  </aside>
+</div>
+
+
+    <div class="clear"></div>
+  </div>
+</section>
+
+
+  <footer role="contentinfo">
+  <div class="grid wider">
+    <div class="unit one-third center-on-mobiles">
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
+    </div>
+    <div class="unit two-thirds align-right center-on-mobiles">
+      <p>
+        <gcse:search></gcse:search>
+        Proudly hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+  
+
+
+</body>
+</html>

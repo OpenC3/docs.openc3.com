@@ -1,0 +1,29 @@
+<div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <!-- Only display the version links for versioned content -->
+    {% if page.collection != 'docs_enterprise' %}
+    <ul>
+      {% for collection in site.collections %}
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      {% assign col_version = collection.label | split: "_v" | last | plus: 0 %}
+      {% if col_version > 0 %}
+      <li>
+        <!-- Only create links to collections which aren't our own  -->
+        {% if page.collection != collection.label %}
+        <a href="{{site.baseurl}}/docs/v{{ col_version }}/">v{{ col_version }} Docs</a>
+        {% endif %}
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% for section in site.data[page.collection] %}
+    <h4>{{ section.title }}</h4>
+    <!-- prettier-ignore -->
+    {% include docs_ul.html items=section.docs %}
+    {% endfor %}
+  </aside>
+</div>

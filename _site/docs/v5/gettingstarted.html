@@ -1,0 +1,2506 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Getting Started</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid wider">
+    <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
+      <h1>
+        <a href="/">
+          <span class="sr-only">OpenC3</span>
+          <img src="/img/OpenC3.png" height="100" alt="OpenC3 Logo">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit three-fourths hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/OpenC3/openc3" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+  <section class="docs">
+  <div class="grid wider">
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
+        
+        
+        <div class="improve right">
+          <span class="version-badge">v5</span>
+        </div>
+         
+        <h1>Getting Started</h1>
+        <p>Welcome to the OpenC3 system… Let’s get started! This guide is a high level overview that will help with setting up your first OpenC3 project.</p>
+
+<ol>
+  <li>Get OpenC3 Installed onto your computer by following the <a href="/docs/v5/installation">Installation Guide</a>.
+    <ul>
+      <li>You should now have OpenC3 installed and a Demo project available that we can make changes to.</li>
+    </ul>
+  </li>
+  <li>Browse to http://localhost:2900
+    <ul>
+      <li>The OpenC3 Command and Telemetry Server will appear. This tool provides real-time information about each “target” in the system. Targets are external systems that receive commands and generate telemetry, often over ethernet or serial connections.</li>
+    </ul>
+  </li>
+  <li>Experiment with other OpenC3 tools. This is a DEMO environment so you can’t break anything. Some things to try:
+    <ul>
+      <li>Use Command Sender to send individual commands.</li>
+      <li>Use Limits Monitor to watch for telemetry limits violations</li>
+      <li>Run some of the example scripts in Script Runner and Test Runner</li>
+      <li>View individual Telemetry packets in Packet Viewer</li>
+      <li>View detailed telemetry displays in Telemetry Viewer</li>
+      <li>Graph some data in Telemetry Grapher</li>
+      <li>View log type data in Data Viewer</li>
+      <li>Process log data with Data Extractor</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="note info">
+  <h5>Browser version issue</h5>
+  <p style="margin-bottom:20px;">
+  When you try to load the page and it fails to load, check with the built-in web development tools / DevTools. We have seen some strange things with version of browsers. You can build to a version of browser if you need to by reading about the <a href="https://github.com/browserslist/browserslist">browserslist</a>. Some examples would be...
+  </p>
+  <code> unexpected token ||= </code>
+
+  <p style="margin-left:20px;margin-bottom:20px;">
+     To fix this make sure your browsers is compliant with the current settings in the <a href="https://github.com/BallAerospace/OpenC3/blob/master/openc3-init/plugins/openc3-tool-base/.browserslistrc">.browserlistrc</a> file. You can change this and rebuild the image. Note: This can cause build speeds to increase or decrease.
+    <br />
+  </p>
+</div>
+
+<h2 id="interfacing-with-your-hardware">Interfacing with Your Hardware</h2>
+
+<p>Playing with the OpenC3 Demo is fun and all, but now you want to talk to your own real hardware? Let’s do it!</p>
+
+<div class="note info">
+  <h5>Install and Platform</h5>
+  <p>This guide assumes we're on Windows and OpenC3 is installed in C:\OpenC3. Adjust scripts and paths as necessary to match your platform and OpenC3 installation directory.</p>
+</div>
+
+<ol>
+  <li>
+    <p>Before creating your own configuration you should uninstall the OpenC3 Demo so you’re working with a clean OpenC3 system. Click the Admin button and the PLUGINS tab. Then click the Trash can icon next to openc3-demo to delete it. When you go back to the Command and Telemetry Server you should have a blank table with no interfaces.</p>
+  </li>
+  <li>
+    <p>Create a new “Configuration Directory”. This directory is typically named after your program / project and for this example we’ll call it “tutorial”. Inside this directory it’s recommended to create a README.md (<a href="https://www.markdownguide.org/">Markdown</a>) to describe your program / project.</p>
+  </li>
+  <li>
+    <p>Now we need to create a plugin. Plugins are how we add targets and microservices to OpenC3. Our plugin will contain a single target which contains all the information defining the packets (command and telemetry) that are needed to communicate with the target. Use the OpenC3 plugin generator to create the correct structure:</p>
+
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\&gt; <span class="nb">cd</span> <span class="kd">tutorial</span>
+ <span class="kd">C</span>:\tutorial&gt; <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">openc3</span><span class="na">-cli </span><span class="kd">generate</span> <span class="kd">plugin</span> <span class="kd">BOB</span>
+</code></pre></div>    </div>
+
+    <p>This should create a new directory called “openc3-bob” with a bunch of files in it. The full description of all the files is explained by the <a href="/docs/v5/plugins#plugin-directory-structure">Plugin Structure</a> page.</p>
+  </li>
+  <li>
+    <p>The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-bob/targets/BOB/cmd_tlm/cmd.txt:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB EXAMPLE BIG_ENDIAN <span class="s2">"Packet description"</span>
+   <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
+   APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
+   APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 2.5      <span class="s2">"Value"</span>
+   APPEND_PARAMETER    BOOL  8       UINT   MIN MAX  0        <span class="s2">"Boolean"</span>
+     STATE FALSE 0
+     STATE TRUE 1
+   APPEND_PARAMETER    LABEL 0       STRING          <span class="s2">"OpenC3"</span> <span class="s2">"The label to apply"</span>
+</code></pre></div>    </div>
+
+    <p>What does this all mean?</p>
+    <ul>
+      <li>We created a COMMAND for target BOB named EXAMPLE.</li>
+      <li>The command is made up of BIG_ENDIAN parameters and is described by “Packet description”. Here we are using the append flavor of defining parameters which stacks them back to back as it builds up the packet and you don’t have to worry about defining the bit offset into the packet.</li>
+      <li>First we APPEND_ID_PARAMETER a parameter that is used to identify the packet called ID that is an 16-bit signed integer (INT) with a minimum value of 1, a maximum value of 1, and a default value of 1, that is described as the “Identifier”.</li>
+      <li>Next we APPEND_PARAMETER a parameter called VALUE that is a 32-bit float (FLOAT) that has a minimum value of 0, a maximum value of 10.5, and a default value of 2.5.</li>
+      <li>Then we APPEND_PARAMETER a third parameter called BOOL which is a 8-bit unsigned integer (UINT) with a minimum value of MIN (meaning the smallest value a UINT supports, e.g 0), a maximum value of MAX (largest value a UINT supports, e.g. 255), and a default value of 0. BOOL has two states which are just a fancy way of giving meaning to the integer values 0 and 1. The STATE FALSE has a value of 0 and the STATE TRUE has a value of 1.</li>
+      <li>Finally we APPEND_PARAMETER called LABEL which is a 0-bit (meaning it takes up all the remaining space in the packet) string (STRING) with a default value of “OpenC3”. Strings don’t have minimum or maximum values as that doesn’t make sense for STRING types.</li>
+    </ul>
+
+    <p>Check out the full <a href="/docs/v5/command">Command</a> documention for more.</p>
+  </li>
+  <li>
+    <p>Now open the openc3-bob/targets/BOB/cmd_tlm/tlm.txt:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TELEMETRY BOB STATUS BIG_ENDIAN <span class="s2">"Telemetry description"</span>
+   <span class="c"># Keyword      Name  BitSize Type   ID Description</span>
+   APPEND_ID_ITEM ID    16      INT    1  <span class="s2">"Identifier"</span>
+   APPEND_ITEM    VALUE 32      FLOAT     <span class="s2">"Value"</span>
+   APPEND_ITEM    BOOL  8       UINT      <span class="s2">"Boolean"</span>
+     STATE FALSE 0
+     STATE TRUE 1
+   APPEND_ITEM    LABEL 0       STRING    <span class="s2">"The label to apply"</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>This time we created a TELEMETRY packet for target BOB called STATUS that contains BIG_ENDIAN items and is described as “Telemetry description”.</li>
+      <li>We start by defininig an ID_ITEM called ID that is a 16-bit signed integer (INT) with an id value of 1 and described as “Identifier”. Id items are used to take unidentified blobs of bytes and determine which packet they are. In this case if a blob comes in with a value of 1, at bit offset 0 (since we APPEND this item first), interpreted as a 16-bit integer, then this packet will be “identified” as STATUS. Note the first packet defined without any ID_ITEMS is a “catch-all” packet that matches all incoming data (even if the data lengths don’t match).</li>
+      <li>Next we define three items similar to the command definition above.</li>
+    </ul>
+
+    <p>Check out the full <a href="/docs/v5/telemetry">Telemetry</a> documention for more.</p>
+  </li>
+  <li>
+    <p>OpenC3 has defined an example command and telemetry packet for our target. Most targets will obviously have more than one command and telemetry packet. To add more simply create additional COMMAND and TELEMETRY lines in your text files. Actual packets should match the structure of your command and telemetry. Be sure to add at least one unique <a href="/docs/v5/command#id_parameter">ID_PARAMETER</a> and <a href="/docs/v5/telemetry#id_item">ID_ITEM</a> so your packets can be distinguished from each other.</p>
+  </li>
+  <li>
+    <p>Now we need to tell OpenC3 how to connect to our BOB target. Open the openc3-bob/plugin.txt file:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># Set VARIABLEs here to allow variation in your plugin</span>
+ <span class="c"># See https://openc3.com/docs/v5/plugins for more information</span>
+ VARIABLE bob_target_name BOB
+
+ <span class="c"># Modify this according to your actual target connection</span>
+ <span class="c"># See https://openc3.com/docs/v5/interfaces for more information</span>
+ TARGET BOB &lt;%<span class="o">=</span> bob_target_name %&gt;
+ INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
+   MAP_TARGET &lt;%<span class="o">=</span> bob_target_name %&gt;
+</code></pre></div>    </div>
+
+    <ul>
+      <li>This configures the plugin with a VARIABLE called bob_target_name with a default of “BOB”. When you install this plugin you will have the option to change the name of this target to something other than “BOB”. This is useful to avoid name conflicts and allows you to have multiple copies of the BOB target in your OpenC3 system.</li>
+      <li>The TARGET line declares the new BOB target using the name from the variable. The &lt;%= %&gt; syntax is called ERB (embedded Ruby) and allows us to put variables into our text files, in this case referencing our bob_target_name.</li>
+      <li>The last line declares a new INTERFACE called (by default) BOB_INT that will connect as a TCP/IP client using the code in tcpip_client_interface.rb to address host.docker.internal (This adds an /etc/hosts entry to the correct IP address for the host’s gateway) using port 8080 for writing and 8081 for reading. It also has a write timeout of 10 seconds and reads will never timeout (nil). The TCP/IP stream will be interpreted using the OpenC3 <a href="/docs/v5/protocols#burst-protocol">BURST</a> protocol which means it will read as much data as it can from the interface. For all the details on how to configure OpenC3 interfaces please see the <a href="/docs/v5/interfaces">Interface Guide</a>. The MAP_TARGET line tells OpenC3 that it will receive telemetry from and send commands to the BOB target using the BOB_INT interface.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="note">
+  <h5>Variables Support Reusability</h5>
+  <p>In a plugin that you plan to reuse you should make things like hostnames and ports variables</p>
+</div>
+
+<h2 id="building-your-plugin">Building Your Plugin</h2>
+
+<ol>
+  <li>
+    <p>Now we need to build our plugin and upload it to OpenC3.</p>
+
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial&gt; <span class="nb">cd</span> <span class="kd">openc3</span><span class="na">-bob
+ </span><span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\openc3\openc3.bat <span class="kd">openc3</span><span class="na">-cli </span><span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
+   <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
+   <span class="kd">Name</span>: <span class="kd">openc3</span><span class="na">-bob
+   </span><span class="kd">Version</span>: <span class="m">1</span>.0.0.20210618174517
+   <span class="kd">File</span>: <span class="kd">openc3</span><span class="na">-bob</span><span class="o">-</span><span class="m">1</span>.0.0.20210618174517.gem
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Note that the VERSION is required to specify the version to build. We recommend <a href="https://semver.org/">sematic versioning</a> when building your plugin so people using your plugin (including you) know when there are breaking changes.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Once our plugin is built we need to upload it to OpenC3. Go back to the Admin page and click the Plugins Tab. Click on “Click to Select Plugin” and select the openc3-bob-1.0.0.20210618174517.gem file. Then click Upload. Go back to the CmdTlmServer and you should see the plugin being deployed at which point the BOB_INT interface should appear and try to connect. Go ahead and click ‘Cancel’ because unless you really have something listening on port 8080 this will never connect. At this point you can explore the other CmdTlmServer tabs and other tools to see your newly defined BOB target.</p>
+  </li>
+  <li>
+    <p>Let’s modify our BOB target and then update the copy in OpenC3. If you open Command Sender in OpenC3 to BOB EXAMPLE you should see the VALUE parameter has value 2.5. Open the openc3-bob/targets/BOB/cmd_tlm/cmd.txt and change the Default value for VALUE to 5 and the description to “New Value”.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB EXAMPLE BIG_ENDIAN <span class="s2">"Packet description"</span>
+   <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
+   APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
+   APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 5        <span class="s2">"New Value"</span>
+   APPEND_PARAMETER    BOOL  8       UINT   MIN MAX  0        <span class="s2">"Boolean"</span>
+     STATE FALSE 0
+     STATE TRUE 1
+   APPEND_PARAMETER    LABEL 0       STRING          <span class="s2">"OpenC3"</span> <span class="s2">"The label to apply"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Rebuild the plugin with a new VERSION number. Since we didn’t make any breaking changes we simply bump the patch release number:</p>
+
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">openc3</span><span class="na">-cli </span><span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
+   <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
+   <span class="kd">Name</span>: <span class="kd">openc3</span><span class="na">-bob
+   </span><span class="kd">Version</span>: <span class="m">1</span>.0.1.20210618202504
+   <span class="kd">File</span>: <span class="kd">openc3</span><span class="na">-bob</span><span class="o">-</span><span class="m">1</span>.0.1.20210618202504.gem
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Go back to the Admin page and click the Plugins Tab. This time click the clock icon next to openc3-bob-1.0.0 to Upgrade the plugin. Browse to the newly built plugin gem and select it. This will re-prompt for the plugin variables (bob_target_name) so don’t change the name and just click OK. You should see a message about the plugin being installed at which point the plugins list will change to openc3-bob-1.0.1.20210618202504.gem. Go back to Command Sender and you should see the new Default value for VALUE is 5 and the description is “New Value”. We have upgraded our plugin!</p>
+  </li>
+  <li>
+    <p>At this point you can create a new plugin named after your real target and start modifying the interface and command and telemetry definitions to enable OpenC3 to connect to and drive your target. If you run into trouble look for solutions on our <a href="https://github.com/OpenC3/openc3/issues">Github Issues</a> page. If you would like to enquire about support contracts or professional OpenC3 development please contact us at support@openc3.com.</p>
+  </li>
+</ol>
+
+      </article>
+    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <!-- Only display the version links for versioned content -->
+    
+    <ul>
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
+      <li>
+        <!-- Only create links to collections which aren't our own  -->
+        
+      </li>
+      
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
+      
+    </ul>
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Getting Started</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tools">Tools</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/installation">Installation</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+  <li class="current">
+    <a href="/docs/v5/gettingstarted">Getting Started</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/upgrading">Upgrading</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/requirements">Requirements and Design</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/podman">Podman</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Configuration</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/plugins">Plugins</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/target">Target Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/command">Command Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/telemetry">Telemetry Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/interfaces">Interface Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/protocols">Protocol Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/ssl-tls">SSL-TLS</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Tool User Manuals</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cmd-tlm-server">Command and Telemetry Server</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/limits-monitor">Limits Monitor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/script-runner">Script Runner</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/screens">Telemetry Screens</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/calendar">Calendar</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/autonomic">Autonomic</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/logging">Logging</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/scripting">Scripting Guide</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/monitoring">Monitoring</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Development</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/development">Developing OpenC3</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/testing">Testing OpenC3</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/json-api">JSON API</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/streaming-api">Streaming API</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/log-structure">Log Structure</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/host-install">Host Install</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+    <h4>Meta</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/contributing">Contributing</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/philosophy">Philosophy</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/xtce">XTCE Support</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+  </aside>
+</div>
+
+
+    <div class="clear"></div>
+  </div>
+</section>
+
+
+  <footer role="contentinfo">
+  <div class="grid wider">
+    <div class="unit one-third center-on-mobiles">
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
+    </div>
+    <div class="unit two-thirds align-right center-on-mobiles">
+      <p>
+        <gcse:search></gcse:search>
+        Proudly hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+  
+
+
+</body>
+</html>

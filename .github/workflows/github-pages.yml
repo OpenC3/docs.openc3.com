@@ -1,0 +1,42 @@
+name: Build OpenC3
+
+on:
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: website
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: website
+      - name: Checkout OpenC3
+        uses: actions/checkout@v2
+        with:
+          repository: OpenC3/openc3
+          ref: master
+          path: openc3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+          bundler-cache: true
+      - name: Install dependencies
+        run: bundle install
+      - name: Run build
+        run: bundle exec rake build
+      - name: Git commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add _site/*
+          git commit -m "Built site"
+          git push
+      - name: Run deploy
+        run: bundle exec rake deploy
