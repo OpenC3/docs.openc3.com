@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ref: website
           path: website
       - name: Checkout OpenC3
         uses: actions/checkout@v2
