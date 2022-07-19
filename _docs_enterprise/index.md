@@ -15,8 +15,8 @@ Welcome to OpenC3 Enterprise Edition. The Enterprise Edition of OpenC3 takes the
 
 | Feature | Open Source | Enterprise |
 | --------| :---------: | :--------: |
-| Full set of COSMOS Tools | x | x |
-| Full access to COSMOS source code | x | x |
+| Full set of OpenC3 Tools | x | x |
+| Full access to OpenC3 source code | x | x |
 | Single group account | x | |
 | Individual user accounts via LDAP | | x |
 | Role based access control [(RBAC)]({{site.baseurl}}/docs/enterprise/rbac) | | x |

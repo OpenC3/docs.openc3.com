@@ -53,7 +53,7 @@ Podman is an alternative container technology to Docker that is actively promote
    source .bashrc
    ```
 
-1. Get COSMOS - A release or the current main branch (main branch shown)
+1. Get OpenC3 - A release or the current main branch (main branch shown)
 
    ```
    git clone https://github.com/OpenC3/openc3.git
