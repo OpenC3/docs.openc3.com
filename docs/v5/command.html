@@ -334,7 +334,7 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">PARAMETER SYNC 0 32 UINT 0xDEADBEEF 0xDEADBEEF 0xDEADBEEF "Sync pattern"
 PARAMETER DATA 32 32 INT MIN MAX 0 "Data value"
 PARAMETER VALUE 64 32 FLOAT 0 10.5 2.5
-PARAMETER LABEL 96 96 STRING "COSMOS" "The label to apply"
+PARAMETER LABEL 96 96 STRING "OPENC3" "The label to apply"
 PARAMETER BLOCK 192 0 BLOCK 0x0 "Block of binary data"
 </code></pre></figure>
 
@@ -429,7 +429,7 @@ PARAMETER BLOCK 192 0 BLOCK 0x0 "Block of binary data"
 <p>Example Usage:</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_PARAMETER SYNC 32 UINT 0xDEADBEEF 0xDEADBEEF 0xDEADBEEF "Sync pattern"
 APPEND_PARAMETER VALUE 32 FLOAT 0 10.5 2.5
-APPEND_PARAMETER LABEL 0 STRING "COSMOS" "The label to apply"
+APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
 </code></pre></figure>
 
 <h3 id="id_parameter">
@@ -787,7 +787,7 @@ APPEND_PARAMETER LABEL 0 STRING "COSMOS" "The label to apply"
 
 <h3 id="hidden">
 <a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h3>
-<p><strong>Hides this command from all COSMOS tools such as Command Sender and Handbook Creator</strong></p>
+<p><strong>Hides this command from all OpenC3 tools such as Command Sender and Handbook Creator</strong></p>
 
 <p>Hidden commands do not appear in the Script Runner popup helper when writing scripts. The command still exists in the system and can be sent by scripts.</p>
 
@@ -971,7 +971,7 @@ UNITS Kilometers KM
 <div class="right">(Since 4.4.1)</div>
 <p><strong>This item is allowed to overlap other items in the packet</strong></p>
 
-<p>If an item’s bit offset overlaps another item, COSMOS issues a warning. This keyword explicitly allows an item to overlap another and supresses the warning message.</p>
+<p>If an item’s bit offset overlaps another item, OpenC3 issues a warning. This keyword explicitly allows an item to overlap another and supresses the warning message.</p>
 
 <h4 id="required">
 <a class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRED</h4>
@@ -1095,7 +1095,7 @@ APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
 <a class="anchor" href="#write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>WRITE_CONVERSION</h4>
 <p><strong>Applies a conversion when writing the current command parameter</strong></p>
 
-<p>Conversions are implemented in a custom Ruby file which should be located in the target’s lib folder and required by the target’s target.txt file (see REQUIRE). The class must require ‘cosmos/conversions/conversion’ and inherit from Conversion. It must implement the initialize method if it takes extra parameters and must always implement the call method. The conversion factor is applied to the value entered by the user before it is written into the binary command packet and sent.</p>
+<p>Conversions are implemented in a custom Ruby file which should be located in the target’s lib folder and required by the target’s target.txt file (see REQUIRE). The class must require ‘openc3/conversions/conversion’ and inherit from Conversion. It must implement the initialize method if it takes extra parameters and must always implement the call method. The conversion factor is applied to the value entered by the user before it is written into the binary command packet and sent.</p>
 <div class="note info"> <h5>
 <a class="anchor" href="#multiple-write-conversions-on-command-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiple write conversions on command parameters</h5> <p>When a command is built, each item gets written (and write conversions are run) to set the default value. Then items are written (again write conversions are run) with user provided values. Thus write conversions can be run twice. Also there are no guarantees which parameters have already been written. The packet itself has a given_values() method which can be used to retrieve a hash of the user provided values to the command. That can be used to check parameter values passed in.</p> </div>
 
@@ -1126,8 +1126,8 @@ APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
 
 Defined in the_great_conversion.rb:
 
-require 'cosmos/conversions/conversion'
-module Cosmos
+require 'openc3/conversions/conversion'
+module OpenC3
   class TheGreatConversion &lt; Conversion
     def initialize(multiplier)
       super()
@@ -1235,7 +1235,7 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 <a class="anchor" href="#overflow" aria-hidden="true"><span class="octicon octicon-link"></span></a>OVERFLOW</h4>
 <p><strong>Set the behavior when writing a value overflows the type</strong></p>
 
-<p>By default COSMOS throws an error if you try to write a value which overflows its specified type, e.g. writing 255 to a 8 bit signed value. Setting the overflow behavior also allows for COSMOS to ‘TRUNCATE’ the value by eliminating any high order bits. You can also set ‘SATURATE’ which causes COSMOS to replace the value with the maximum or minimum allowable value for that type. Finally you can specify ‘ERROR_ALLOW_HEX’ which will allow for a maximum hex value to be writen, e.g. you can successfully write 255 to a 8 bit signed value.</p>
+<p>By default OpenC3 throws an error if you try to write a value which overflows its specified type, e.g. writing 255 to a 8 bit signed value. Setting the overflow behavior also allows for OpenC3 to ‘TRUNCATE’ the value by eliminating any high order bits. You can also set ‘SATURATE’ which causes OpenC3 to replace the value with the maximum or minimum allowable value for that type. Finally you can specify ‘ERROR_ALLOW_HEX’ which will allow for a maximum hex value to be writen, e.g. you can successfully write 255 to a 8 bit signed value.</p>
 
 <table>
   <thead>
@@ -1248,7 +1248,7 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
   <tbody>
     <tr>
       <td>Behavior</td>
-      <td>How COSMOS treats an overflow value. Only applies to signed and unsigned integer data types.<br><br>Valid Values: <span class="values">ERROR, ERROR_ALLOW_HEX, TRUNCATE, SATURATE</span>
+      <td>How OpenC3 treats an overflow value. Only applies to signed and unsigned integer data types.<br><br>Valid Values: <span class="values">ERROR, ERROR_ALLOW_HEX, TRUNCATE, SATURATE</span>
 </td>
       <td>True</td>
     </tr>
