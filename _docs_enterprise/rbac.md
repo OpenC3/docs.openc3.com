@@ -3,7 +3,7 @@ layout: docs
 title: Role Based Access Control
 ---
 
-Role Based Access Control allows you to assign roles to individual users in OpenC3. By default, Enterprise Edition ships with 3 built-in roles: viewer, operator, and admin. These roles are mapped to the following COSMOS permissions.
+Role Based Access Control allows you to assign roles to individual users in OpenC3. By default, Enterprise Edition ships with 3 built-in roles: viewer, operator, and admin. These roles are mapped to the following OpenC3 permissions.
 
 | Permission  | Description       | Viewer | Operator | Admin |
 | ----------- | :---------------- | :----: | :------: | :---: |

@@ -24,7 +24,7 @@ This example assumes an existing OpenC3 5 installation at C:\OpenC3_5.0.0 and a 
 
 ### Migrating From COSMOS 4 to OpenC3 5
 
-COSMOS 5 is a new architecture and treats targets as independent [plugins]({{site.baseurl}}/docs/v5/plugins). Thus the primary effort in porting from 4 to 5 is converting targets to plugins. We recommend creating plugins for each independent target (with its own interface) but targets which share an interface will need to be part of the same plugin. The reason for independent plugins is it allows the plugin to be versioned separately and more easily shared outside your specific project. If you have very project specific targets (e.g. custom hardware) those can potentially be combined for ease of deployment.
+OpenC3 5 is a new architecture and treats targets as independent [plugins]({{site.baseurl}}/docs/v5/plugins). Thus the primary effort in porting from COSMOS 4 to OpenC3 5 is converting targets to plugins. We recommend creating plugins for each independent target (with its own interface) but targets which share an interface will need to be part of the same plugin. The reason for independent plugins is it allows the plugin to be versioned separately and more easily shared outside your specific project. If you have very project specific targets (e.g. custom hardware) those can potentially be combined for ease of deployment.
 
 OpenC3 5 includes a migration tool for converting an existing COSMOS 4 configuration into a OpenC3 5 plugin. This example assumes an existing COSMOS 4 configuration at C:\COSMOS4_config and a new OpenC3 5 installation at C:\OpenC3_5. Linux users can adjust paths and change from .bat to .sh to follow along.
 
@@ -34,7 +34,7 @@ OpenC3 5 includes a migration tool for converting an existing COSMOS 4 configura
     C:\COSMOS4_config> C:\OpenC3_5\openc3.bat openc3-cli migrate -a demo
     ```
 
-    This creates a new COSMOS 5 plugin called openc3-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.
+    This creates a new OpenC3 5 plugin called openc3-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.
 
     ```batch
     C:\COSMOS4_config> C:\OpenC3_5\openc3.bat openc3-cli migrate demo-part INST SYSTEM
@@ -44,4 +44,4 @@ OpenC3 5 includes a migration tool for converting an existing COSMOS 4 configura
 
 1. Open the new OpenC3 5 plugin and ensure the [plugin.txt]({{site.baseurl}}/docs/v5/plugins#plugintxt-configuration-file) file is correctly configured. The migration tool doesn't create VARIABLEs or MICROSERVICEs or handle target substitution so those features will have to added manually.
 
-1. Follow the [building your plugin]({{site.baseurl}}/docs/v5/gettingstarted#building-your-plugin) part of the Getting Started tutorial to build your new plugin and upload it to Openc3 5.
+1. Follow the [building your plugin]({{site.baseurl}}/docs/v5/gettingstarted#building-your-plugin) part of the Getting Started tutorial to build your new plugin and upload it to OpenC3 5.
