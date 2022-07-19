@@ -3,7 +3,7 @@ name: Build OpenC3
 on:
   push:
     branches:
-      - main
+      - website
 
 defaults:
   run:
