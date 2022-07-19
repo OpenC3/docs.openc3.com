@@ -204,7 +204,7 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">TELEMETRY SYSTEM LIMITS_CHANGE BIG_ENDIAN "COSMOS limits change"</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">TELEMETRY SYSTEM LIMITS_CHANGE BIG_ENDIAN "OpenC3 limits change"</code></pre></figure>
 
 <h2 id="select_telemetry">
 <a class="anchor" href="#select_telemetry" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_TELEMETRY</h2>
@@ -723,7 +723,7 @@ ITEM DATA 0 0 DERIVED "Derived data"
     </tr>
     <tr>
       <td>Processor Class Filename</td>
-      <td>Name of the Ruby file which implements the processor. This file should be in the config/TARGET/lib directory so it can be found by COSMOS.</td>
+      <td>Name of the Ruby file which implements the processor. This file should be in the config/TARGET/lib directory so it can be found by OpenC3.</td>
       <td>True</td>
     </tr>
     <tr>
@@ -741,11 +741,11 @@ ITEM DATA 0 0 DERIVED "Derived data"
 <a class="anchor" href="#allow_short" aria-hidden="true"><span class="octicon octicon-link"></span></a>ALLOW_SHORT</h3>
 <p><strong>Process telemetry packets which are less than their defined length</strong></p>
 
-<p>Allows the telemetry packet to be received with a data portion that is smaller than the defined size without warnings. Any extra space in the packet will be filled in with zeros by COSMOS.</p>
+<p>Allows the telemetry packet to be received with a data portion that is smaller than the defined size without warnings. Any extra space in the packet will be filled in with zeros by OpenC3.</p>
 
 <h3 id="hidden">
 <a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h3>
-<p><strong>Hides this telemetry packet from all the COSMOS tools</strong></p>
+<p><strong>Hides this telemetry packet from all the OpenC3 tools</strong></p>
 
 <p>This packet will not appear in Packet Viewer, Telemetry Grapher and Handbook Creator. It also hides this telemetry from appearing in the Script Runner popup helper when writing scripts. The telemetry still exists in the system and can received and checked by scripts.</p>
 
@@ -865,7 +865,7 @@ UNITS Kilometers KM
 <div class="right">(Since 4.4.1)</div>
 <p><strong>This item is allowed to overlap other items in the packet</strong></p>
 
-<p>If an item’s bit offset overlaps another item, COSMOS issues a warning. This keyword explicitly allows an item to overlap another and supresses the warning message.</p>
+<p>If an item’s bit offset overlaps another item, OpenC3 issues a warning. This keyword explicitly allows an item to overlap another and supresses the warning message.</p>
 
 <h4 id="state">
 <a class="anchor" href="#state" aria-hidden="true"><span class="octicon octicon-link"></span></a>STATE</h4>
@@ -915,7 +915,7 @@ APPEND_ITEM STRING 1024 STRING "String"
 <a class="anchor" href="#read_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>READ_CONVERSION</h4>
 <p><strong>Applies a conversion to the current telemetry item</strong></p>
 
-<p>Conversions are implemented in a custom Ruby file which should be located in the target’s lib folder and required by the target’s target.txt file (see REQUIRE). The class must require ‘cosmos/conversions/conversion’ and inherit from Conversion. It must implement the initialize method if it takes extra parameters and must always implement the call method. The conversion factor is applied to the raw value in the telemetry packet before it is displayed to the user. The user still has the ability to see the raw unconverted value in a details dialog.</p>
+<p>Conversions are implemented in a custom Ruby file which should be located in the target’s lib folder and required by the target’s target.txt file (see REQUIRE). The class must require ‘openc3/conversions/conversion’ and inherit from Conversion. It must implement the initialize method if it takes extra parameters and must always implement the call method. The conversion factor is applied to the raw value in the telemetry packet before it is displayed to the user. The user still has the ability to see the raw unconverted value in a details dialog.</p>
 
 <table>
   <thead>
@@ -944,8 +944,8 @@ APPEND_ITEM STRING 1024 STRING "String"
 
 Defined in the_great_conversion.rb:
 
-require 'cosmos/conversions/conversion'
-module Cosmos
+require 'openc3/conversions/conversion'
+module OpenC3
   class TheGreatConversion &lt; Conversion
     def initialize(multiplier)
       super()
@@ -1123,12 +1123,12 @@ SEG_POLY_READ_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &gt
     </tr>
     <tr>
       <td>Green Low Limit</td>
-      <td>Setting the Green Low and Green High limits defines an “operational limit” which is colored blue by COSMOS. This allows for a distinct desired operational range which is narrower than the green safety limit. If the telemetry value is greater than or equal to this value, but less than the Green High Limit, a Blue operational condition will be detected.</td>
+      <td>Setting the Green Low and Green High limits defines an “operational limit” which is colored blue by OpenC3. This allows for a distinct desired operational range which is narrower than the green safety limit. If the telemetry value is greater than or equal to this value, but less than the Green High Limit, a Blue operational condition will be detected.</td>
       <td>False</td>
     </tr>
     <tr>
       <td>Green High Limit</td>
-      <td>Setting the Green Low and Green High limits defines an “operational limit” which is colored blue by COSMOS. This allows for a distinct desired operational range which is narrower than the green safety limit. If the telemetry value is less than or equal to this value, but greater than the Green Low Limit, a Blue operational condition will be detected.</td>
+      <td>Setting the Green Low and Green High limits defines an “operational limit” which is colored blue by OpenC3. This allows for a distinct desired operational range which is narrower than the green safety limit. If the telemetry value is less than or equal to this value, but greater than the Green Low Limit, a Blue operational condition will be detected.</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -1154,7 +1154,7 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
   <tbody>
     <tr>
       <td>Response Class Filename</td>
-      <td>Name of the Ruby file which implements the limits response. This file should be in the config/TARGET/lib directory so it can be found by COSMOS.</td>
+      <td>Name of the Ruby file which implements the limits response. This file should be in the config/TARGET/lib directory so it can be found by OpenC3.</td>
       <td>True</td>
     </tr>
     <tr>

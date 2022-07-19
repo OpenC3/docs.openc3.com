@@ -350,7 +350,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#interface-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>INTERFACE</h2>
 <p><strong>Defines a connection to a physical target</strong></p>
 
-<p>Interfaces are what COSMOS uses to talk to a particular piece of hardware. Interfaces require a Ruby file which implements all the interface methods necessary to talk to the hardware. COSMOS defines many built in interfaces or you can define your own as long as it implements the interface protocol.</p>
+<p>Interfaces are what OpenC3 uses to talk to a particular piece of hardware. Interfaces require a Ruby file which implements all the interface methods necessary to talk to the hardware. OpenC3 defines many built in interfaces or you can define your own as long as it implements the interface protocol.</p>
 
 <table>
   <thead>
@@ -363,7 +363,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   <tbody>
     <tr>
       <td>Interface Name</td>
-      <td>Name of the interface. This name will appear in the Interfaces tab of the Server and is also referenced by other keywords. The COSMOS convention is to name interfaces after their targets with ‘_INT’ appended to the name, e.g. INST_INT for the INST target.</td>
+      <td>Name of the interface. This name will appear in the Interfaces tab of the Server and is also referenced by other keywords. The OpenC3 convention is to name interfaces after their targets with ‘_INT’ appended to the name, e.g. INST_INT for the INST target.</td>
       <td>True</td>
     </tr>
     <tr>
@@ -441,7 +441,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#microservice-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>MICROSERVICE</h2>
 <p><strong>Defines a new microservice</strong></p>
 
-<p>Defines a microservice that the plugin adds to the COSMOS system. Microservices are background software processes that perform persistent processing.</p>
+<p>Defines a microservice that the plugin adds to the OpenC3 system. Microservices are background software processes that perform persistent processing.</p>
 
 <table>
   <thead>
@@ -460,7 +460,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
     </tr>
     <tr>
       <td>Microservice Name</td>
-      <td>The specific name of this instance of the microservice in the COSMOS system</td>
+      <td>The specific name of this instance of the microservice in the OpenC3 system</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -473,7 +473,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#tool-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOOL</h2>
 <p><strong>Define a tool</strong></p>
 
-<p>Defines a tool that the plugin adds to the COSMOS system. Tools are web based applications that make use of the Single-SPA javascript library that allows them to by dynamically added to the running system as independent frontend microservices.</p>
+<p>Defines a tool that the plugin adds to the OpenC3 system. Tools are web based applications that make use of the Single-SPA javascript library that allows them to by dynamically added to the running system as independent frontend microservices.</p>
 
 <table>
   <thead>
@@ -492,7 +492,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
     </tr>
     <tr>
       <td>Tool Name</td>
-      <td>Name of the tool that is displayed in the COSMOS Navigation menu</td>
+      <td>Name of the tool that is displayed in the OpenC3 Navigation menu</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -595,7 +595,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 
 <p>LOG is only required if you want a log writer other than the default to log commands and telemetry on this interface</p>
 
-<div class="note warning"><p>Choosing a custom log writer can prevent COSMOS from reading back your log files</p></div>
+<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
 
 <table>
   <thead>
@@ -620,7 +620,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 
 <p>LOG_STORED allows you to specify a different log writer for stored telemetry (telemetry which has the ‘stored’ flag set in the packet). By default the stored telemetry is intermingled in the normal log file.</p>
 
-<div class="note warning"><p>Choosing a custom log writer can prevent COSMOS from reading back your log files</p></div>
+<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
 
 <table>
   <thead>
@@ -647,14 +647,14 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#log_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_RAW</h3>
 <p><strong>Log all data on the interface exactly as it is sent and received</strong></p>
 
-<p>LOG_RAW does not add any COSMOS headers and thus can not be read by COSMOS tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
+<p>LOG_RAW does not add any OpenC3 headers and thus can not be read by OpenC3 tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
 
 <h3 id="protocol">
 <a class="anchor" href="#protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROTOCOL</h3>
 <div class="right">(Since 4.0.0)</div>
 <p><strong>Protocols modify the interface by processing the data</strong></p>
 
-<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> There is only one built in protocol implemented by override_protocol.rb. This protocol allows for Scripts to use the override_tlm() and normalize_tlm() methods to permanently change a telemetry value. Note, this differs from set_tlm() as set_tlm() is over-written by new incoming telemetry.<br><br> For information on creating your own custom protocol please see <a href="https://ballaerospace.github.io/cosmos-website/docs/v5/protocols">https://ballaerospace.github.io/cosmos-website/docs/v5/protocols</a></p>
+<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> There is only one built in protocol implemented by override_protocol.rb. This protocol allows for Scripts to use the override_tlm() and normalize_tlm() methods to permanently change a telemetry value. Note, this differs from set_tlm() as set_tlm() is over-written by new incoming telemetry.<br><br> For information on creating your own custom protocol please see <a href="https://openc3.com/docs/v5/protocols">https://openc3.com/docs/v5/protocols</a></p>
 
 <table>
   <thead>
@@ -701,7 +701,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   <tbody>
     <tr>
       <td>Name</td>
-      <td>The option to set. COSMOS defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0) and AUTO_SYSTEM_META which will automatically send SYSTEM META when the interface connects (default false).</td>
+      <td>The option to set. OpenC3 defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0) and AUTO_SYSTEM_META which will automatically send SYSTEM META when the interface connects (default false).</td>
       <td>True</td>
     </tr>
     <tr>
@@ -803,7 +803,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 
 <p>LOG is only required if you want a log writer other than the default to log commands and telemetry on this interface</p>
 
-<div class="note warning"><p>Choosing a custom log writer can prevent COSMOS from reading back your log files</p></div>
+<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
 
 <table>
   <thead>
@@ -828,7 +828,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 
 <p>LOG_STORED allows you to specify a different log writer for stored telemetry (telemetry which has the ‘stored’ flag set in the packet). By default the stored telemetry is intermingled in the normal log file.</p>
 
-<div class="note warning"><p>Choosing a custom log writer can prevent COSMOS from reading back your log files</p></div>
+<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
 
 <table>
   <thead>
@@ -855,14 +855,14 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#log_raw-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_RAW</h3>
 <p><strong>Log all data on the interface exactly as it is sent and received</strong></p>
 
-<p>LOG_RAW does not add any COSMOS headers and thus can not be read by COSMOS tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
+<p>LOG_RAW does not add any OpenC3 headers and thus can not be read by OpenC3 tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
 
 <h3 id="protocol-1">
 <a class="anchor" href="#protocol-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROTOCOL</h3>
 <div class="right">(Since 4.0.0)</div>
 <p><strong>Protocols modify the interface by processing the data</strong></p>
 
-<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> There is only one built in protocol implemented by override_protocol.rb. This protocol allows for Scripts to use the override_tlm() and normalize_tlm() methods to permanently change a telemetry value. Note, this differs from set_tlm() as set_tlm() is over-written by new incoming telemetry.<br><br> For information on creating your own custom protocol please see <a href="https://ballaerospace.github.io/cosmos-website/docs/v5/protocols">https://ballaerospace.github.io/cosmos-website/docs/v5/protocols</a></p>
+<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> There is only one built in protocol implemented by override_protocol.rb. This protocol allows for Scripts to use the override_tlm() and normalize_tlm() methods to permanently change a telemetry value. Note, this differs from set_tlm() as set_tlm() is over-written by new incoming telemetry.<br><br> For information on creating your own custom protocol please see <a href="https://openc3.com/docs/v5/protocols">https://openc3.com/docs/v5/protocols</a></p>
 
 <table>
   <thead>
@@ -909,7 +909,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   <tbody>
     <tr>
       <td>Name</td>
-      <td>The option to set. COSMOS defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0) and AUTO_SYSTEM_META which will automatically send SYSTEM META when the interface connects (default false).</td>
+      <td>The option to set. OpenC3 defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0) and AUTO_SYSTEM_META which will automatically send SYSTEM META when the interface connects (default false).</td>
       <td>True</td>
     </tr>
     <tr>
@@ -1359,7 +1359,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#topic" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOPIC</h3>
 <p><strong>Associate a Redis topic</strong></p>
 
-<p>Redis topic to associate with this microservice. Standard COSMOS microservices such as decom_microservice use this information to know what packet streams to subscribe to. The TOPIC keyword can be used as many times as necessary to associate all needed topics.</p>
+<p>Redis topic to associate with this microservice. Standard OpenC3 microservices such as decom_microservice use this information to know what packet streams to subscribe to. The TOPIC keyword can be used as many times as necessary to associate all needed topics.</p>
 
 <table>
   <thead>
@@ -1380,9 +1380,9 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 
 <h3 id="target_name">
 <a class="anchor" href="#target_name" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET_NAME</h3>
-<p><strong>Associate a COSMOS target</strong></p>
+<p><strong>Associate a OpenC3 target</strong></p>
 
-<p>COSMOS target to associate with the microservice. For standard COSMOS microservices such as decom_microservice this causes the target configuration to get loaded into the container for the microservice.</p>
+<p>OpenC3 target to associate with the microservice. For standard OpenC3 microservices such as decom_microservice this causes the target configuration to get loaded into the container for the microservice.</p>
 
 <table>
   <thead>
@@ -1395,7 +1395,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   <tbody>
     <tr>
       <td>Target Name</td>
-      <td>COSMOS target to associate with the microservice</td>
+      <td>OpenC3 target to associate with the microservice</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -1428,7 +1428,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#option-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>OPTION</h3>
 <p><strong>Pass an option to the microservice</strong></p>
 
-<p>Generic key/value(s) options to pass to the microservice. These take the form of KEYWORD/PARAMS like a line in a COSMOS configuration file. Multiple OPTION keywords can be used to pass multiple options to the microservice.</p>
+<p>Generic key/value(s) options to pass to the microservice. These take the form of KEYWORD/PARAMS like a line in a OpenC3 configuration file. Multiple OPTION keywords can be used to pass multiple options to the microservice.</p>
 
 <table>
   <thead>
@@ -1530,7 +1530,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#window" aria-hidden="true"><span class="octicon octicon-link"></span></a>WINDOW</h3>
 <p><strong>How to display the tool when navigated to</strong></p>
 
-<p>The window mode used to display the tool. INLINE opens the tool internally without refreshing the page using the Single-SPA framework. IFRAME opens external tools in an Iframe within COSMOS. NEW opens the tool in a new TAB.</p>
+<p>The window mode used to display the tool. INLINE opens the tool internally without refreshing the page using the Single-SPA framework. IFRAME opens external tools in an Iframe within OpenC3. NEW opens the tool in a new TAB.</p>
 
 <table>
   <thead>
@@ -1554,7 +1554,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#icon" aria-hidden="true"><span class="octicon octicon-link"></span></a>ICON</h3>
 <p><strong>Set tool icon</strong></p>
 
-<p>Icon shown next to the tool name in the COSMOS navigation menu.</p>
+<p>Icon shown next to the tool name in the OpenC3 navigation menu.</p>
 
 <table>
   <thead>
@@ -1600,7 +1600,7 @@ This file follows the standard OpenC3 configuration file format of keywords foll
 <a class="anchor" href="#shown" aria-hidden="true"><span class="octicon octicon-link"></span></a>SHOWN</h3>
 <p><strong>Show the tool or not</strong></p>
 
-<p>Whether or not the tool is shown in the Navigation menu. Should generally be true, except for the cosmos base tool.</p>
+<p>Whether or not the tool is shown in the Navigation menu. Should generally be true, except for the openc3 base tool.</p>
 
 <table>
   <thead>
