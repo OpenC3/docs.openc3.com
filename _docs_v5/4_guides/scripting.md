@@ -912,12 +912,12 @@ pp param
 
 ### get_cmd_buffer
 
-Returns the raw packet buffer as a Ruby string.
+Returns a packet hash (similar to get_command) along with the raw packet buffer as a Ruby string.
 
 Syntax:
 
 ```ruby
-buffer = get_cmd_buffer("<Target Name>", "<Packet Name>")
+buffer = get_cmd_buffer("<Target Name>", "<Packet Name>")['buffer']
 ```
 
 | Parameter   | Description         |
@@ -928,8 +928,8 @@ buffer = get_cmd_buffer("<Target Name>", "<Packet Name>")
 Example:
 
 ```ruby
-buffer = get_cmd_buffer("INST", "COLLECT")
-buffer.unpack('C*') # See the Ruby documentation for class String method unpack
+packet = get_cmd_buffer("INST", "COLLECT")
+packet['buffer'].unpack('C*') # See the Ruby documentation for class String method unpack
 ```
 
 ### get_cmd_hazardous
@@ -1344,12 +1344,12 @@ value = tlm_variable("INST HEALTH_STATUS COLLECTS", :RAW)
 
 ### get_tlm_buffer
 
-Returns the raw packet buffer as a Ruby string.
+Returns a packet hash (similar to get_telemetry) along with the raw packet buffer as a Ruby string.
 
 Syntax:
 
 ```ruby
-buffer = get_tlm_buffer("<Target Name>", "<Packet Name>")
+buffer = get_tlm_buffer("<Target Name>", "<Packet Name>")['buffer']
 ```
 
 | Parameter   | Description         |
@@ -1360,8 +1360,8 @@ buffer = get_tlm_buffer("<Target Name>", "<Packet Name>")
 Example:
 
 ```ruby
-buffer = get_tlm_packet("INST", "HEALTH_STATUS")
-buffer.unpack('C*') # See the Ruby documentation for class String method unpack
+packet = get_tlm_buffer("INST", "HEALTH_STATUS")
+packet['buffer'].unpack('C*') # See the Ruby documentation for class String method unpack
 ```
 
 ### get_tlm_packet
