@@ -1966,11 +1966,11 @@
 <h3 id="get_cmd_buffer">
 <a class="anchor" href="#get_cmd_buffer" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_buffer</h3>
 
-<p>Returns the raw packet buffer as a Ruby string.</p>
+<p>Returns a packet hash (similar to get_command) along with the raw packet buffer as a Ruby string.</p>
 
 <p>Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer</span> <span class="o">=</span> <span class="n">get_cmd_buffer</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet Name&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer</span> <span class="o">=</span> <span class="n">get_cmd_buffer</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet Name&gt;"</span><span class="p">)[</span><span class="s1">'buffer'</span><span class="p">]</span>
 </code></pre></div></div>
 
 <table>
@@ -1994,8 +1994,8 @@
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer</span> <span class="o">=</span> <span class="n">get_cmd_buffer</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">)</span>
-<span class="n">buffer</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="s1">'C*'</span><span class="p">)</span> <span class="c1"># See the Ruby documentation for class String method unpack</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">packet</span> <span class="o">=</span> <span class="n">get_cmd_buffer</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">)</span>
+<span class="n">packet</span><span class="p">[</span><span class="s1">'buffer'</span><span class="p">].</span><span class="nf">unpack</span><span class="p">(</span><span class="s1">'C*'</span><span class="p">)</span> <span class="c1"># See the Ruby documentation for class String method unpack</span>
 </code></pre></div></div>
 
 <h3 id="get_cmd_hazardous">
@@ -2702,11 +2702,11 @@
 <h3 id="get_tlm_buffer">
 <a class="anchor" href="#get_tlm_buffer" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_tlm_buffer</h3>
 
-<p>Returns the raw packet buffer as a Ruby string.</p>
+<p>Returns a packet hash (similar to get_telemetry) along with the raw packet buffer as a Ruby string.</p>
 
 <p>Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer</span> <span class="o">=</span> <span class="n">get_tlm_buffer</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet Name&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer</span> <span class="o">=</span> <span class="n">get_tlm_buffer</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet Name&gt;"</span><span class="p">)[</span><span class="s1">'buffer'</span><span class="p">]</span>
 </code></pre></div></div>
 
 <table>
@@ -2730,8 +2730,8 @@
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buffer</span> <span class="o">=</span> <span class="n">get_tlm_packet</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">)</span>
-<span class="n">buffer</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="s1">'C*'</span><span class="p">)</span> <span class="c1"># See the Ruby documentation for class String method unpack</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">packet</span> <span class="o">=</span> <span class="n">get_tlm_buffer</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">)</span>
+<span class="n">packet</span><span class="p">[</span><span class="s1">'buffer'</span><span class="p">].</span><span class="nf">unpack</span><span class="p">(</span><span class="s1">'C*'</span><span class="p">)</span> <span class="c1"># See the Ruby documentation for class String method unpack</span>
 </code></pre></div></div>
 
 <h3 id="get_tlm_packet">
