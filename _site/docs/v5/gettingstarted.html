@@ -218,11 +218,11 @@
     <p>Now we need to tell OpenC3 how to connect to our BOB target. Open the openc3-bob/plugin.txt file:</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># Set VARIABLEs here to allow variation in your plugin</span>
- <span class="c"># See http://localhost:4000/docs/v5/plugins for more information</span>
+ <span class="c"># See https://openc3.com/docs/v5/plugins for more information</span>
  VARIABLE bob_target_name BOB
 
  <span class="c"># Modify this according to your actual target connection</span>
- <span class="c"># See http://localhost:4000/docs/v5/interfaces for more information</span>
+ <span class="c"># See https://openc3.com/docs/v5/interfaces for more information</span>
  TARGET BOB &lt;%<span class="o">=</span> bob_target_name %&gt;
  INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
    MAP_TARGET &lt;%<span class="o">=</span> bob_target_name %&gt;
