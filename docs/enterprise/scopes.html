@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>News</title>
+  <title>Scopes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -29,10 +29,10 @@
     <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
     <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
   </li>
-  <li class="">
+  <li class="current">
     <a href="/docs/enterprise/">Enterprise</a>
   </li>  
-  <li class="current">
+  <li class="">
     <a href="/news/">News</a>
   </li>
   <li class="">
@@ -65,10 +65,10 @@
     <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
     <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
   </li>
-  <li class="">
+  <li class="current">
     <a href="/docs/enterprise/">Enterprise</a>
   </li>  
-  <li class="current">
+  <li class="">
     <a href="/news/">News</a>
   </li>
   <li class="">
@@ -87,51 +87,78 @@
 </header>
 
 
-    <section class="news">
-    <div class="grid wider">
-
-      <div class="docs-nav-mobile unit whole show-on-mobiles">
-  <select onchange="if (this.value) window.location.href=this.value">
-    <option value="">Navigate the blog...</option>
-    <option value="/news/">Home</option>
-    <optgroup label="v1.x">
-      
-    </optgroup>
-  </select>
-</div>
-
-
-      <div class="unit four-fifths">
+  <section class="docs">
+  <div class="grid wider">
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
         
+         
+        <h1>Scopes</h1>
+        <p>Scopes can be thought of as a fully contained OpenC3 installation. Any gems or plugins (and thus targets, interfaces, etc) installed to a scope are local to that scope. That means you can create multiple scopes for different test setups, programs, etc without complexifying or corrupting an existing OpenC3 setup.</p>
 
-      </div>
+<h3 id="creating-and-using-scopes">Creating and Using Scopes</h3>
 
-      <div class="unit one-fifth hide-on-mobiles">
+<p>To create a new scope you must have the super admin role. Go to the Admin page and select the Scopes tab. Click Add and create a new name for the Scope. A useful naming conventions could be “<Program Name="">_<Usage>", e.g. Gladiator_SWTB, Gladiator_TVAC, Gladiator_EMI, etc.</Usage></Program></p>
+
+<p>Once scopes are created the show up in the Scope drop down list. Selecting a different scope unloads all the plugins (target, interfaces, etc) from OpenC3 and loads the new one. This is a significant operation in that we shut down all existing connections and microservices and start new ones. Plan on this taking a few minutes depending on the complexity of your scope (number of plugin targets and interfaces).</p>
+
+      </article>
+    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
   <aside>
-    <ul>
-      <li class="current">
-        <a href="/news/">All News</a>
-      </li>
-      <li class="">
-        <a href="/news/releases/">OpenC3 Releases</a>
-      </li>
-    </ul>
-    <h4>Recent Releases</h4>
-    <ul>
+    <!-- Only display the version links for versioned content -->
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Enterprise</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
       
-    </ul>
-    <h4>Other News</h4>
-    <ul>
+    
       
-    </ul>
+    
+      
+  <li class="current">
+    <a href="/docs/enterprise/scopes">Scopes</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/enterprise/rbac">Role Based Access Control</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
   </aside>
 </div>
 
 
-      <div class="clear"></div>
-
-    </div>
-  </section>
+    <div class="clear"></div>
+  </div>
+</section>
 
 
   <footer role="contentinfo">
