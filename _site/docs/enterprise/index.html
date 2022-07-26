@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>News</title>
+  <title>Enterprise Edition</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -29,10 +29,10 @@
     <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
     <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
   </li>
-  <li class="">
+  <li class="current">
     <a href="/docs/enterprise/">Enterprise</a>
   </li>  
-  <li class="current">
+  <li class="">
     <a href="/news/">News</a>
   </li>
   <li class="">
@@ -65,10 +65,10 @@
     <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
     <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
   </li>
-  <li class="">
+  <li class="current">
     <a href="/docs/enterprise/">Enterprise</a>
   </li>  
-  <li class="current">
+  <li class="">
     <a href="/news/">News</a>
   </li>
   <li class="">
@@ -87,51 +87,132 @@
 </header>
 
 
-    <section class="news">
-    <div class="grid wider">
-
-      <div class="docs-nav-mobile unit whole show-on-mobiles">
-  <select onchange="if (this.value) window.location.href=this.value">
-    <option value="">Navigate the blog...</option>
-    <option value="/news/">Home</option>
-    <optgroup label="v1.x">
-      
-    </optgroup>
-  </select>
-</div>
-
-
-      <div class="unit four-fifths">
+  <section class="docs">
+  <div class="grid wider">
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
         
+         
+        <h1>Enterprise Edition</h1>
+        <p>Welcome to OpenC3 Enterprise Edition. The Enterprise Edition of OpenC3 takes the Open Source Edition and adds a bunch of great features critical for mission operations. These include individual user accounts, Role Based Access Control (RBAC), Kubernetes support, end-to-end encryption, and more!</p>
 
-      </div>
+<!--
+### Enterprise Architecture
 
-      <div class="unit one-fifth hide-on-mobiles">
+![Enterprise Architecture](/img/tools/enterprise_architecture.png)
+-->
+
+<h2 id="feature-comparison">Feature Comparison</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th style="text-align: center">Open Source</th>
+      <th style="text-align: center">Enterprise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Full set of OpenC3 Tools</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Full access to OpenC3 source code</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Single group account</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Individual user accounts via LDAP</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Role based access control <a href="/docs/enterprise/rbac">(RBAC)</a></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Multiple <a href="/docs/enterprise/scopes">scopes</a></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>End-to-End Encryption</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Priority Support</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+  </tbody>
+</table>
+
+      </article>
+    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
   <aside>
-    <ul>
-      <li class="current">
-        <a href="/news/">All News</a>
-      </li>
-      <li class="">
-        <a href="/news/releases/">OpenC3 Releases</a>
-      </li>
-    </ul>
-    <h4>Recent Releases</h4>
-    <ul>
+    <!-- Only display the version links for versioned content -->
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Enterprise</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
       
-    </ul>
-    <h4>Other News</h4>
-    <ul>
+    
       
-    </ul>
+    
+      
+  <li class="">
+    <a href="/docs/enterprise/scopes">Scopes</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/enterprise/rbac">Role Based Access Control</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
   </aside>
 </div>
 
 
-      <div class="clear"></div>
-
-    </div>
-  </section>
+    <div class="clear"></div>
+  </div>
+</section>
 
 
   <footer role="contentinfo">

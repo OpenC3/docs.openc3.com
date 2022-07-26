@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar</title>
+  <title>Roadmap</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -100,78 +100,14 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
-<li class="toc-entry toc-h2"><a href="#types-of-events">Types of Events</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#metadata">Metadata</a></li>
-<li class="toc-entry toc-h3"><a href="#narrative">Narrative</a></li>
-<li class="toc-entry toc-h3"><a href="#activity">Activity</a></li>
-<li class="toc-entry toc-h3"><a href="#adding-timelines">Adding Timelines</a></li>
-<li class="toc-entry toc-h3"><a href="#timeline-lifecycle">Timeline lifecycle</a></li>
-</ul>
-</li>
 </ul></div>
         
-        <h1>Calendar</h1>
-        <h2 id="introduction">
-<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+        <h1>Roadmap</h1>
+        <p>Our product roadmap is a living documention living in Github Projects.  You can find it at the link below.</p>
 
-<p>Calendar visualizes metadata, narrative, and timeline information in one easy to understand place. Timelines allow for the simple execution of commands and scripts based on future dates and times.</p>
+<p><a href="https://github.com/orgs/OpenC3/projects/2/views/1">Roadmap</a></p>
 
-<p><img src="/img/v5/calendar/calendar.png" alt="Calendar"></p>
-
-<h2 id="types-of-events">
-<a class="anchor" href="#types-of-events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Types of Events</h2>
-
-<ul>
-  <li>
-    <p>Metadata</p>
-  </li>
-  <li>
-    <p>Narrative</p>
-  </li>
-  <li>
-    <p>Activity</p>
-  </li>
-</ul>
-
-<h3 id="metadata">
-<a class="anchor" href="#metadata" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metadata</h3>
-
-<p>Metadata allows you to record arbitrary data into the OpenC3 system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.</p>
-
-<h3 id="narrative">
-<a class="anchor" href="#narrative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Narrative</h3>
-
-<p>A simple way to record events on the calendar, for example a test window or anything else…</p>
-
-<h3 id="activity">
-<a class="anchor" href="#activity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activity</h3>
-
-<p>Scheduled on a timeline these can run single commands or run a script.</p>
-
-<h3 id="adding-timelines">
-<a class="anchor" href="#adding-timelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Timelines</h3>
-
-<p>Adding a Timeline to OpenC3.</p>
-
-<ul>
-  <li>Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm OpenC3 with lots of these.</li>
-  <li>Note you can not have overlapping activities on a single calendar.</li>
-</ul>
-
-<h3 id="timeline-lifecycle">
-<a class="anchor" href="#timeline-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline lifecycle</h3>
-
-<p>When a user creates a timeline, the OpenC3 operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.</p>
-
-<p>The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are “created”, “updated”, “deleted”, ect… Some actions require updating the schedule from the database to ensure the schedule and the database are always in synk.</p>
-
-<p>The schedule thread checks every second to make sure if a task can be run. If the start time is equal or less then the last 15 seconds it will then check the previously queued jobs list in the schedule. If the activity has not been queued and is not fulfilled the activity will be queued, this adds an event to the activity but is not saved to the database. (TODO) This could be improved upon as a way to wake the thread when a change to the schedule happens or when a job needs to run.</p>
-
-<p>The workers are plain and simple, they block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.</p>
-
-<p><img src="/img/v5/calendar/timeline_lifecycle.png" alt="Timeline Lifecycle"></p>
+<p>If you would like to commit feature ideas for our roadmap, please do so with normal Github issues at the main repo.</p>
 
       </article>
     </div>
@@ -1048,7 +984,7 @@
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/calendar">Calendar</a>
   </li>
   <!-- prettier-ignore -->
@@ -1652,7 +1588,7 @@
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/roadmap">Roadmap</a>
   </li>
   <!-- prettier-ignore -->

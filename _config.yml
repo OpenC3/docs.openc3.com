@@ -20,6 +20,9 @@ collections:
   docs_v5:
     output: true
     permalink: docs/v5/:name
+  docs_enterprise:
+    output: true
+    permalink: docs/enterprise/:name
 
 # Default collection
 default: v5

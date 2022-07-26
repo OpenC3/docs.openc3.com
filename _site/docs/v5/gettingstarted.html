@@ -30,6 +30,9 @@
     <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
   </li>
   <li class="">
+    <a href="/docs/enterprise/">Enterprise</a>
+  </li>  
+  <li class="">
     <a href="/news/">News</a>
   </li>
   <li class="">
@@ -62,6 +65,9 @@
     <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
     <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
   </li>
+  <li class="">
+    <a href="/docs/enterprise/">Enterprise</a>
+  </li>  
   <li class="">
     <a href="/news/">News</a>
   </li>
@@ -212,11 +218,11 @@
     <p>Now we need to tell OpenC3 how to connect to our BOB target. Open the openc3-bob/plugin.txt file:</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># Set VARIABLEs here to allow variation in your plugin</span>
- <span class="c"># See https://openc3.com/docs/v5/plugins for more information</span>
+ <span class="c"># See http://localhost:4000/docs/v5/plugins for more information</span>
  VARIABLE bob_target_name BOB
 
  <span class="c"># Modify this according to your actual target connection</span>
- <span class="c"># See https://openc3.com/docs/v5/interfaces for more information</span>
+ <span class="c"># See http://localhost:4000/docs/v5/interfaces for more information</span>
  TARGET BOB &lt;%<span class="o">=</span> bob_target_name %&gt;
  INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
    MAP_TARGET &lt;%<span class="o">=</span> bob_target_name %&gt;
@@ -295,6 +301,11 @@
     <!-- Only display the version links for versioned content -->
     
     <ul>
+      
+      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
+      <!-- prettier-ignore -->
+      
+      
       
       <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
       <!-- prettier-ignore -->
@@ -1753,6 +1764,88 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/roadmap">Roadmap</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing OpenC3</a>
   </li>
@@ -1761,6 +1854,8 @@
   
     
     
+    
+      
     
       
     
@@ -1923,6 +2018,8 @@
   
     
     
+    
+      
     
       
     
@@ -2251,6 +2348,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/contributing">Contributing</a>
   </li>
@@ -2339,6 +2438,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2347,6 +2448,8 @@
   
     
     
+    
+      
     
       
     
