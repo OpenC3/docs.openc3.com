@@ -14,7 +14,7 @@ A single .xtce file containing the command and telemetry definitions for a targe
 Use the following command to convert a .xtce file into OpenC3 configuration files. The converted configuration files will be placed into a target folder in the given output directory.
 
 ```
-openc3.bat openc3-cli xtce_converter --import <xtce_filename> --output <output_dir>
+openc3.bat openc3cli xtce_converter --import <xtce_filename> --output <output_dir>
 ```
 
 ## Converting a OpenC3 Configuration to XTCE
@@ -22,7 +22,7 @@ openc3.bat openc3-cli xtce_converter --import <xtce_filename> --output <output_d
 Use the following command to convert your openc3 plugin into .xtce files, one per target. The converted .xtce files will be placed into a target folder in the given output directory.
 
 ```
-openc3.bat openc3-cli xtce_converter --plugin <plugin.gem> --output <output_dir>
+openc3.bat openc3cli xtce_converter --plugin <plugin.gem> --output <output_dir>
 ```
 
 ## High-level Overview of Current Support

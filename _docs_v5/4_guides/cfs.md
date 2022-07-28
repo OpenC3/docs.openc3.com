@@ -112,7 +112,7 @@ should create the plugin structure.
 
 ```bash
 # cd .. to the location of the cfs dir
-$PATH_TO_OPENC3/openc3.sh openc3-cli generate plugin CFS
+$PATH_TO_OPENC3/openc3.sh openc3cli generate plugin CFS
 ```
 
 If you're on Linux, change the rights of this newly created plugin, because the OpenC3 script
@@ -250,7 +250,7 @@ Build the plugin from the base of your plugin folder:
 
 ```bash
 # cd openc3-cfs
-$PATH_TO_OPENC3/openc3.sh openc3-cli rake build VERSION=1.0.0
+$PATH_TO_OPENC3/openc3.sh openc3cli rake build VERSION=1.0.0
 ```
 
 <div class="note info">

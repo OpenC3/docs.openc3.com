@@ -49,7 +49,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 
     ```batch
     C:\> cd tutorial
-    C:\tutorial> C:\OpenC3\openc3.bat openc3-cli generate plugin BOB
+    C:\tutorial> C:\OpenC3\openc3.bat openc3cli generate plugin BOB
     ```
 
     This should create a new directory called "openc3-bob" with a bunch of files in it. The full description of all the files is explained by the [Plugin Structure]({{site.baseurl}}/docs/v5/plugins#plugin-directory-structure) page.
@@ -127,7 +127,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 
     ```batch
     C:\tutorial> cd openc3-bob
-    C:\tutorial\openc3-bob> C:\openc3\openc3.bat openc3-cli rake build VERSION=1.0.0
+    C:\tutorial\openc3-bob> C:\openc3\openc3.bat openc3cli rake build VERSION=1.0.0
       Successfully built RubyGem
       Name: openc3-bob
       Version: 1.0.0.20210618174517
@@ -154,7 +154,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 1. Rebuild the plugin with a new VERSION number. Since we didn't make any breaking changes we simply bump the patch release number:
 
     ```batch
-    C:\tutorial\openc3-bob> C:\OpenC3\openc3.bat openc3-cli rake build VERSION=1.0.1
+    C:\tutorial\openc3-bob> C:\OpenC3\openc3.bat openc3cli rake build VERSION=1.0.1
       Successfully built RubyGem
       Name: openc3-bob
       Version: 1.0.1.20210618202504
