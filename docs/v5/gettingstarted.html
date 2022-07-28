@@ -160,11 +160,19 @@
     <p>Now we need to create a plugin. Plugins are how we add targets and microservices to OpenC3. Our plugin will contain a single target which contains all the information defining the packets (command and telemetry) that are needed to communicate with the target. Use the OpenC3 plugin generator to create the correct structure:</p>
 
     <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\&gt; <span class="nb">cd</span> <span class="kd">tutorial</span>
- <span class="kd">C</span>:\tutorial&gt; <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">openc3cli</span> <span class="kd">generate</span> <span class="kd">plugin</span> <span class="kd">BOB</span>
+ <span class="kd">C</span>:\tutorial&gt; <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">cli</span> <span class="kd">generate</span> <span class="kd">plugin</span> <span class="kd">BOB</span>
 </code></pre></div>    </div>
 
     <p>This should create a new directory called “openc3-bob” with a bunch of files in it. The full description of all the files is explained by the <a href="/docs/v5/plugins#plugin-directory-structure">Plugin Structure</a> page.</p>
   </li>
+</ol>
+
+<div class="note info">
+  <h5>Run as the Root user</h5>
+  <p>The cli runs as the default OpenC3 container user which is the recommended practice. If you're having issues running as that user you can run as the root user (effectively `docker run --user=root` ) by running `cliroot` instead of `cli` in any of the examples.</p>
+</div>
+
+<ol>
   <li>
     <p>The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-bob/targets/BOB/cmd_tlm/cmd.txt:</p>
 
@@ -248,7 +256,7 @@
     <p>Now we need to build our plugin and upload it to OpenC3.</p>
 
     <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial&gt; <span class="nb">cd</span> <span class="kd">openc3</span><span class="na">-bob
- </span><span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\openc3\openc3.bat <span class="kd">openc3cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
+ </span><span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\openc3\openc3.bat <span class="kd">cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
    <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
    <span class="kd">Name</span>: <span class="kd">openc3</span><span class="na">-bob
    </span><span class="kd">Version</span>: <span class="m">1</span>.0.0.20210618174517
@@ -278,7 +286,7 @@
   <li>
     <p>Rebuild the plugin with a new VERSION number. Since we didn’t make any breaking changes we simply bump the patch release number:</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">openc3cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
    <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
    <span class="kd">Name</span>: <span class="kd">openc3</span><span class="na">-bob
    </span><span class="kd">Version</span>: <span class="m">1</span>.0.1.20210618202504

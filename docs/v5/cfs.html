@@ -242,7 +242,7 @@ must be in capital letters according to the OpenC3 documentation. This command
 should create the plugin structure.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd .. to the location of the cfs dir</span>
-<span class="nv">$PATH_TO_OPENC3</span>/openc3.sh openc3cli generate plugin CFS
+<span class="nv">$PATH_TO_OPENC3</span>/openc3.sh cli generate plugin CFS
 </code></pre></div></div>
 
 <p>If you’re on Linux, change the rights of this newly created plugin, because the OpenC3 script
@@ -380,7 +380,7 @@ COMMAND CFS PROCESS BIG_ENDIAN <span class="s2">"Process Command"</span>
 <p>Build the plugin from the base of your plugin folder:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd openc3-cfs</span>
-<span class="nv">$PATH_TO_OPENC3</span>/openc3.sh openc3cli rake build <span class="nv">VERSION</span><span class="o">=</span>1.0.0
+<span class="nv">$PATH_TO_OPENC3</span>/openc3.sh cli rake build <span class="nv">VERSION</span><span class="o">=</span>1.0.0
 </code></pre></div></div>
 
 <div class="note info">

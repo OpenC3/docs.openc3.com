@@ -131,12 +131,12 @@
   <li>
     <p>Change to the existing COSMOS 4 configuration directory. You should see the config, lib, procedures, outputs directory. You can then run the migration tool by specifying the absolute path to the OpenC3 5 installation.</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS4_config&gt; <span class="kd">C</span>:\OpenC3_5\openc3.bat <span class="kd">openc3cli</span> <span class="kd">migrate</span> <span class="na">-a </span><span class="kd">demo</span>
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS4_config&gt; <span class="kd">C</span>:\OpenC3_5\openc3.bat <span class="kd">cli</span> <span class="kd">migrate</span> <span class="na">-a </span><span class="kd">demo</span>
 </code></pre></div>    </div>
 
     <p>This creates a new OpenC3 5 plugin called openc3-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS4_config&gt; <span class="kd">C</span>:\OpenC3_5\openc3.bat <span class="kd">openc3cli</span> <span class="kd">migrate</span> <span class="kd">demo</span><span class="na">-part </span><span class="kd">INST</span> <span class="kd">SYSTEM</span>
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS4_config&gt; <span class="kd">C</span>:\OpenC3_5\openc3.bat <span class="kd">cli</span> <span class="kd">migrate</span> <span class="kd">demo</span><span class="na">-part </span><span class="kd">INST</span> <span class="kd">SYSTEM</span>
 </code></pre></div>    </div>
 
     <p>This would create a new OpenC3 5 plugin called openc3-demo-part with a target named DEMO_PART containing the existing lib and procedures files as well as the INST and SYSTEM targets (but no others).</p>
