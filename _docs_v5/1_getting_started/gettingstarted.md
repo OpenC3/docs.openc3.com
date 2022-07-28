@@ -49,10 +49,15 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 
     ```batch
     C:\> cd tutorial
-    C:\tutorial> C:\OpenC3\openc3.bat openc3cli generate plugin BOB
+    C:\tutorial> C:\OpenC3\openc3.bat cli generate plugin BOB
     ```
 
     This should create a new directory called "openc3-bob" with a bunch of files in it. The full description of all the files is explained by the [Plugin Structure]({{site.baseurl}}/docs/v5/plugins#plugin-directory-structure) page.
+
+<div class="note info">
+  <h5>Run as the Root user</h5>
+  <p>The cli runs as the default OpenC3 container user which is the recommended practice. If you're having issues running as that user you can run as the root user (effectively `docker run --user=root` ) by running `cliroot` instead of `cli` in any of the examples.</p>
+</div>
 
 1. The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-bob/targets/BOB/cmd_tlm/cmd.txt:
 
@@ -127,7 +132,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 
     ```batch
     C:\tutorial> cd openc3-bob
-    C:\tutorial\openc3-bob> C:\openc3\openc3.bat openc3cli rake build VERSION=1.0.0
+    C:\tutorial\openc3-bob> C:\openc3\openc3.bat cli rake build VERSION=1.0.0
       Successfully built RubyGem
       Name: openc3-bob
       Version: 1.0.0.20210618174517
@@ -154,7 +159,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 1. Rebuild the plugin with a new VERSION number. Since we didn't make any breaking changes we simply bump the patch release number:
 
     ```batch
-    C:\tutorial\openc3-bob> C:\OpenC3\openc3.bat openc3cli rake build VERSION=1.0.1
+    C:\tutorial\openc3-bob> C:\OpenC3\openc3.bat cli rake build VERSION=1.0.1
       Successfully built RubyGem
       Name: openc3-bob
       Version: 1.0.1.20210618202504

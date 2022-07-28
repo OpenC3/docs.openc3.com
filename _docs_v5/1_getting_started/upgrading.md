@@ -31,13 +31,13 @@ OpenC3 5 includes a migration tool for converting an existing COSMOS 4 configura
 1. Change to the existing COSMOS 4 configuration directory. You should see the config, lib, procedures, outputs directory. You can then run the migration tool by specifying the absolute path to the OpenC3 5 installation.
 
     ```batch
-    C:\COSMOS4_config> C:\OpenC3_5\openc3.bat openc3cli migrate -a demo
+    C:\COSMOS4_config> C:\OpenC3_5\openc3.bat cli migrate -a demo
     ```
 
     This creates a new OpenC3 5 plugin called openc3-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.
 
     ```batch
-    C:\COSMOS4_config> C:\OpenC3_5\openc3.bat openc3cli migrate demo-part INST SYSTEM
+    C:\COSMOS4_config> C:\OpenC3_5\openc3.bat cli migrate demo-part INST SYSTEM
     ```
 
     This would create a new OpenC3 5 plugin called openc3-demo-part with a target named DEMO_PART containing the existing lib and procedures files as well as the INST and SYSTEM targets (but no others).
