@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Thu, 28 Jul 2022 21:26:38 +0000</pubDate>
-    <lastBuildDate>Thu, 28 Jul 2022 21:26:38 +0000</lastBuildDate>
+    <pubDate>Fri, 29 Jul 2022 15:21:30 -0600</pubDate>
+    <lastBuildDate>Fri, 29 Jul 2022 15:21:30 -0600</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -24,6 +24,86 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>OpenC3 5.0.6 Released</title>
+      <link>https://openc3.com/news/2022/07/29/openc3-5-0-6-released/</link>
+      <pubDate>Fri, 29 Jul 2022 07:00:00 -0600</pubDate>
+      <dc:creator>ryanmelt</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">https://openc3.com/news/2022/07/29/openc3-5-0-6-released/</guid>
+      <description>&lt;p&gt;I’m happy to announce the first release of OpenC3 and the birth of our new company fully devoted to this technology!&lt;/p&gt;
+
+&lt;p&gt;After 16 years of developing Ball Aerospace COSMOS, its creators, Ryan Melton and Jason Thomas, have created a new company called OpenC3 so that we can fully serve this technology and its users.&lt;/p&gt;
+
+&lt;p&gt;This release continues where we left off with COSMOS 5.0.5 and is appropriately versioned OpenC3 5.0.6.&lt;/p&gt;
+
+&lt;p&gt;This release rebrands the product to OpenC3, has important bug fixes, improves overall performance, and has some great new features including the ability to create telemetry screens directly from the GUI without uploading a new plugin.&lt;/p&gt;
+
+&lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;In TlmViewer you can now create screens directly from the user interface&lt;/li&gt;
+  &lt;li&gt;Cursors are now more visible&lt;/li&gt;
+  &lt;li&gt;All API methods now support different scopes&lt;/li&gt;
+  &lt;li&gt;The command line interface now supports running as root for environments where that is needed&lt;/li&gt;
+  &lt;li&gt;Better error messages for many errors&lt;/li&gt;
+  &lt;li&gt;Conversions now serialize their output data types and sizes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Sending binary blobs in commands now works&lt;/li&gt;
+  &lt;li&gt;The Script API now properly enforces authentication&lt;/li&gt;
+  &lt;li&gt;Limits Monitor now handles plugins being deleted from under it&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;all-pull-requests&quot;&gt;All Pull Requests&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Properly handle JSON for binary data by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/4&quot;&gt;#4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Script Authentication Enforced. Added Script Runner Ruby Client.  by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/17&quot;&gt;#17&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Better cleanup and handle limits by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/14&quot;&gt;#14&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add COSMOS compatibility code by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/19&quot;&gt;#19&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Identify test reports vs script reports by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/21&quot;&gt;#21&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Optimize Simulated Target for INST by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/24&quot;&gt;#24&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Switch from openc3 to openc3inc docker namespace by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/32&quot;&gt;#32&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;New screen by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/30&quot;&gt;#30&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;script support scope for all methods by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/33&quot;&gt;#33&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Make cursor white and fix script debug up arrow by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/35&quot;&gt;#35&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Allow –user=root to openc3cli by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/34&quot;&gt;#34&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Better check message and help with NameError by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/36&quot;&gt;#36&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add converted_ state to as_json by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/38&quot;&gt;#38&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prerequisites:&lt;/p&gt;
+
+&lt;p&gt;Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk&lt;/p&gt;
+
+&lt;p&gt;Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
+
+&lt;p&gt;To Run:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/openc3/releases/tag/v5.0.6&quot;&gt;Download Release Here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Extract the archive somewhere on your host computer&lt;/li&gt;
+  &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
+  &lt;li&gt;Run Windows: openc3.bat run&lt;/li&gt;
+  &lt;li&gt;Connect a web browser to &lt;a href=&quot;http://localhost:2900/&quot;&gt;http://localhost:2900/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Have fun running OpenC3!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please see our documentation at &lt;a href=&quot;https://openc3.com&quot;&gt;https://openc3.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to &lt;a href=&quot;mailto:support@openc3.com&quot;&gt;support@openc3.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.5...v5.0.6&quot;&gt;https://github.com/OpenC3/openc3/compare/v5.0.5…v5.0.6&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>
