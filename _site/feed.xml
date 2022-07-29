@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Fri, 29 Jul 2022 15:21:30 -0600</pubDate>
-    <lastBuildDate>Fri, 29 Jul 2022 15:21:30 -0600</lastBuildDate>
+    <pubDate>Fri, 29 Jul 2022 21:23:52 +0000</pubDate>
+    <lastBuildDate>Fri, 29 Jul 2022 21:23:52 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -28,7 +28,7 @@
     <item>
       <title>OpenC3 5.0.6 Released</title>
       <link>https://openc3.com/news/2022/07/29/openc3-5-0-6-released/</link>
-      <pubDate>Fri, 29 Jul 2022 07:00:00 -0600</pubDate>
+      <pubDate>Fri, 29 Jul 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
