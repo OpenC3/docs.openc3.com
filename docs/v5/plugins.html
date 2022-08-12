@@ -191,6 +191,7 @@
 <li class="toc-entry toc-h3"><a href="#icon">ICON</a></li>
 <li class="toc-entry toc-h3"><a href="#category">CATEGORY</a></li>
 <li class="toc-entry toc-h3"><a href="#shown">SHOWN</a></li>
+<li class="toc-entry toc-h3"><a href="#position">POSITION</a></li>
 </ul>
 </li>
 </ul></div>
@@ -1621,6 +1622,29 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       <td>Shown</td>
       <td>Whether or not the tool is shown.  TRUE or FALSE<br><br>Valid Values: <span class="values">true, false</span>
 </td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="position">
+<a class="anchor" href="#position" aria-hidden="true"><span class="octicon octicon-link"></span></a>POSITION</h3>
+<p><strong>Position of the tool in the nav bar</strong></p>
+
+<p>Position of the tool as an integer starting at 1. Tools without a position are appended to the end as they are installed.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Position</td>
+      <td>Numerical position</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -3895,8 +3919,11 @@ This file follows the standard OpenC3 configuration file format of keywords foll
         <gcse:search></gcse:search>
         Proudly hosted by
         <a href="https://github.com" target="_blank">
-          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding" />
         </a>
+      </p>
+      <p style="display:block;margin-top:20px;">
+        <a href="/privacy">Privacy Policy</a>
       </p>
     </div>
   </div>
