@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>News</title>
+  <title>OpenC3 5.0.7 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -106,12 +106,10 @@
 
 
       <div class="unit four-fifths">
-        
-  <article>
+        <article>
   <h2>
-    <a href="/news/2022/08/04/openc3-5-0-7-released/">
-      OpenC3 5.0.7 Released
-    </a>
+    OpenC3 5.0.7 Released
+    <a href="/news/2022/08/04/openc3-5-0-7-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
@@ -176,107 +174,12 @@ Have fun running OpenC3!</p>
   </div>
 </article>
 
-
-  <article>
-  <h2>
-    <a href="/news/2022/07/29/openc3-5-0-6-released/">
-      OpenC3 5.0.6 Released
-    </a>
-  </h2>
-  <span class="post-category">
-    <span class="label">
-      release
-    </span>
-  </span>
-  <div class="post-meta">
-    <span class="post-date">
-      29 Jul 2022
-    </span>
-    <a href="https://github.com/ryanmelt" class="post-author">
-      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
-      ryanmelt
-    </a>
-  </div>
-  <div class="post-content">
-    <p>I’m happy to announce the first release of OpenC3 and the birth of our new company fully devoted to this technology!</p>
-
-<p>After 16 years of developing Ball Aerospace COSMOS, its creators, Ryan Melton and Jason Thomas, have created a new company called OpenC3 so that we can fully serve this technology and its users.</p>
-
-<p>This release continues where we left off with COSMOS 5.0.5 and is appropriately versioned OpenC3 5.0.6.</p>
-
-<p>This release rebrands the product to OpenC3, has important bug fixes, improves overall performance, and has some great new features including the ability to create telemetry screens directly from the GUI without uploading a new plugin.</p>
-
-<h2 id="key-enhancements">Key Enhancements</h2>
-<ul>
-  <li>In TlmViewer you can now create screens directly from the user interface</li>
-  <li>Cursors are now more visible</li>
-  <li>All API methods now support different scopes</li>
-  <li>The command line interface now supports running as root for environments where that is needed</li>
-  <li>Better error messages for many errors</li>
-  <li>Conversions now serialize their output data types and sizes</li>
-</ul>
-
-<h2 id="key-bug-fixes">Key Bug Fixes</h2>
-<ul>
-  <li>Sending binary blobs in commands now works</li>
-  <li>The Script API now properly enforces authentication</li>
-  <li>Limits Monitor now handles plugins being deleted from under it</li>
-</ul>
-
-<h2 id="all-pull-requests">All Pull Requests</h2>
-<ul>
-  <li>Properly handle JSON for binary data by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/4">#4</a></li>
-  <li>Script Authentication Enforced. Added Script Runner Ruby Client.  by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/17">#17</a></li>
-  <li>Better cleanup and handle limits by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/14">#14</a></li>
-  <li>Add COSMOS compatibility code by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/19">#19</a></li>
-  <li>Identify test reports vs script reports by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/21">#21</a></li>
-  <li>Optimize Simulated Target for INST by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/24">#24</a></li>
-  <li>Switch from openc3 to openc3inc docker namespace by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/32">#32</a></li>
-  <li>New screen by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/30">#30</a></li>
-  <li>script support scope for all methods by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/33">#33</a></li>
-  <li>Make cursor white and fix script debug up arrow by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/35">#35</a></li>
-  <li>Allow –user=root to openc3cli by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/34">#34</a></li>
-  <li>Better check message and help with NameError by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/36">#36</a></li>
-  <li>Add converted_ state to as_json by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/38">#38</a></li>
-</ul>
-
-<p>Prerequisites:</p>
-
-<p>Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
-
-<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk</p>
-
-<p>Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
-
-<p>To Run:</p>
-<ul>
-  <li>Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/OpenC3/openc3/releases/tag/v5.0.6">Download Release Here</a></li>
-  <li>Extract the archive somewhere on your host computer</li>
-  <li>Run Linux/Mac: ./openc3.sh run</li>
-  <li>Run Windows: openc3.bat run</li>
-  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
-  <li>Have fun running OpenC3!</li>
-</ul>
-
-<p>Please see our documentation at <a href="https://openc3.com">https://openc3.com</a></p>
-
-<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
-
-<p>Thanks!</p>
-
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.0.5...v5.0.6">https://github.com/OpenC3/openc3/compare/v5.0.5…v5.0.6</a></p>
-
-  </div>
-</article>
-
-
-
       </div>
 
       <div class="unit one-fifth hide-on-mobiles">
   <aside>
     <ul>
-      <li class="current">
+      <li class="">
         <a href="/news/">All News</a>
       </li>
       <li class="">
@@ -286,7 +189,7 @@ Have fun running OpenC3!</p>
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2022/08/04/openc3-5-0-7-released/">Version 5.0.7</a>
       </li>
       

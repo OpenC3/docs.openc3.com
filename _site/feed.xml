@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Fri, 29 Jul 2022 21:23:52 +0000</pubDate>
-    <lastBuildDate>Fri, 29 Jul 2022 21:23:52 +0000</lastBuildDate>
+    <pubDate>Thu, 11 Aug 2022 21:47:12 -0600</pubDate>
+    <lastBuildDate>Thu, 11 Aug 2022 21:47:12 -0600</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -26,9 +26,66 @@
     </image>
     
     <item>
+      <title>OpenC3 5.0.7 Released</title>
+      <link>https://openc3.com/news/2022/08/04/openc3-5-0-7-released/</link>
+      <pubDate>Thu, 04 Aug 2022 07:00:00 -0600</pubDate>
+      <dc:creator>ryanmelt</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">https://openc3.com/news/2022/08/04/openc3-5-0-7-released/</guid>
+      <description>&lt;p&gt;I’m happy to announce the second release of OpenC3!&lt;/p&gt;
+
+&lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;The Admin Plugins Tab now gives feedback on plugin changes and allows downloading any changes made to plugins since they have been installed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Fixed an issue running the ./openc3.sh cli command&lt;/li&gt;
+  &lt;li&gt;Docker compose files updated to fix running in rootless Podman (and any SELinux environment)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;fix typoes and references by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/40&quot;&gt;#40&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Show modified targets and D/L modifications by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/39&quot;&gt;#39&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Support Selinux by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/41&quot;&gt;#41&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Check for plugin mods on upgrade and delete by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/42&quot;&gt;#42&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fixes and openc3cli changes to support enterprise by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/45&quot;&gt;#45&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix deleting plugins with mods by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/46&quot;&gt;#46&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
+
+&lt;p&gt;To Run:
+Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/openc3/releases/tag/v5.0.7&quot;&gt;Download Release Here&lt;/a&gt;
+Extract the archive somewhere on your host computer
+Run Linux/Mac: ./openc3.sh run
+Run Windows: openc3.bat run
+Connect a web browser to &lt;a href=&quot;http://localhost:2900/&quot;&gt;http://localhost:2900/&lt;/a&gt;
+Have fun running OpenC3!&lt;/p&gt;
+
+&lt;p&gt;Please see our documentation at https://openc3.com&lt;/p&gt;
+
+&lt;p&gt;Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to &lt;a href=&quot;mailto:support@openc3.com&quot;&gt;support@openc3.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.6...v5.0.7&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>OpenC3 5.0.6 Released</title>
       <link>https://openc3.com/news/2022/07/29/openc3-5-0-6-released/</link>
-      <pubDate>Fri, 29 Jul 2022 13:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jul 2022 07:00:00 -0600</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
