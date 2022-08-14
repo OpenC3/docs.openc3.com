@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Sun, 14 Aug 2022 04:04:23 +0000</pubDate>
-    <lastBuildDate>Sun, 14 Aug 2022 04:04:23 +0000</lastBuildDate>
+    <pubDate>Sun, 14 Aug 2022 04:08:55 +0000</pubDate>
+    <lastBuildDate>Sun, 14 Aug 2022 04:08:55 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -69,6 +69,9 @@
   &lt;li&gt;Update NPM dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/67&quot;&gt;#67&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Move CvtModel back to Persistent Redis Store by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/68&quot;&gt;#68&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&quot;upgrade-notes&quot;&gt;Upgrade Notes&lt;/h2&gt;
+&lt;p&gt;This release requires reinstalling any plugins that include targets, because the Current Value Table moved between containers.&lt;/p&gt;
 
 &lt;p&gt;Prerequisites:
 Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
