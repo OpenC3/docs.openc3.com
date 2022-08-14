@@ -36,6 +36,9 @@ I'm happy to announce the third release of OpenC3!
 * Update NPM dependencies by @jmthomas in [#67](https://github.com/OpenC3/openc3/pull/67)
 * Move CvtModel back to Persistent Redis Store by @ryanmelt in [#68](https://github.com/OpenC3/openc3/pull/68)
 
+## Upgrade Notes
+This release requires reinstalling any plugins that include targets, because the Current Value Table moved between containers.
+
 Prerequisites:
 Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!
 
