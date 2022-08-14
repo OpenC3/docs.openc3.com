@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Fri, 12 Aug 2022 03:51:49 +0000</pubDate>
-    <lastBuildDate>Fri, 12 Aug 2022 03:51:49 +0000</lastBuildDate>
+    <pubDate>Sun, 14 Aug 2022 04:04:23 +0000</pubDate>
+    <lastBuildDate>Sun, 14 Aug 2022 04:04:23 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -24,6 +24,76 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>OpenC3 5.0.8 Released</title>
+      <link>https://openc3.com/news/2022/08/13/openc3-5-0-8-released/</link>
+      <pubDate>Sat, 13 Aug 2022 13:00:00 +0000</pubDate>
+      <dc:creator>ryanmelt</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">https://openc3.com/news/2022/08/13/openc3-5-0-8-released/</guid>
+      <description>&lt;p&gt;I’m happy to announce the third release of OpenC3!&lt;/p&gt;
+
+&lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;New SPARKLINE telemetry screen widget&lt;/li&gt;
+  &lt;li&gt;Telemetry Screen Value Aging&lt;/li&gt;
+  &lt;li&gt;Updated Ruby / NPM dependency versions&lt;/li&gt;
+  &lt;li&gt;Added POSITION keyword for TOOLs to enforce position in Nav Bar&lt;/li&gt;
+  &lt;li&gt;Improved operator log messages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Fixed an issue with the UNKNOWN packet not showing&lt;/li&gt;
+  &lt;li&gt;Fixed an issue where the system didn’t wait for a file to be fully available in S3&lt;/li&gt;
+  &lt;li&gt;Fixed Cmd/Tlm Packet counts in CmdTlmServer&lt;/li&gt;
+  &lt;li&gt;Fixed an issue where the Current Value Table would sometimes say packets don’t exist&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Create UNKNOWN target in scope_model by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/54&quot;&gt;#54&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix linegraph widget and add sparkline by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/52&quot;&gt;#52&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix permission names by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/53&quot;&gt;#53&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ValueWidget telemetry aging by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/58&quot;&gt;#58&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add put_object_and_check for S3 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/61&quot;&gt;#61&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Display correct CMD/TLM counts when sorting by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/62&quot;&gt;#62&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump pysch, rdoc, dead_end by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/64&quot;&gt;#64&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add POSITION keyword for tools by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/65&quot;&gt;#65&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Scope updates by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/63&quot;&gt;#63&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Print operator cmd in log by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/66&quot;&gt;#66&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Update NPM dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/67&quot;&gt;#67&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Move CvtModel back to Persistent Redis Store by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/68&quot;&gt;#68&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
+
+&lt;p&gt;To Run:
+Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/openc3/releases/tag/v5.0.8&quot;&gt;Download Release Here&lt;/a&gt;
+Extract the archive somewhere on your host computer
+Edit the .env file and change OPENC3_TAG to 5.0.8
+Run Linux/Mac: ./openc3.sh run
+Run Windows: openc3.bat run
+Connect a web browser to &lt;a href=&quot;http://localhost:2900/&quot;&gt;http://localhost:2900/&lt;/a&gt;
+Have fun running OpenC3!&lt;/p&gt;
+
+&lt;p&gt;Please see our documentation at https://openc3.com&lt;/p&gt;
+
+&lt;p&gt;Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to &lt;a href=&quot;mailto:support@openc3.com&quot;&gt;support@openc3.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.7...v5.0.8&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>OpenC3 5.0.7 Released</title>
