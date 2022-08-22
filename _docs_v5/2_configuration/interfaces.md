@@ -33,7 +33,7 @@ Interfaces also have the following methods that exist and have default implement
 
 ## Provided Interfaces
 
-OpenC3 provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) and [ROUTER]({{site.baseurl}}/docs/v5/plugin#router) keywords.
+OpenC3 provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) and [ROUTER]({{site.baseurl}}/docs/v5/plugins#router) keywords.
 
 ### TCPIP Client Interface
 
@@ -61,7 +61,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 # no built-in protocol
 ```
 
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
+See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
 
 ### TCPIP Server Interface
 
@@ -88,7 +88,7 @@ INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil PREIDENTIF
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 # no built-in protocol
 ```
 
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword. Note, TcpipServerInterface processes the [OPTION]({{site.baseurl}}/docs/v5/plugin#option) modifier.
+See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword. Note, TcpipServerInterface processes the [OPTION]({{site.baseurl}}/docs/v5/plugins#option) modifier.
 
 ### UDP Interface
 
@@ -111,7 +111,7 @@ cmd_tlm_server.txt Example:
 INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
 ```
 
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
+See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
 
 ### Serial Interface
 
@@ -141,7 +141,7 @@ INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS0 /dev/ttyS0 57600 NONE 1 
 INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 # no built-in protocol
 ```
 
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the [OPTION]({{site.baseurl}}/docs/v5/plugin#option) modifier.
+See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the [OPTION]({{site.baseurl}}/docs/v5/plugins#option) modifier.
 
 ### CmdTlmServer Interface
 
@@ -157,7 +157,7 @@ cmd_tlm_server.txt Example:
 INTERFACE OpenC3INT cmd_tlm_server_interface.rb
 ```
 
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
+See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
 
 ### LINC Interface
 
@@ -185,7 +185,7 @@ INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080
 INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 true 5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
 ```
 
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
+See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
 
 ## Streams
 
