@@ -161,7 +161,7 @@
 <h2 id="provided-interfaces">
 <a class="anchor" href="#provided-interfaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Provided Interfaces</h2>
 
-<p>OpenC3 provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the <a href="/docs/v5/plugin#interface">INTERFACE</a> and <a href="/docs/v5/plugin#router">ROUTER</a> keywords.</p>
+<p>OpenC3 provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the <a href="/docs/v5/plugins#interface">INTERFACE</a> and <a href="/docs/v5/plugins#router">ROUTER</a> keywords.</p>
 
 <h3 id="tcpip-client-interface">
 <a class="anchor" href="#tcpip-client-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>TCPIP Client Interface</h3>
@@ -226,7 +226,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 <span class="c"># no built-in protocol</span>
 </code></pre></div></div>
 
-<p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
+<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
 
 <h3 id="tcpip-server-interface">
 <a class="anchor" href="#tcpip-server-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>TCPIP Server Interface</h3>
@@ -286,7 +286,7 @@ INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil PREIDENTIF
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span class="c"># no built-in protocol</span>
 </code></pre></div></div>
 
-<p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, TcpipServerInterface processes the <a href="/docs/v5/plugin#option">OPTION</a> modifier.</p>
+<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, TcpipServerInterface processes the <a href="/docs/v5/plugins#option">OPTION</a> modifier.</p>
 
 <h3 id="udp-interface">
 <a class="anchor" href="#udp-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>UDP Interface</h3>
@@ -359,7 +359,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
 </code></pre></div></div>
 
-<p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
+<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
 
 <h3 id="serial-interface">
 <a class="anchor" href="#serial-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Serial Interface</h3>
@@ -434,7 +434,7 @@ INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS0 /dev/ttyS0 57600 NONE 1 
 INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <span class="c"># no built-in protocol</span>
 </code></pre></div></div>
 
-<p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the <a href="/docs/v5/plugin#option">OPTION</a> modifier.</p>
+<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the <a href="/docs/v5/plugins#option">OPTION</a> modifier.</p>
 
 <h3 id="cmdtlmserver-interface">
 <a class="anchor" href="#cmdtlmserver-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>CmdTlmServer Interface</h3>
@@ -450,7 +450,7 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE OpenC3INT cmd_tlm_server_interface.rb
 </code></pre></div></div>
 
-<p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
+<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
 
 <h3 id="linc-interface">
 <a class="anchor" href="#linc-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>LINC Interface</h3>
@@ -548,7 +548,7 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 <span class="nb">true </span>5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
 </code></pre></div></div>
 
-<p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
+<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
 
 <h2 id="streams">
 <a class="anchor" href="#streams" aria-hidden="true"><span class="octicon octicon-link"></span></a>Streams</h2>
