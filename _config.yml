@@ -10,6 +10,7 @@ repository: https://github.com/OpenC3/openc3.github.io
 
 plugins:
   - jekyll-toc
+  - jekyll-redirect-from
 
 # Collections are specified as a name and correspond to a directory
 # that consists of the name prepended with '_', e.g. _docs

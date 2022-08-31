@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Contact Us
+redirect_from:
+  - /help
 ---
 
 If you would like to setup OpenC3 training, custom OpenC3 development, or a support contract, please contact us at [support@openc3.com](mailto:support@openc3.com?subject=Support%20Inquiry)
