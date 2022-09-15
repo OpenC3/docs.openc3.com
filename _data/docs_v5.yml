@@ -39,6 +39,7 @@
     - scripting
     - scripting_best_practices
     - monitoring
+    - little_endian_bitfields
     - cfs
     - raspberrypi
 
