@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Installation</title>
+  <title>Little Endian Bitfields</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -99,151 +99,40 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <h1>Installation</h1>
-        <h2 id="installing-openc3">Installing OpenC3</h2>
+        <h1>Little Endian Bitfields</h1>
+        <p>Defining little endian bitfields is a little weird but is possible in OpenC3. However, note that APPEND does not work with little endian bitfields.</p>
 
-<p>The following sections describe how to get OpenC3 installed on various operating systems. This document should help you setup you host machine to allow you to have a running version of OpenC3 in no time.</p>
+<p>Here are the rules on how OpenC3 handles LITTLE_ENDIAN data:</p>
 
-<h2 id="installing-openc3-on-host-machines">Installing OpenC3 on Host Machines</h2>
-
-<h3 id="install">INSTALL</h3>
-
-<p>Install <a href="https://docs.docker.com/get-docker/">Docker</a> and install <a href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p>
-
-<ul>
-  <li>Minimum Resources allocated to Docker: 8GB RAM, 1 CPU, 80GB Disk</li>
-  <li>Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</li>
+<ol>
   <li>
-    <p>Docker on Windows with WSL2:</p>
-
-    <ul>
-      <li>WSL2 consumes 50% of total memory on Windows or 8GB, whichever is less. However, on Windows builds before 20175 (use <code class="language-plaintext highlighter-rouge">winver</code> to check) it consumes 80% of your total memory. This can have a negative effect on Windows performance!</li>
-      <li>
-        <p>On Windows builds &lt; 20175 or for more fine grained control, create C:\Users\&lt;username&gt;\<a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config">.wslconfig</a>. Suggested contents on a 32GB machine:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[wsl2]
-memory=16GB
-swap=0
-</code></pre></div>        </div>
-      </li>
-    </ul>
+    <p>OpenC3 bit offsets are always defined in BIG_ENDIAN terms. Bit 0 is always the most significant bit of the first byte in a packet, and increasing from there.</p>
   </li>
-  <li>Modifying Docker connection timeouts (very rarely needed):
-    <ul>
-      <li>Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a OpenC3 configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\Users\&lt;username&gt;\AppData\Roaming\Docker\settings.json. Modify the value <code class="language-plaintext highlighter-rouge">vpnKitMaxPortIdleTime</code> to change the timeout. <strong>Note:</strong> 0 means no timeout (idle connections not dropped)</li>
-    </ul>
+  <li>
+    <p>All 8, 16, 32, and 64-bit byte-aligned LITTLE_ENDIAN data types define their bit_offset as the most significant bit of the first byte in the packet that contains part of the item. (This is exactly the same as BIG_ENDIAN). Note that for all except 8-bit LITTLE_ENDIAN items, this is the LEAST significant byte of the item.</p>
   </li>
-</ul>
+  <li>
+    <p>LITTLE_ENDIAN bit fields are defined as any LITTLE_ENDIAN INT or UINT item that is not 8, 16, 32, or 64-bit and byte aligned.</p>
+  </li>
+  <li>
+    <p>LITTLE_ENDIAN bit fields must define their bit_offset as the location of the most significant bit of the bitfield in BIG_ENDIAN space as described in rule 1 above. So for example. The following C struct at the beginning of a packet would be defined like so:</p>
+  </li>
+</ol>
 
-<p><strong>Note:</strong> As of December 2021 the OpenC3 Docker containers are based on the Alpine Docker image.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct {
+  unsigned short a:4;
+  unsigned short b:8;
+  unsigned short c:4;
+}
 
-<h3 id="download">DOWNLOAD</h3>
-
-<p>Download the latest OpenC3 5 from the Github <a href="https://github.com/OpenC3/openc3/releases">releases</a>.
-You can also clone the master branch to get the latest updates.</p>
-
-<h3 id="extract">EXTRACT</h3>
-
-<p>Extract the archive somewhere on your host computer.</p>
-
-<h3 id="environment">ENVIRONMENT</h3>
-
-<p>The OpenC3 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the OpenC3 5 project that includes any certificates needed by your organization. <strong>Note</strong>: If you set the path to the ssl file in the <code class="language-plaintext highlighter-rouge">SSL_CERT_FILE</code> environment variables the openc3 setup script will copy it and place it for the docker container to load.</p>
-
-<div class="note warning">
-  <h5>SSL Issues</h5>
-  <p style="margin-bottom:20px;">Increasingly organizations are using some sort of SSL decryptor device which can cause curl and other command line tools like git to have SSL certificate problems. If installation fails with messages that involve "certificate", "SSL", "self-signed", or "secure" this is the problem. IT typically sets up browsers to work correctly but not command line applications. Note that the file extension might not be .pem, it could be .pem, crt, .ca-bundle, .cer, .p7b, .p7s, or  potentially something else.</p>
-  <p style="margin-bottom:20px;">The workaround is to get a proper local certificate file from your IT department that can be used by tools like curl (for example mine is at C:\Shared\Ball.pem). Doesn't matter just somewhere with no spaces.</p>
-  <p style="margin-bottom:20px;">Then set the following environment variables to that path (ie. C:\Shared\Ball.pem)</p>
-
-<p style="margin-left:20px;margin-bottom:20px;">
-SSL_CERT_FILE<br />
-CURL_CA_BUNDLE<br />
-REQUESTS_CA_BUNDLE<br />
-</p>
-
-<p style="margin-bottom:20px;">
-Here are some directions on environment variables in Windows:
-  <a href="https://www.computerhope.com/issues/ch000549.htm">
-    Windows Environment Variables
-  </a>
-<br />
-You will need to create new ones with the names above and set their value to the full path to the certificate file.
-</p>
-
-<p style="margin-bottom:20px;">
-  At Ball please contact
-  <a href="mailto:support@openc3.com">
-    support@openc3.com
-  </a> for assistance.
-</p>
-</div>
-
-<div class="note info">
-  <h5>Offline Installation</h5>
-  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/OpenC3/openc3/blob/master/.env">.env</a> file. Example values:</p>
-
-  <p style="margin-left:20px;margin-bottom:20px;">
-    ALPINE_VERSION=3.15<br />
-    ALPINE_BUILD=0<br />
-    RUBYGEMS_URL=https://rubygems.org<br />
-    NPM_URL=https://registry.npmjs.org<br />
-    APK_URL=http://dl-cdn.alpinelinux.org<br />
-  </p>
-
-  <p style="margin-bottom:20px;">Create a zip file which can be transferred by running <code>openc3.bat util zip</code></p>
-  <p style="margin-bottom:20px;">If you're on Unix, once you unzip the file run the following: <code>find . -name "*.sh" | xargs chmod +x</code></p>
-</div>
-
-<h3 id="run">RUN</h3>
-
-<p>Run <code class="language-plaintext highlighter-rouge">openc3.bat</code> start (Windows), or <code class="language-plaintext highlighter-rouge">openc3.sh</code> start (linux/Mac).</p>
-
-<p>If you see an error indicating docker daemon is not running ensure Docker and Docker compose is installed and running. If it errors please try to run <code class="language-plaintext highlighter-rouge">docker --version</code> or <code class="language-plaintext highlighter-rouge">docker-compose --version</code> and try to run the start command again. If the error continues please include the version in your issue if you choose to create one.</p>
-
-<p><code class="language-plaintext highlighter-rouge">openc3.*</code> can help solve some of the short falls of docker-compose when building the containers.</p>
-
-<p><code class="language-plaintext highlighter-rouge">openc3.*</code> takes multiple arguments. Run with no arguments for help. An example run of openc3.bat with no arguments will show a usage guide.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\openc3.bat
-Usage: "openc3.bat" [start, stop, cleanup, build, run, deploy, util]
-*  build: build the containers for openc3
-*  start: run the docker containers for openc3
-*  stop: stop the running docker containers for openc3
-*  restart: stop and run the minimal docker containers for openc3
-*  cleanup: cleanup network and volumes for openc3
-...
+ITEM A 4 4 UINT "struct item a"
+ITEM B 12 8 UINT "struct item b"
+ITEM C 8 4 UINT "struct item c"
 </code></pre></div></div>
 
-<h3 id="wait">WAIT</h3>
+<p>This is hard to visualize, but the structure above gets spread out in a byte array like the following after byte swapping: least significant 4 bits of b, 4-bits a, 4-bits c, most significant 4 bits of b.</p>
 
-<p>OpenC3 5 will be built and when ready should be running (~15 mins for first run, ~2 for subsequent). Running <code class="language-plaintext highlighter-rouge">docker ps</code> can help show the running containers.</p>
-
-<h3 id="connect">CONNECT</h3>
-
-<p>Connect a web browser to http://localhost:2900.</p>
-
-<h3 id="next-steps">NEXT STEPS</h3>
-
-<p>Continue to <a href="/docs/v5/gettingstarted">Getting Started</a>.</p>
-
-<hr />
-
-<h3 id="feedback">Feedback</h3>
-
-<div class="note">
-  <h5>Find a problem in the documentation?</h5>
-  <p>
-    Please <a href="https://github.com/OpenC3/openc3.github.io/issues/new/choose">create an issue</a> on
-    GitHub describing what we can do to make it better.
-  </p>
-  <h5>Let us know what could be better!</h5>
-  <p>
-    Both using and hacking on OpenC3 should be fun, simple, and easy, so if for
-    some reason you find it's a pain, please <a href="https://github.com/OpenC3/openc3/issues/new/choose">create an issue</a> on
-    GitHub describing your experience so we can make it better.
-  </p>
-</div>
+<p>The best advice is to experiment and use the View Raw feature in the Command and Telemetry Service to inspect the bytes of the packet and adjust as necessary.</p>
 
       </article>
     </div>
@@ -312,7 +201,7 @@ Usage: "openc3.bat" [start, stop, cleanup, build, run, deploy, util]
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/installation">Installation</a>
   </li>
   <!-- prettier-ignore -->
@@ -1574,7 +1463,7 @@ Usage: "openc3.bat" [start, stop, cleanup, build, run, deploy, util]
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
   </li>
   <!-- prettier-ignore -->
