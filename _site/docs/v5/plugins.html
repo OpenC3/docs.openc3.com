@@ -134,22 +134,6 @@
 <li class="toc-entry toc-h3"><a href="#option">OPTION</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#router-modifiers">ROUTER Modifiers</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#route">ROUTE</a></li>
-<li class="toc-entry toc-h3"><a href="#map_target-1">MAP_TARGET</a></li>
-<li class="toc-entry toc-h3"><a href="#dont_connect-1">DONT_CONNECT</a></li>
-<li class="toc-entry toc-h3"><a href="#dont_reconnect-1">DONT_RECONNECT</a></li>
-<li class="toc-entry toc-h3"><a href="#reconnect_delay-1">RECONNECT_DELAY</a></li>
-<li class="toc-entry toc-h3"><a href="#disable_disconnect-1">DISABLE_DISCONNECT</a></li>
-<li class="toc-entry toc-h3"><a href="#log-1">LOG</a></li>
-<li class="toc-entry toc-h3"><a href="#log_stored-1">LOG_STORED</a></li>
-<li class="toc-entry toc-h3"><a href="#dont_log-1">DONT_LOG</a></li>
-<li class="toc-entry toc-h3"><a href="#log_raw-1">LOG_RAW</a></li>
-<li class="toc-entry toc-h3"><a href="#protocol-1">PROTOCOL</a></li>
-<li class="toc-entry toc-h3"><a href="#option-1">OPTION</a></li>
-</ul>
-</li>
 <li class="toc-entry toc-h2"><a href="#target-modifiers">TARGET Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#cmd_log_cycle_time">CMD_LOG_CYCLE_TIME</a></li>
@@ -176,10 +160,11 @@
 <ul>
 <li class="toc-entry toc-h3"><a href="#env">ENV</a></li>
 <li class="toc-entry toc-h3"><a href="#work_dir">WORK_DIR</a></li>
+<li class="toc-entry toc-h3"><a href="#port">PORT</a></li>
 <li class="toc-entry toc-h3"><a href="#topic">TOPIC</a></li>
 <li class="toc-entry toc-h3"><a href="#target_name">TARGET_NAME</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd">CMD</a></li>
-<li class="toc-entry toc-h3"><a href="#option-2">OPTION</a></li>
+<li class="toc-entry toc-h3"><a href="#option-1">OPTION</a></li>
 <li class="toc-entry toc-h3"><a href="#container">CONTAINER</a></li>
 </ul>
 </li>
@@ -719,214 +704,6 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   </tbody>
 </table>
 
-<h2 id="router-modifiers">
-<a class="anchor" href="#router-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTER Modifiers</h2>
-<p>The following keywords must follow a ROUTER keyword.</p>
-
-<h3 id="route">
-<a class="anchor" href="#route" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTE</h3>
-<p><strong>Map an interface to a router</strong></p>
-
-<p>Once an interface has been mapped to a router, all its received telemetry will be sent out through the router.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Interface</td>
-      <td>Name of the interface</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="map_target-1">
-<a class="anchor" href="#map_target-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_TARGET</h3>
-<p><strong>Maps a target name to an interface</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Target name to map to this interface</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="dont_connect-1">
-<a class="anchor" href="#dont_connect-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>DONT_CONNECT</h3>
-<p><strong>Server will not automatically try to connect to the interface at startup</strong></p>
-
-<h3 id="dont_reconnect-1">
-<a class="anchor" href="#dont_reconnect-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>DONT_RECONNECT</h3>
-<p><strong>Server will not try to reconnect to the interface if the connection is lost</strong></p>
-
-<h3 id="reconnect_delay-1">
-<a class="anchor" href="#reconnect_delay-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>RECONNECT_DELAY</h3>
-<p><strong>Reconnect delay in seconds</strong></p>
-
-<p>If DONT_RECONNECT is not present the Server will try to reconnect to an interface if the connection is lost. Reconnect delay sets the interval in seconds between reconnect tries.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Delay</td>
-      <td>Delay in seconds between reconnect attempts. The default is 15 seconds.</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="disable_disconnect-1">
-<a class="anchor" href="#disable_disconnect-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>DISABLE_DISCONNECT</h3>
-<p><strong>Disable the Disconnect button on the Interfaces tab in the Server</strong></p>
-
-<p>Use this keyword to prevent the user from disconnecting from the interface. This is typically used in a ‘production’ environment where you would not want the user to inadvertantly disconnect from a target.</p>
-
-<h3 id="log-1">
-<a class="anchor" href="#log-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG</h3>
-<p><strong>Enable logging on the interface by the specified log writer</strong></p>
-
-<p>LOG is only required if you want a log writer other than the default to log commands and telemetry on this interface</p>
-
-<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Log writer name as defined by PACKET_LOG_WRITER</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="log_stored-1">
-<a class="anchor" href="#log_stored-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_STORED</h3>
-<p><strong>Enable logging of stored telemetry on the interface by the specified log writer</strong></p>
-
-<p>LOG_STORED allows you to specify a different log writer for stored telemetry (telemetry which has the ‘stored’ flag set in the packet). By default the stored telemetry is intermingled in the normal log file.</p>
-
-<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Log writer name as defined by PACKET_LOG_WRITER</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="dont_log-1">
-<a class="anchor" href="#dont_log-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>DONT_LOG</h3>
-<p><strong>Disable logging commands and telemetry on this interface</strong></p>
-
-<h3 id="log_raw-1">
-<a class="anchor" href="#log_raw-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_RAW</h3>
-<p><strong>Log all data on the interface exactly as it is sent and received</strong></p>
-
-<p>LOG_RAW does not add any OpenC3 headers and thus can not be read by OpenC3 tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
-
-<h3 id="protocol-1">
-<a class="anchor" href="#protocol-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROTOCOL</h3>
-<div class="right">(Since 4.0.0)</div>
-<p><strong>Protocols modify the interface by processing the data</strong></p>
-
-<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> There is only one built in protocol implemented by override_protocol.rb. This protocol allows for Scripts to use the override_tlm() and normalize_tlm() methods to permanently change a telemetry value. Note, this differs from set_tlm() as set_tlm() is over-written by new incoming telemetry.<br><br> For information on creating your own custom protocol please see <a href="https://openc3.com/docs/v5/protocols">https://openc3.com/docs/v5/protocols</a></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Type</td>
-      <td>Whether to apply the protocol on incoming data, outgoing data, or both<br><br>Valid Values: <span class="values">READ, WRITE, READ_WRITE</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Protocol Filename or Classname</td>
-      <td>Ruby filename or class name which implements the protocol</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Protocol specific parameters</td>
-      <td>Additional parameters used by the protocol</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="option-1">
-<a class="anchor" href="#option-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>OPTION</h3>
-<p><strong>Set a parameter on an interface</strong></p>
-
-<p>When an option is set the interface class calls the set_option method. Custom interfaces can override set_option to handle any additional options they want.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>The option to set. OpenC3 defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0) and AUTO_SYSTEM_META which will automatically send SYSTEM META when the interface connects (default false).</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Parameters</td>
-      <td>Parameters to pass to the option</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
 <h2 id="target-modifiers">
 <a class="anchor" href="#target-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET Modifiers</h2>
 <p>The following keywords must follow a TARGET keyword.</p>
@@ -1362,6 +1139,34 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   </tbody>
 </table>
 
+<h3 id="port">
+<a class="anchor" href="#port" aria-hidden="true"><span class="octicon octicon-link"></span></a>PORT</h3>
+<p><strong>Open port for the microservice</strong></p>
+
+<p>Kubernetes needs a Service to be applied to open a port so this is required for Kubernetes support</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Number</td>
+      <td>Port number</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>Port protocol. Default is TCP.</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="topic">
 <a class="anchor" href="#topic" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOPIC</h3>
 <p><strong>Associate a Redis topic</strong></p>
@@ -1431,8 +1236,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   </tbody>
 </table>
 
-<h3 id="option-2">
-<a class="anchor" href="#option-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>OPTION</h3>
+<h3 id="option-1">
+<a class="anchor" href="#option-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>OPTION</h3>
 <p><strong>Pass an option to the microservice</strong></p>
 
 <p>Generic key/value(s) options to pass to the microservice. These take the form of KEYWORD/PARAMS like a line in a OpenC3 configuration file. Multiple OPTION keywords can be used to pass multiple options to the microservice.</p>
@@ -2638,6 +2443,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
@@ -2708,6 +2515,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -2842,6 +2651,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
   </li>
@@ -2850,6 +2661,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -2968,6 +2781,70 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
   </li>
@@ -2976,6 +2853,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3130,6 +3009,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/roadmap">Roadmap</a>
   </li>
@@ -3204,6 +3085,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing OpenC3</a>
   </li>
@@ -3212,6 +3095,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3368,6 +3253,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -3376,6 +3263,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3532,6 +3421,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -3540,6 +3431,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3628,6 +3521,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3798,6 +3693,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -3806,6 +3703,8 @@ This file follows the standard OpenC3 configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
