@@ -35,11 +35,12 @@
 - title: Guides
   docs:
     - logging
-    - custom_widgets
+    - local_mode
     - scripting
     - scripting_best_practices
-    - monitoring
     - little_endian_bitfields
+    - custom_widgets
+    - monitoring
     - cfs
     - raspberrypi
 
