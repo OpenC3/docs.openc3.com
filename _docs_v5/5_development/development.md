@@ -14,17 +14,17 @@ The core OpenC3 team develops with the [Visual Studio Code](https://code.visuals
 
 # Building OpenC3
 
-Note: We primarily develop OpenC3 in Windows so the commands here will reference batch files but the same files exist in Linux as shell scripts.
+Note: We primarily develop OpenC3 in MacOS so the commands here will reference bash scripts but the same files exist in Windows as batch scripts.
 
-Build OpenC3 using the `openc3.bat` script:
+Build OpenC3 using the `openc3.sh` script:
 
-    > openc3.bat build
+    % ./openc3.sh build
 
 This will pull all the OpenC3 container dependencies and build our local containers. Note: This can take a long time especially for your first build!
 
 Once the build completes you can see the built images with the following command:
 
-    > docker image ls | findstr "openc3"
+    % docker image ls | grep "openc3"
     ballaerospace/openc3-operator            latest   4c71eea95327   41 minutes ago   130MB
     ballaerospace/openc3-init                latest   1c32f1969f48   41 minutes ago   142MB
     ballaerospace/openc3-cmd-tlm-api         latest   8a722d0403e9   51 minutes ago   150MB
@@ -33,15 +33,29 @@ Once the build completes you can see the built images with the following command
     ballaerospace/openc3-base                latest   04fd53ad0402   53 minutes ago   130MB
     ballaerospace/openc3-traefik             latest   3ffd53ad0402   53 minutes ago   130MB
 
+
+<div class="note info">
+  <h5>Offline Building</h5>
+  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/OpenC3/openc3/blob/master/.env">.env</a> file. Example values:</p>
+
+  <p style="margin-left:20px;margin-bottom:20px;">
+    ALPINE_VERSION=3.15<br/>
+    ALPINE_BUILD=0<br/>
+    RUBYGEMS_URL=https://rubygems.org<br/>
+    NPM_URL=https://registry.npmjs.org<br/>
+    APK_URL=http://dl-cdn.alpinelinux.org<br/>
+  </p>
+</div>
+
 # Running OpenC3
 
 Running OpenC3 in development mode enables localhost access to internal API ports as well as sets `RAILS_ENV=development` in the cmd-tlm-api and script-runner-api Rails servers. To run in development mode:
 
-    > openc3.bat dev
+    % ./openc3.sh dev
 
 You can now see the running containers (I removed CONTAINER ID, CREATED and STATUS to save space):
 
-    > docker ps
+    % docker ps
     IMAGE                                             COMMAND                  PORTS                      NAMES
     openc3/openc3-cmd-tlm-api:latest         "/sbin/tini -- rails…"   127.0.0.1:2901->2901/tcp   openc3_openc3-cmd-tlm-api_1
     openc3/openc3-script-runner-api:latest   "/sbin/tini -- rails…"   127.0.0.1:2902->2902/tcp   openc3_openc3-script-runner-api_1
@@ -58,12 +72,12 @@ So now that you have OpenC3 up and running how do you develop an individual Open
 
 1. Bootstrap the frontend with yarn
 
-        openc3-init> yarn
+        openc3-init % yarn
 
 1. Serve a local OpenC3 application (CmdTlmServer, ScriptRunner, etc)
 
-        openc3-init> cd plugins/packages/openc3-tool-scriptrunner
-        openc3-tool-scriptrunner> yarn serve
+        openc3-init % cd plugins/packages/openc3-tool-scriptrunner
+        openc3-tool-scriptrunner % yarn serve
 
         DONE  Compiled successfully in 128722ms
         App running at:
@@ -95,21 +109,21 @@ If the code you want to develop is the cmd-tlm-api or script-runner-api backend 
 
 1.  Run a development version of traefik. OpenC3 uses traefik to direct API requests to the correct locations.
 
-        > cd openc3-traefik
-        traefik> docker ps
+        % cd openc3-traefik
+        traefik % docker ps
         # Look for the container with name including traefik
-        traefik> docker stop openc3_openc3-traefik_1
-        traefik> docker build -f Dockerfile-dev -t openc3-traefik-dev .
-        traefik> docker run --network=openc3_default -p 2900:80 -it --rm openc3-traefik-dev
+        traefik % docker stop openc3_openc3-traefik_1
+        traefik % docker build -f Dockerfile-dev -t openc3-traefik-dev .
+        traefik % docker run --network=openc3_default -p 2900:80 -it --rm openc3-traefik-dev
 
 1.  Run a local copy of the cmd-tlm-api or script-runner-api
 
-        > cd openc3-cmd-tlm-api
-        openc3-cmd-tlm-api> docker ps
+        % cd openc3-cmd-tlm-api
+        openc3-cmd-tlm-api % docker ps
         # Look for the container with name including cmd-tlm-api
-        openc3-cmd-tlm-api> docker stop openc3_openc3-cmd-tlm-api_1
+        openc3-cmd-tlm-api % docker stop openc3_openc3-cmd-tlm-api_1
         # Set all the environment variables in the .env file
-        openc3-cmd-tlm-api> bundle install
-        openc3-cmd-tlm-api> bundle exec rails s
+        openc3-cmd-tlm-api % bundle install
+        openc3-cmd-tlm-api % bundle exec rails s
 
 1. Once the `rails s` command returns you should see API requests coming from interations in the frontend code. If you add code (like Ruby debugging statements) to the cmd-tlm-api code you need to stop the server (CTRL-C) and restart it to see the effect.

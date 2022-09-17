@@ -15,11 +15,11 @@ Welcome to OpenC3 Enterprise Edition. The Enterprise Edition of OpenC3 takes the
 
 | Feature | Open Source | Enterprise |
 | --------| :---------: | :--------: |
-| Full set of OpenC3 Tools | x | x |
-| Full access to OpenC3 source code | x | x |
-| Single group account | x | |
-| Individual user accounts via LDAP | | x |
-| Role based access control [(RBAC)]({{site.baseurl}}/docs/enterprise/rbac) | | x |
-| Multiple [scopes]({{site.baseurl}}/docs/enterprise/scopes) | | x |
-| End-to-End Encryption | | x |
-| Priority Support | | x |
+| Full set of OpenC3 Tools | <input type="checkbox" disabled checked /> | <input type="checkbox" disabled checked /> |
+| Full access to OpenC3 source code | <input type="checkbox" disabled checked /> | <input type="checkbox" disabled checked /> |
+| Single group account | <input type="checkbox" disabled checked /> | |
+| Individual user accounts via LDAP | | <input type="checkbox" disabled checked /> |
+| Role based access control [(RBAC)]({{site.baseurl}}/docs/enterprise/rbac) | | <input type="checkbox" disabled checked /> |
+| Multiple [scopes]({{site.baseurl}}/docs/enterprise/scopes) | | <input type="checkbox" disabled checked /> |
+| End-to-End Encryption | | <input type="checkbox" disabled checked /> |
+| Priority Support | | <input type="checkbox" disabled checked /> |

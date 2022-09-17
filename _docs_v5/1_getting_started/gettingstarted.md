@@ -43,13 +43,12 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 
 1. Before creating your own configuration you should uninstall the OpenC3 Demo so you're working with a clean OpenC3 system. Click the Admin button and the PLUGINS tab. Then click the Trash can icon next to openc3-demo to delete it. When you go back to the Command and Telemetry Server you should have a blank table with no interfaces.
 
-1. Create a new "Configuration Directory". This directory is typically named after your program / project and for this example we'll call it "tutorial". Inside this directory it's recommended to create a README.md ([Markdown](https://www.markdownguide.org/)) to describe your program / project.
+1. If you followed the [Installation Guide]({{site.baseurl}}/docs/v5/installation) you should already be inside a cloned [openc3-project](https://github.com/OpenC3/openc3-project). Inside this project it's recommended to edit the README.md ([Markdown](https://www.markdownguide.org/)) to describe your program / project.
 
 1. Now we need to create a plugin. Plugins are how we add targets and microservices to OpenC3. Our plugin will contain a single target which contains all the information defining the packets (command and telemetry) that are needed to communicate with the target. Use the OpenC3 plugin generator to create the correct structure:
 
     ```batch
-    C:\> cd tutorial
-    C:\tutorial> C:\OpenC3\openc3.bat cli generate plugin BOB
+    C:\tutorial> openc3.bat cli generate plugin BOB
     ```
 
     This should create a new directory called "openc3-bob" with a bunch of files in it. The full description of all the files is explained by the [Plugin Structure]({{site.baseurl}}/docs/v5/plugins#plugin-directory-structure) page.
@@ -132,7 +131,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 
     ```batch
     C:\tutorial> cd openc3-bob
-    C:\tutorial\openc3-bob> C:\openc3\openc3.bat cli rake build VERSION=1.0.0
+    C:\tutorial\openc3-bob> ..\openc3.bat cli rake build VERSION=1.0.0
       Successfully built RubyGem
       Name: openc3-bob
       Version: 1.0.0.20210618174517
@@ -159,7 +158,7 @@ Playing with the OpenC3 Demo is fun and all, but now you want to talk to your ow
 1. Rebuild the plugin with a new VERSION number. Since we didn't make any breaking changes we simply bump the patch release number:
 
     ```batch
-    C:\tutorial\openc3-bob> C:\OpenC3\openc3.bat cli rake build VERSION=1.0.1
+    C:\tutorial\openc3-bob> ..\openc3.bat cli rake build VERSION=1.0.1
       Successfully built RubyGem
       Name: openc3-bob
       Version: 1.0.1.20210618202504
