@@ -31,7 +31,7 @@ Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compos
 
 ### CLONE PROJECT
 
-With the OpenC3 5.0.9 release we recommend using the project template to get started.
+Since the OpenC3 5.0.9 release we recommend using the project template to get started.
 
         git clone https://github.com/openc3/openc3-project.git tutorial
 
