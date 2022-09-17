@@ -120,6 +120,9 @@
 <li class="toc-entry toc-h3"><a href="#disable_messages">DISABLE_MESSAGES</a></li>
 <li class="toc-entry toc-h3"><a href="#meta">META</a></li>
 <li class="toc-entry toc-h3"><a href="#hazardous">HAZARDOUS</a></li>
+<li class="toc-entry toc-h3"><a href="#accessor">ACCESSOR</a></li>
+<li class="toc-entry toc-h3"><a href="#template">TEMPLATE</a></li>
+<li class="toc-entry toc-h3"><a href="#template_file">TEMPLATE_FILE</a></li>
 <li class="toc-entry toc-h3"><a href="#parameter-modifiers">PARAMETER Modifiers</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#format_string">FORMAT_STRING</a></li>
@@ -127,6 +130,7 @@
 <li class="toc-entry toc-h4"><a href="#description">DESCRIPTION</a></li>
 <li class="toc-entry toc-h4"><a href="#meta-1">META</a></li>
 <li class="toc-entry toc-h4"><a href="#overlap">OVERLAP</a></li>
+<li class="toc-entry toc-h4"><a href="#key">KEY</a></li>
 <li class="toc-entry toc-h4"><a href="#required">REQUIRED</a></li>
 <li class="toc-entry toc-h4"><a href="#minimum_value">MINIMUM_VALUE</a></li>
 <li class="toc-entry toc-h4"><a href="#maximum_value">MAXIMUM_VALUE</a></li>
@@ -306,7 +310,7 @@
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -402,7 +406,7 @@ PARAMETER BLOCK 192 0 BLOCK 0x0 "Block of binary data"
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -503,7 +507,7 @@ APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -596,7 +600,7 @@ APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -861,6 +865,78 @@ APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
   </tbody>
 </table>
 
+<h3 id="accessor">
+<a class="anchor" href="#accessor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ACCESSOR</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines the class used to read and write raw values from the packet</strong></p>
+
+<p>Defines the class that is used too read raw values from the packet. Defaults to BinaryAccessor. Provided accessors also include JsonAccessor, CborAccessor, HtmlAccessor, and XmlAccessor.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Accessor Class Name</td>
+      <td>The name of the accessor class</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="template">
+<a class="anchor" href="#template" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMPLATE</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines a template string used to initialize the command before default values are filled in</strong></p>
+
+<p>Generally the template string is formatted in JSON or HTML and then values are filled in with command parameters. Must be UTF-8 encoded.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Template</td>
+      <td>The template string which should be enclosed in quotes</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="template_file">
+<a class="anchor" href="#template_file" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMPLATE_FILE</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines a template file used to initialize the command before default values are filled in</strong></p>
+
+<p>Generally the template file is formatted in JSON or HTML and then values are filled in with command parameters. Can be binary or UTF-8.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Template File Path</td>
+      <td>The relative path to the template file. Filename should generally start with an underscore.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="parameter-modifiers">
 <a class="anchor" href="#parameter-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>PARAMETER Modifiers</h3>
 <p>The following keywords must follow a PARAMETER keyword.</p>
@@ -978,6 +1054,33 @@ UNITS Kilometers KM
 <p><strong>This item is allowed to overlap other items in the packet</strong></p>
 
 <p>If an item’s bit offset overlaps another item, OpenC3 issues a warning. This keyword explicitly allows an item to overlap another and supresses the warning message.</p>
+
+<h4 id="key">
+<a class="anchor" href="#key" aria-hidden="true"><span class="octicon octicon-link"></span></a>KEY</h4>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines the key used to access this raw value in the packet.</strong></p>
+
+<p>Keys are often JsonPath or XPath strings</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Key string</td>
+      <td>The key to access this item</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">KEY $.book.title</code></pre></figure>
 
 <h4 id="required">
 <a class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRED</h4>
