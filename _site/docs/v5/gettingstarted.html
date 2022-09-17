@@ -154,13 +154,12 @@
     <p>Before creating your own configuration you should uninstall the OpenC3 Demo so you’re working with a clean OpenC3 system. Click the Admin button and the PLUGINS tab. Then click the Trash can icon next to openc3-demo to delete it. When you go back to the Command and Telemetry Server you should have a blank table with no interfaces.</p>
   </li>
   <li>
-    <p>Create a new “Configuration Directory”. This directory is typically named after your program / project and for this example we’ll call it “tutorial”. Inside this directory it’s recommended to create a README.md (<a href="https://www.markdownguide.org/">Markdown</a>) to describe your program / project.</p>
+    <p>If you followed the <a href="/docs/v5/installation">Installation Guide</a> you should already be inside a cloned <a href="https://github.com/OpenC3/openc3-project">openc3-project</a>. Inside this project it’s recommended to edit the README.md (<a href="https://www.markdownguide.org/">Markdown</a>) to describe your program / project.</p>
   </li>
   <li>
     <p>Now we need to create a plugin. Plugins are how we add targets and microservices to OpenC3. Our plugin will contain a single target which contains all the information defining the packets (command and telemetry) that are needed to communicate with the target. Use the OpenC3 plugin generator to create the correct structure:</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\&gt; <span class="nb">cd</span> <span class="kd">tutorial</span>
- <span class="kd">C</span>:\tutorial&gt; <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">cli</span> <span class="kd">generate</span> <span class="kd">plugin</span> <span class="kd">BOB</span>
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial&gt; <span class="kd">openc3</span>.bat <span class="kd">cli</span> <span class="kd">generate</span> <span class="kd">plugin</span> <span class="kd">BOB</span>
 </code></pre></div>    </div>
 
     <p>This should create a new directory called “openc3-bob” with a bunch of files in it. The full description of all the files is explained by the <a href="/docs/v5/plugins#plugin-directory-structure">Plugin Structure</a> page.</p>
@@ -256,7 +255,7 @@
     <p>Now we need to build our plugin and upload it to OpenC3.</p>
 
     <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial&gt; <span class="nb">cd</span> <span class="kd">openc3</span><span class="na">-bob
- </span><span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\openc3\openc3.bat <span class="kd">cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
+ </span><span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> ..\openc3.bat <span class="kd">cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
    <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
    <span class="kd">Name</span>: <span class="kd">openc3</span><span class="na">-bob
    </span><span class="kd">Version</span>: <span class="m">1</span>.0.0.20210618174517
@@ -286,7 +285,7 @@
   <li>
     <p>Rebuild the plugin with a new VERSION number. Since we didn’t make any breaking changes we simply bump the patch release number:</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\OpenC3\openc3.bat <span class="kd">cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\openc3<span class="na">-bob</span><span class="o">&gt;</span> ..\openc3.bat <span class="kd">cli</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
    <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
    <span class="kd">Name</span>: <span class="kd">openc3</span><span class="na">-bob
    </span><span class="kd">Version</span>: <span class="m">1</span>.0.1.20210618202504
@@ -1290,6 +1289,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
@@ -1352,14 +1353,20 @@
       
     
       
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+    <a href="/docs/v5/local-mode">Local Mode</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
     
       
     
@@ -1498,76 +1505,10 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1690,6 +1631,138 @@
       
     
       
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/monitoring">Monitoring</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
   </li>
@@ -1698,6 +1771,8 @@
   
     
     
+    
+      
     
       
     
@@ -1856,6 +1931,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/roadmap">Roadmap</a>
   </li>
@@ -1932,6 +2009,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing OpenC3</a>
   </li>
@@ -1940,6 +2019,8 @@
   
     
     
+    
+      
     
       
     
@@ -2100,6 +2181,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2108,6 +2191,8 @@
   
     
     
+    
+      
     
       
     
@@ -2268,6 +2353,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2276,6 +2363,8 @@
   
     
     
+    
+      
     
       
     
@@ -2366,6 +2455,8 @@
   
     
     
+    
+      
     
       
     
@@ -2540,6 +2631,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2548,6 +2641,8 @@
   
     
     
+    
+      
     
       
     

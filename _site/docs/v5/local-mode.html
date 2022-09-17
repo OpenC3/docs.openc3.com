@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Streaming API</title>
+  <title>Local Mode</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -99,115 +99,64 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <h1>Streaming API</h1>
-        <div class="note">
-  <h5>This documentation is for OpenC3 Developers</h5>
-  <p>This information is just generally used behind the scenes in OpenC3 tools</p>
+        <h1>Local Mode</h1>
+        <p>Local Mode is a new feature in the <a href="/news/2022/09/02/openc3-5-0-9-released/">5.0.9</a> OpenC3 release. It is intended to capture the configuration of an edited plugin so it can be configuration managed. It allows you to edit portions of a plugin (scripts and screens) locally in the editor of your choice and instantly have those changes appear in the OpenC3 plugin. This avoids the plugin build / install cycle which is required when editing command and telemetry or interface definitions.</p>
+
+<h2 id="using-local-mode">Using Local Mode</h2>
+
+<p>In this tutorial we will use the OpenC3 Demo as configured by the <a href="/docs/v5/installation">Installation Guide</a>. You should have cloned a <a href="https://github.com/OpenC3/openc3-project">openc3-project</a> and started it using <code class="language-plaintext highlighter-rouge">openc3.sh run</code>.</p>
+
+<p>If you check the project directory you should see a <code class="language-plaintext highlighter-rouge">plugins/DEFAULT/openc3-demo</code> directory. This will contain both the gem that was installed and a <code class="language-plaintext highlighter-rouge">plugin_instance.json</code> file. The <code class="language-plaintext highlighter-rouge">plugin_instance.json</code> file captures the plugin.txt values when the plugin was installed. Note, all files in the plugins directory are meant to be configuration managed with the project. This ensures if you make local edits and check them in, another user can clone the project and get the exact same configuration. We will demonstrate this later.</p>
+
+<h3 id="editing-scripts">Editing scripts</h3>
+
+<div class="note info">
+  <h5>Visual Studio Code</h5>
+  <p>This tutorial will use <a href="https://code.visualstudio.com">VS Code</a> which is the editor used by the OpenC3 developers.</p>
 </div>
 
-<p>The OpenC3 5 Streaming Api is the primary interface to receive a stream of the telemetry packets and/or command packets that have passed through the OpenC3 system, both logged and continuously in realtime. Either raw binary packets or decommutated JSON packets can be requested.</p>
+<p>The most common use case for Local Mode is script development. Launch Script Runner and open the <code class="language-plaintext highlighter-rouge">INST/procedures/checks.rb</code> file. If you run this script you’ll notice that it has a few errors (by design) which prevent it from running to completion. Let’s fix it! Comment out the second and fourth lines and save the script. You should now notice that Local Mode has saved a copy of the script to <code class="language-plaintext highlighter-rouge">plugins/targets_modified/INST/procedures/checks.rb</code>.</p>
 
-<p>This API is implemented over Websockets using the Rails ActionCable framework. Actioncable client libraries are known to exist for at least Javascript, Ruby, and Python. Other languages may exist or could be created. Websockets allow for easy interaction with the new OpenC3 5 Javascript based frontend.</p>
+<p><img src="/img/v5/guides/local_mode/project.png" alt="Project Layout" /></p>
 
-<p>The following interactions are all shown in Javascript, but would be very similar in any language.
-Connecting to this API begins by initiating an ActionCable connection.</p>
+<p>At this point Local Mode keeps these scripts in sync so we can edit in either place. Let’s edit the local script by adding a simple comment at the top: <code class="language-plaintext highlighter-rouge"># This is a script</code>. Now if we go back to Script Runner the changes have not <em>automatically</em> appeared. However, there is a Reload button next to the filename that will refresh the file from the backend.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cable = ActionCable.createConsumer('/openc3-api/cable')
+<p><img src="/img/v5/guides/local_mode/reload_file.png" alt="Project Layout" /></p>
+
+<p>Clicking this reloads the file which has been synced into OpenC3 and now we see our comment.</p>
+
+<p><img src="/img/v5/guides/local_mode/reloaded.png" alt="Project Layout" /></p>
+
+<p>It’s important not to delete this local file while in Local Mode or OpenC3 will display a server error 500. If this happens you can open the Minio Console at http://localhost:2900/minio/ and browse to the file in question to download and restore it.</p>
+
+<p><img src="/img/v5/guides/local_mode/minio.png" alt="Project Layout" /></p>
+
+<h3 id="disabling-local-mode">Disabling Local Mode</h3>
+
+<p>If you want to disable Local Mode you can edit the .env file and delete the setting <code class="language-plaintext highlighter-rouge">OPENC3_LOCAL_MODE=1</code>.</p>
+
+<h2 id="configuration-management">Configuration Management</h2>
+
+<p>It is recommended to configuration manage the entire project including the plugins directory. This will allow any user who starts OpenC3 to launch an identical configuration. Plugins are created and updated with any modifications found in the targets_modified directory.</p>
+
+<p>At some point you will probably want to release your local changes back to the plugin they originated from. Simply copy the entire targets_modified/TARGET directory back to the original plugin. At that point you can rebuild the plugin using the CLI.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3-demo % ./openc3.sh cli rake build VERSION=1.0.1
+  Successfully built RubyGem
+  Name: openc3-demo
+  Version: 1.0.1
+  File: openc3-demo-1.0.1.gem
 </code></pre></div></div>
 
-<p>This call opens the HTTP connection to the given URL and upgrades it to a websocket connection. This connection can then be shared with multiple “subscriptions”.</p>
+<p>Upgrade the plugin using the Admin Plugins tab and the Upgrade link. When you select your newly built plugin, OpenC3 detects the existing changes and asks if you want to delete them. There is a stern warning attached because this will permanently remove these changes! Since we just moved over the changes and rebuilt the plugin we will check the box and INSTALL.</p>
 
-<p>A subscription describes a set of data that you want the API to stream to you. Creating a subscription looks like this:</p>
+<p><img src="/img/v5/guides/local_mode/delete_modified.png" alt="Project Layout" /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>subscription = cable.subscriptions.create(
-  {
-    channel: 'StreamingChannel',
-    scope: 'DEFAULT',
-    token: token,
-  },
-  {
-    received: (data) =&gt; {
-      // Handle received data
-    },
-    connected: () =&gt; {
-      // First chance to add what you want to stream here
-    },
-    disconnected: () =&gt; {
-      // Handle the subscription being disconnected
-    },
-    rejected: () =&gt; {
-      // Handle the subscription being rejected
-    },
-  }
-)
-</code></pre></div></div>
+<p>When the new plugin is installed, the project’s <code class="language-plaintext highlighter-rouge">plugins</code> directory gets updated with the new plugin and everything under the targets_modified directory is removed because there are no modifications on a new install.</p>
 
-<p>Subscribing to the StreamingApi requires passing a channel name set to “StreamingChannel”, a scope which is typically “DEFAULT”, and an access token (a password in OpenSource OpenC3). In Javascript you also pass a set of callback functions that run at various lifecycle points in the subscription. The most important of these are connected and received.</p>
+<p><img src="/img/v5/guides/local_mode/project_update.png" alt="Project Layout" /></p>
 
-<p>connected runs when the subscription is accepted by the StreamApi. This callback is the first opportunity to request specific data that you would like streamed. Data can also be added or removed at any time while the subscription is open.</p>
-
-<p>Data can be added to the stream by requesting individual items from a packet (decommutated data only), or by requesting the entire packet (both raw and decommutated data).</p>
-
-<p>Adding items to stream is done as follows:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var items = ["TLM__INST__ADCS__Q1__RAW", "CMD__INST__COLLECT__DURATION__WITH_UNITS"]
-var packets = ["TLM__INST__ADCS", "CMD__INST__COLLECT"]
-this.subscription.perform('add', {
-  scope: 'DEFAULT',
-  token: token,
-  mode: 'DECOM',
-  items: items,
-  packets: packets,
-  start_time: this.startDateTime,
-  end_time: this.endDateTime,
-})
-</code></pre></div></div>
-
-<p>Mode is either RAW, DECOM, REDUCED_MINUTE, REDUCED_HOUR, or REDUCED_DAY and all items/packets requested in a single add must be in the same mode. However different modes can be used across calls to add.</p>
-
-<p>Items are requested by keys of the form: <code class="language-plaintext highlighter-rouge">&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;ITEM NAME&gt;__&lt;VALUE TYPE&gt;</code>
-For example TLM__INST__ADCS__Q1__RAW.</p>
-
-<p>Value type should be one of: RAW, CONVERTED, FORMATTED, or WITH_UNITS</p>
-
-<p>Each field is separated by two underscores __.</p>
-
-<p>Entire packets can also be requested by keys of the form: <code class="language-plaintext highlighter-rouge">&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;VALUE TYPE&gt;</code>. For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM__INST__ADCS__RAW or TLM__INST__ADCS).
-start_time and end_time are standard OpenC3 64-bit integer timestamps in nanoseconds since the Unix Epoch (midnight January 1st, 1970). If start_time is null, that indicates to start streaming from the current time in realtime, indefinitely until items are removed, or the subscription is unsubscribed. end_time is ignored if start_time is null. If start_time is given and end_time is null, that indicates to playback from the given starttime and then continue indefinitely in realtime. If both start_time and end_time are given, then that indicates a temporary playback of historical data.</p>
-
-<p>Data returned by the streaming API is handled by the received callback in Javascript. Data is returned as a JSON Array, with a JSON object in the array for each packet returned. Results are batched, and the current implementation will return up to 100 packets in each batch (the array will have 100 entries). 100 packets per batch is not guaranteed, and batches may take on varying sizes based on the size of the data returned, or other factors. An empty array indicates that all data has been sent for a purely historical query and can be used as an end of data indicator.</p>
-
-<p>For decommutated items, each packet is represented as a JSON object with a ‘time’ field holding the OpenC3 nanosecond timestamp of the packet, and then each of the requested item keys with their corresponding value from the packet.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
-  {
-    time: 1234657585858,
-    'TLM__INST__ADCS__Q1__RAW': 50.0,
-    'TLM__INST__ADCS__Q2__RAW': 100.0
-  },
-  {
-    time: 1234657585859,
-    'TLM__INST__ADCS__Q1__RAW': 60.0,
-    'TLM__INST__ADCS__Q2__RAW': 110.0
-  },
-]
-</code></pre></div></div>
-
-<p>For raw packets, each packet is represented as a JSON object with a time field holding the OpenC3 nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE__TELEMETRY__TARGETNAME__PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
-  {
-    time: 1234657585858,
-    packet: 'DEFAULT__TELEMETRY__INST__ADCS,
-    buffer: 'SkdfjGodkdfjdfoekfsg',
-  },
-  {
-    time: 1234657585859,
-    packet: 'DEFAULT__TELEMETRY__INST__ADCS',
-    buffer: '3i5n49dmnfg9fl32k3',
-  },
-]
-</code></pre></div></div>
+<p>Local Mode is a powerful way to develop scripts and screens on the local file system and automatically have them sync to OpenC3.</p>
 
       </article>
     </div>
@@ -1266,7 +1215,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/local-mode">Local Mode</a>
   </li>
   <!-- prettier-ignore -->
@@ -2180,7 +2129,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/streaming-api">Streaming API</a>
   </li>
   <!-- prettier-ignore -->
