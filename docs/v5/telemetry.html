@@ -125,6 +125,7 @@
 <li class="toc-entry toc-h3"><a href="#processor">PROCESSOR</a></li>
 <li class="toc-entry toc-h3"><a href="#allow_short">ALLOW_SHORT</a></li>
 <li class="toc-entry toc-h3"><a href="#hidden">HIDDEN</a></li>
+<li class="toc-entry toc-h3"><a href="#accessor">ACCESSOR</a></li>
 <li class="toc-entry toc-h3"><a href="#item-modifiers">ITEM Modifiers</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#format_string">FORMAT_STRING</a></li>
@@ -132,6 +133,7 @@
 <li class="toc-entry toc-h4"><a href="#description">DESCRIPTION</a></li>
 <li class="toc-entry toc-h4"><a href="#meta-1">META</a></li>
 <li class="toc-entry toc-h4"><a href="#overlap">OVERLAP</a></li>
+<li class="toc-entry toc-h4"><a href="#key">KEY</a></li>
 <li class="toc-entry toc-h4"><a href="#state">STATE</a></li>
 <li class="toc-entry toc-h4"><a href="#read_conversion">READ_CONVERSION</a></li>
 <li class="toc-entry toc-h4"><a href="#poly_read_conversion">POLY_READ_CONVERSION</a></li>
@@ -351,7 +353,7 @@
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -399,7 +401,7 @@ ITEM DATA 0 0 DERIVED "Derived data"
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -455,7 +457,7 @@ ITEM DATA 0 0 DERIVED "Derived data"
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -506,7 +508,7 @@ ITEM DATA 0 0 DERIVED "Derived data"
     </tr>
     <tr>
       <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
 </td>
       <td>False</td>
     </tr>
@@ -755,6 +757,30 @@ ITEM DATA 0 0 DERIVED "Derived data"
 
 <p>This packet will not appear in Packet Viewer, Telemetry Grapher and Handbook Creator. It also hides this telemetry from appearing in the Script Runner popup helper when writing scripts. The telemetry still exists in the system and can received and checked by scripts.</p>
 
+<h3 id="accessor">
+<a class="anchor" href="#accessor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ACCESSOR</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines the class used to read and write raw values from the packet</strong></p>
+
+<p>Defines the class that is used too read raw values from the packet. Defaults to BinaryAccessor. Provided accessors also include JsonAccessor, CborAccessor, HtmlAccessor, and XmlAccessor.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Accessor Class Name</td>
+      <td>The name of the accessor class</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="item-modifiers">
 <a class="anchor" href="#item-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>ITEM Modifiers</h3>
 <p>The following keywords must follow a ITEM keyword.</p>
@@ -872,6 +898,33 @@ UNITS Kilometers KM
 <p><strong>This item is allowed to overlap other items in the packet</strong></p>
 
 <p>If an item’s bit offset overlaps another item, OpenC3 issues a warning. This keyword explicitly allows an item to overlap another and supresses the warning message.</p>
+
+<h4 id="key">
+<a class="anchor" href="#key" aria-hidden="true"><span class="octicon octicon-link"></span></a>KEY</h4>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines the key used to access this raw value in the packet.</strong></p>
+
+<p>Keys are often JsonPath or XPath strings</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Key string</td>
+      <td>The key to access this item</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">KEY $.book.title</code></pre></figure>
 
 <h4 id="state">
 <a class="anchor" href="#state" aria-hidden="true"><span class="octicon octicon-link"></span></a>STATE</h4>
