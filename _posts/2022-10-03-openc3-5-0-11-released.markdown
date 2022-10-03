@@ -1,0 +1,62 @@
+---
+layout: news_item
+title: "OpenC3 5.0.11 Released"
+date: 2022-10-03 6:00:00 -0700
+author: ryanmelt
+version: 5.0.11
+categories: [release]
+---
+
+OpenC3 5.0.11 is here!
+
+This is primarily a maintenance and bug fix release.
+
+## Key Enhancements
+* Allow selecting and deleting script temp files
+* Add map_target_to_interface to Javascript API
+* Update map_target_to_interface to support an array of target_names
+* Update use of AWS SDK to better support using other SDKs besides just S3
+* Updated dependencies
+
+## Key Bug Fixes
+* Fixed a bug where the core extension to tempfile wasn't being required
+* Ensured when using Keycloak Auth that tokens are refreshed 60 seconds before expiration
+* Fixed the client count status in CmdTlmServer
+* Fixed put_target_file given an IO object with Local Mode enabled
+
+## Pull Request Links
+* Add all targets to target packet item chooser by @ryanmelt in [#156](https://github.com/OpenC3/openc3/pull/156)
+* require tempfile core ext by @ryanmelt in [#166](https://github.com/OpenC3/openc3/pull/166)
+* Refresh tokens 60 seconds before expire by @ryanmelt in [#165](https://github.com/OpenC3/openc3/pull/165)
+* Remove astro-badge by @jmthomas in [#167](https://github.com/OpenC3/openc3/pull/167)
+* Display and allow deleting script temp files by @jmthomas in [#152](https://github.com/OpenC3/openc3/pull/152)
+* Break screens into own controller by @jmthomas in [#163](https://github.com/OpenC3/openc3/pull/163)
+* map_target_to_interface updates by @ryanmelt in [#170](https://github.com/OpenC3/openc3/pull/170)
+* Make Aws autoload only apply to S3 by @ryanmelt in [#169](https://github.com/OpenC3/openc3/pull/169)
+* read client count from function rather than variable by @ryanmelt in [#168](https://github.com/OpenC3/openc3/pull/168)
+* Bump deps, minio, traefik and add scripts_controller_spec by @jmthomas in [#175](https://github.com/OpenC3/openc3/pull/175)
+* Fix put_target_file with IO and local mode by @ryanmelt in [#176](https://github.com/OpenC3/openc3/pull/176)
+
+Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!
+
+Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+
+
+To Run:
+* git clone https://github.com/openc3/openc3-project.git myproject
+* cd myproject
+* Edit the .env file and change OPENC3_TAG to 5.0.11
+* Run Linux/Mac: ./openc3.sh run
+* Run Windows: openc3.bat run
+* Connect a web browser to [http://localhost:2900/](http://localhost:2900/)
+* Have fun running OpenC3!
+
+Please see our documentation at https://openc3.com
+
+Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to [support@openc3.com](mailto:support@openc3.com).
+
+Thanks!
+
+**Full Changelog**: [Changelog](https://github.com/OpenC3/openc3/compare/v5.0.10...v5.0.11)
