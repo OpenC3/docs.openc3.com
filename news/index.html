@@ -5,7 +5,7 @@
   <title>News</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.2.2">
+  <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2022/11/17/openc3-cosmos-5-1-0-released/">OpenC3 COSMOS 5.1.0 Released</option>
+      
       <option value="/news/2022/10/03/openc3-5-0-11-released/">OpenC3 5.0.11 Released</option>
       
       <option value="/news/2022/09/16/openc3-5-0-10-released/">OpenC3 5.0.10 Released</option>
@@ -115,6 +117,170 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/">
+      OpenC3 COSMOS 5.1.0 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      17 Nov 2022
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <p>OpenC3 COSMOS 5.1.0 - Modern, Production Ready, Command and Control</p>
+
+<p>Welcome to OpenC3 COSMOS 5.1.0!</p>
+
+<p>The COSMOS name is back! We have completed an agreement to formally take over development of COSMOS and are now offering commercial licensing to customers who want the additional scaling and security functionality in our COSMOS Enterprise Edition, or for our COSMOS Base Edition if the AGPLv3 license doesn’t work well for them.</p>
+
+<p>5.1.0 is a major release with key new features and performance enhancements. It also marks the end of the developmental 5.0.x series, and indicates that OpenC3 COSMOS 5 is now fully production ready! Going forward all releases will follow a versioning convention where the second digit 5.X will change when breaking changes are introduced, and the third digit 5.X.Y will change for minor or non-breaking changes that should be backwards compatible.</p>
+
+<p>This release is highlighted by the following major Improvements to logging, data reduction, and the streaming API:</p>
+
+<ul>
+  <li>4x less disk utilization.
+    <ul>
+      <li>With up to 5x less disk space required to store decommutated data, and an almost 2x reduction in the storage of raw data.</li>
+    </ul>
+  </li>
+  <li>Added a new Bucket class to allow direct bucket integrations with cloud providers without requiring Minio.
+    <ul>
+      <li>AWS will be supported in our Base Edition, and other clouds in our Enterprise Edition.</li>
+    </ul>
+  </li>
+  <li>Data reduction updated to log samples for all non-numeric items
+    <ul>
+      <li>This allows quick queries of every telemetry item in the COSMOS database</li>
+    </ul>
+  </li>
+  <li>Logging changed from “file per packet” to “file per target”
+    <ul>
+      <li>Greatly reduces the number of files generated and the number of files required to be accessed to playback all data</li>
+    </ul>
+  </li>
+  <li>Log files are now written in a buffered fashion that stores packets in guaranteed time order</li>
+  <li>Log file format changes are not backwards compatible.
+    <ul>
+      <li>Older log files will need to be migrated to the new format to be accessed by the Streaming API. Please contact support@openc3.com if you would like help migrating existing log files</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="other-highlighted-improvements-in-this-release">Other Highlighted Improvements In This Release</h2>
+
+<ul>
+  <li>Telemetry value displays now turn purple to indicate stale values</li>
+  <li>Added pause button to log messages in CmdTlmServer</li>
+  <li>Removed the gems bucket in favor of the /gems shared folder</li>
+  <li>Added support for OpenTelemetry and Jaeger to help debug mission specific performance issues</li>
+  <li>Added the ability to create screens automatically for any packet with the New Screen button</li>
+  <li>The API methods connect_interface and connect_router now support reinitializing with new parameters. This can allow changing IP addresses at runtime.</li>
+  <li>Added the ability to open and close TlmViewer screens, from screens</li>
+  <li>Packet received counts now survive restarts and continue where they left off</li>
+  <li>User selectable colors for TlmGrapher items</li>
+  <li>Added a QUIET command to the demo INST targets to allow running the demo without constant limits violations</li>
+  <li>Numerous dependency updates</li>
+</ul>
+
+<h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
+<ul>
+  <li>The Limits API is now fully functional. Previously enable/disable limits and set_limits were not taking effect.</li>
+  <li>Setting TlmViewer widget widths now work correctly</li>
+  <li>Removed an issue where ScriptRunner scripts could output too much to STDOUT causing crashes</li>
+  <li>Fixed XTCE converter</li>
+  <li>Removed partially implemented Admin plugin download button</li>
+  <li>Fixed issues editing TlmViewer screens</li>
+  <li>Fixed certain cases of decom of array items</li>
+  <li>Moved blocking in get_packets to client side code to prevent long API calls</li>
+</ul>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>Add newlines to script runner logs by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/190">#190</a></li>
+  <li>Add params to connect_interface by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/192">#192</a></li>
+  <li>Set screen min height and width by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/193">#193</a></li>
+  <li>Stale indicator by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/195">#195</a></li>
+  <li>Reduce process output by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/199">#199</a></li>
+  <li>Implement OpenTelemetry tracing by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/194">#194</a></li>
+  <li>Set received count in interface_microservice and inject_tlm by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/197">#197</a></li>
+  <li>Create new screen based on existing packet by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/204">#204</a></li>
+  <li>Allow user editing graph colors by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/202">#202</a></li>
+  <li>Improve package_audit and bump deps by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/208">#208</a></li>
+  <li>Use redis 5 gem by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/211">#211</a></li>
+  <li>Add QUIET command to demo by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/210">#210</a></li>
+  <li>Extract S3 code to Bucket by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/217">#217</a></li>
+  <li>Fix xtce_converter by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/219">#219</a></li>
+  <li>Fix bucket ENV, io_multiplexer, deploy script by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/223">#223</a></li>
+  <li>Bump deps by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/232">#232</a></li>
+  <li>Only publish 8000 chars to ScriptRunner log by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/236">#236</a></li>
+  <li>Remove admin Download button by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/237">#237</a></li>
+  <li>Indicate max notifications reached by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/238">#238</a></li>
+  <li>Remove procedures from gemspec by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/239">#239</a></li>
+  <li>Fix for packets not received by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/240">#240</a></li>
+  <li>Update scripts by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/233">#233</a></li>
+  <li>Target logging, Streaming API cleanup, Improved Log Message Component by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/227">#227</a></li>
+  <li>Remove GEMS bucket. GemModel directly uses /gems volume instead by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/241">#241</a></li>
+  <li>Fix reduction and logging extra nulls by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/242">#242</a></li>
+  <li>Support for https and cloud storage by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/243">#243</a></li>
+  <li>Rebranding and license by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/244">#244</a></li>
+  <li>Fix edit screen and 0 values by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/250">#250</a></li>
+  <li>Add open and close methods for screen by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/251">#251</a></li>
+  <li>Fix packet decom of array data by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/247">#247</a></li>
+  <li>Fix width height issues in widgets by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/255">#255</a></li>
+  <li>Fully functioning limits api distributed to decom microservice by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/254">#254</a></li>
+  <li>Ensure graph color on initial items by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/256">#256</a></li>
+  <li>Bump loader-utils from 1.4.0 to 1.4.2 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/258">#258</a></li>
+  <li>Bump terser from 5.12.1 to 5.15.1 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/261">#261</a></li>
+  <li>Move get_packets blocking to client by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/257">#257</a></li>
+  <li>Add OPENC3_DEPENDENCY_REGISTRY for non openc3 containers by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/262">#262</a></li>
+  <li>Fix screens, add closeAll, fix scroll widget by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/264">#264</a></li>
+  <li>Fix router/interface build with new params by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/265">#265</a></li>
+  <li>Use buffered packet log writer for log microservice by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/263">#263</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.0.11...v5.1.0">Changelog</a></p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2022/10/03/openc3-5-0-11-released/">
@@ -660,6 +826,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/">Version 5.1.0</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2022/10/03/openc3-5-0-11-released/">Version 5.0.11</a>
       </li>
       
@@ -675,14 +845,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2022/08/13/openc3-5-0-8-released/">Version 5.0.8</a>
       </li>
       
-      <li class="">
-        <a href="/news/2022/08/04/openc3-5-0-7-released/">Version 5.0.7</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                  
+                    
     </ul>
   </aside>
 </div>
