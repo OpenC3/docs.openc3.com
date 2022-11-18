@@ -19,7 +19,7 @@ jobs:
       - name: Checkout OpenC3
         uses: actions/checkout@v2
         with:
-          repository: OpenC3/openc3
+          repository: OpenC3/cosmos
           ref: master
           path: openc3
       - name: Set up Ruby
