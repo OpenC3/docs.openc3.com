@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Fri, 18 Nov 2022 05:18:39 +0000</pubDate>
-    <lastBuildDate>Fri, 18 Nov 2022 05:18:39 +0000</lastBuildDate>
+    <pubDate>Sat, 19 Nov 2022 16:05:12 +0000</pubDate>
+    <lastBuildDate>Sat, 19 Nov 2022 16:05:12 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.1</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -24,6 +24,71 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>OpenC3 COSMOS 5.1.1 Released</title>
+      <link>https://openc3.com/news/2022/11/19/openc3-cosmos-5-1-1-released/</link>
+      <pubDate>Sat, 19 Nov 2022 13:00:00 +0000</pubDate>
+      <dc:creator>ryanmelt</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">https://openc3.com/news/2022/11/19/openc3-cosmos-5-1-1-released/</guid>
+      <description>&lt;p&gt;OpenC3 COSMOS 5.1.1 - Modern, Production Ready, Command and Control&lt;/p&gt;
+
+&lt;p&gt;Welcome to OpenC3 COSMOS 5.1.1!&lt;/p&gt;
+
+&lt;p&gt;This release is quick patch release to address the following:&lt;/p&gt;
+
+&lt;h2 id=&quot;highlighted-improvements-in-this-release&quot;&gt;Highlighted Improvements In This Release&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ScriptRunner scripts can now handle unicode characters&lt;/li&gt;
+  &lt;li&gt;Updated TextLogMicroservice to ensure a clean shutdown&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Updated openc3.bat and openc3_util.bat to fix some issues on Windows with cli, cliroot, and util scripts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;all-pull-requests-in-this-release&quot;&gt;All Pull Requests in this Release&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Windows cli use .env file by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/272&quot;&gt;#272&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Clean shutdown for TextLogMicroservice. Don’t enforce time ordering for text logs by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/274&quot;&gt;#274&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Handle UTF8 strings better when JSON encoding by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/276&quot;&gt;#276&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+&lt;/p&gt;
+
+&lt;p&gt;To Run:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;git clone https://github.com/openc3/cosmos-project.git cosmos-myproject&lt;/li&gt;
+  &lt;li&gt;cd cosmos-myproject&lt;/li&gt;
+  &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
+  &lt;li&gt;Run Windows: openc3.bat run&lt;/li&gt;
+  &lt;li&gt;Connect a web browser to &lt;a href=&quot;http://localhost:2900/&quot;&gt;http://localhost:2900/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Have fun running OpenC3 COSMOS!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please see our documentation at https://openc3.com&lt;/p&gt;
+
+&lt;p&gt;Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to &lt;a href=&quot;mailto:support@openc3.com&quot;&gt;support@openc3.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.1.0...v5.1.1&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>OpenC3 COSMOS 5.1.0 Released</title>

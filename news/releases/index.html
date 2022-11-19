@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2022/11/19/openc3-cosmos-5-1-1-released/">OpenC3 COSMOS 5.1.1 Released</option>
+      
       <option value="/news/2022/11/17/openc3-cosmos-5-1-0-released/">OpenC3 COSMOS 5.1.0 Released</option>
       
       <option value="/news/2022/10/03/openc3-5-0-11-released/">OpenC3 5.0.11 Released</option>
@@ -117,6 +119,84 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2022/11/19/openc3-cosmos-5-1-1-released/">
+      OpenC3 COSMOS 5.1.1 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      19 Nov 2022
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <p>OpenC3 COSMOS 5.1.1 - Modern, Production Ready, Command and Control</p>
+
+<p>Welcome to OpenC3 COSMOS 5.1.1!</p>
+
+<p>This release is quick patch release to address the following:</p>
+
+<h2 id="highlighted-improvements-in-this-release">Highlighted Improvements In This Release</h2>
+
+<ul>
+  <li>ScriptRunner scripts can now handle unicode characters</li>
+  <li>Updated TextLogMicroservice to ensure a clean shutdown</li>
+</ul>
+
+<h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
+<ul>
+  <li>Updated openc3.bat and openc3_util.bat to fix some issues on Windows with cli, cliroot, and util scripts</li>
+</ul>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>Windows cli use .env file by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/272">#272</a></li>
+  <li>Clean shutdown for TextLogMicroservice. Don’t enforce time ordering for text logs by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/274">#274</a></li>
+  <li>Handle UTF8 strings better when JSON encoding by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/276">#276</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.1.0...v5.1.1">Changelog</a></p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/">
@@ -826,6 +906,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2022/11/19/openc3-cosmos-5-1-1-released/">Version 5.1.1</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/">Version 5.1.0</a>
       </li>
       
@@ -841,14 +925,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2022/09/02/openc3-5-0-9-released/">Version 5.0.9</a>
       </li>
       
-      <li class="">
-        <a href="/news/2022/08/13/openc3-5-0-8-released/">Version 5.0.8</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                    
+                      
     </ul>
   </aside>
 </div>

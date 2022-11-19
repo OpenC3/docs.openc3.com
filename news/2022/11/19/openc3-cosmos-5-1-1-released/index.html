@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>OpenC3 5.0.8 Released</title>
+  <title>OpenC3 COSMOS 5.1.1 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
@@ -120,8 +120,8 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    OpenC3 5.0.8 Released
-    <a href="/news/2022/08/13/openc3-5-0-8-released/" class="permalink" title="Permalink">∞</a>
+    OpenC3 COSMOS 5.1.1 Released
+    <a href="/news/2022/11/19/openc3-cosmos-5-1-1-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
@@ -130,7 +130,7 @@
   </span>
   <div class="post-meta">
     <span class="post-date">
-      13 Aug 2022
+      19 Nov 2022
     </span>
     <a href="https://github.com/ryanmelt" class="post-author">
       <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
@@ -138,58 +138,50 @@
     </a>
   </div>
   <div class="post-content">
-    <p>I’m happy to announce the third release of OpenC3!</p>
+    <p>OpenC3 COSMOS 5.1.1 - Modern, Production Ready, Command and Control</p>
 
-<h2 id="key-enhancements">Key Enhancements</h2>
+<p>Welcome to OpenC3 COSMOS 5.1.1!</p>
+
+<p>This release is quick patch release to address the following:</p>
+
+<h2 id="highlighted-improvements-in-this-release">Highlighted Improvements In This Release</h2>
+
 <ul>
-  <li>New SPARKLINE telemetry screen widget</li>
-  <li>Telemetry Screen Value Aging</li>
-  <li>Updated Ruby / NPM dependency versions</li>
-  <li>Added POSITION keyword for TOOLs to enforce position in Nav Bar</li>
-  <li>Improved operator log messages</li>
+  <li>ScriptRunner scripts can now handle unicode characters</li>
+  <li>Updated TextLogMicroservice to ensure a clean shutdown</li>
 </ul>
 
 <h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
 <ul>
-  <li>Fixed an issue with the UNKNOWN packet not showing</li>
-  <li>Fixed an issue where the system didn’t wait for a file to be fully available in S3</li>
-  <li>Fixed Cmd/Tlm Packet counts in CmdTlmServer</li>
-  <li>Fixed an issue where the Current Value Table would sometimes say packets don’t exist</li>
+  <li>Updated openc3.bat and openc3_util.bat to fix some issues on Windows with cli, cliroot, and util scripts</li>
 </ul>
 
-<h2 id="pull-request-links">Pull Request Links</h2>
-<ul>
-  <li>Create UNKNOWN target in scope_model by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/54">#54</a></li>
-  <li>Fix linegraph widget and add sparkline by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/52">#52</a></li>
-  <li>Fix permission names by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/53">#53</a></li>
-  <li>ValueWidget telemetry aging by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/58">#58</a></li>
-  <li>Add put_object_and_check for S3 by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/61">#61</a></li>
-  <li>Display correct CMD/TLM counts when sorting by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/62">#62</a></li>
-  <li>Bump pysch, rdoc, dead_end by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/64">#64</a></li>
-  <li>Add POSITION keyword for tools by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/65">#65</a></li>
-  <li>Scope updates by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/63">#63</a></li>
-  <li>Print operator cmd in log by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/66">#66</a></li>
-  <li>Update NPM dependencies by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/67">#67</a></li>
-  <li>Move CvtModel back to Persistent Redis Store by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/68">#68</a></li>
-</ul>
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
 
-<h2 id="upgrade-notes">Upgrade Notes</h2>
-<p>This release requires reinstalling any plugins that include targets, because the Current Value Table moved between containers.</p>
+<ul>
+  <li>Windows cli use .env file by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/272">#272</a></li>
+  <li>Clean shutdown for TextLogMicroservice. Don’t enforce time ordering for text logs by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/274">#274</a></li>
+  <li>Handle UTF8 strings better when JSON encoding by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/276">#276</a></li>
+</ul>
 
 <p>Prerequisites:
 Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
 
 <p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
-Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
 
-<p>To Run:
-Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/OpenC3/openc3/releases/tag/v5.0.8">Download Release Here</a>
-Extract the archive somewhere on your host computer
-Edit the .env file and change OPENC3_TAG to 5.0.8
-Run Linux/Mac: ./openc3.sh run
-Run Windows: openc3.bat run
-Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a>
-Have fun running OpenC3!</p>
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
 
 <p>Please see our documentation at https://openc3.com</p>
 
@@ -197,7 +189,7 @@ Have fun running OpenC3!</p>
 
 <p>Thanks!</p>
 
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.0.7...v5.0.8">Changelog</a></p>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.1.0...v5.1.1">Changelog</a></p>
 
   </div>
 </article>
@@ -217,7 +209,7 @@ Have fun running OpenC3!</p>
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2022/11/19/openc3-cosmos-5-1-1-released/">Version 5.1.1</a>
       </li>
       
