@@ -8,7 +8,6 @@ toc: true
 
 Autonomic allows for the simple execution of commands and scripts based on user-defined rules.
 
-
 ### Overview
 
 Autonomic operates with some basic building blocks: Trigger Groups, Triggers, and Reactions. Triggers are simply logical blocks which evaluate true or false. Reactions can be linked to one or many Triggers and specify an action to perform. Together they allow for an action to be taken based on anything going on in your system.
@@ -17,11 +16,11 @@ Autonomic operates with some basic building blocks: Trigger Groups, Triggers, an
 
 ### TriggerGroups
 
-Triggers are organized into groups, these groups are to ensure that we can scale as the number of triggers with the incoming telemetry. Each group consists of several threads so be careful of your compute resources you have as you can overwhelm OpenC3 with lots of these.
+Triggers are organized into groups, these groups are to ensure that we can scale as the number of triggers with the incoming telemetry. Each group consists of several threads so be careful of your compute resources you have as you can overwhelm COSMOS with lots of these.
 
 ```json
 {
-  "name": "system42",
+  "name": "system42"
 }
 ```
 
@@ -40,12 +39,12 @@ Triggers are logical components that are evaluated to true or false.
     "target": "INST",
     "packet": "ADCS",
     "item": "POSX",
-    "raw": true,
+    "raw": true
   },
   "operation": ">",
   "right": {
     "type": "value",
-    "value": 0,
+    "value": 0
   }
 }
 ```
@@ -64,8 +63,8 @@ Reactions wait for triggers to be evaluated to true and perform actions such as 
   "triggers": [
     {
       "name": "123456",
-      "group": "system42",
-    },
+      "group": "system42"
+    }
   ],
   "actions": [
     {

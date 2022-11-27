@@ -13,29 +13,32 @@ Modular decom brings support for JSON, CBOR, HTML, and XML based packets directl
 
 This will allow OpenC3 to interact with non-binary packets like web pages, JSON based API interfaces, and much more, with little to no custom coding required.
 
-See [openc3-accessor-test](https://github.com/OpenC3/openc3/tree/master/openc3-init/plugins/packages/openc3-accessor-test) for a great example of defining packets in each of the new types.
+See [openc3-accessor-test](https://github.com/OpenC3/cosmos/tree/main/openc3-cosmos-init/plugins/packages/openc3-accessor-test) for a great example of defining packets in each of the new types.
 
 ## Key Enhancements
-* Modular Decom
-* Updated open source dependencies
-* Added filename to get chosen filename from open_file_dialog()
-* Added PORT keyword to Microservices to support accessing them in cluster environments
-* Added Severity filtering to CmdTlmServer log messages and increased count of messages saved
-* Added refresh script button to ScriptRunner
+
+- Modular Decom
+- Updated open source dependencies
+- Added filename to get chosen filename from open_file_dialog()
+- Added PORT keyword to Microservices to support accessing them in cluster environments
+- Added Severity filtering to CmdTlmServer log messages and increased count of messages saved
+- Added refresh script button to ScriptRunner
 
 ## Key Bug Fixes
-* Fixed positioning of events in Calendar near Midnight
+
+- Fixed positioning of events in Calendar near Midnight
 
 ## Pull Request Links
-* Modular decom by @ryanmelt in [#134](https://github.com/OpenC3/openc3/pull/134)
-* Fix ruby coverage path by @jmthomas in [#131](https://github.com/OpenC3/openc3/pull/131)
-* Add flags to upload by @jmthomas in [#132](https://github.com/OpenC3/openc3/pull/132)
-* Update unit tests by @jmthomas in [#147](https://github.com/OpenC3/openc3/pull/147)
-* Add filename to Tempfile returned by open_file_dialog by @jmthomas in [#148](https://github.com/OpenC3/openc3/pull/148)
-* Port param by @jmthomas in [#146](https://github.com/OpenC3/openc3/pull/146)
-* Add severity level filter to log messages by @jmthomas in [#149](https://github.com/OpenC3/openc3/pull/149)
-* Add refresh button for scripts by @jmthomas in [#150](https://github.com/OpenC3/openc3/pull/150)
-* Bump dependencies including Minio by @jmthomas in [#151](https://github.com/OpenC3/openc3/pull/151)
+
+- Modular decom by @ryanmelt in [#134](https://github.com/OpenC3/cosmos/pull/134)
+- Fix ruby coverage path by @jmthomas in [#131](https://github.com/OpenC3/cosmos/pull/131)
+- Add flags to upload by @jmthomas in [#132](https://github.com/OpenC3/cosmos/pull/132)
+- Update unit tests by @jmthomas in [#147](https://github.com/OpenC3/cosmos/pull/147)
+- Add filename to Tempfile returned by open_file_dialog by @jmthomas in [#148](https://github.com/OpenC3/cosmos/pull/148)
+- Port param by @jmthomas in [#146](https://github.com/OpenC3/cosmos/pull/146)
+- Add severity level filter to log messages by @jmthomas in [#149](https://github.com/OpenC3/cosmos/pull/149)
+- Add refresh button for scripts by @jmthomas in [#150](https://github.com/OpenC3/cosmos/pull/150)
+- Bump dependencies including Minio by @jmthomas in [#151](https://github.com/OpenC3/cosmos/pull/151)
 
 Prerequisites:
 Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!
@@ -45,13 +48,14 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
 Also requires docker compose version 1.27+
 
 To Run:
-* git clone https://github.com/openc3/openc3-project.git myproject
-* cd myproject
-* Edit the .env file and change OPENC3_TAG to 5.0.10
-* Run Linux/Mac: ./openc3.sh run
-* Run Windows: openc3.bat run
-* Connect a web browser to [http://localhost:2900/](http://localhost:2900/)
-* Have fun running OpenC3!
+
+- git clone https://github.com/OpenC3/cosmos-project.git myproject
+- cd myproject
+- Edit the .env file and change OPENC3_TAG to 5.0.10
+- Run Linux/Mac: ./openc3.sh run
+- Run Windows: openc3.bat run
+- Connect a web browser to [http://localhost:2900/](http://localhost:2900/)
+- Have fun running OpenC3!
 
 Please see our documentation at https://openc3.com
 
@@ -59,5 +63,4 @@ Try it out and let us know what you think! Please submit any issues as Github ti
 
 Thanks!
 
-**Full Changelog**: [Changelog](https://github.com/OpenC3/openc3/compare/v5.0.9...v5.0.10)
-
+**Full Changelog**: [Changelog](https://github.com/OpenC3/cosmos/compare/v5.0.9...v5.0.10)

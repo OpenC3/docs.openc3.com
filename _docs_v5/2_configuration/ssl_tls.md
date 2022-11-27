@@ -4,13 +4,13 @@ title: SSL-TLS
 toc: true
 ---
 
-OpenC3 5 is a container based service which does not support SSL/TLS out of the box. This guide will help you configure SSL and TLS. Learn more at the Traefik [docs](https://doc.traefik.io/traefik/routing/entrypoints/#tls).
+COSMOS 5 is a container based service which does not support SSL/TLS out of the box. This guide will help you configure SSL and TLS. Learn more at the Traefik [docs](https://doc.traefik.io/traefik/routing/entrypoints/#tls).
 
 ### Generate the certificate
 
 > Note: Self-signed certificates are considered insecure for the Internet. Firefox will treat the site as having an invalid certificate, while Chrome will act as if the connection was plain HTTP.
 
-To create a new Self-Signed SSL Certificate, use the openssl req command (run on linux from the OpenC3 root):
+To create a new Self-Signed SSL Certificate, use the openssl req command (run on linux from the cosmos-project root):
 
 ```sh
 openssl req -newkey rsa:4096 \

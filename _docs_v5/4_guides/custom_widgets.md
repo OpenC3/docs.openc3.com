@@ -4,24 +4,24 @@ title: Custom Widgets
 toc: true
 ---
 
-OpenC3 5 allows you to build custom widgets which can be deployed with your [plugin]({{site.baseurl}}/docs/v5/plugins) and used in [Telemetry Viewer]({{site.baseurl}}/docs/v5/tlm-viewer). Building custom widgets can utilitize any javascript frameworks but since OpenC3 is written with Vue.js, we will use that framework in this tutorial.
+COSMOS allows you to build custom widgets which can be deployed with your [plugin]({{site.baseurl}}/docs/v5/plugins) and used in [Telemetry Viewer]({{site.baseurl}}/docs/v5/tlm-viewer). Building custom widgets can utilitize any javascript frameworks but since COSMOS is written with Vue.js, we will use that framework in this tutorial.
 
 ## Custom Widgets
 
-We're basically going to follow the OpenC3 [Demo](https://github.com/OpenC3/openc3/tree/master/openc3-init/plugins/packages/openc3-demo) and explain how that custom widget was created.
+We're basically going to follow the COSMOS [Demo](https://github.com/OpenC3/cosmos/tree/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo) and explain how that custom widget was created.
 
-If you look at the bottom of the Demo's [plugin.txt](https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/plugin.txt) file you'll see we declare the widgets:
+If you look at the bottom of the Demo's [plugin.txt](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/plugin.txt) file you'll see we declare the widgets:
 
 ```
 WIDGET BIG
 WIDGET HELLOWORLD
 ```
 
-When the plugin is deployed this causes OpenC3 to look for the as-built widgets. For the BIG widget it will look for the widget at `tools/widgets/BigWidget/BigWidget.umd.min.js`. Similarly it looks for HELLOWORLD at `tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js`. These directories and file names may seem mysterious but it's all about how the widgets get built.
+When the plugin is deployed this causes COSMOS to look for the as-built widgets. For the BIG widget it will look for the widget at `tools/widgets/BigWidget/BigWidget.umd.min.js`. Similarly it looks for HELLOWORLD at `tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js`. These directories and file names may seem mysterious but it's all about how the widgets get built.
 
 ### Helloworld Widget
 
-The Helloworld Widget source code is found in the plugin's src directory and is called [HelloworldWidget.vue](https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/src/HelloworldWidget.vue). The basic structure is as follows:
+The Helloworld Widget source code is found in the plugin's src directory and is called [HelloworldWidget.vue](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/src/HelloworldWidget.vue). The basic structure is as follows:
 
 ```vue
 <template>
@@ -46,10 +46,10 @@ export default {
 
 <div class="note info">
   <h5>Vue & Vuetify</h5>
-  <p>For more information about how the OpenC3 frontend is built (including all the Widgets) please check out <a href="https://vuejs.org">Vue.js</a> and <a href="https://vuetifyjs.com">Vuetify</a>.</p>
+  <p>For more information about how the COSMOS frontend is built (including all the Widgets) please check out <a href="https://vuejs.org">Vue.js</a> and <a href="https://vuetifyjs.com">Vuetify</a>.</p>
 </div>
 
-To build this custom widget we changed the Demo [Rakefile](https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/Rakefile) to call `yarn run build` when the plugin is built. `yarn run XXX` looks for 'scripts' to run in the [package.json](https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/package.json) file. If we open package.json we find the following:
+To build this custom widget we changed the Demo [Rakefile](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/Rakefile) to call `yarn run build` when the plugin is built. `yarn run XXX` looks for 'scripts' to run in the [package.json](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/package.json) file. If we open package.json we find the following:
 
 ```json
   "scripts": {
@@ -59,7 +59,7 @@ To build this custom widget we changed the Demo [Rakefile](https://github.com/Op
 
 This uses the `vue-cli-service` to build the code found at `src/HelloworldWidget.vue` and formats as `umd-min` and puts it in the `tools/widgets/HelloworldWidget` directory. So this is why the plugin looks for the plugin at `tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js`. Click [here](https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-build) for the `vue-cli-service build` documentation.
 
-If you look at the Demo plugin's [simple.txt](https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/targets/INST/screens/simple.txt) screen you'll see we're using the widgets:
+If you look at the Demo plugin's [simple.txt](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/targets/INST/screens/simple.txt) screen you'll see we're using the widgets:
 
 ```
 SCREEN AUTO AUTO 0.5

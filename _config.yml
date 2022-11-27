@@ -5,8 +5,8 @@ highlighter: rouge
 permalink: /news/:year/:month/:day/:title/
 excerpt_separator: ""
 
-openc3: https://github.com/OpenC3/openc3
-repository: https://github.com/OpenC3/openc3.github.io
+openc3: https://github.com/openc3/cosmos
+repository: https://github.com/openc3/openc3.com
 
 plugins:
   - jekyll-toc

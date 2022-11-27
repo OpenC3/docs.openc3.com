@@ -3,7 +3,7 @@ layout: docs
 title: Contributing
 ---
 
-So you've got an awesome idea to throw into OpenC3. Great! This is the basic process:
+So you've got an awesome idea to throw into COSMOS. Great! This is the basic process:
 
 1. Fork the project on Github
 1. Create a feature branch
@@ -22,8 +22,8 @@ This protects both you and us and you retain full rights to any code you write.
 
 ## Test Dependencies
 
-To run the test suite and build the gem you'll need to install OpenC3's
-dependencies. OpenC3 uses Bundler, so a quick run of the `bundle` command and
+To run the test suite and build the gem you'll need to install COSMOS's
+dependencies. COSMOS uses Bundler, so a quick run of the `bundle` command and
 you're all set!
 
 ```bash
@@ -63,7 +63,7 @@ git checkout -b my_awesome_feature
 git push origin my_awesome_feature
 ```
 
-- Create a pull request against OpenC3/openc3:master and describe what your
+- Create a pull request against openc3/cosmos:main and describe what your
   change does and the why you think it should be merged.
 
 <div class="note">
@@ -75,7 +75,7 @@ git push origin my_awesome_feature
   </p>
   <h5>Let us know what could be better!</h5>
   <p>
-    Both using and hacking on OpenC3 should be fun, simple, and easy, so if for
+    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
     some reason you find it's a pain, please <a
     href="{{ site.openc3 }}/issues/new/choose">create an issue</a> on
     GitHub describing your experience so we can make it better.

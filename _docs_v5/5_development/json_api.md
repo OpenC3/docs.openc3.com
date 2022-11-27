@@ -4,11 +4,11 @@ title: JSON API
 ---
 
 <div class="note">
-  <h5>This documentation is for OpenC3 Developers</h5>
-  <p markdown="1">If you're looking for the methods available to write test procedures using the OpenC3 scripting API, refer to the [Scripting Guide]({{site.baseurl}}/docs/v5/scripting) page. If you're trying to interface to a OpenC3 Command and Telemetry Server from an external application using any language then this is the right place.</p>
+  <h5>This documentation is for COSMOS Developers</h5>
+  <p markdown="1">If you're looking for the methods available to write test procedures using the COSMOS scripting API, refer to the [Scripting Guide]({{site.baseurl}}/docs/v5/scripting) page. If you're trying to interface to a COSMOS Command and Telemetry Server from an external application using any language then this is the right place.</p>
 </div>
 
-This document provides the information necessary for external applications to interact with the OpenC3 Command and Telemetry Server using the OpenC3 API. External applications written in any language can send commands and retrieve individual telemetry points using this API. External applications also have the option of connecting to the OpenC3 Command and Telemetry server to interact with raw tcp/ip streams of commands/telemetry. However, the OpenC3 JSON API removes the requirement that external applications have knowledge of the binary formats of packets.
+This document provides the information necessary for external applications to interact with the COSMOS Command and Telemetry Server using the COSMOS API. External applications written in any language can send commands and retrieve individual telemetry points using this API. External applications also have the option of connecting to the COSMOS Command and Telemetry server to interact with raw tcp/ip streams of commands/telemetry. However, the COSMOS JSON API removes the requirement that external applications have knowledge of the binary formats of packets.
 
 ## Authorization
 
@@ -20,19 +20,19 @@ Authorization: <token/password>
 
 ## JSON-RPC 2.0
 
-The OpenC3 API implements a relaxed version of the [JSON-RPC 2.0 Specification](http://www.jsonrpc.org/specification). Requests with an "id" of NULL are not supported. Numbers can contain special non-string literal's such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.
+The COSMOS API implements a relaxed version of the [JSON-RPC 2.0 Specification](http://www.jsonrpc.org/specification). Requests with an "id" of NULL are not supported. Numbers can contain special non-string literal's such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.
 
 ## Socket Connections
 
-The OpenC3 Command and Telemetry Server listens for connections to the OpenC3 API on an HTTP server (default port of 7777).
+The COSMOS Command and Telemetry Server listens for connections to the COSMOS API on an HTTP server (default port of 7777).
 
 ## Supported Methods
 
-The list of methods supported by the OpenC3 API may be found in the [api](https://github.com/OpenC3/openc3/tree/master/openc3/lib/openc3/api) source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the OpenC3 scripting API methods documented in the [Scripting Guide]({{site.baseurl}}/docs/v5/scripting). This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.
+The list of methods supported by the COSMOS API may be found in the [api](https://github.com/openc3/cosmos/tree/main/openc3/lib/openc3/api) source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the COSMOS scripting API methods documented in the [Scripting Guide]({{site.baseurl}}/docs/v5/scripting). This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.
 
 ## Existing Implementations
 
-The OpenC3 JSON API has been implemented in the following languages:
+The COSMOS JSON API has been implemented in the following languages:
 
 - [Python](https://github.com/Openc3/python-openc3)
 
@@ -42,7 +42,7 @@ The OpenC3 JSON API has been implemented in the following languages:
 
 The following methods are used to send commands: cmd, cmd_no_range_check, cmd_no_hazardous_check, cmd_no_checks
 
-The cmd method sends a command to a OpenC3 target in the system. The cmd_no_range_check method does the same but ignores parameter range errors. The cmd_no_hazardous_check method does the same, but allows hazardous commands to be sent. The cmd_no_checks method does the same but allows hazardous commands to be sent, and ignores range errors.
+The cmd method sends a command to a COSMOS target in the system. The cmd_no_range_check method does the same but ignores parameter range errors. The cmd_no_hazardous_check method does the same, but allows hazardous commands to be sent. The cmd_no_checks method does the same but allows hazardous commands to be sent, and ignores range errors.
 
 Two parameter syntaxes are supported.
 
@@ -61,6 +61,7 @@ The second is two or three parameters with the first parameter being a string de
 | command_params | Hash      | Optional hash of command parameters       |
 
 Example Usage:
+
 ```bash
 --> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"], "id": 1}
 <-- {"jsonrpc": "2.0", "result": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
@@ -92,6 +93,7 @@ The second is three parameters with the first parameter being a string denoting 
 | item_name   | String    | Name of the telemetry item                         |
 
 Example Usage:
+
 ```bash
 --> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST HEALTH_STATUS TEMP1"], "id": 2}
 <-- {"jsonrpc": "2.0", "result": 94.9438, "id": 2}

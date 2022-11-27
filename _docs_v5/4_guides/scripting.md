@@ -4,13 +4,13 @@ title: Scripting Guide
 toc: true
 ---
 
-This document provides the information necessary to write test procedures using the OpenC3 scripting API. Scripting in OpenC3 is designed to be simple and intuitive. The code completion ability for command and telemetry mnemonics makes Script Runner the ideal place to write your procedures, however any text editor will do. If there is functionality that you don't see here or perhaps an easier syntax for doing something, please submit a ticket.
+This document provides the information necessary to write test procedures using the COSMOS scripting API. Scripting in COSMOS is designed to be simple and intuitive. The code completion ability for command and telemetry mnemonics makes Script Runner the ideal place to write your procedures, however any text editor will do. If there is functionality that you don't see here or perhaps an easier syntax for doing something, please submit a ticket.
 
 ## Concepts
 
 ### Ruby Programming Language
 
-OpenC3 scripting is implemented using the Ruby Programming language. This should be largely transparent to the user, but if advanced processing needs to be done such as writing files, then knowledge of Ruby is necessary. Please see the Ruby Guide for more information about Ruby.
+COSMOS scripting is implemented using the Ruby Programming language. This should be largely transparent to the user, but if advanced processing needs to be done such as writing files, then knowledge of Ruby is necessary. Please see the Ruby Guide for more information about Ruby.
 
 A basic summary of Ruby:
 
@@ -72,7 +72,7 @@ clear_collects('INST')
 clear_collects('INST2')
 ```
 
-This example shows several features of OpenC3 scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening. Read [Require vs Load]({{site.baseurl}}/news/2017/11/13/require_vs_load/) for much more detail.
+This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening. Read [Require vs Load]({{site.baseurl}}/news/2017/11/13/require_vs_load/) for much more detail.
 
 Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.
 
@@ -86,7 +86,7 @@ Finally we call our clear_collects method on each target by passing the target n
 
 ### Telemetry Types
 
-There are four different ways that telemetry values can be retrieved in OpenC3. The following chart explains their differences.
+There are four different ways that telemetry values can be retrieved in COSMOS. The following chart explains their differences.
 
 | Telemetry Type       | Description                                                                                                                                                                                                                                                                                                                  |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -99,7 +99,7 @@ There are four different ways that telemetry values can be retrieved in OpenC3. 
 
 ### Using Subroutines
 
-Subroutines in OpenC3 scripting are first class citizens. They can allow you to perform repetitive tasks without copying the same code multiple times and in multiple different test procedures. This reduces errors and makes your test procedures more maintainable. For example, if multiple test procedures need to turn on a power supply and check telemetry, they can both use a common subroutine. If a change needs to be made to how the power supply is turned on, then it only has to be done in one location and all test procedures reap the benefits. No need to worry about forgetting to update one. Additionally using subroutines allows your high level procedure to read very cleanly and makes it easier for others to review. See the Subroutine Example example.
+Subroutines in COSMOS scripting are first class citizens. They can allow you to perform repetitive tasks without copying the same code multiple times and in multiple different test procedures. This reduces errors and makes your test procedures more maintainable. For example, if multiple test procedures need to turn on a power supply and check telemetry, they can both use a common subroutine. If a change needs to be made to how the power supply is turned on, then it only has to be done in one location and all test procedures reap the benefits. No need to worry about forgetting to update one. Additionally using subroutines allows your high level procedure to read very cleanly and makes it easier for others to review. See the Subroutine Example example.
 
 ## Example Test Procedures
 
@@ -250,11 +250,11 @@ Finally, displayed is the log messages. All commands that are sent, errors that 
 
 ## Test Procedure API
 
-The following methods are designed to be used in test procedures. However, they can also be used in custom built OpenC3 tools. Please see the OpenC3 Tool API section for methods that are more efficient to use in custom tools.
+The following methods are designed to be used in test procedures. However, they can also be used in custom built COSMOS tools. Please see the COSMOS Tool API section for methods that are more efficient to use in custom tools.
 
 ### Migration from COSMOS v4
 
-The following API methods are either deprecated (will not be ported to OpenC3 5) or currently unimplemented (eventually will be ported to OpenC3 5):
+The following API methods are either deprecated (will not be ported to COSMOS 5) or currently unimplemented (eventually will be ported to COSMOS 5):
 
 | Method                                | Tool                         | Status                            |
 | ------------------------------------- | ---------------------------- | --------------------------------- |
@@ -337,7 +337,7 @@ The following API methods are either deprecated (will not be ported to OpenC3 5)
 | unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                        |
 | unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                        |
 
-The following API methods are new in OpenC3 5:
+The following API methods are new in COSMOS 5:
 
 | Method             | Tool                         |
 | ------------------ | ---------------------------- |
@@ -531,7 +531,7 @@ delete_target_file("INST/delete_me.txt")
 
 The open_file_dialog and open_files_dialog methods create a file dialog box so the user can select a single or multiple files. The selected file(s) is returned.
 
-Note: OpenC3 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn't make sense in new architecture so you must request individual files.
+Note: COSMOS 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn't make sense in new architecture so you must request individual files.
 
 Syntax:
 
@@ -1220,7 +1220,7 @@ check_exception("<Method Name>", "<Method Params - optional>")
 
 | Parameter     | Description                                                         |
 | ------------- | ------------------------------------------------------------------- |
-| Method Name   | The OpenC3 scripting method to execute, e.g. 'cmd', 'cmd_raw', etc. |
+| Method Name   | The COSMOS scripting method to execute, e.g. 'cmd', 'cmd_raw', etc. |
 | Method Params | Parameters for the method                                           |
 
 Example:
@@ -2018,7 +2018,7 @@ wait_check_packet('INST', 'HEALTH_STATUS', 5, 10) # Wait for 5 INST HEALTH_STATU
 ## Limits
 
 <div class="note unreleased">
-  <p>Limits API not fully implemented in OpenC3 5</p>
+  <p>Limits API not fully implemented in COSMOS 5</p>
 </div>
 
 These methods deal with handling telemetry limits.
@@ -2245,7 +2245,7 @@ out_of_limits_items = get_out_of_limits()
 
 ### get_overall_limits_state
 
-Returns the overall limits state for the OpenC3 system. Returns :GREEN, :YELLOW, :RED, or :STALE.
+Returns the overall limits state for the COSMOS system. Returns :GREEN, :YELLOW, :RED, or :STALE.
 
 Syntax:
 
@@ -2415,11 +2415,11 @@ end
 
 ## Interfaces
 
-These methods allow the user to manipulate OpenC3 interfaces.
+These methods allow the user to manipulate COSMOS interfaces.
 
 ### connect_interface
 
-Connects to targets associated with a OpenC3 interface.
+Connects to targets associated with a COSMOS interface.
 
 Syntax:
 
@@ -2436,11 +2436,12 @@ Example:
 
 ```ruby
 connect_interface("INT1")
+connect_interface("INT1", hostname, port)
 ```
 
 ### disconnect_interface
 
-Disconnects from targets associated with a OpenC3 interface.
+Disconnects from targets associated with a COSMOS interface.
 
 Syntax:
 
@@ -2564,11 +2565,11 @@ end
 
 ## Routers
 
-These methods allow the user to manipulate OpenC3 routers.
+These methods allow the user to manipulate COSMOS routers.
 
 ### connect_router
 
-Connects a OpenC3 router.
+Connects a COSMOS router.
 
 Syntax:
 
@@ -2576,20 +2577,21 @@ Syntax:
 connect_router("<Router Name>", <Router Parameters (optional)>)
 ```
 
-| Parameter         | Description                                                                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Router Name       | Name of the router.                                                                                                                                  |
-| Router Parameters | Parameters used to initialize the router. If none are given then the routerwill use the parameters that were given in the server configuration file. |
+| Parameter         | Description                                                                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Router Name       | Name of the router.                                                                                                                                   |
+| Router Parameters | Parameters used to initialize the router. If none are given then the router will use the parameters that were given in the server configuration file. |
 
 Example:
 
 ```ruby
-connect_ROUTER("INT1_ROUTER")
+connect_ROUTER("INST_ROUTER")
+connect_router("INST_ROUTER", 7779, 7779, nil, 10.0, 'PREIDENTIFIED')
 ```
 
 ### disconnect_router
 
-Disconnects a OpenC3 router.
+Disconnects a COSMOS router.
 
 Syntax:
 
@@ -2758,7 +2760,7 @@ load_utility("mode_changes.rb")
 ## Opening, Closing & Creating Telemetry Screens
 
 <div class="note unreleased">
-  <p>Screen APIs not yet implemented in OpenC3 5</p>
+  <p>Screen APIs not yet implemented in COSMOS 5</p>
 </div>
 
 These methods allow the user to open, close or create unique telemetry screens from within a test procedure.

@@ -50,4 +50,4 @@ Try it out and let us know what you think! Please submit any issues as Github ti
 
 Thanks!
 
-**Full Changelog**: [Changelog](https://github.com/OpenC3/openc3/compare/v5.1.0...v5.1.1)
+**Full Changelog**: [Changelog](https://github.com/OpenC3/cosmos/compare/v5.1.0...v5.1.1)

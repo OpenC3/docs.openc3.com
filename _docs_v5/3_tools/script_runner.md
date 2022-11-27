@@ -6,7 +6,7 @@ toc: true
 
 ## Introduction
 
-Script Runner is both an editor of OpenC3 scripts as well as executes scripts. Script files are stored within a OpenC3 target and Script Runner provides the ability to open, save, download and delete these files. When a suite of scripts is opened, Script Runner provides additional options to run individial scripts, groups of scripts, or entire suites.
+Script Runner is both an editor of COSMOS scripts as well as executes scripts. Script files are stored within a COSMOS target and Script Runner provides the ability to open, save, download and delete these files. When a suite of scripts is opened, Script Runner provides additional options to run individial scripts, groups of scripts, or entire suites.
 
 ![Script Runner]({{site.baseurl}}/img/v5/script_runner/script_runner.png)
 
@@ -87,7 +87,7 @@ load 'openc3/script/suite.rb'
 
 ### OpenC3::Group
 
-This pulls in the OpenC3 suite framework including the OpenC3::Suite and OpenC3::Group classes. Any methods starting with 'script', 'op', or 'test' which are implemented inside a OpenC3::Group class are automatically included as scripts to run. For example, in the above image, you'll notice the 'script_1_method_with_long_name' is in the Script drop down menu. Here's another simple example:
+This pulls in the COSMOS suite framework including the OpenC3::Suite and OpenC3::Group classes. Any methods starting with 'script', 'op', or 'test' which are implemented inside a OpenC3::Group class are automatically included as scripts to run. For example, in the above image, you'll notice the 'script_1_method_with_long_name' is in the Script drop down menu. Here's another simple example:
 
 <!-- prettier-ignore -->
 ```ruby

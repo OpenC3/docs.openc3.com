@@ -6,7 +6,7 @@ toc: true
 
 ### Monitoring and observability
 
-With moving openc3 to container based service, we needed a better way to monitor the internals of openc3. So here is some information on external services that you can use to monitor openc3. If you want to read more about [Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/)
+With moving COSMOS to container based service, we needed a better way to monitor the internals of COSMOS. So here is some information on external services that you can use to monitor COSMOS. If you want to read more about [Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/)
 
 ### [Fluent/Fluentd](https://www.fluentd.org/guides/recipes/docker-logging)
 
@@ -15,6 +15,7 @@ With moving openc3 to container based service, we needed a better way to monitor
 #### Notes
 
 in_docker.conf
+
 ```
 <source>
   @type forward
@@ -78,6 +79,7 @@ in_docker.conf
 ```
 
 Dockerfile
+
 ```
 FROM fluent/fluentd:v1.10.3-1.0
 
@@ -99,6 +101,7 @@ USER fluent
 When testing this I found that depending on how you ingest your logs into the opendistro I found I had to disable security. Here is an example of the docker file.
 
 Dockerfile
+
 ```
 FROM amazon/opendistro-for-elasticsearch:1.12.0
 
@@ -112,6 +115,7 @@ RUN /usr/share/elasticsearch/bin/elasticsearch-plugin remove opendistro_security
 #### Notes
 
 prometheus.yaml
+
 ```
 global:
   scrape_interval: 15s
@@ -149,6 +153,7 @@ scrape_configs:
 ```
 
 Dockerfile
+
 ```
 FROM prom/prometheus:v2.24.1
 ADD prometheus.yaml /etc/prometheus/
@@ -156,11 +161,12 @@ ADD prometheus.yaml /etc/prometheus/
 
 ### [Grafana](https://grafana.com/)
 
-> Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources. 
+> Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources.
 
 #### Notes
 
 datasource.yaml
+
 ```
 apiVersion: 1
 
@@ -173,6 +179,7 @@ datasources:
 ```
 
 Dockerfile
+
 ```
 FROM grafana/grafana
 

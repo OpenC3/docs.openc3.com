@@ -6,8 +6,8 @@ toc: true
 
 ## Navigation
 
-The left side of every OpenC3 web page can be opened up to display the available tools.
-This list is updated when new OpenC3 gems are installed which add tools.
+The left side of every COSMOS web page can be opened up to display the available tools.
+This list is updated when new COSMOS gems are installed which add tools.
 
 ## Command and Telemetry Server
 

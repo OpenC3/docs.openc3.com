@@ -26,7 +26,7 @@ The main interface of Limits Monitor is the Limits tab. This is where items are 
 
 ![Limits]({{site.baseurl}}/img/v5/limits_monitor/limits.png)
 
-Items with limits values are displayed using a red yellow green limits bar displaying where the current value lies within the defined limits (as shown by the various TEMP items). Items with yellow or red [states]({{site.baseurl}}/docs/v5/telemetry#state) are simply displayed with their state color (as shown by GROUND1STATUS). The OpenC3 Demo contains both INST HEALTH_STATUS TEMP2 and INST2 HEALTH_STATUS TEMP2 which are identically named items within different target packets. Limits Monitor only displays the item name to save space, however if you mouse over the value box the full target and packet name is displayed.
+Items with limits values are displayed using a red yellow green limits bar displaying where the current value lies within the defined limits (as shown by the various TEMP items). Items with yellow or red [states]({{site.baseurl}}/docs/v5/telemetry#state) are simply displayed with their state color (as shown by GROUND1STATUS). The COSMOS Demo contains both INST HEALTH_STATUS TEMP2 and INST2 HEALTH_STATUS TEMP2 which are identically named items within different target packets. Limits Monitor only displays the item name to save space, however if you mouse over the value box the full target and packet name is displayed.
 
 ![Mouseover]({{site.baseurl}}/img/v5/limits_monitor/mouseover.png)
 

@@ -1,42 +1,44 @@
 ---
 layout: docs
-title: Developing OpenC3
+title: Developing COSMOS
 toc: true
 ---
 
 # Getting Started
 
-So you want to help develop OpenC3? All of our open source OpenC3 code is on [Github](https://github.com/) so the first thing to do is get an [account](https://github.com/join). Next [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the [OpenC3](https://github.com/OpenC3/openc3) repository. We accept contributions from others as [Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+So you want to help develop COSMOS? All of our open source COSMOS code is on [Github](https://github.com/) so the first thing to do is get an [account](https://github.com/join). Next [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the [COSMOS](https://github.com/openc3/cosmos) repository. We accept contributions from others as [Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
 ## Development Tools
 
-The core OpenC3 team develops with the [Visual Studio Code](https://code.visualstudio.com/) editor and we highly recommend it. We also utilize a number of extensions including docker, kubernetes, gitlens, prettier, eslint, python, vetur, and ruby. We commit our `openc3.code-workspace` configuration for VSCode to help configure these plugins. You also need [Docker Desktop](https://www.docker.com/products/docker-desktop) which you should already have as it is a requirement to run OpenC3. You'll also need [NodeJS](https://nodejs.org/en/download/) and [yarn](https://yarnpkg.com/getting-started/install) installed.
+The core COSMOS team develops with the [Visual Studio Code](https://code.visualstudio.com/) editor and we highly recommend it. We also utilize a number of extensions including docker, kubernetes, gitlens, prettier, eslint, python, vetur, and ruby. We commit our `openc3.code-workspace` configuration for VSCode to help configure these plugins. You also need [Docker Desktop](https://www.docker.com/products/docker-desktop) which you should already have as it is a requirement to run COSMOS. You'll also need [NodeJS](https://nodejs.org/en/download/) and [yarn](https://yarnpkg.com/getting-started/install) installed.
 
-# Building OpenC3
+# Building COSMOS
 
-Note: We primarily develop OpenC3 in MacOS so the commands here will reference bash scripts but the same files exist in Windows as batch scripts.
+Note: We primarily develop COSMOS in MacOS so the commands here will reference bash scripts but the same files exist in Windows as batch scripts.
 
-Build OpenC3 using the `openc3.sh` script:
+Build COSMOS using the `openc3.sh` script:
 
     % ./openc3.sh build
 
-This will pull all the OpenC3 container dependencies and build our local containers. Note: This can take a long time especially for your first build!
+This will pull all the COSMOS container dependencies and build our local containers. Note: This can take a long time especially for your first build!
 
 Once the build completes you can see the built images with the following command:
 
     % docker image ls | grep "openc3"
-    ballaerospace/openc3-operator            latest   4c71eea95327   41 minutes ago   130MB
-    ballaerospace/openc3-init                latest   1c32f1969f48   41 minutes ago   142MB
-    ballaerospace/openc3-cmd-tlm-api         latest   8a722d0403e9   51 minutes ago   150MB
-    ballaerospace/openc3-script-runner-api   latest   a6d22f485c2a   52 minutes ago   146MB
-    ballaerospace/openc3-redis               latest   6531a6973dc9   53 minutes ago   105MB
-    ballaerospace/openc3-base                latest   04fd53ad0402   53 minutes ago   130MB
-    ballaerospace/openc3-traefik             latest   3ffd53ad0402   53 minutes ago   130MB
-
+    openc3inc/openc3-cosmos-init                latest   4cac7a3ea9d3   29 hours ago   446MB
+    openc3inc/openc3-cosmos-script-runner-api   latest   4aacbaf49f7a   29 hours ago   431MB
+    openc3inc/openc3-cosmos-cmd-tlm-api         latest   9a8806bd4be3   3 days ago     432MB
+    openc3inc/openc3-operator                   latest   223e98129fe9   3 days ago     405MB
+    openc3inc/openc3-base                       latest   98df5c0378c2   3 days ago     405MB
+    openc3inc/openc3-redis                      latest   5a3003a49199   8 days ago     111MB
+    openc3inc/openc3-traefik                    latest   ec13a8d16a2f   8 days ago     104MB
+    openc3inc/openc3-minio                      latest   787f6e3fc0be   8 days ago     238MB
+    openc3inc/openc3-node                       latest   b3ee86d3620a   8 days ago     372MB
+    openc3inc/openc3-ruby                       latest   aa158bbb9539   8 days ago     326MB
 
 <div class="note info">
   <h5>Offline Building</h5>
-  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/OpenC3/openc3/blob/master/.env">.env</a> file. Example values:</p>
+  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/openc3/cosmos/blob/main/.env">.env</a> file. Example values:</p>
 
   <p style="margin-left:20px;margin-bottom:20px;">
     ALPINE_VERSION=3.15<br/>
@@ -47,9 +49,9 @@ Once the build completes you can see the built images with the following command
   </p>
 </div>
 
-# Running OpenC3
+# Running COSMOS
 
-Running OpenC3 in development mode enables localhost access to internal API ports as well as sets `RAILS_ENV=development` in the cmd-tlm-api and script-runner-api Rails servers. To run in development mode:
+Running COSMOS in development mode enables localhost access to internal API ports as well as sets `RAILS_ENV=development` in the cmd-tlm-api and script-runner-api Rails servers. To run in development mode:
 
     % ./openc3.sh dev
 
@@ -64,17 +66,17 @@ You can now see the running containers (I removed CONTAINER ID, CREATED and STAT
     openc3/openc3-minio:latest               "/usr/bin/docker-ent…"   127.0.0.1:9000->9000/tcp   openc3_openc3-minio_1
     openc3/openc3-redis:latest               "docker-entrypoint.s…"   127.0.0.1:6379->6379/tcp   openc3_openc3-redis_1
 
-If you go to localhost:2900 you should see OpenC3 up and running!
+If you go to localhost:2900 you should see COSMOS up and running!
 
 ## Running a Frontend Application
 
-So now that you have OpenC3 up and running how do you develop an individual OpenC3 application?
+So now that you have COSMOS up and running how do you develop an individual COSMOS application?
 
-1. Bootstrap the frontend with yarn
+1.  Bootstrap the frontend with yarn
 
         openc3-init % yarn
 
-1. Serve a local OpenC3 application (CmdTlmServer, ScriptRunner, etc)
+1.  Serve a local COSMOS application (CmdTlmServer, ScriptRunner, etc)
 
         openc3-init % cd plugins/packages/openc3-tool-scriptrunner
         openc3-tool-scriptrunner % yarn serve
@@ -87,8 +89,7 @@ So now that you have OpenC3 up and running how do you develop an individual Open
         Note that the development build is not optimized.
         To create a production build, run npm run build.
 
-
-1. Set the [single SPA](https://single-spa.js.org/) override for the application
+1.  Set the [single SPA](https://single-spa.js.org/) override for the application
 
     Visit localhost:2900 and Right-click 'Inspect'<br>
     In the console paste:
@@ -101,13 +102,13 @@ So now that you have OpenC3 up and running how do you develop an individual Open
 
         http://localhost:2914/tools/scriptrunner/js/app.js
 
-1. Refresh the page and you should see your local copy of the application (Script Runner in this example). If you dynamically add code (like `console.log`) the yarn window should re-compile and the browser should refresh displaying your new code. It is highly recommended to get familiar with your browser's [development tools](https://developer.chrome.com/docs/devtools/overview/) if you plan to do frontend development.
+1.  Refresh the page and you should see your local copy of the application (Script Runner in this example). If you dynamically add code (like `console.log`) the yarn window should re-compile and the browser should refresh displaying your new code. It is highly recommended to get familiar with your browser's [development tools](https://developer.chrome.com/docs/devtools/overview/) if you plan to do frontend development.
 
 ## Running a Backend Server
 
 If the code you want to develop is the cmd-tlm-api or script-runner-api backend servers there are several steps to enable access to a development copy.
 
-1.  Run a development version of traefik. OpenC3 uses traefik to direct API requests to the correct locations.
+1.  Run a development version of traefik. COSMOS uses traefik to direct API requests to the correct locations.
 
         % cd openc3-traefik
         traefik % docker ps
@@ -126,4 +127,4 @@ If the code you want to develop is the cmd-tlm-api or script-runner-api backend 
         openc3-cmd-tlm-api % bundle install
         openc3-cmd-tlm-api % bundle exec rails s
 
-1. Once the `rails s` command returns you should see API requests coming from interations in the frontend code. If you add code (like Ruby debugging statements) to the cmd-tlm-api code you need to stop the server (CTRL-C) and restart it to see the effect.
+1.  Once the `rails s` command returns you should see API requests coming from interations in the frontend code. If you add code (like Ruby debugging statements) to the cmd-tlm-api code you need to stop the server (CTRL-C) and restart it to see the effect.

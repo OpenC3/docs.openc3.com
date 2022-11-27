@@ -3,11 +3,11 @@ layout: docs
 title: Installation
 ---
 
-## Installing OpenC3
+## Installing OpenC3 COSMOS
 
-The following sections describe how to get OpenC3 installed on various operating systems. This document should help you setup you host machine to allow you to have a running version of OpenC3 in no time.
+The following sections describe how to get OpenC3 COSMOS installed on various operating systems. This document should help you setup you host machine to allow you to have a running version of COSMOS in no time.
 
-## Installing OpenC3 on Host Machines
+## Installing OpenC3 COSMOS on Host Machines
 
 ### PREQREQUISITES
 
@@ -25,19 +25,19 @@ Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compos
         swap=0
 
 - Modifying Docker connection timeouts (very rarely needed):
-  - Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a OpenC3 configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\\Users\\\<username\>\\AppData\\Roaming\\Docker\\settings.json. Modify the value `vpnKitMaxPortIdleTime` to change the timeout. **Note:** 0 means no timeout (idle connections not dropped)
+  - Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a COSMOS configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\\Users\\\<username\>\\AppData\\Roaming\\Docker\\settings.json. Modify the value `vpnKitMaxPortIdleTime` to change the timeout. **Note:** 0 means no timeout (idle connections not dropped)
 
-**Note:** As of December 2021 the OpenC3 Docker containers are based on the Alpine Docker image.
+**Note:** As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
 
 ### CLONE PROJECT
 
-Since the OpenC3 5.0.9 release we recommend using the project template to get started.
+Since the COSMOS 5.0.9 release we recommend using the project template to get started.
 
-        git clone https://github.com/openc3/openc3-project.git tutorial
+        git clone https://github.com/OpenC3/cosmos-project.git tutorial
 
 <div class="note info">
   <h5>Offline Installation</h5>
-  <p style="margin-bottom:20px;">If you need to install in an offline environment you should first see if you're able to directly use the OpenC3 containers. If so you can first save the containers:</p>
+  <p style="margin-bottom:20px;">If you need to install in an offline environment you should first see if you're able to directly use the COSMOS containers. If so you can first save the containers:</p>
 
   <p style="margin-bottom:20px;"><code>./openc3.sh util save</code></p>
 
@@ -48,7 +48,7 @@ Since the OpenC3 5.0.9 release we recommend using the project template to get st
 
 ### CERTIFICATES
 
-The OpenC3 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the OpenC3 5 project that includes any certificates needed by your organization. **Note**: If you set the path to the ssl file in the `SSL_CERT_FILE` environment variables the openc3 setup script will copy it and place it for the docker container to load.
+The COSMOS containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the COSMOS 5 project that includes any certificates needed by your organization. **Note**: If you set the path to the ssl file in the `SSL_CERT_FILE` environment variables the openc3 setup script will copy it and place it for the docker container to load.
 
 <div class="note warning">
   <h5>SSL Issues</h5>
@@ -74,7 +74,7 @@ You will need to create new ones with the names above and set their value to the
 
 ### RUN
 
-Run `openc3.bat` start (Windows), or `./openc3.sh` start (linux/Mac).
+Run `openc3.bat run` (Windows), or `./openc3.sh run` (linux/Mac).
 
 Note, you can edit the .env file and change OPENC3_TAG to a specific release (e.g. 5.0.9) rather than 'latest'.
 
@@ -86,7 +86,7 @@ Running `docker ps` can help show the running containers.
 
 ```
 ./openc3.sh
-Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
+Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
 *  cli: run a cli command as the default user ('cli help' for more info)
 *  cliroot: run a cli command as the root user ('cli help' for more info)
 *  start: start the docker-compose openc3
@@ -94,12 +94,6 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
 *  cleanup: cleanup network and volumes for openc3
 *  run: run the prebuilt containers for openc3
 *  util: various helper commands
-*    encode: encode a string to base64
-*    hash: hash a string using SHA-256
-*    save: save images to tar files
-*    load: load images to tar files
-*    clean: remove node_modules, coverage, etc
-*    hostsetup: setup host for redis
 ```
 
 ### CONNECT
@@ -123,7 +117,7 @@ Continue to [Getting Started]({{site.baseurl}}/docs/v5/gettingstarted).
   </p>
   <h5>Let us know what could be better!</h5>
   <p>
-    Both using and hacking on OpenC3 should be fun, simple, and easy, so if for
+    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
     some reason you find it's a pain, please <a
     href="{{ site.openc3 }}/issues/new/choose">create an issue</a> on
     GitHub describing your experience so we can make it better.
