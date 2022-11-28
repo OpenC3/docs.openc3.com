@@ -3,9 +3,9 @@ layout: docs
 title: Raspberry Pi
 ---
 
-### OpenC3 5 Running on Raspberry Pi 4
+### COSMOS Running on Raspberry Pi 4
 
-The Raspberry Pi 4 is a low-cost powerful ARM-based minicomputer that runs linux. And because it runs modern linux, it can also run OpenC3! These directions will get you up and running.
+The Raspberry Pi 4 is a low-cost powerful ARM-based minicomputer that runs linux. And because it runs modern linux, it can also run COSMOS! These directions will get you up and running.
 
 What you'll need:
 
@@ -31,7 +31,7 @@ Let's get started!
    1. Click the Gear Icon
    1. If prompted if you would like to prefill the Wifi information, select OK
    1. Click all the checkboxes, except for "Enable Telemetry"
-   1. Set the hostname to: openc3.local
+   1. Set the hostname to: cosmos.local
    1. You can either use Password auth, or public-key only if your computer is already setup for passwordless SSH
    1. Set the username and password. The default username is pi, you should also set a password to make the system secure
    1. Fill in your Wifi info, and set the country appropriately (ie. US)
@@ -49,7 +49,7 @@ Let's get started!
 
    1. Open a terminal window and use ssh to connect to your Pi
 
-      1. On Mac / Linux: ssh pi@openc3.local
+      1. On Mac / Linux: ssh pi@cosmos.local
       1. On Windows, use Putty to connect. You will probably have to install Bonjour for Windows for .local addresses to work as well.
 
 1. From SSH, Enter the following commands
@@ -66,13 +66,13 @@ Let's get started!
    newgrp docker
    sudo apt-get install libffi-dev libssl-dev python3-dev python3 python3-pip -y
    sudo pip3 install docker-compose
-   git clone https://github.com/OpenC3/openc3.git
-   cd OpenC3
+   git clone https://github.com/OpenC3/cosmos.git
+   cd cosmos
    ./openc3.sh start
    ```
 
-Note: It takes awhile to build OpenC3 on a Pi (about an hour). Be patient, and in the future we'll have precompiled containers that will make first launch way faster.
+Note: It takes awhile to build COSMOS on a Pi (about an hour). Be patient, and in the future we'll have precompiled containers that will make first launch way faster.
 
-1. After about 2 minutes, open a web browswer on your computer, and goto: http://openc3.local:2900
+1. After about 2 minutes, open a web browswer on your computer, and goto: http://cosmos.local:2900
 
-1. Congratulations! You now have OpenC3 5 running on a Raspberry Pi!
+1. Congratulations! You now have COSMOS running on a Raspberry Pi!

@@ -6,8 +6,8 @@ toc: true
 
 ## Introduction
 
-The Command and Telemetry Server application provides status about the [interfaces]({{site.baseurl}}/docs/v5/interfaces) and targets instantiated in your OpenC3 installation. Intefaces can be connected or disconnected and raw byte counts are returned. The application also provides quick shortcuts to view
-both raw and formatted command and telemetry packets as they go through the OpenC3 system.
+The Command and Telemetry Server application provides status about the [interfaces]({{site.baseurl}}/docs/v5/interfaces) and targets instantiated in your COSMOS installation. Intefaces can be connected or disconnected and raw byte counts are returned. The application also provides quick shortcuts to view
+both raw and formatted command and telemetry packets as they go through the COSMOS system.
 
 ![Cmd Tlm Server]({{site.baseurl}}/img/v5/cmd_tlm_server/cmd_tlm_server.png)
 
@@ -23,7 +23,7 @@ This dialog changes the refresh rate of the Command and Telemetry Server to redu
 
 ## Interfaces Tab
 
-The Interfaces tab displays all the interfaces defined by your OpenC3 installation. You can Connect or Disconnect interfaces and view raw byte and packet counts.
+The Interfaces tab displays all the interfaces defined by your COSMOS installation. You can Connect or Disconnect interfaces and view raw byte and packet counts.
 
 ![Interfaces]({{site.baseurl}}/img/v5/cmd_tlm_server/interfaces.png)
 
@@ -63,7 +63,7 @@ Clicking View in Command Sender opens up a new [Packet Viewer]({{site.baseurl}}/
 
 ## Status Tab
 
-The Status tab displays the current OpenC3 Limits Set, server API statistics, and Background tasks.
+The Status tab displays the current COSMOS Limits Set, server API statistics, and Background tasks.
 
 <div class="note unreleased">
   <p>Note: This tab is not fully functional yet.</p>

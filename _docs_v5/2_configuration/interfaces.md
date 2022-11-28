@@ -4,7 +4,7 @@ title: Interface Configuration
 toc: true
 ---
 
-Interface classes provide the code that OpenC3 uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and OpenC3 provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with [Protocols]({{site.baseurl}}/docs/v5/protocols) rather than implementing a new interface.
+Interface classes provide the code that COSMOS uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and COSMOS provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with [Protocols]({{site.baseurl}}/docs/v5/protocols) rather than implementing a new interface.
 
 <div class="note info">
   Note that Interfaces and Routers are very similar and share the same configuration parameters. Routers are simply Interfaces which route an existing Interface's telemetry data out to the connected target and routes the connected target's commands back to the original Interface's target.
@@ -22,18 +22,18 @@ Interfaces also have the following methods that exist and have default implement
 
 1. **read_interface_base** - This method should always be called from read_interface(). It updates interface specific variables that are displayed by CmdTLmServer including the bytes read count, the most recent raw data read, and it handles raw logging if enabled.
 1. **write_interface_base** - This method should always be called from write_interface(). It updates interface specific variables that are displayed by CmdTLmServer including the bytes written count, the most recent raw data written, and it handles raw logging if enabled.
-1. **read** - Read the next packet from the interface. OpenC3 implements this method to allow the Protocol system to operate on the data and the packet before it is returned.
-1. **write** - Send a packet to the interface. OpenC3 implements this method to allow the Protocol system to operate on the packet and the data before it is sent.
-1. **write_raw** - Send a raw binary string of data to the target. OpenC3 implements this method by basically calling write_interface with the raw data.
+1. **read** - Read the next packet from the interface. COSMOS implements this method to allow the Protocol system to operate on the data and the packet before it is returned.
+1. **write** - Send a packet to the interface. COSMOS implements this method to allow the Protocol system to operate on the packet and the data before it is sent.
+1. **write_raw** - Send a raw binary string of data to the target. COSMOS implements this method by basically calling write_interface with the raw data.
 
 <div class="note warning">
   <h5>Naming Conventions</h5>
-  <p>When creating your own interfaces, in most cases they will be subclasses of one of the built-in interfaces described below. It is important to know that both the filename and class name of the interface files must match with correct capitalization or you will receive "class not found" errors when trying to load your new interface. For example, an interface file called labview_interface.rb must contain the class LabviewInterface. If the class was named, LabVIEWInterface, for example, OpenC3 would not be able to find the class because of the unexpected capitalization.</p>
+  <p>When creating your own interfaces, in most cases they will be subclasses of one of the built-in interfaces described below. It is important to know that both the filename and class name of the interface files must match with correct capitalization or you will receive "class not found" errors when trying to load your new interface. For example, an interface file called labview_interface.rb must contain the class LabviewInterface. If the class was named, LabVIEWInterface, for example, COSMOS would not be able to find the class because of the unexpected capitalization.</p>
 </div>
 
 ## Provided Interfaces
 
-OpenC3 provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) and [ROUTER]({{site.baseurl}}/docs/v5/plugins#router) keywords.
+COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) and [ROUTER]({{site.baseurl}}/docs/v5/plugins#router) keywords.
 
 ### TCPIP Client Interface
 
@@ -115,7 +115,7 @@ See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of
 
 ### Serial Interface
 
-The serial interface connects to a target over a serial port. OpenC3 provides drivers for both Windows and POSIX drivers for UNIX based systems.
+The serial interface connects to a target over a serial port. COSMOS provides drivers for both Windows and POSIX drivers for UNIX based systems.
 
 | Parameter          | Description                                                                                   | Required |
 | ------------------ | --------------------------------------------------------------------------------------------- | -------- |
@@ -146,15 +146,15 @@ See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of
 ### CmdTlmServer Interface
 
 <div class="note unreleased">
-  <p>This interface is changing in OpenC3 5. New documentation needed.</p>
+  <p>This interface is changing in COSMOS 5. New documentation needed.</p>
 </div>
 
-The CmdTlmServer interface provides a connection to the OpenC3 Command and Telemetry Server. This allows scripts and other OpenC3 tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a OpenC3 version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any OpenC3 configuration.
+The CmdTlmServer interface provides a connection to the COSMOS Command and Telemetry Server. This allows scripts and other COSMOS tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a COSMOS version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any COSMOS configuration.
 
 cmd_tlm_server.txt Example:
 
 ```bash
-INTERFACE OpenC3INT cmd_tlm_server_interface.rb
+INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
 ```
 
 See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
@@ -193,16 +193,16 @@ Streams are low level classes that implement read, read_nonblock, write, connect
 
 ## Protocols
 
-Protocols define the behaviour of an Interface, including differentiating packet boundaries and modifying data as necessary. OpenC3 defines the following built-in protocols which can be used with the above interfaces:
+Protocols define the behaviour of an Interface, including differentiating packet boundaries and modifying data as necessary. COSMOS defines the following built-in protocols which can be used with the above interfaces:
 
-| Name                                                       | Description                                                                           |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Name                                                                       | Description                                                                           |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | [Burst]({{site.baseurl}}/docs/v5/protocols#burst-protocol)                 | Reads as much data as possible from the interface                                     |
 | [Fixed]({{site.baseurl}}/docs/v5/protocols#fixed-protocol)                 | Processes fixed length packets with a known ID position                               |
 | [Length]({{site.baseurl}}/docs/v5/protocols#length-protocol)               | Processes a length field at a fixed location and then reads the remainder of the data |
 | [Terminated]({{site.baseurl}}/docs/v5/protocols#terminated-protocol)       | Delineates packets uses termination characters at the end of each packet              |
 | [Template]({{site.baseurl}}/docs/v5/protocols#template-protocol)           | Processes text based command / response data such as SCPI interfaces                  |
-| [Preidentified]({{site.baseurl}}/docs/v5/protocols#preidentified-protocol) | Internal OpenC3 protocol used by OpenC3 tools                                         |
+| [Preidentified]({{site.baseurl}}/docs/v5/protocols#preidentified-protocol) | Internal COSMOS protocol used by COSMOS tools                                         |
 
 These protocols are declared directly after the interface:
 
@@ -214,10 +214,10 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
 ```
 
-OpenC3 also defines the following helper protocols:
+COSMOS also defines the following helper protocols:
 
-| Name                                             | Description                                                         |
-| ------------------------------------------------ | ------------------------------------------------------------------- |
+| Name                                                             | Description                                                         |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [Override]({{site.baseurl}}/docs/v5/protocols#override-protocol) | Allows telemetry items to be fixed to given value when read         |
 | [CRC]({{site.baseurl}}/docs/v5/protocols#crc-protocol)           | Adds CRCs to outgoing packets and verifies CRCs on incoming packets |
 | [Ignore]({{site.baseurl}}/docs/v5/protocols#ignore-protocol)     | Ignores the specified packet by dropping it                         |
@@ -233,4 +233,4 @@ PROTOCOL WRITE CrcProtocol CRC # See the documentation for parameters
 
 Note the first parameter after the PROTOCOL keyword is how to apply the protocol: READ, WRITE, or READ_WRITE. Read applies the protocol on incoming packets (telemetry) and write on outgoing packets (commands). The next parameter is the protocol filename or class name. All other parameters are protocol specific.
 
-In addition, you can define your own protocols which are declared like the OpenC3 helper protocols after your interface. See the <a href="{{site.baseurl}}/docs/v5/protocols#custom-protocols">Custom Protocols</a> documentation for more information.
+In addition, you can define your own protocols which are declared like the COSMOS helper protocols after your interface. See the <a href="{{site.baseurl}}/docs/v5/protocols#custom-protocols">Custom Protocols</a> documentation for more information.

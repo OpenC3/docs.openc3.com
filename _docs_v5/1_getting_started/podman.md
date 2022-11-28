@@ -3,11 +3,11 @@ layout: docs
 title: Podman
 ---
 
-### OpenC3 Using Rootless Podman and Docker-Compose
+### OpenC3 COSMOS Using Rootless Podman and Docker-Compose
 
 <div class="note info">
   <h5>Optional Installation Option</h5>
-  <p style="margin-bottom:20px;">These directions are for installing and running OpenC3 using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
+  <p style="margin-bottom:20px;">These directions are for installing and running COSMOS using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
 </div>
 
 Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.
@@ -53,10 +53,10 @@ Podman is an alternative container technology to Docker that is actively promote
    source .bashrc
    ```
 
-1. Get OpenC3 - A release or the current main branch (main branch shown)
+1. Get COSMOS - A release or the current main branch (main branch shown)
 
    ```
-   git clone https://github.com/OpenC3/openc3.git
+   git clone https://github.com/OpenC3/cosmos.git
    ```
 
 1. Optional - Set Default Container Registry
@@ -70,10 +70,10 @@ Podman is an alternative container technology to Docker that is actively promote
 
    Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)
 
-1. Run OpenC3
+1. Run COSMOS
 
    ```
-   cd OpenC3
+   cd COSMOS
    ./openc3.sh start
    ```
 

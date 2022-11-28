@@ -1,66 +1,69 @@
 ---
 layout: docs
-title: Testing OpenC3
+title: Testing COSMOS
 toc: true
 ---
 
 ## Cypress
 
-###  Prerequesits
-
-1. Be sure `NODE_EXTRA_CA_CERTS=/path/to/Globalsign.pem` is included in environment variables.
-
-1. Rename (or delete) Cypress cache if it exists. (Usually located at `AppData\Local\Cypress\Cache`)
+### Prerequesits
 
 1. Install Yarn
 
-    ```bash
-    npm install --global yarn
-    ```
+   ```bash
+   npm install --global yarn
+   ```
 
-1. Install Cypress
+1. Clone the COSMOS Playwright repo
 
-    ```bash
-    OpenC3> npm install cypress
-    ```
+   ```bash
+   git clone https://github.com/OpenC3/cosmos-playwright
+   ```
 
-### Cypress Testing
+1. Install Playwright and dependencies
 
-1. Start OpenC3
+   ```bash
+   cosmos-playwright % yarn install
+   ```
 
-    ```bash
-    OpenC3> openc3.bat start
-    ```
+### Playwright Testing
 
-1. Open OpenC3 in your browser. At the login screen, set the password to "password".
+1. Start COSMOS
 
-1. Navigate to **cypress** folder, install testing dependencies with yarn.
+   ```bash
+   cosmos % openc3.sh start
+   ```
 
-    ```bash
-    cypress> yarn
-    ```
+1. Open COSMOS in your browser. At the login screen, set the password to "password".
 
-1. _[Optional]_ Fix istanbul/nyc coverage source lookups (use `fixlinux` if not on Windows).
+1. Run tests (Note add the --headed option to visually watch tests)
 
-    Tests will run successfully without this step and you will get coverage statistics, but line-by-line coverage won't work.
-    ```bash
-    cypress> yarn run fixwindows
-    ```
+   ```bash
+   cosmos-playwright % yarn playwright test --project=chromium
+   ```
 
-1. Open Cypress and run tests
+1. _[Optional]_ Fix istanbul/nyc coverage source lookups (use `fixwindows` if not on Linux).
 
-    ```bash
-    cypress> yarn run cypress open
-    ```
+   Tests will run successfully without this step and you will get coverage statistics, but line-by-line coverage won't work.
 
-Code coverage reports can be viewed at [cypress/coverage/lcov-report/index.html](./coverage/lcov-report/index.html)
+   ```bash
+   cosmos-playwright % yarn fixlinux
+   ```
 
+1. Generate code coverage
+
+   ```bash
+   cosmos-playwright % yarn coverage
+   ```
+
+Code coverage reports can be viewed at `openc3-playwright/coverage/index.html`
 
 ## Unit Tests
-1. Navigate to **openc3** folder. Run the command:
 
-    ```bash
-    openc3> bundle exec rspec
-    ```
+1. Navigate to **cosmos/openc3** folder. Run the command:
 
-Code coverage reports can be found at [openc3/coverage/index.html](./openc3/coverage/index.html)
+   ```bash
+   cosmos/openc3 % bundle exec rspec
+   ```
+
+Code coverage reports can be found at `cosmos/openc3/coverage/index.html`

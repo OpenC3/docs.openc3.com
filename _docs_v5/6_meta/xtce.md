@@ -3,21 +3,21 @@ layout: docs
 title: XTCE Support
 ---
 
-OpenC3 now has support for the <a href="https://www.omg.org/xtce/index.htm" target="_blank">XTCE Command and Telemetry Definition Standard</a>. This is an open standard designed to allow command and telemetry definitions to be transferred between different ground systems. OpenC3 can run directly using the .xtce files, or can convert them into the OpenC3 configuration file format.
+COSMOS now has support for the <a href="https://www.omg.org/xtce/index.htm" target="_blank">XTCE Command and Telemetry Definition Standard</a>. This is an open standard designed to allow command and telemetry definitions to be transferred between different ground systems. COSMOS can run directly using the .xtce files, or can convert them into the COSMOS configuration file format.
 
-## Running OpenC3 using an .xtce definition file
+## Running COSMOS using an .xtce definition file
 
-A single .xtce file containing the command and telemetry definitions for a target can be used in place of the normal OpenC3 command and telemetry definition files. Simply place the target's .xtce file in the target's cmd_tlm folder and OpenC3 will use it for the command and telemetry definitions.
+A single .xtce file containing the command and telemetry definitions for a target can be used in place of the normal COSMOS command and telemetry definition files. Simply place the target's .xtce file in the target's cmd_tlm folder and COSMOS will use it for the command and telemetry definitions.
 
-## Converting a .xtce file into a OpenC3 configuration
+## Converting a .xtce file into a COSMOS configuration
 
-Use the following command to convert a .xtce file into OpenC3 configuration files. The converted configuration files will be placed into a target folder in the given output directory.
+Use the following command to convert a .xtce file into COSMOS configuration files. The converted configuration files will be placed into a target folder in the given output directory.
 
 ```
 openc3.bat cli xtce_converter --import <xtce_filename> --output <output_dir>
 ```
 
-## Converting a OpenC3 Configuration to XTCE
+## Converting a COSMOS Configuration to XTCE
 
 Use the following command to convert your openc3 plugin into .xtce files, one per target. The converted .xtce files will be placed into a target folder in the given output directory.
 
@@ -100,7 +100,7 @@ The following elements and associated attributes are currently supported.
 
 ## Ignored Elements
 
-The following elements are simply ignored by OpenC3:
+The following elements are simply ignored by COSMOS:
 
 - Header
 - AliasSet

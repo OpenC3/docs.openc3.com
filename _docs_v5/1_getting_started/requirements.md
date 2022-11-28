@@ -4,9 +4,9 @@ title: Requirements and Design
 toc: true
 ---
 
-OpenC3 is a command and control system providing commanding, scripting, and data visualization capabilities for embedded systems and systems of systems. OpenC3 is intended for use during all phases of testing (board, box, integrated system) and during operations.
+OpenC3 COSMOS is a command and control system providing commanding, scripting, and data visualization capabilities for embedded systems and systems of systems. COSMOS is intended for use during all phases of testing (board, box, integrated system) and during operations.
 
-OpenC3 is currently made up of the following 11 applications:
+COSMOS is currently made up of the following 11 applications:
 
 1. **Command and Telemetry Server** - Provides status of realtime commanding, telemetry reception, logging, limits monitoring, and packet routing.
 2. **Limits Monitor** - Monitors telemetry with defined limits and shows items that currently are or have violated limits.
@@ -18,77 +18,77 @@ OpenC3 is currently made up of the following 11 applications:
 8. **Data Extractor** - Extracts telemetry and command packet log files into CSV data.
 9. **Data Viewer** - Provides text based telemetry visualization for items.
 10. **Timeline** - Provides scheduling of commands and scripts. Also provides a framework for reserving resources.
-11. **Admin** - Provides an administrative interface to OpenC3.
+11. **Admin** - Provides an administrative interface to COSMOS.
 
-More detailed descriptions, requirements, and design for each tool are found later in this document. Additionally, each of the above applications is built using OpenC3 libraries that are available for use as a framework to develop custom program/project applications.
+More detailed descriptions, requirements, and design for each tool are found later in this document. Additionally, each of the above applications is built using COSMOS libraries that are available for use as a framework to develop custom program/project applications.
 
 ## Terminology
 
-The OpenC3 system uses several terms that are important to understand. The following table defines these terms.
+The COSMOS system uses several terms that are important to understand. The following table defines these terms.
 
 | Term                | Definition                                                                                                                                                                                                              |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Target              | A OpenC3 target is an embedded system that the OpenC3 Command and Telemetry Server connects to using an interface in order to send commands to and/or receive telemetry from.                                           |
+| Target              | A COSMOS target is an embedded system that the COSMOS Command and Telemetry Server connects to using an interface in order to send commands to and/or receive telemetry from.                                           |
 | Command             | A packet of information telling a target to perform an action of some sort.                                                                                                                                             |
 | Telemetry Packet    | A packet of information providing status from a target.                                                                                                                                                                 |
-| Interface           | A Ruby class that knows how to send commands to and/or receive telemetry from a target. OpenC3 comes with interfaces that support TCP/IP, UDP, and serial connections. Custom interfaces are easy to add to the system. |
-| Ruby                | The powerful dynamic programming language used to write the OpenC3 applications and libraries as well as OpenC3 scripts and test procedures.                                                                            |
-| Configuration Files | OpenC3 uses simple plain text configuration files to define commands and telemetry packets, and to configure each OpenC3 application. These files are easily human readable/editable and machine readable/editable.     |
+| Interface           | A Ruby class that knows how to send commands to and/or receive telemetry from a target. COSMOS comes with interfaces that support TCP/IP, UDP, and serial connections. Custom interfaces are easy to add to the system. |
+| Ruby                | The powerful dynamic programming language used to write the COSMOS applications and libraries as well as COSMOS scripts and test procedures.                                                                            |
+| Configuration Files | COSMOS uses simple plain text configuration files to define commands and telemetry packets, and to configure each COSMOS application. These files are easily human readable/editable and machine readable/editable.     |
 | Packet Log Files    | Binary files containing either logged commands or telemetry packets.                                                                                                                                                    |
 | Message Log Files   | Text files containing messages generated by the system.                                                                                                                                                                 |
-| Tool                | Another name for a OpenC3 application.                                                                                                                                                                                  |
+| Tool                | Another name for a COSMOS application.                                                                                                                                                                                  |
 
 ## Overall Architecture and Context Diagram
 
-The following diagram shows how the applications that make up the OpenC3 system relate to each other and to the targets that OpenC3 is controlling.
+The following diagram shows how the applications that make up the COSMOS system relate to each other and to the targets that COSMOS is controlling.
 
-<img src="{{site.baseurl}}/img/OpenC3_Architecture.png" alt="OpenC3 Architecture">
+<img src="{{site.baseurl}}/img/architecture.png" alt="COSMOS Architecture">
 
 Key aspects of this architecture:
 
-- The OpenC3 tools are grouped into four broad categories:
+- The COSMOS tools are grouped into four broad categories:
   - Realtime Commanding and Scripting
   - Realtime Telemetry Visualization
   - Offline Analysis
   - Utilities
-- OpenC3 can connect to many different kinds of targets. The examples include things like Flight software (FSW), Ground Support Equipment (GSE), Labview, and COTS targets such as an Agilent power supply. Any embedded system that provides a communication interface can be connected to OpenC3.
-- OpenC3 ships with interfaces for connecting over TCP/IP, UDP, and serial connections. This covers most systems, but custom interfaces can also be written to connect to anything that a computer can talk to.
-- All realtime communication with targets flows through the OpenC3 system. This ensures all commands and telemetry are logged.
+- COSMOS can connect to many different kinds of targets. The examples include things like Flight software (FSW), Ground Support Equipment (GSE), Labview, and COTS targets such as an Agilent power supply. Any embedded system that provides a communication interface can be connected to COSMOS.
+- COSMOS ships with interfaces for connecting over TCP/IP, UDP, and serial connections. This covers most systems, but custom interfaces can also be written to connect to anything that a computer can talk to.
+- All realtime communication with targets flows through the COSMOS system. This ensures all commands and telemetry are logged.
 - Every tool is configured with plain text configuration files.
-- Program specific tools can be written using the OpenC3 libraries that can interact with the realtime command and telemetry streams and can process logged data.
+- Program specific tools can be written using the COSMOS libraries that can interact with the realtime command and telemetry streams and can process logged data.
 
 ## Overall Requirements
 
 | Reqt. ID  | Description                                                                                                                                                                                                                   | Test Description                                    |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| OpenC3-1  | All OpenC3 core functionality shall be containerized.                                                                                                                                                                         | Verify OpenC3 is running in Docker                  |
-| OpenC3-2  | The OpenC3 user interface shall be accessible from Chromium based web browsers                                                                                                                                                | Open OpenC3 in Chrome/Edge                          |
-| OpenC3-3  | The OpenC3 user interface shall be accessible from the Firefox web browser                                                                                                                                                    | Open OpenC3 in Firefox                              |
-| OpenC3-4  | OpenC3 shall log all commands sent                                                                                                                                                                                            |                                                     |
-| OpenC3-5  | OpenC3 shall log all telemetry received                                                                                                                                                                                       |                                                     |
-| OpenC3-6  | OpenC3 shall decommutate all telemetry packets recieved                                                                                                                                                                       |                                                     |
-| OpenC3-7  | OpenC3 shall support autonomously attempting to connect to targets.                                                                                                                                                           | Verify targets are connected upon starting the CTS. |
-| OpenC3-8  | OpenC3 shall time stamp telemetry packets upon receipt.                                                                                                                                                                       | Verify logged packets are timestamped.              |
-| OpenC3-9  | OpenC3 shall time stamp telemetry packets to a resolution of 1 millisecond or better. Note: This requirement only refers to resolution. OpenC3 does not run on real-time operating systems and accuracy cannot be guaranteed. | View time stamps in log.                            |
-| OpenC3-10 | OpenC3 shall time stamp received telemetry with a UTC timestamp.                                                                                                                                                              | Verify logged time stamps are as expected.          |
-| OpenC3-11 | OpenC3 shall maintain a timestamped log of commands received, limits violations, and errors encountered.                                                                                                                      | View OpenC3 message log.                            |
+| COSMOS-1  | All COSMOS core functionality shall be containerized.                                                                                                                                                                         | Verify COSMOS is running in Docker                  |
+| COSMOS-2  | The COSMOS user interface shall be accessible from Chromium based web browsers                                                                                                                                                | Open COSMOS in Chrome/Edge                          |
+| COSMOS-3  | The COSMOS user interface shall be accessible from the Firefox web browser                                                                                                                                                    | Open COSMOS in Firefox                              |
+| COSMOS-4  | COSMOS shall log all commands sent                                                                                                                                                                                            |                                                     |
+| COSMOS-5  | COSMOS shall log all telemetry received                                                                                                                                                                                       |                                                     |
+| COSMOS-6  | COSMOS shall decommutate all telemetry packets recieved                                                                                                                                                                       |                                                     |
+| COSMOS-7  | COSMOS shall support autonomously attempting to connect to targets.                                                                                                                                                           | Verify targets are connected upon starting the CTS. |
+| COSMOS-8  | COSMOS shall time stamp telemetry packets upon receipt.                                                                                                                                                                       | Verify logged packets are timestamped.              |
+| COSMOS-9  | COSMOS shall time stamp telemetry packets to a resolution of 1 millisecond or better. Note: This requirement only refers to resolution. COSMOS does not run on real-time operating systems and accuracy cannot be guaranteed. | View time stamps in log.                            |
+| COSMOS-10 | COSMOS shall time stamp received telemetry with a UTC timestamp.                                                                                                                                                              | Verify logged time stamps are as expected.          |
+| COSMOS-11 | COSMOS shall maintain a timestamped log of commands received, limits violations, and errors encountered.                                                                                                                      | View COSMOS message log.                            |
 
 ## Api Requirements
 
-| Reqt. ID | Description | Test Description |
-| -------- | ----------- | ---------------- |
-| API-1 | The OpenC3 API shall allow scripted connection and disconnection of interfaces. | Disconnect and connect an interface from a script. |
-| API-2 | The OpenC3 API shall allow scripted connection and disconnection of routers. | Disconnect and connect a router from a script. |
-| API-3 | The OpenC3 API shall allow scripted setting of the current limits set. | Select a different limits set from a script. |
-| API-4 | The OpenC3 API shall allow commanding of targets | Send a command |
-| API-5 | The OpenC3 API shall allow reading the current value of any telemetry item | Read a telemetry point |
-| API-6 | The OpenC3 API shall allow streaming realtime and logged telemetry packets | Stream telemetry packets |
-| API-7 | The OpenC3 API shall allow streaming realtime and logged command packets | Stream command packets |
-| API-8 | The OpenC3 API shall allow starting OpenC3 scripts | Start a script using the API |
+| Reqt. ID | Description                                                                     | Test Description                                   |
+| -------- | ------------------------------------------------------------------------------- | -------------------------------------------------- |
+| API-1    | The COSMOS API shall allow scripted connection and disconnection of interfaces. | Disconnect and connect an interface from a script. |
+| API-2    | The COSMOS API shall allow scripted connection and disconnection of routers.    | Disconnect and connect a router from a script.     |
+| API-3    | The COSMOS API shall allow scripted setting of the current limits set.          | Select a different limits set from a script.       |
+| API-4    | The COSMOS API shall allow commanding of targets                                | Send a command                                     |
+| API-5    | The COSMOS API shall allow reading the current value of any telemetry item      | Read a telemetry point                             |
+| API-6    | The COSMOS API shall allow streaming realtime and logged telemetry packets      | Stream telemetry packets                           |
+| API-7    | The COSMOS API shall allow streaming realtime and logged command packets        | Stream command packets                             |
+| API-8    | The COSMOS API shall allow starting COSMOS scripts                              | Start a script using the API                       |
 
 ## Command and Telemetry Server
 
-The Command and Telemetry server provides status on the the overall OpenC3 installation for a specific scope.
+The Command and Telemetry server provides status on the the overall COSMOS installation for a specific scope.
 
 | Reqt. ID | Description                                                                                                             | Test Description                                                               |
 | -------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -147,8 +147,8 @@ Script Runner now also provides a structured methodology for designing system le
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | SR-1     | Script Runner shall provide a text editor for developing test scripts.                                                                        | Open Script Runner and create a simple test script. Perform all standard file operations including New, Open, Reload, Close, Save, and Save As. Perform all standard editing operations such as Cut, Copy, Paste, Undo, Redo, Select All, and Comment/Uncomment lines. |
 | SR-2     | Script Runner shall provide search and replace functionality.                                                                                 | Perform all standard search and replace functionality, including search, replace, find next, and find previous.                                                                                                                                                        |
-| SR-3     | Script Runner shall provide code completion for cmd(), tlm(), and wait_check() OpenC3 API methods. Note: Other methods may also be supported. | Create a script and exercise code completion on the mentioned keywords.                                                                                                                                                                                                |
-| SR-4     | Script Runner shall execute Ruby-based OpenC3 scripts.                                                                                        | Press start and execute a script.                                                                                                                                                                                                                                      |
+| SR-3     | Script Runner shall provide code completion for cmd(), tlm(), and wait_check() COSMOS API methods. Note: Other methods may also be supported. | Create a script and exercise code completion on the mentioned keywords.                                                                                                                                                                                                |
+| SR-4     | Script Runner shall execute Ruby-based COSMOS scripts.                                                                                        | Press start and execute a script.                                                                                                                                                                                                                                      |
 | SR-5     | Script Runner shall highlight the currently executing line of the script.                                                                     | Verify that lines are highlighted as a test script executes.                                                                                                                                                                                                           |
 | SR-6     | Script Runner shall allow pausing an executing script.                                                                                        | Press pause button and verify script is paused. Press start to resume.                                                                                                                                                                                                 |
 | SR-7     | Script Runner shall allow stopping an executing script.                                                                                       | Press stop and verify script stops.                                                                                                                                                                                                                                    |
@@ -195,7 +195,7 @@ Packet Viewer provides a simple tool to view the realtime contents of any teleme
 | PV-5     | Packet Viewer shall color telemetry values based upon limits state.                                                                           | View a packet with items containing limits and verify they are colored.                                                             |
 | PV-6     | Packet Viewer shall support a configurable polling rate.                                                                                      | Select File->Options and change the polling rate.                                                                                   |
 | PV-7     | Packet Viewer shall support a color-blind mode to allow distinguishing limits states for those who are color blind.                           | Select View->Color Blind Mode and verify that items with limits are also displayed with a textual indication of limits state color. |
-| PV-8     | Packet Viewer shall support displaying telemetry in each of the four OpenC3 value types (raw, converted, formatted, and formatted with units) | In the View menu, select each of the four value types and verify values are displayed accordingly.                                  |
+| PV-8     | Packet Viewer shall support displaying telemetry in each of the four COSMOS value types (raw, converted, formatted, and formatted with units) | In the View menu, select each of the four value types and verify values are displayed accordingly.                                  |
 
 ## Telemetry Viewer
 
@@ -254,7 +254,7 @@ Data Extractor processes logged data and extracts data into a CSV format for ana
 
 Timeline
 
-The Timeline tool provides a user interface and API for initiating scheduled actions in OpenC3
+The Timeline tool provides a user interface and API for initiating scheduled actions in COSMOS
 
 | Reqt. ID | Description                                                    | Test Description                           |
 | -------- | -------------------------------------------------------------- | ------------------------------------------ |
@@ -271,7 +271,7 @@ The Timeline tool provides a user interface and API for initiating scheduled act
 
 Admin
 
-The Admin tool provides administrative functionality including managing plugins for the OpenC3 system
+The Admin tool provides administrative functionality including managing plugins for the COSMOS system
 
 | Reqt. ID | Description                                                   | Test Description                             |
 | -------- | ------------------------------------------------------------- | -------------------------------------------- |

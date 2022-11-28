@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: OpenC3 and NASA cFS
+title: COSMOS and NASA cFS
 toc: true
 ---
 
@@ -8,17 +8,17 @@ toc: true
 
 This tutorial has been tested using the following components:
 
-- OpenC3 v5 release [5.0.6](https://github.com/OpenC3/openc3/releases/tag/v5.0.6)
+- COSMOS v5 release [5.0.6](https://github.com/OpenC3/cosmos/releases/tag/v5.0.6)
 - cFS master-branch commit: 561b128 (June 1, 2022)
 - Docker Desktop 4.9.0 on Windows
 
 Replace all `<xxxxxx>` with your matching paths and names. Example: `<USERNAME>`.
 
-## Setting up OpenC3
+## Setting up COSMOS
 
-Install OpenC3 according to the official [installation]({{site.baseurl}}/docs/v5/installation) instructions.
+Install COSMOS according to the official [installation]({{site.baseurl}}/docs/v5/installation) instructions.
 
-### Configuring OpenC3
+### Configuring COSMOS
 
 Change the Docker configuration for the interoperability with NASA cFS. For
 subscribing to the telemetry, you have to append a port binding in the file
@@ -31,7 +31,7 @@ openc3-operator:
     - "1235:1235/udp"
 ```
 
-Run OpenC3, the first run takes a while (~15 min).
+Run COSMOS, the first run takes a while (~15 min).
 
 ```bash
 openc3.sh start
@@ -39,7 +39,7 @@ openc3.sh start
 
 When started, connect with a browser to [http://localhost:2900](http://localhost:2900).
 
-For shutting down OpenC3:
+For shutting down COSMOS:
 
 ```bash
 openc3.sh stop
@@ -94,20 +94,20 @@ ENTRYPOINT [ "./core-cpu1" ]
 
 ### Build and run cFS
 
-Note we're connecting to the OpenC3 network (`docker network ls`) and exposing the cFS ports.
+Note we're connecting to the COSMOS network (`docker network ls`) and exposing the cFS ports.
 
 ```bash
 docker build -t cfs .
 docker run --cap-add CAP_SYS_RESOURCE --net=openc3_default --name cfs -p1234:1234 -p1235:1235 cfs
 ```
 
-## Creating a OpenC3 plugin for TM/TC interface with cFS
+## Creating a COSMOS plugin for TM/TC interface with cFS
 
 The detailed instructions how to create a plugin, can be found
 [here]({{site.baseurl}}/docs/v5/gettingstarted), in the chapter "Interfacing with Your Hardware".
 
 Create a new plugin with the name `CFS`. `CFS` is the name of the plugin and
-must be in capital letters according to the OpenC3 documentation. This command
+must be in capital letters according to the COSMOS documentation. This command
 should create the plugin structure.
 
 ```bash
@@ -115,7 +115,7 @@ should create the plugin structure.
 $PATH_TO_OPENC3/openc3.sh cli generate plugin CFS
 ```
 
-If you're on Linux, change the rights of this newly created plugin, because the OpenC3 script
+If you're on Linux, change the rights of this newly created plugin, because the COSMOS script
 creates the plugin to be owned by the root user.
 
 ```bash
@@ -278,7 +278,7 @@ Connect with a browser to
 Click on the clip icon and navigate to where your plugin is stored and select
 the `openc3-cfs-1.0.0.xxx.gem` file. Right of the selection line click on `UPLOAD`.
 
-Determine the IP address the cFS container and OpenC3 operator container are running at:
+Determine the IP address the cFS container and COSMOS operator container are running at:
 
 ```bash
 docker network ls
@@ -317,7 +317,7 @@ step is optional as long as you are fine with your plugin showing up as `CFS`.
 
 <div class="note warning">
   <h5>Port subscription</h5>
-  <p>The last uploaded plugin on OpenC3 will subscribe to TM on port 1235.
+  <p>The last uploaded plugin on COSMOS will subscribe to TM on port 1235.
   Other plugins will not receive any TM anymore.</p>
 </div>
 

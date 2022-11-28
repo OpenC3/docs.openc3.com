@@ -20,7 +20,7 @@ Calendar visualizes metadata, narrative, and timeline information in one easy to
 
 ### Metadata
 
-Metadata allows you to record arbitrary data into the OpenC3 system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.
+Metadata allows you to record arbitrary data into the COSMOS system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.
 
 ### Narrative
 
@@ -32,14 +32,14 @@ Scheduled on a timeline these can run single commands or run a script.
 
 ### Adding Timelines
 
-Adding a Timeline to OpenC3.
+Adding a Timeline to COSMOS.
 
- - Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm OpenC3 with lots of these.
- - Note you can not have overlapping activities on a single calendar.
+- Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm COSMOS with lots of these.
+- Note you can not have overlapping activities on a single calendar.
 
 ### Timeline lifecycle
 
-When a user creates a timeline, the OpenC3 operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.
+When a user creates a timeline, the COSMOS operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.
 
 The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are "created", "updated", "deleted", ect... Some actions require updating the schedule from the database to ensure the schedule and the database are always in synk.
 

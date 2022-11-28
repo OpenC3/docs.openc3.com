@@ -3,11 +3,11 @@ layout: docs
 title: Little Endian Bitfields
 ---
 
-Defining little endian bitfields is a little weird but is possible in OpenC3. However, note that APPEND does not work with little endian bitfields.
+Defining little endian bitfields is a little weird but is possible in COSMOS. However, note that APPEND does not work with little endian bitfields.
 
-Here are the rules on how OpenC3 handles LITTLE_ENDIAN data:
+Here are the rules on how COSMOS handles LITTLE_ENDIAN data:
 
-1. OpenC3 bit offsets are always defined in BIG_ENDIAN terms. Bit 0 is always the most significant bit of the first byte in a packet, and increasing from there.
+1. COSMOS bit offsets are always defined in BIG_ENDIAN terms. Bit 0 is always the most significant bit of the first byte in a packet, and increasing from there.
 
 1. All 8, 16, 32, and 64-bit byte-aligned LITTLE_ENDIAN data types define their bit_offset as the most significant bit of the first byte in the packet that contains part of the item. (This is exactly the same as BIG_ENDIAN). Note that for all except 8-bit LITTLE_ENDIAN items, this is the LEAST significant byte of the item.
 
