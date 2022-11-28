@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -116,7 +116,7 @@
 </ul></div>
         
         <h1>Interface Configuration</h1>
-        <p>Interface classes provide the code that OpenC3 uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and OpenC3 provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with <a href="/docs/v5/protocols">Protocols</a> rather than implementing a new interface.</p>
+        <p>Interface classes provide the code that COSMOS uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and COSMOS provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with <a href="/docs/v5/protocols">Protocols</a> rather than implementing a new interface.</p>
 
 <div class="note info">
   Note that Interfaces and Routers are very similar and share the same configuration parameters. Routers are simply Interfaces which route an existing Interface's telemetry data out to the connected target and routes the connected target's commands back to the original Interface's target.
@@ -145,23 +145,23 @@
   <li>
 <strong>write_interface_base</strong> - This method should always be called from write_interface(). It updates interface specific variables that are displayed by CmdTLmServer including the bytes written count, the most recent raw data written, and it handles raw logging if enabled.</li>
   <li>
-<strong>read</strong> - Read the next packet from the interface. OpenC3 implements this method to allow the Protocol system to operate on the data and the packet before it is returned.</li>
+<strong>read</strong> - Read the next packet from the interface. COSMOS implements this method to allow the Protocol system to operate on the data and the packet before it is returned.</li>
   <li>
-<strong>write</strong> - Send a packet to the interface. OpenC3 implements this method to allow the Protocol system to operate on the packet and the data before it is sent.</li>
+<strong>write</strong> - Send a packet to the interface. COSMOS implements this method to allow the Protocol system to operate on the packet and the data before it is sent.</li>
   <li>
-<strong>write_raw</strong> - Send a raw binary string of data to the target. OpenC3 implements this method by basically calling write_interface with the raw data.</li>
+<strong>write_raw</strong> - Send a raw binary string of data to the target. COSMOS implements this method by basically calling write_interface with the raw data.</li>
 </ol>
 
 <div class="note warning">
   <h5>
 <a class="anchor" href="#naming-conventions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Naming Conventions</h5>
-  <p>When creating your own interfaces, in most cases they will be subclasses of one of the built-in interfaces described below. It is important to know that both the filename and class name of the interface files must match with correct capitalization or you will receive "class not found" errors when trying to load your new interface. For example, an interface file called labview_interface.rb must contain the class LabviewInterface. If the class was named, LabVIEWInterface, for example, OpenC3 would not be able to find the class because of the unexpected capitalization.</p>
+  <p>When creating your own interfaces, in most cases they will be subclasses of one of the built-in interfaces described below. It is important to know that both the filename and class name of the interface files must match with correct capitalization or you will receive "class not found" errors when trying to load your new interface. For example, an interface file called labview_interface.rb must contain the class LabviewInterface. If the class was named, LabVIEWInterface, for example, COSMOS would not be able to find the class because of the unexpected capitalization.</p>
 </div>
 
 <h2 id="provided-interfaces">
 <a class="anchor" href="#provided-interfaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Provided Interfaces</h2>
 
-<p>OpenC3 provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the <a href="/docs/v5/plugins#interface">INTERFACE</a> and <a href="/docs/v5/plugins#router">ROUTER</a> keywords.</p>
+<p>COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the <a href="/docs/v5/plugins#interface">INTERFACE</a> and <a href="/docs/v5/plugins#router">ROUTER</a> keywords.</p>
 
 <h3 id="tcpip-client-interface">
 <a class="anchor" href="#tcpip-client-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>TCPIP Client Interface</h3>
@@ -364,7 +364,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
 <h3 id="serial-interface">
 <a class="anchor" href="#serial-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Serial Interface</h3>
 
-<p>The serial interface connects to a target over a serial port. OpenC3 provides drivers for both Windows and POSIX drivers for UNIX based systems.</p>
+<p>The serial interface connects to a target over a serial port. COSMOS provides drivers for both Windows and POSIX drivers for UNIX based systems.</p>
 
 <table>
   <thead>
@@ -440,14 +440,14 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 <a class="anchor" href="#cmdtlmserver-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>CmdTlmServer Interface</h3>
 
 <div class="note unreleased">
-  <p>This interface is changing in OpenC3 5. New documentation needed.</p>
+  <p>This interface is changing in COSMOS 5. New documentation needed.</p>
 </div>
 
-<p>The CmdTlmServer interface provides a connection to the OpenC3 Command and Telemetry Server. This allows scripts and other OpenC3 tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a OpenC3 version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any OpenC3 configuration.</p>
+<p>The CmdTlmServer interface provides a connection to the COSMOS Command and Telemetry Server. This allows scripts and other COSMOS tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a COSMOS version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any COSMOS configuration.</p>
 
 <p>cmd_tlm_server.txt Example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE OpenC3INT cmd_tlm_server_interface.rb
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
@@ -558,7 +558,7 @@ INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 <span class
 <h2 id="protocols">
 <a class="anchor" href="#protocols" aria-hidden="true"><span class="octicon octicon-link"></span></a>Protocols</h2>
 
-<p>Protocols define the behaviour of an Interface, including differentiating packet boundaries and modifying data as necessary. OpenC3 defines the following built-in protocols which can be used with the above interfaces:</p>
+<p>Protocols define the behaviour of an Interface, including differentiating packet boundaries and modifying data as necessary. COSMOS defines the following built-in protocols which can be used with the above interfaces:</p>
 
 <table>
   <thead>
@@ -590,7 +590,7 @@ INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 <span class
     </tr>
     <tr>
       <td><a href="/docs/v5/protocols#preidentified-protocol">Preidentified</a></td>
-      <td>Internal OpenC3 protocol used by OpenC3 tools</td>
+      <td>Internal COSMOS protocol used by COSMOS tools</td>
     </tr>
   </tbody>
 </table>
@@ -604,7 +604,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
 </code></pre></div></div>
 
-<p>OpenC3 also defines the following helper protocols:</p>
+<p>COSMOS also defines the following helper protocols:</p>
 
 <table>
   <thead>
@@ -639,7 +639,7 @@ PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for param
 
 <p>Note the first parameter after the PROTOCOL keyword is how to apply the protocol: READ, WRITE, or READ_WRITE. Read applies the protocol on incoming packets (telemetry) and write on outgoing packets (commands). The next parameter is the protocol filename or class name. All other parameters are protocol specific.</p>
 
-<p>In addition, you can define your own protocols which are declared like the OpenC3 helper protocols after your interface. See the <a href="/docs/v5/protocols#custom-protocols">Custom Protocols</a> documentation for more information.</p>
+<p>In addition, you can define your own protocols which are declared like the COSMOS helper protocols after your interface. See the <a href="/docs/v5/protocols#custom-protocols">Custom Protocols</a> documentation for more information.</p>
 
       </article>
     </div>
@@ -2105,7 +2105,7 @@ PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for param
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2353,7 +2353,7 @@ PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for param
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2443,7 +2443,7 @@ PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for param
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3091,7 +3091,7 @@ PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for param
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

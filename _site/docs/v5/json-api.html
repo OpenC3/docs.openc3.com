@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -101,11 +101,11 @@
          
         <h1>JSON API</h1>
         <div class="note">
-  <h5>This documentation is for OpenC3 Developers</h5>
-  <p>If you’re looking for the methods available to write test procedures using the OpenC3 scripting API, refer to the <a href="/docs/v5/scripting">Scripting Guide</a> page. If you’re trying to interface to a OpenC3 Command and Telemetry Server from an external application using any language then this is the right place.</p>
+  <h5>This documentation is for COSMOS Developers</h5>
+  <p>If you’re looking for the methods available to write test procedures using the COSMOS scripting API, refer to the <a href="/docs/v5/scripting">Scripting Guide</a> page. If you’re trying to interface to a COSMOS Command and Telemetry Server from an external application using any language then this is the right place.</p>
 </div>
 
-<p>This document provides the information necessary for external applications to interact with the OpenC3 Command and Telemetry Server using the OpenC3 API. External applications written in any language can send commands and retrieve individual telemetry points using this API. External applications also have the option of connecting to the OpenC3 Command and Telemetry server to interact with raw tcp/ip streams of commands/telemetry. However, the OpenC3 JSON API removes the requirement that external applications have knowledge of the binary formats of packets.</p>
+<p>This document provides the information necessary for external applications to interact with the COSMOS Command and Telemetry Server using the COSMOS API. External applications written in any language can send commands and retrieve individual telemetry points using this API. External applications also have the option of connecting to the COSMOS Command and Telemetry server to interact with raw tcp/ip streams of commands/telemetry. However, the COSMOS JSON API removes the requirement that external applications have knowledge of the binary formats of packets.</p>
 
 <h2 id="authorization">Authorization</h2>
 
@@ -116,19 +116,19 @@
 
 <h2 id="json-rpc-20">JSON-RPC 2.0</h2>
 
-<p>The OpenC3 API implements a relaxed version of the <a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a>. Requests with an “id” of NULL are not supported. Numbers can contain special non-string literal’s such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.</p>
+<p>The COSMOS API implements a relaxed version of the <a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a>. Requests with an “id” of NULL are not supported. Numbers can contain special non-string literal’s such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.</p>
 
 <h2 id="socket-connections">Socket Connections</h2>
 
-<p>The OpenC3 Command and Telemetry Server listens for connections to the OpenC3 API on an HTTP server (default port of 7777).</p>
+<p>The COSMOS Command and Telemetry Server listens for connections to the COSMOS API on an HTTP server (default port of 7777).</p>
 
 <h2 id="supported-methods">Supported Methods</h2>
 
-<p>The list of methods supported by the OpenC3 API may be found in the <a href="https://github.com/OpenC3/openc3/tree/master/openc3/lib/openc3/api">api</a> source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the OpenC3 scripting API methods documented in the <a href="/docs/v5/scripting">Scripting Guide</a>. This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.</p>
+<p>The list of methods supported by the COSMOS API may be found in the <a href="https://github.com/openc3/cosmos/tree/main/openc3/lib/openc3/api">api</a> source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the COSMOS scripting API methods documented in the <a href="/docs/v5/scripting">Scripting Guide</a>. This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.</p>
 
 <h2 id="existing-implementations">Existing Implementations</h2>
 
-<p>The OpenC3 JSON API has been implemented in the following languages:</p>
+<p>The COSMOS JSON API has been implemented in the following languages:</p>
 
 <ul>
   <li><a href="https://github.com/Openc3/python-openc3">Python</a></li>
@@ -140,7 +140,7 @@
 
 <p>The following methods are used to send commands: cmd, cmd_no_range_check, cmd_no_hazardous_check, cmd_no_checks</p>
 
-<p>The cmd method sends a command to a OpenC3 target in the system. The cmd_no_range_check method does the same but ignores parameter range errors. The cmd_no_hazardous_check method does the same, but allows hazardous commands to be sent. The cmd_no_checks method does the same but allows hazardous commands to be sent, and ignores range errors.</p>
+<p>The cmd method sends a command to a COSMOS target in the system. The cmd_no_range_check method does the same but ignores parameter range errors. The cmd_no_hazardous_check method does the same, but allows hazardous commands to be sent. The cmd_no_checks method does the same but allows hazardous commands to be sent, and ignores range errors.</p>
 
 <p>Two parameter syntaxes are supported.</p>
 
@@ -193,6 +193,7 @@
 </table>
 
 <p>Example Usage:</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"</span><span class="o">]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
 &lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
 
@@ -257,6 +258,7 @@
 </table>
 
 <p>Example Usage:</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST HEALTH_STATUS TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2<span class="o">}</span>
 &lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: 94.9438, <span class="s2">"id"</span>: 2<span class="o">}</span>
 
@@ -1752,7 +1754,7 @@ Response:
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2000,7 +2002,7 @@ Response:
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2090,7 +2092,7 @@ Response:
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2738,7 +2740,7 @@ Response:
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

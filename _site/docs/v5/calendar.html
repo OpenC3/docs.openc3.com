@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -138,7 +138,7 @@
 <h3 id="metadata">
 <a class="anchor" href="#metadata" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metadata</h3>
 
-<p>Metadata allows you to record arbitrary data into the OpenC3 system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.</p>
+<p>Metadata allows you to record arbitrary data into the COSMOS system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.</p>
 
 <h3 id="narrative">
 <a class="anchor" href="#narrative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Narrative</h3>
@@ -153,17 +153,17 @@
 <h3 id="adding-timelines">
 <a class="anchor" href="#adding-timelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Timelines</h3>
 
-<p>Adding a Timeline to OpenC3.</p>
+<p>Adding a Timeline to COSMOS.</p>
 
 <ul>
-  <li>Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm OpenC3 with lots of these.</li>
+  <li>Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm COSMOS with lots of these.</li>
   <li>Note you can not have overlapping activities on a single calendar.</li>
 </ul>
 
 <h3 id="timeline-lifecycle">
 <a class="anchor" href="#timeline-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline lifecycle</h3>
 
-<p>When a user creates a timeline, the OpenC3 operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.</p>
+<p>When a user creates a timeline, the COSMOS operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.</p>
 
 <p>The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are “created”, “updated”, “deleted”, ect… Some actions require updating the schedule from the database to ensure the schedule and the database are always in synk.</p>
 
@@ -1637,7 +1637,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1885,7 +1885,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1975,7 +1975,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2623,7 +2623,7 @@
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -100,11 +100,11 @@
         </div>
          
         <h1>Podman</h1>
-        <h3 id="openc3-using-rootless-podman-and-docker-compose">OpenC3 Using Rootless Podman and Docker-Compose</h3>
+        <h3 id="openc3-cosmos-using-rootless-podman-and-docker-compose">OpenC3 COSMOS Using Rootless Podman and Docker-Compose</h3>
 
 <div class="note info">
   <h5>Optional Installation Option</h5>
-  <p style="margin-bottom:20px;">These directions are for installing and running OpenC3 using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
+  <p style="margin-bottom:20px;">These directions are for installing and running COSMOS using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
 </div>
 
 <p>Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.</p>
@@ -152,9 +152,9 @@ exit
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Get OpenC3 - A release or the current main branch (main branch shown)</p>
+    <p>Get COSMOS - A release or the current main branch (main branch shown)</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/OpenC3/openc3.git
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/OpenC3/cosmos.git
 </code></pre></div>    </div>
   </li>
   <li>
@@ -169,9 +169,9 @@ cp /etc/containers/registries.conf $HOME/.config/containers/.
     <p>Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)</p>
   </li>
   <li>
-    <p>Run OpenC3</p>
+    <p>Run COSMOS</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd OpenC3
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS
 ./openc3.sh start
 </code></pre></div>    </div>
   </li>
@@ -1644,7 +1644,7 @@ cp /etc/containers/registries.conf $HOME/.config/containers/.
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1892,7 +1892,7 @@ cp /etc/containers/registries.conf $HOME/.config/containers/.
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1982,7 +1982,7 @@ cp /etc/containers/registries.conf $HOME/.config/containers/.
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2630,7 +2630,7 @@ cp /etc/containers/registries.conf $HOME/.config/containers/.
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

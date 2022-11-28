@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -129,19 +129,22 @@
         <h2 id="packet-log-file-format">
 <a class="anchor" href="#packet-log-file-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Log File Format</h2>
 
-<p>Packet logs in OpenC3 5 are used to store raw binary packets as received from various targets, as
+<p>Packet logs in COSMOS 5 are used to store raw binary packets as received from various targets, as
 well as decommutated packets stored as JSON structures.</p>
 
 <h3 id="file-header">
 <a class="anchor" href="#file-header" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Header</h3>
-<p>OpenC3 5 Packet log files start with the 8-character sequence “OpenC3_5”. This can be used to identify the type of file independent of filename and differentiate them from newer and older versions.</p>
+
+<p>COSMOS 5 Packet log files start with the 8-character sequence “OpenC3_5”. This can be used to identify the type of file independent of filename and differentiate them from newer and older versions.</p>
 
 <h3 id="entry-types">
 <a class="anchor" href="#entry-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entry Types</h3>
+
 <p>Packet log files have 4 different entry types with room for future expansion. All entry headers are big endian binary data.</p>
 
 <h4 id="common-entry-format">
 <a class="anchor" href="#common-entry-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common Entry Format</h4>
+
 <p>This common format is used for all packet log entries as well as the corresponding index file entries.</p>
 
 <table>
@@ -156,7 +159,7 @@ well as decommutated packets stored as JSON structures.</p>
     <tr>
       <td>Length</td>
       <td>32-bit Unsigned Integer</td>
-      <td>Total length of the entry in bytes not including the length field.  Max entry size is therefore 4GiB.</td>
+      <td>Total length of the entry in bytes not including the length field. Max entry size is therefore 4GiB.</td>
     </tr>
     <tr>
       <td>Entry Type</td>
@@ -181,12 +184,12 @@ well as decommutated packets stored as JSON structures.</p>
     <tr>
       <td>Reserved</td>
       <td>9-bit Unsigned Integer</td>
-      <td>Reserved for Future expansion.  Should be set to 0 if unused.</td>
+      <td>Reserved for Future expansion. Should be set to 0 if unused.</td>
     </tr>
     <tr>
       <td>Entry Data</td>
       <td>Variable</td>
-      <td>Unique data based on entry type.  See Entry Types Below</td>
+      <td>Unique data based on entry type. See Entry Types Below</td>
     </tr>
     <tr>
       <td>Id (Optional)</td>
@@ -231,7 +234,7 @@ well as decommutated packets stored as JSON structures.</p>
     <tr>
       <td>Target Index</td>
       <td>16-bit Unsigned Integer</td>
-      <td>Index into a dynamically built table of target names, generated from the order of the target declarations in the file.  The first target declaration gets index 0, the second target declaration gets index 1, etc.</td>
+      <td>Index into a dynamically built table of target names, generated from the order of the target declarations in the file. The first target declaration gets index 0, the second target declaration gets index 1, etc.</td>
     </tr>
     <tr>
       <td>Packet Name</td>
@@ -273,14 +276,17 @@ well as decommutated packets stored as JSON structures.</p>
 
 <h2 id="index-files">
 <a class="anchor" href="#index-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index Files</h2>
-<p>Alongside each Packet Log File, OpenC3 5 also created a separate index file with the same name but a file extension of “.idx”.  This file is designed to allow quick binary searches on the corresponding packet log by timestamp.</p>
+
+<p>Alongside each Packet Log File, COSMOS 5 also created a separate index file with the same name but a file extension of “.idx”. This file is designed to allow quick binary searches on the corresponding packet log by timestamp.</p>
 
 <h3 id="file-header-1">
 <a class="anchor" href="#file-header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Header</h3>
-<p>OpenC3 5 Packet log files start with the 8-character sequence “OC3IDX_5”.  This can be used to identify the type of file independent of filename and differentiate them from newer and older versions.</p>
+
+<p>COSMOS 5 Packet log files start with the 8-character sequence “OC3IDX_5”. This can be used to identify the type of file independent of filename and differentiate them from newer and older versions.</p>
 
 <h4 id="index-file-entries">
 <a class="anchor" href="#index-file-entries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index File Entries</h4>
+
 <p>Index file entries are the same as the corresponding packet entries, except the packet data field is replaced by 64-bit unsigned integer with the offset into the corresponding packet log file, where the full packet entry exists.</p>
 
 <table>
@@ -312,7 +318,8 @@ well as decommutated packets stored as JSON structures.</p>
 
 <h3 id="index-file-footer">
 <a class="anchor" href="#index-file-footer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index File Footer</h3>
-<p>All of the target declaration entries and packet declaration entries from the corresponding packet log file are written out together at the very end of index files.   This makes the entire index file up to this point a set of fixed size entries that can be very quickly searched (as opposed to the standard packet log file where every entry is variably sized).</p>
+
+<p>All of the target declaration entries and packet declaration entries from the corresponding packet log file are written out together at the very end of index files. This makes the entire index file up to this point a set of fixed size entries that can be very quickly searched (as opposed to the standard packet log file where every entry is variably sized).</p>
 
 <table>
   <thead>
@@ -1815,7 +1822,7 @@ well as decommutated packets stored as JSON structures.</p>
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2063,7 +2070,7 @@ well as decommutated packets stored as JSON structures.</p>
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2153,7 +2160,7 @@ well as decommutated packets stored as JSON structures.</p>
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2801,7 +2808,7 @@ well as decommutated packets stored as JSON structures.</p>
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

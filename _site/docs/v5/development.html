@@ -2,12 +2,12 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Developing OpenC3</title>
+  <title>Developing COSMOS</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -105,12 +105,12 @@
 <li class="toc-entry toc-h2"><a href="#development-tools">Development Tools</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#building-openc3">Building OpenC3</a>
+<li class="toc-entry toc-h1"><a href="#building-cosmos">Building COSMOS</a>
 <ul>
 <li class="toc-entry toc-h5"><a href="#offline-building">Offline Building</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#running-openc3">Running OpenC3</a>
+<li class="toc-entry toc-h1"><a href="#running-cosmos">Running COSMOS</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#running-a-frontend-application">Running a Frontend Application</a></li>
 <li class="toc-entry toc-h2"><a href="#running-a-backend-server">Running a Backend Server</a></li>
@@ -118,45 +118,48 @@
 </li>
 </ul></div>
         
-        <h1>Developing OpenC3</h1>
+        <h1>Developing COSMOS</h1>
         <h1 id="getting-started">
 <a class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h1>
 
-<p>So you want to help develop OpenC3? All of our open source OpenC3 code is on <a href="https://github.com/">Github</a> so the first thing to do is get an <a href="https://github.com/join">account</a>. Next <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">clone</a> the <a href="https://github.com/OpenC3/openc3">OpenC3</a> repository. We accept contributions from others as <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">Pull Requests</a>.</p>
+<p>So you want to help develop COSMOS? All of our open source COSMOS code is on <a href="https://github.com/">Github</a> so the first thing to do is get an <a href="https://github.com/join">account</a>. Next <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">clone</a> the <a href="https://github.com/openc3/cosmos">COSMOS</a> repository. We accept contributions from others as <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">Pull Requests</a>.</p>
 
 <h2 id="development-tools">
 <a class="anchor" href="#development-tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development Tools</h2>
 
-<p>The core OpenC3 team develops with the <a href="https://code.visualstudio.com/">Visual Studio Code</a> editor and we highly recommend it. We also utilize a number of extensions including docker, kubernetes, gitlens, prettier, eslint, python, vetur, and ruby. We commit our <code class="language-plaintext highlighter-rouge">openc3.code-workspace</code> configuration for VSCode to help configure these plugins. You also need <a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a> which you should already have as it is a requirement to run OpenC3. You’ll also need <a href="https://nodejs.org/en/download/">NodeJS</a> and <a href="https://yarnpkg.com/getting-started/install">yarn</a> installed.</p>
+<p>The core COSMOS team develops with the <a href="https://code.visualstudio.com/">Visual Studio Code</a> editor and we highly recommend it. We also utilize a number of extensions including docker, kubernetes, gitlens, prettier, eslint, python, vetur, and ruby. We commit our <code class="language-plaintext highlighter-rouge">openc3.code-workspace</code> configuration for VSCode to help configure these plugins. You also need <a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a> which you should already have as it is a requirement to run COSMOS. You’ll also need <a href="https://nodejs.org/en/download/">NodeJS</a> and <a href="https://yarnpkg.com/getting-started/install">yarn</a> installed.</p>
 
-<h1 id="building-openc3">
-<a class="anchor" href="#building-openc3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building OpenC3</h1>
+<h1 id="building-cosmos">
+<a class="anchor" href="#building-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building COSMOS</h1>
 
-<p>Note: We primarily develop OpenC3 in MacOS so the commands here will reference bash scripts but the same files exist in Windows as batch scripts.</p>
+<p>Note: We primarily develop COSMOS in MacOS so the commands here will reference bash scripts but the same files exist in Windows as batch scripts.</p>
 
-<p>Build OpenC3 using the <code class="language-plaintext highlighter-rouge">openc3.sh</code> script:</p>
+<p>Build COSMOS using the <code class="language-plaintext highlighter-rouge">openc3.sh</code> script:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% ./openc3.sh build
 </code></pre></div></div>
 
-<p>This will pull all the OpenC3 container dependencies and build our local containers. Note: This can take a long time especially for your first build!</p>
+<p>This will pull all the COSMOS container dependencies and build our local containers. Note: This can take a long time especially for your first build!</p>
 
 <p>Once the build completes you can see the built images with the following command:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% docker image ls | grep "openc3"
-ballaerospace/openc3-operator            latest   4c71eea95327   41 minutes ago   130MB
-ballaerospace/openc3-init                latest   1c32f1969f48   41 minutes ago   142MB
-ballaerospace/openc3-cmd-tlm-api         latest   8a722d0403e9   51 minutes ago   150MB
-ballaerospace/openc3-script-runner-api   latest   a6d22f485c2a   52 minutes ago   146MB
-ballaerospace/openc3-redis               latest   6531a6973dc9   53 minutes ago   105MB
-ballaerospace/openc3-base                latest   04fd53ad0402   53 minutes ago   130MB
-ballaerospace/openc3-traefik             latest   3ffd53ad0402   53 minutes ago   130MB
+openc3inc/openc3-cosmos-init                latest   4cac7a3ea9d3   29 hours ago   446MB
+openc3inc/openc3-cosmos-script-runner-api   latest   4aacbaf49f7a   29 hours ago   431MB
+openc3inc/openc3-cosmos-cmd-tlm-api         latest   9a8806bd4be3   3 days ago     432MB
+openc3inc/openc3-operator                   latest   223e98129fe9   3 days ago     405MB
+openc3inc/openc3-base                       latest   98df5c0378c2   3 days ago     405MB
+openc3inc/openc3-redis                      latest   5a3003a49199   8 days ago     111MB
+openc3inc/openc3-traefik                    latest   ec13a8d16a2f   8 days ago     104MB
+openc3inc/openc3-minio                      latest   787f6e3fc0be   8 days ago     238MB
+openc3inc/openc3-node                       latest   b3ee86d3620a   8 days ago     372MB
+openc3inc/openc3-ruby                       latest   aa158bbb9539   8 days ago     326MB
 </code></pre></div></div>
 
 <div class="note info">
   <h5>
 <a class="anchor" href="#offline-building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Offline Building</h5>
-  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/OpenC3/openc3/blob/master/.env">.env</a> file. Example values:</p>
+  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/openc3/cosmos/blob/main/.env">.env</a> file. Example values:</p>
 
   <p style="margin-left:20px;margin-bottom:20px;">
     ALPINE_VERSION=3.15<br>
@@ -167,10 +170,10 @@ ballaerospace/openc3-traefik             latest   3ffd53ad0402   53 minutes ago 
   </p>
 </div>
 
-<h1 id="running-openc3">
-<a class="anchor" href="#running-openc3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running OpenC3</h1>
+<h1 id="running-cosmos">
+<a class="anchor" href="#running-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running COSMOS</h1>
 
-<p>Running OpenC3 in development mode enables localhost access to internal API ports as well as sets <code class="language-plaintext highlighter-rouge">RAILS_ENV=development</code> in the cmd-tlm-api and script-runner-api Rails servers. To run in development mode:</p>
+<p>Running COSMOS in development mode enables localhost access to internal API ports as well as sets <code class="language-plaintext highlighter-rouge">RAILS_ENV=development</code> in the cmd-tlm-api and script-runner-api Rails servers. To run in development mode:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% ./openc3.sh dev
 </code></pre></div></div>
@@ -187,53 +190,53 @@ openc3/openc3-minio:latest               "/usr/bin/docker-ent…"   127.0.0.1:90
 openc3/openc3-redis:latest               "docker-entrypoint.s…"   127.0.0.1:6379-&gt;6379/tcp   openc3_openc3-redis_1
 </code></pre></div></div>
 
-<p>If you go to localhost:2900 you should see OpenC3 up and running!</p>
+<p>If you go to localhost:2900 you should see COSMOS up and running!</p>
 
 <h2 id="running-a-frontend-application">
 <a class="anchor" href="#running-a-frontend-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running a Frontend Application</h2>
 
-<p>So now that you have OpenC3 up and running how do you develop an individual OpenC3 application?</p>
+<p>So now that you have COSMOS up and running how do you develop an individual COSMOS application?</p>
 
 <ol>
   <li>
     <p>Bootstrap the frontend with yarn</p>
 
     <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> openc3-init % yarn
+<div class="highlight"><pre class="highlight"><code>openc3-init % yarn
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Serve a local OpenC3 application (CmdTlmServer, ScriptRunner, etc)</p>
+    <p>Serve a local COSMOS application (CmdTlmServer, ScriptRunner, etc)</p>
 
     <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> openc3-init % cd plugins/packages/openc3-tool-scriptrunner
- openc3-tool-scriptrunner % yarn serve
+<div class="highlight"><pre class="highlight"><code>openc3-init % cd plugins/packages/openc3-tool-scriptrunner
+openc3-tool-scriptrunner % yarn serve
 
- DONE  Compiled successfully in 128722ms
- App running at:
- - Local:   http://localhost:2914/tools/scriptrunner/
- - Network: http://localhost:2914/tools/scriptrunner/
+DONE  Compiled successfully in 128722ms
+App running at:
+- Local:   http://localhost:2914/tools/scriptrunner/
+- Network: http://localhost:2914/tools/scriptrunner/
 
- Note that the development build is not optimized.
- To create a production build, run npm run build.
+Note that the development build is not optimized.
+To create a production build, run npm run build.
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Set the <a href="https://single-spa.js.org/">single SPA</a> override for the application</p>
 
     <p>Visit localhost:2900 and Right-click ‘Inspect’<br>
- In the console paste:</p>
+In the console paste:</p>
 
     <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> localStorage.setItem('devtools', true)
+<div class="highlight"><pre class="highlight"><code>localStorage.setItem('devtools', true)
 </code></pre></div>    </div>
 
     <p>Refresh and you should see <code class="language-plaintext highlighter-rouge">{...}</code> in the bottom right<br>
- Click the Default button next to the application (@openc3/tool-scriptrunner)<br>
- Paste in the development path which is dependent on the port returned by the local yarn serve and the tool name (scriptrunner)</p>
+Click the Default button next to the application (@openc3/tool-scriptrunner)<br>
+Paste in the development path which is dependent on the port returned by the local yarn serve and the tool name (scriptrunner)</p>
 
     <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> http://localhost:2914/tools/scriptrunner/js/app.js
+<div class="highlight"><pre class="highlight"><code>http://localhost:2914/tools/scriptrunner/js/app.js
 </code></pre></div>    </div>
   </li>
   <li>
@@ -248,7 +251,7 @@ openc3/openc3-redis:latest               "docker-entrypoint.s…"   127.0.0.1:63
 
 <ol>
   <li>
-    <p>Run a development version of traefik. OpenC3 uses traefik to direct API requests to the correct locations.</p>
+    <p>Run a development version of traefik. COSMOS uses traefik to direct API requests to the correct locations.</p>
 
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>% cd openc3-traefik
@@ -1741,7 +1744,7 @@ openc3-cmd-tlm-api % bundle exec rails s
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1989,7 +1992,7 @@ openc3-cmd-tlm-api % bundle exec rails s
     
       
   <li class="current">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2079,7 +2082,7 @@ openc3-cmd-tlm-api % bundle exec rails s
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2727,7 +2730,7 @@ openc3-cmd-tlm-api % bundle exec rails s
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

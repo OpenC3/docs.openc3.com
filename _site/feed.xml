@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Sat, 19 Nov 2022 16:05:12 +0000</pubDate>
-    <lastBuildDate>Sat, 19 Nov 2022 16:05:12 +0000</lastBuildDate>
+    <pubDate>Mon, 28 Nov 2022 01:34:03 +0000</pubDate>
+    <lastBuildDate>Mon, 28 Nov 2022 01:34:03 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.1</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -86,7 +86,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.1.0...v5.1.1&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.1.0...v5.1.1&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -237,7 +237,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.11...v5.1.0&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.11...v5.1.0&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -256,6 +256,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 &lt;p&gt;This is primarily a maintenance and bug fix release.&lt;/p&gt;
 
 &lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Allow selecting and deleting script temp files&lt;/li&gt;
   &lt;li&gt;Add map_target_to_interface to Javascript API&lt;/li&gt;
@@ -265,6 +266,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Fixed a bug where the core extension to tempfile wasn’t being required&lt;/li&gt;
   &lt;li&gt;Ensured when using Keycloak Auth that tokens are refreshed 60 seconds before expiration&lt;/li&gt;
@@ -273,18 +275,19 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Add all targets to target packet item chooser by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/156&quot;&gt;#156&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;require tempfile core ext by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/166&quot;&gt;#166&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Refresh tokens 60 seconds before expire by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/165&quot;&gt;#165&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Remove astro-badge by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/167&quot;&gt;#167&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Display and allow deleting script temp files by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/152&quot;&gt;#152&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Break screens into own controller by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/163&quot;&gt;#163&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;map_target_to_interface updates by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/170&quot;&gt;#170&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Make Aws autoload only apply to S3 by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/169&quot;&gt;#169&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;read client count from function rather than variable by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/168&quot;&gt;#168&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Bump deps, minio, traefik and add scripts_controller_spec by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/175&quot;&gt;#175&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix put_target_file with IO and local mode by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/176&quot;&gt;#176&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add all targets to target packet item chooser by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/156&quot;&gt;#156&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;require tempfile core ext by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/166&quot;&gt;#166&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Refresh tokens 60 seconds before expire by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/165&quot;&gt;#165&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Remove astro-badge by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/167&quot;&gt;#167&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Display and allow deleting script temp files by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/152&quot;&gt;#152&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Break screens into own controller by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/163&quot;&gt;#163&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;map_target_to_interface updates by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/170&quot;&gt;#170&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Make Aws autoload only apply to S3 by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/169&quot;&gt;#169&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;read client count from function rather than variable by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/168&quot;&gt;#168&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump deps, minio, traefik and add scripts_controller_spec by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/175&quot;&gt;#175&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix put_target_file with IO and local mode by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/176&quot;&gt;#176&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Prerequisites:
@@ -295,8 +298,9 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
 Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;To Run:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;git clone https://github.com/openc3/openc3-project.git myproject&lt;/li&gt;
+  &lt;li&gt;git clone https://github.com/OpenC3/cosmos-project.git myproject&lt;/li&gt;
   &lt;li&gt;cd myproject&lt;/li&gt;
   &lt;li&gt;Edit the .env file and change OPENC3_TAG to 5.0.11&lt;/li&gt;
   &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
@@ -311,7 +315,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.10...v5.0.11&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.10...v5.0.11&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -331,9 +335,10 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;This will allow OpenC3 to interact with non-binary packets like web pages, JSON based API interfaces, and much more, with little to no custom coding required.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&quot;https://github.com/OpenC3/openc3/tree/master/openc3-init/plugins/packages/openc3-accessor-test&quot;&gt;openc3-accessor-test&lt;/a&gt; for a great example of defining packets in each of the new types.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&quot;https://github.com/OpenC3/cosmos/tree/main/openc3-cosmos-init/plugins/packages/openc3-accessor-test&quot;&gt;openc3-accessor-test&lt;/a&gt; for a great example of defining packets in each of the new types.&lt;/p&gt;
 
 &lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Modular Decom&lt;/li&gt;
   &lt;li&gt;Updated open source dependencies&lt;/li&gt;
@@ -344,21 +349,23 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Fixed positioning of events in Calendar near Midnight&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Modular decom by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/134&quot;&gt;#134&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix ruby coverage path by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/131&quot;&gt;#131&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add flags to upload by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/132&quot;&gt;#132&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Update unit tests by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/147&quot;&gt;#147&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add filename to Tempfile returned by open_file_dialog by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/148&quot;&gt;#148&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Port param by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/146&quot;&gt;#146&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add severity level filter to log messages by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/149&quot;&gt;#149&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add refresh button for scripts by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/150&quot;&gt;#150&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Bump dependencies including Minio by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/151&quot;&gt;#151&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Modular decom by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/134&quot;&gt;#134&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix ruby coverage path by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/131&quot;&gt;#131&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add flags to upload by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/132&quot;&gt;#132&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Update unit tests by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/147&quot;&gt;#147&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add filename to Tempfile returned by open_file_dialog by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/148&quot;&gt;#148&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Port param by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/146&quot;&gt;#146&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add severity level filter to log messages by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/149&quot;&gt;#149&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add refresh button for scripts by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/150&quot;&gt;#150&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump dependencies including Minio by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/151&quot;&gt;#151&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Prerequisites:
@@ -369,8 +376,9 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
 Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;To Run:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;git clone https://github.com/openc3/openc3-project.git myproject&lt;/li&gt;
+  &lt;li&gt;git clone https://github.com/OpenC3/cosmos-project.git myproject&lt;/li&gt;
   &lt;li&gt;cd myproject&lt;/li&gt;
   &lt;li&gt;Edit the .env file and change OPENC3_TAG to 5.0.10&lt;/li&gt;
   &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
@@ -385,8 +393,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.9...v5.0.10&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.9...v5.0.10&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -402,13 +409,14 @@ Also requires docker compose version 1.27+&lt;/p&gt;
       <guid isPermaLink="true">https://openc3.com/news/2022/09/02/openc3-5-0-9-released/</guid>
       <description>&lt;p&gt;OpenC3 5.0.9 is here and with it a great new feature called Local Mode!&lt;/p&gt;
 
-&lt;p&gt;Local mode defines a standard structure for your project’s OpenC3 configuration, primarily plugins, and keeps it in sync with what you do through the web interface.  It also encourages running from our official released containers, and not checking out the whole openc3 repo and building from source.&lt;/p&gt;
+&lt;p&gt;Local mode defines a standard structure for your project’s OpenC3 configuration, primarily plugins, and keeps it in sync with what you do through the web interface. It also encourages running from our official released containers, and not checking out the whole openc3 repo and building from source.&lt;/p&gt;
 
-&lt;p&gt;Local mode is best implemented using the project template now available at &lt;a href=&quot;https://github.com/openc3/openc3-project&quot;&gt;https://github.com/openc3/openc3-project&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Local mode is best implemented using the project template now available at &lt;a href=&quot;https://github.com/OpenC3/cosmos-project&quot;&gt;https://github.com/OpenC3/cosmos-project&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;See getting started directions below.&lt;/p&gt;
 
 &lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Local Mode&lt;/li&gt;
   &lt;li&gt;Open source dependency versions updated&lt;/li&gt;
@@ -420,6 +428,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Numerous fixes to CmdSender - Code now coverage at 94%&lt;/li&gt;
   &lt;li&gt;Fix TlmViewer screen upload&lt;/li&gt;
@@ -427,31 +436,32 @@ Also requires docker compose version 1.27+&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Add util pull and push to ghcr on release by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/69&quot;&gt;#69&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add api highlighting by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/70&quot;&gt;#70&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Implement additional xtce keywords by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/51&quot;&gt;#51&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Bump alpine to 3.16.2 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/81&quot;&gt;#81&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add playwright as submodule by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/82&quot;&gt;#82&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Remove playwright submodule by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/83&quot;&gt;#83&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Upgrade to latest minio by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/85&quot;&gt;#85&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add symlink to cosmos folder to increase compatibility by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/92&quot;&gt;#92&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Set tab title to tool name by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/94&quot;&gt;#94&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Full tlm api support by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/90&quot;&gt;#90&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Implement map_target_to_interface by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/96&quot;&gt;#96&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Suite detection by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/98&quot;&gt;#98&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Screen autocomplete by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/97&quot;&gt;#97&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add summary to autocomplete and update summaries by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/100&quot;&gt;#100&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;CmdSender state in history and hazardous indicator by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/102&quot;&gt;#102&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Command Sender fix quotes by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/104&quot;&gt;#104&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix tlm viewer screen upload by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/114&quot;&gt;#114&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Change scope localstorage by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/115&quot;&gt;#115&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Implement header based interceptor control by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/123&quot;&gt;#123&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add coverage upload by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/119&quot;&gt;#119&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Update dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/126&quot;&gt;#126&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Upgrade to rails 7 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/127&quot;&gt;#127&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Local mode by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/103&quot;&gt;#103&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix streaming api early stop by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/128&quot;&gt;#128&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add util pull and push to ghcr on release by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/69&quot;&gt;#69&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add api highlighting by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/70&quot;&gt;#70&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Implement additional xtce keywords by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/51&quot;&gt;#51&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump alpine to 3.16.2 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/81&quot;&gt;#81&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add playwright as submodule by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/82&quot;&gt;#82&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Remove playwright submodule by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/83&quot;&gt;#83&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Upgrade to latest minio by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/85&quot;&gt;#85&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add symlink to cosmos folder to increase compatibility by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/92&quot;&gt;#92&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Set tab title to tool name by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/94&quot;&gt;#94&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Full tlm api support by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/90&quot;&gt;#90&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Implement map_target_to_interface by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/96&quot;&gt;#96&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Suite detection by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/98&quot;&gt;#98&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Screen autocomplete by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/97&quot;&gt;#97&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add summary to autocomplete and update summaries by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/100&quot;&gt;#100&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;CmdSender state in history and hazardous indicator by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/102&quot;&gt;#102&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Command Sender fix quotes by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/104&quot;&gt;#104&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix tlm viewer screen upload by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/114&quot;&gt;#114&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Change scope localstorage by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/115&quot;&gt;#115&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Implement header based interceptor control by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/123&quot;&gt;#123&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add coverage upload by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/119&quot;&gt;#119&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Update dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/126&quot;&gt;#126&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Upgrade to rails 7 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/127&quot;&gt;#127&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Local mode by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/103&quot;&gt;#103&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix streaming api early stop by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/128&quot;&gt;#128&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Prerequisites:
@@ -461,8 +471,9 @@ Docker - Running OpenC3 requires a working Docker or Podman installation. Typica
 Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
 
 &lt;p&gt;To Run:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;git clone https://github.com/openc3/openc3-project.git myproject&lt;/li&gt;
+  &lt;li&gt;git clone https://github.com/OpenC3/cosmos-project.git myproject&lt;/li&gt;
   &lt;li&gt;cd myproject&lt;/li&gt;
   &lt;li&gt;Edit the .env file and change OPENC3_TAG to 5.0.9&lt;/li&gt;
   &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
@@ -477,7 +488,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.8...v5.0.9&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.8...v5.0.9&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -494,6 +505,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
       <description>&lt;p&gt;I’m happy to announce the third release of OpenC3!&lt;/p&gt;
 
 &lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;New SPARKLINE telemetry screen widget&lt;/li&gt;
   &lt;li&gt;Telemetry Screen Value Aging&lt;/li&gt;
@@ -503,6 +515,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Fixed an issue with the UNKNOWN packet not showing&lt;/li&gt;
   &lt;li&gt;Fixed an issue where the system didn’t wait for a file to be fully available in S3&lt;/li&gt;
@@ -511,22 +524,24 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Create UNKNOWN target in scope_model by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/54&quot;&gt;#54&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix linegraph widget and add sparkline by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/52&quot;&gt;#52&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix permission names by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/53&quot;&gt;#53&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;ValueWidget telemetry aging by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/58&quot;&gt;#58&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add put_object_and_check for S3 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/61&quot;&gt;#61&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Display correct CMD/TLM counts when sorting by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/62&quot;&gt;#62&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Bump pysch, rdoc, dead_end by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/64&quot;&gt;#64&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add POSITION keyword for tools by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/65&quot;&gt;#65&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Scope updates by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/63&quot;&gt;#63&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Print operator cmd in log by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/66&quot;&gt;#66&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Update NPM dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/67&quot;&gt;#67&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Move CvtModel back to Persistent Redis Store by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/68&quot;&gt;#68&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Create UNKNOWN target in scope_model by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/54&quot;&gt;#54&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix linegraph widget and add sparkline by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/52&quot;&gt;#52&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix permission names by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/53&quot;&gt;#53&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ValueWidget telemetry aging by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/58&quot;&gt;#58&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add put_object_and_check for S3 by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/61&quot;&gt;#61&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Display correct CMD/TLM counts when sorting by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/62&quot;&gt;#62&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump pysch, rdoc, dead_end by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/64&quot;&gt;#64&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add POSITION keyword for tools by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/65&quot;&gt;#65&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Scope updates by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/63&quot;&gt;#63&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Print operator cmd in log by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/66&quot;&gt;#66&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Update NPM dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/67&quot;&gt;#67&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Move CvtModel back to Persistent Redis Store by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/68&quot;&gt;#68&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;upgrade-notes&quot;&gt;Upgrade Notes&lt;/h2&gt;
+
 &lt;p&gt;This release requires reinstalling any plugins that include targets, because the Current Value Table moved between containers.&lt;/p&gt;
 
 &lt;p&gt;Prerequisites:
@@ -536,7 +551,7 @@ Docker - Running OpenC3 requires a working Docker or Podman installation. Typica
 Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
 
 &lt;p&gt;To Run:
-Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/openc3/releases/tag/v5.0.8&quot;&gt;Download Release Here&lt;/a&gt;
+Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/cosmos/releases/tag/v5.0.8&quot;&gt;Download Release Here&lt;/a&gt;
 Extract the archive somewhere on your host computer
 Edit the .env file and change OPENC3_TAG to 5.0.8
 Run Linux/Mac: ./openc3.sh run
@@ -550,7 +565,7 @@ Have fun running OpenC3!&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.7...v5.0.8&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.7...v5.0.8&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -567,24 +582,27 @@ Have fun running OpenC3!&lt;/p&gt;
       <description>&lt;p&gt;I’m happy to announce the second release of OpenC3!&lt;/p&gt;
 
 &lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;The Admin Plugins Tab now gives feedback on plugin changes and allows downloading any changes made to plugins since they have been installed&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Fixed an issue running the ./openc3.sh cli command&lt;/li&gt;
   &lt;li&gt;Docker compose files updated to fix running in rootless Podman (and any SELinux environment)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;pull-request-links&quot;&gt;Pull Request Links&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;fix typoes and references by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/40&quot;&gt;#40&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Show modified targets and D/L modifications by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/39&quot;&gt;#39&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Support Selinux by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/41&quot;&gt;#41&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check for plugin mods on upgrade and delete by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/42&quot;&gt;#42&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fixes and openc3cli changes to support enterprise by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/45&quot;&gt;#45&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Fix deleting plugins with mods by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/46&quot;&gt;#46&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;fix typoes and references by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/40&quot;&gt;#40&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Show modified targets and D/L modifications by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/39&quot;&gt;#39&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Support Selinux by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/41&quot;&gt;#41&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Check for plugin mods on upgrade and delete by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/42&quot;&gt;#42&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fixes and openc3cli changes to support enterprise by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/45&quot;&gt;#45&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix deleting plugins with mods by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/46&quot;&gt;#46&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Prerequisites:
@@ -594,7 +612,7 @@ Docker - Running OpenC3 requires a working Docker or Podman installation. Typica
 Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
 
 &lt;p&gt;To Run:
-Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/openc3/releases/tag/v5.0.7&quot;&gt;Download Release Here&lt;/a&gt;
+Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/cosmos/releases/tag/v5.0.7&quot;&gt;Download Release Here&lt;/a&gt;
 Extract the archive somewhere on your host computer
 Run Linux/Mac: ./openc3.sh run
 Run Windows: openc3.bat run
@@ -607,7 +625,7 @@ Have fun running OpenC3!&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.6...v5.0.7&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.6...v5.0.7&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -630,6 +648,7 @@ Have fun running OpenC3!&lt;/p&gt;
 &lt;p&gt;This release rebrands the product to OpenC3, has important bug fixes, improves overall performance, and has some great new features including the ability to create telemetry screens directly from the GUI without uploading a new plugin.&lt;/p&gt;
 
 &lt;h2 id=&quot;key-enhancements&quot;&gt;Key Enhancements&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;In TlmViewer you can now create screens directly from the user interface&lt;/li&gt;
   &lt;li&gt;Cursors are now more visible&lt;/li&gt;
@@ -640,6 +659,7 @@ Have fun running OpenC3!&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;key-bug-fixes&quot;&gt;Key Bug Fixes&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;Sending binary blobs in commands now works&lt;/li&gt;
   &lt;li&gt;The Script API now properly enforces authentication&lt;/li&gt;
@@ -647,20 +667,21 @@ Have fun running OpenC3!&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;all-pull-requests&quot;&gt;All Pull Requests&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Properly handle JSON for binary data by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/4&quot;&gt;#4&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Script Authentication Enforced. Added Script Runner Ruby Client.  by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/17&quot;&gt;#17&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Better cleanup and handle limits by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/14&quot;&gt;#14&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add COSMOS compatibility code by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/19&quot;&gt;#19&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Identify test reports vs script reports by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/21&quot;&gt;#21&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Optimize Simulated Target for INST by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/24&quot;&gt;#24&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Switch from openc3 to openc3inc docker namespace by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/32&quot;&gt;#32&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;New screen by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/30&quot;&gt;#30&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;script support scope for all methods by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/33&quot;&gt;#33&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Make cursor white and fix script debug up arrow by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/35&quot;&gt;#35&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Allow –user=root to openc3cli by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/34&quot;&gt;#34&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Better check message and help with NameError by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/36&quot;&gt;#36&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Add converted_ state to as_json by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/openc3/pull/38&quot;&gt;#38&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Properly handle JSON for binary data by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/4&quot;&gt;#4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Script Authentication Enforced. Added Script Runner Ruby Client. by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/17&quot;&gt;#17&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Better cleanup and handle limits by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/14&quot;&gt;#14&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add COSMOS compatibility code by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/19&quot;&gt;#19&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Identify test reports vs script reports by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/21&quot;&gt;#21&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Optimize Simulated Target for INST by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/24&quot;&gt;#24&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Switch from openc3 to openc3inc docker namespace by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/32&quot;&gt;#32&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;New screen by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/30&quot;&gt;#30&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;script support scope for all methods by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/33&quot;&gt;#33&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Make cursor white and fix script debug up arrow by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/35&quot;&gt;#35&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Allow –user=root to openc3cli by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/34&quot;&gt;#34&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Better check message and help with NameError by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/36&quot;&gt;#36&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add converted_ state to as_json by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/38&quot;&gt;#38&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Prerequisites:&lt;/p&gt;
@@ -672,8 +693,9 @@ Have fun running OpenC3!&lt;/p&gt;
 &lt;p&gt;Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
 
 &lt;p&gt;To Run:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/openc3/releases/tag/v5.0.6&quot;&gt;Download Release Here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/OpenC3/cosmos/releases/tag/v5.0.6&quot;&gt;Download Release Here&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Extract the archive somewhere on your host computer&lt;/li&gt;
   &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
   &lt;li&gt;Run Windows: openc3.bat run&lt;/li&gt;
@@ -687,7 +709,7 @@ Have fun running OpenC3!&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/openc3/compare/v5.0.5...v5.0.6&quot;&gt;https://github.com/OpenC3/openc3/compare/v5.0.5…v5.0.6&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.0.5...v5.0.6&quot;&gt;https://github.com/OpenC3/cosmos/compare/v5.0.5…v5.0.6&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

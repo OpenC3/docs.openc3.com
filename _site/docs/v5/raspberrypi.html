@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -100,9 +100,9 @@
         </div>
          
         <h1>Raspberry Pi</h1>
-        <h3 id="openc3-5-running-on-raspberry-pi-4">OpenC3 5 Running on Raspberry Pi 4</h3>
+        <h3 id="cosmos-running-on-raspberry-pi-4">COSMOS Running on Raspberry Pi 4</h3>
 
-<p>The Raspberry Pi 4 is a low-cost powerful ARM-based minicomputer that runs linux. And because it runs modern linux, it can also run OpenC3! These directions will get you up and running.</p>
+<p>The Raspberry Pi 4 is a low-cost powerful ARM-based minicomputer that runs linux. And because it runs modern linux, it can also run COSMOS! These directions will get you up and running.</p>
 
 <p>What you’ll need:</p>
 
@@ -133,7 +133,7 @@
       <li>Click the Gear Icon</li>
       <li>If prompted if you would like to prefill the Wifi information, select OK</li>
       <li>Click all the checkboxes, except for “Enable Telemetry”</li>
-      <li>Set the hostname to: openc3.local</li>
+      <li>Set the hostname to: cosmos.local</li>
       <li>You can either use Password auth, or public-key only if your computer is already setup for passwordless SSH</li>
       <li>Set the username and password. The default username is pi, you should also set a password to make the system secure</li>
       <li>Fill in your Wifi info, and set the country appropriately (ie. US)</li>
@@ -159,7 +159,7 @@
         <p>Open a terminal window and use ssh to connect to your Pi</p>
 
         <ol>
-          <li>On Mac / Linux: ssh pi@openc3.local</li>
+          <li>On Mac / Linux: ssh pi@cosmos.local</li>
           <li>On Windows, use Putty to connect. You will probably have to install Bonjour for Windows for .local addresses to work as well.</li>
         </ol>
       </li>
@@ -179,21 +179,21 @@ sudo usermod -aG docker $USER
 newgrp docker
 sudo apt-get install libffi-dev libssl-dev python3-dev python3 python3-pip -y
 sudo pip3 install docker-compose
-git clone https://github.com/OpenC3/openc3.git
-cd OpenC3
+git clone https://github.com/OpenC3/cosmos.git
+cd cosmos
 ./openc3.sh start
 </code></pre></div>    </div>
   </li>
 </ol>
 
-<p>Note: It takes awhile to build OpenC3 on a Pi (about an hour). Be patient, and in the future we’ll have precompiled containers that will make first launch way faster.</p>
+<p>Note: It takes awhile to build COSMOS on a Pi (about an hour). Be patient, and in the future we’ll have precompiled containers that will make first launch way faster.</p>
 
 <ol>
   <li>
-    <p>After about 2 minutes, open a web browswer on your computer, and goto: http://openc3.local:2900</p>
+    <p>After about 2 minutes, open a web browswer on your computer, and goto: http://cosmos.local:2900</p>
   </li>
   <li>
-    <p>Congratulations! You now have OpenC3 5 running on a Raspberry Pi!</p>
+    <p>Congratulations! You now have COSMOS running on a Raspberry Pi!</p>
   </li>
 </ol>
 
@@ -1661,7 +1661,7 @@ cd OpenC3
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1909,7 +1909,7 @@ cd OpenC3
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1999,7 +1999,7 @@ cd OpenC3
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2647,7 +2647,7 @@ cd OpenC3
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

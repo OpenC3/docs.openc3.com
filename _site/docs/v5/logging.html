@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -111,7 +111,7 @@
 </ul></div>
         
         <h1>Logging</h1>
-        <p>OpenC3 5 includes the open source <a href="https://min.io/">minio</a> software which is a high-performance S3 compatible object storage. Browse to http://localhost:2900/minio and enter the username and password which are stored in the root .env file as OPENC3_MINIO_USERNAME and OPENC3_MINIO_PASSWORD.</p>
+        <p>COSMOS includes the open source <a href="https://min.io/">minio</a> software which is a high-performance S3 compatible object storage. Browse to http://localhost:2900/minio and enter the username and password which are stored in the root .env file as OPENC3_MINIO_USERNAME and OPENC3_MINIO_PASSWORD.</p>
 
 <p>You should see the MinIO Browser and the list of buckets:</p>
 
@@ -126,7 +126,7 @@
 
 <p><img src="/img/v5/logging/raw_tlm_logs.png" alt="raw_tlm_logs"></p>
 
-<p>Note the presence of both .bin files and .idx files. The .bin files contain the raw binary data  while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the <a href="/docs/v5/log-structure">Log Structure</a> developer documentation.</p>
+<p>Note the presence of both .bin files and .idx files. The .bin files contain the raw binary data while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the <a href="/docs/v5/log-structure">Log Structure</a> developer documentation.</p>
 
 <p>The default settings for the Logging microservice is to start a new log file every 10 minutes or 50MB, which ever comes first. In the case of the low data rate demo, the 10 minute mark is hit first.</p>
 
@@ -154,7 +154,7 @@
 <h3 id="tool_logs">
 <a class="anchor" href="#tool_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool_logs</h3>
 
-<p>The tool_logs directory contains logs from the various OpenC3 tools. Note that if you have not yet run any tools you may not see this directory as it is created on demand. Tool sub-directories are also created on demand. For example, after running a script in Script Runner a new ‘sr’ subdirectory appears which contains the script runner log resulting from running the script. In some cases logs in this directory may also be directly available from the tool itself. In the Script Runner case, the Log Messages pane below the script holds the output messages from the last script. Clicking the Download link allows you to download these messages as a file.</p>
+<p>The tool_logs directory contains logs from the various COSMOS tools. Note that if you have not yet run any tools you may not see this directory as it is created on demand. Tool sub-directories are also created on demand. For example, after running a script in Script Runner a new ‘sr’ subdirectory appears which contains the script runner log resulting from running the script. In some cases logs in this directory may also be directly available from the tool itself. In the Script Runner case, the Log Messages pane below the script holds the output messages from the last script. Clicking the Download link allows you to download these messages as a file.</p>
 
 <p><img src="/img/v5/logging/log_messages.png" alt="log_messages"></p>
 
@@ -1622,7 +1622,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1870,7 +1870,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1960,7 +1960,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2608,7 +2608,7 @@
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

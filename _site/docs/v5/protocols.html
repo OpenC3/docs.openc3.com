@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -135,9 +135,9 @@
 </ul></div>
         
         <h1>Protocol Configuration</h1>
-        <p>Protocols process data on behalf of an Interface. They can modify the data being written, data being read, or both. Protocols can also mark a packet as stored instead of real-time which means OpenC3 will not update the current value table with the packet data. Protocols can be layered and will be processed in order. For example, if you have a low-level encryption layer that must be first removed before processing a higher level buffer length protocol.</p>
+        <p>Protocols process data on behalf of an Interface. They can modify the data being written, data being read, or both. Protocols can also mark a packet as stored instead of real-time which means COSMOS will not update the current value table with the packet data. Protocols can be layered and will be processed in order. For example, if you have a low-level encryption layer that must be first removed before processing a higher level buffer length protocol.</p>
 
-<p>Protocols are typically used to define the logic to delineate packets and manipulate data as it written to and read from Interfaces. OpenC3 includes Interfaces for TCP/IP Client, TCP/IP Server, Udp Client / Server, and Serial connections. For 99% of use cases these Interfaces should not require any changes as they universally handle the low-level details of reading and writing from these types of connections. All unique behavior should now be defined in Protocols.</p>
+<p>Protocols are typically used to define the logic to delineate packets and manipulate data as it written to and read from Interfaces. COSMOS includes Interfaces for TCP/IP Client, TCP/IP Server, Udp Client / Server, and Serial connections. For 99% of use cases these Interfaces should not require any changes as they universally handle the low-level details of reading and writing from these types of connections. All unique behavior should now be defined in Protocols.</p>
 
 <p>At a minimum, any byte stream based Interface will require a Protocol to delineate packets. TCP/IP and Serial are examples of byte stream based Interfaces. A byte stream is just a simple stream of bytes and thus you need some way to know where packets begin and end within the stream.</p>
 
@@ -150,12 +150,12 @@
 <h2 id="packet-delineation-protocols">
 <a class="anchor" href="#packet-delineation-protocols" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Delineation Protocols</h2>
 
-<p>OpenC3 provides the following packet delineation protocols: Burst, Fixed, Length, Template, Terminated and Preidentified. Each of these protocols has the primary purpose of separating out packets from a byte stream.</p>
+<p>COSMOS provides the following packet delineation protocols: Burst, Fixed, Length, Template, Terminated and Preidentified. Each of these protocols has the primary purpose of separating out packets from a byte stream.</p>
 
 <h3 id="burst-protocol">
 <a class="anchor" href="#burst-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Burst Protocol</h3>
 
-<p>The Burst Protocol simply reads as much data as it can from the interface before returning the data as a OpenC3 Packet (It returns a packet for each burst of data read). This Protocol relies on regular bursts of data delimited by time and thus is not very robust. However, it can utilize a sync pattern which does allow it to re-sync if necessary. It can also discard bytes from the incoming data to remove the sync pattern. Finally, it can add sync patterns to data being written out of the Interface.</p>
+<p>The Burst Protocol simply reads as much data as it can from the interface before returning the data as a COSMOS Packet (It returns a packet for each burst of data read). This Protocol relies on regular bursts of data delimited by time and thus is not very robust. However, it can utilize a sync pattern which does allow it to re-sync if necessary. It can also discard bytes from the incoming data to remove the sync pattern. Finally, it can add sync patterns to data being written out of the Interface.</p>
 
 <table>
   <thead>
@@ -395,7 +395,7 @@
 <h3 id="template-protocol">
 <a class="anchor" href="#template-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template Protocol</h3>
 
-<p>The Template Protocol works much like the Terminated Protocol except it is designed for text-based command and response type interfaces such as SCPI (Standard Commands for Programmable Instruments). It delineates packets in the same way as the Terminated Protocol except each packet is referred to as a line (because each usually contains a line of text). For outgoing packets, a CMD_TEMPLATE field is expected to exist in the packet. This field contains a template string with items to be filled in delineated within HTML tag style brackets <code class="language-plaintext highlighter-rouge">"&lt;EXAMPLE&gt;"</code>. The Template Protocol will read the named items from within the packet and fill in the CMD_TEMPLATE. This filled in string is then sent out rather than the originally passed in packet. Correspondingly, if a response is expected the outgoing packet should include a RSP_TEMPLATE and RSP_PACKET field. The RSP_TEMPLATE is used to extract data from the response string and build a corresponding RSP_PACKET. See the TEMPLATE target within the OpenC3 Demo configuration for an example of usage.</p>
+<p>The Template Protocol works much like the Terminated Protocol except it is designed for text-based command and response type interfaces such as SCPI (Standard Commands for Programmable Instruments). It delineates packets in the same way as the Terminated Protocol except each packet is referred to as a line (because each usually contains a line of text). For outgoing packets, a CMD_TEMPLATE field is expected to exist in the packet. This field contains a template string with items to be filled in delineated within HTML tag style brackets <code class="language-plaintext highlighter-rouge">"&lt;EXAMPLE&gt;"</code>. The Template Protocol will read the named items from within the packet and fill in the CMD_TEMPLATE. This filled in string is then sent out rather than the originally passed in packet. Correspondingly, if a response is expected the outgoing packet should include a RSP_TEMPLATE and RSP_PACKET field. The RSP_TEMPLATE is used to extract data from the response string and build a corresponding RSP_PACKET. See the TEMPLATE target within the COSMOS Demo configuration for an example of usage.</p>
 
 <p>Check out this <a href="/news/2017/06/19/template_protocol">Template Protocol</a> blog post for additional tips.</p>
 
@@ -493,7 +493,7 @@
 <h3 id="preidentified-protocol">
 <a class="anchor" href="#preidentified-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preidentified Protocol</h3>
 
-<p>The Preidentified Protocol is used internally by the OpenC3 Command and Telemetry Server only and delineates packets using a custom OpenC3 header. This Protocol is configured by default on port 7779 and is created by the Command and Telemetry Server to allow tools to connect and receive the entire packet stream. The Telemetry Grapher uses this port to receive all the packets following through the Command and Telemetry Server in case any need to be graphed.</p>
+<p>The Preidentified Protocol is used internally by the COSMOS Command and Telemetry Server only and delineates packets using a custom COSMOS header. This Protocol is configured by default on port 7779 and is created by the Command and Telemetry Server to allow tools to connect and receive the entire packet stream. The Telemetry Grapher uses this port to receive all the packets following through the Command and Telemetry Server in case any need to be graphed.</p>
 
 <table>
   <thead>
@@ -535,7 +535,7 @@
 <h2 id="helper-protocols">
 <a class="anchor" href="#helper-protocols" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Protocols</h2>
 
-<p>OpenC3 provides the following helper protocols: Override, and Crc. These protocols provide helper functionality to Interfaces.</p>
+<p>COSMOS provides the following helper protocols: Override, and Crc. These protocols provide helper functionality to Interfaces.</p>
 
 <h3 id="override-protocol">
 <a class="anchor" href="#override-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Override Protocol</h3>
@@ -673,7 +673,7 @@ PROTOCOL READ OverrideProtocol
 <h3 id="ignore-packet-protocol">
 <a class="anchor" href="#ignore-packet-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ignore Packet Protocol</h3>
 
-<p>The Ignore Packet protocol drops specified command packets sent by OpenC3 or drops incoming telemetry packets.</p>
+<p>The Ignore Packet protocol drops specified command packets sent by COSMOS or drops incoming telemetry packets.</p>
 
 <table>
   <thead>
@@ -709,9 +709,9 @@ PROTOCOL READ OverrideProtocol
 <h2 id="custom-protocols">
 <a class="anchor" href="#custom-protocols" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Protocols</h2>
 
-<p>Creating a custom protocol is easy and should be the default solution for customizing OpenC3 Interfaces (rather than creating a new Interface class). However, creating custom Interfaces is still useful for defaulting parameters to values that always are fixed for your target and for including the necessary Protocols. The base OpenC3 Interfaces take a lot of parameters that can be confusing to your end users. Thus you may want to create a custom Interface just to hard coded these values and cut the available parameters down to something like the hostname and port to connect to.</p>
+<p>Creating a custom protocol is easy and should be the default solution for customizing COSMOS Interfaces (rather than creating a new Interface class). However, creating custom Interfaces is still useful for defaulting parameters to values that always are fixed for your target and for including the necessary Protocols. The base COSMOS Interfaces take a lot of parameters that can be confusing to your end users. Thus you may want to create a custom Interface just to hard coded these values and cut the available parameters down to something like the hostname and port to connect to.</p>
 
-<p>All custom Protocols should derive from the Protocol class found in the OpenC3 gem at <a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/protocol.rb">lib/openc3/interfaces/protocols/protocol.rb</a>. This class defines the 9 methods that are relevant to writing your own protocol. The base class implementation for each method is included below as well as a discussion as to how the methods should be overridden and used in your own Protocols.</p>
+<p>All custom Protocols should derive from the Protocol class found in the COSMOS gem at <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/protocol.rb">lib/openc3/interfaces/protocols/protocol.rb</a>. This class defines the 9 methods that are relevant to writing your own protocol. The base class implementation for each method is included below as well as a discussion as to how the methods should be overridden and used in your own Protocols.</p>
 
 <p>To really understand how Protocols work, you first must understand the logic within the base Interface class read and write methods.</p>
 
@@ -719,13 +719,13 @@ PROTOCOL READ OverrideProtocol
 
 <p><img src="/img/interface_read_logic.png" alt="Interface Read Logic"></p>
 
-<p>On EVERY call to read, an empty Ruby string “” is first passed down to each of the read Protocol’s read_data() method BEFORE new raw data is attempted to be read using the Interface’s read_interface() method. This is a signal to Protocols that have cached up more than one packet worth of data to output those cached packets before any new data is read from the Interface. Typically no data will be cached up and one of the Protocols read_data() methods will return :STOP in response to the empty string, indicating that more data is required to generate a packet. Each Protocol’s read_data() method can return one of three things: data that will be passed down to any additional Protocols or turned into a Packet, :STOP which means more data is required from the Interface for the Protocol to continue, or :DISCONNECT which means that something has happened that requires disconnecting the Interface (and by default trying to reconnect). Each Protocol’s read_data method is passed the data that will eventually be turned into a packet and returns a possibly modified set of data. If the data passes through all Protocol’s read_data() methods it is then converted into a OpenC3 packet using the Interface’s convert_data_to_packet() method. This packet is then run in a similar fashion through each Read Protocol’s read_packet() method. This method has essentially the same return possibilities: a Packet (instead of data as in read_data()), :STOP, or :DISCONNECT. If the Packet makes it through all read_packet() methods then the Interface packet read counter is incremented and the Packet is returned to the Interface.</p>
+<p>On EVERY call to read, an empty Ruby string “” is first passed down to each of the read Protocol’s read_data() method BEFORE new raw data is attempted to be read using the Interface’s read_interface() method. This is a signal to Protocols that have cached up more than one packet worth of data to output those cached packets before any new data is read from the Interface. Typically no data will be cached up and one of the Protocols read_data() methods will return :STOP in response to the empty string, indicating that more data is required to generate a packet. Each Protocol’s read_data() method can return one of three things: data that will be passed down to any additional Protocols or turned into a Packet, :STOP which means more data is required from the Interface for the Protocol to continue, or :DISCONNECT which means that something has happened that requires disconnecting the Interface (and by default trying to reconnect). Each Protocol’s read_data method is passed the data that will eventually be turned into a packet and returns a possibly modified set of data. If the data passes through all Protocol’s read_data() methods it is then converted into a COSMOS packet using the Interface’s convert_data_to_packet() method. This packet is then run in a similar fashion through each Read Protocol’s read_packet() method. This method has essentially the same return possibilities: a Packet (instead of data as in read_data()), :STOP, or :DISCONNECT. If the Packet makes it through all read_packet() methods then the Interface packet read counter is incremented and the Packet is returned to the Interface.</p>
 
 <p><img src="/img/interface_write_logic.png" alt="Interface Write Logic"></p>
 
 <p>The Interface write() method works very similarly to read. (It should be mentioned that by default write protocols run in the reverse order of read protocols. This makes sense because when reading you’re typically stripping layers of data and when writing you’re typically adding on layers in reverse order.)</p>
 
-<p>First, the packet write counter is incremented. Then each write Protocol is given a chance to modify the packet by its write_packet() method being called. This method can either return a potentially modified packet, :STOP, or :DISCONNECT. If a write Protocol returns :STOP no data will be written out the Interface and it is assumed that more packets are necessary before a final packet can be output. :DISCONNECT will disconnect the Interface. If the packet makes it through all the write Protocol’s write_packet() methods, then it is converted to binary data using the Interface’s convert_packet_to_data() method. Next the write_data() method is called for each write Protocol giving it a chance to modify the lower level data. The same return options are available except a Ruby string of data is returned instead of a OpenC3 packet. If the data makes it through all write_data() methods, then it is written out on the Interface using the write_interface() method. Afterwards, each Protocol’s post_write_interface() method is called with both the final modified Packet, and the actual data written out to the Interface. This method allows follow-up such as waiting for a response after writing out a message.</p>
+<p>First, the packet write counter is incremented. Then each write Protocol is given a chance to modify the packet by its write_packet() method being called. This method can either return a potentially modified packet, :STOP, or :DISCONNECT. If a write Protocol returns :STOP no data will be written out the Interface and it is assumed that more packets are necessary before a final packet can be output. :DISCONNECT will disconnect the Interface. If the packet makes it through all the write Protocol’s write_packet() methods, then it is converted to binary data using the Interface’s convert_packet_to_data() method. Next the write_data() method is called for each write Protocol giving it a chance to modify the lower level data. The same return options are available except a Ruby string of data is returned instead of a COSMOS packet. If the data makes it through all write_data() methods, then it is written out on the Interface using the write_interface() method. Afterwards, each Protocol’s post_write_interface() method is called with both the final modified Packet, and the actual data written out to the Interface. This method allows follow-up such as waiting for a response after writing out a message.</p>
 
 <h2 id="method-discussions">
 <a class="anchor" href="#method-discussions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Method discussions</h2>
@@ -814,7 +814,7 @@ PROTOCOL READ OverrideProtocol
 <h3 id="read_packet">
 <a class="anchor" href="#read_packet" aria-hidden="true"><span class="octicon octicon-link"></span></a>read_packet</h3>
 
-<p>The read_packet method is used to analyze and potentially modify a OpenC3 packet before it is returned by the Interface. It takes one parameter as the current state of the packet to be analyzed. It can return either a OpenC3 packet, :STOP, or :DISCONNECT. If it returns a OpenC3 packet, then it believes that the packet is valid, should be returned, and is ready for processing by any following Protocols. If :STOP is returned then the Protocol believes the packet should be silently dropped. If :DISCONNECT is returned then the Protocol believes the Interface should be disconnected (and typically automatically reconnected). This method is where a Protocol would set the stored flag on a packet if it determines that the packet is stored telemetry instead of real-time telemetry.</p>
+<p>The read_packet method is used to analyze and potentially modify a COSMOS packet before it is returned by the Interface. It takes one parameter as the current state of the packet to be analyzed. It can return either a COSMOS packet, :STOP, or :DISCONNECT. If it returns a COSMOS packet, then it believes that the packet is valid, should be returned, and is ready for processing by any following Protocols. If :STOP is returned then the Protocol believes the packet should be silently dropped. If :DISCONNECT is returned then the Protocol believes the Interface should be disconnected (and typically automatically reconnected). This method is where a Protocol would set the stored flag on a packet if it determines that the packet is stored telemetry instead of real-time telemetry.</p>
 
 <p>Base Class Implementation:</p>
 
@@ -828,7 +828,7 @@ PROTOCOL READ OverrideProtocol
 <h3 id="write_packet">
 <a class="anchor" href="#write_packet" aria-hidden="true"><span class="octicon octicon-link"></span></a>write_packet</h3>
 
-<p>The write_packet method is used to analyze and potentially modify a OpenC3 packet before it is output by the Interface. It takes one parameter as the current state of the packet to be analyzed. It can return either a OpenC3 packet, :STOP, or :DISCONNECT. If it returns a OpenC3 packet, then it believes that the packet is valid, should be written out the Interface, and is ready for processing by any following Protocols. If :STOP is returned then the Protocol believes the packet should be silently dropped. If :DISCONNECT is returned then the Protocol believes the Interface should be disconnected (and typically automatically reconnected).</p>
+<p>The write_packet method is used to analyze and potentially modify a COSMOS packet before it is output by the Interface. It takes one parameter as the current state of the packet to be analyzed. It can return either a COSMOS packet, :STOP, or :DISCONNECT. If it returns a COSMOS packet, then it believes that the packet is valid, should be written out the Interface, and is ready for processing by any following Protocols. If :STOP is returned then the Protocol believes the packet should be silently dropped. If :DISCONNECT is returned then the Protocol believes the Interface should be disconnected (and typically automatically reconnected).</p>
 
 <p>Base Class Implementation:</p>
 
@@ -870,17 +870,17 @@ PROTOCOL READ OverrideProtocol
 <h2 id="examples">
 <a class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
-<p>Please see the included OpenC3 protocol code for examples of the above methods in action.</p>
+<p>Please see the included COSMOS protocol code for examples of the above methods in action.</p>
 
-<p><a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/protocol.rb">lib/openc3/interfaces/protocols/protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/burst_protocol.rb">lib/openc3/interfaces/protocols/burst_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/fixed_protocol.rb">lib/openc3/interfaces/protocols/fixed_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/length_protocol.rb">lib/openc3/interfaces/protocols/length_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/terminated_protocol.rb">lib/openc3/interfaces/protocols/terminated_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/template_protocol.rb">lib/openc3/interfaces/protocols/template_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/override_protocol.rb">lib/openc3/interfaces/protocols/override_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/crc_protocol.rb">lib/openc3/interfaces/protocols/crc_protocol.rb</a>
-<a href="https://github.com/OpenC3/openc3/blob/master/openc3/lib/openc3/interfaces/protocols/preidentified_protocol.rb">lib/openc3/interfaces/protocols/preidentified_protocol.rb</a></p>
+<p><a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/protocol.rb">lib/openc3/interfaces/protocols/protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/burst_protocol.rb">lib/openc3/interfaces/protocols/burst_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/fixed_protocol.rb">lib/openc3/interfaces/protocols/fixed_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/length_protocol.rb">lib/openc3/interfaces/protocols/length_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/terminated_protocol.rb">lib/openc3/interfaces/protocols/terminated_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/template_protocol.rb">lib/openc3/interfaces/protocols/template_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/override_protocol.rb">lib/openc3/interfaces/protocols/override_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/crc_protocol.rb">lib/openc3/interfaces/protocols/crc_protocol.rb</a>
+<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/preidentified_protocol.rb">lib/openc3/interfaces/protocols/preidentified_protocol.rb</a></p>
 
       </article>
     </div>
@@ -2346,7 +2346,7 @@ PROTOCOL READ OverrideProtocol
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2594,7 +2594,7 @@ PROTOCOL READ OverrideProtocol
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2684,7 +2684,7 @@ PROTOCOL READ OverrideProtocol
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3332,7 +3332,7 @@ PROTOCOL READ OverrideProtocol
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

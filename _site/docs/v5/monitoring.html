@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -127,7 +127,7 @@
         <h3 id="monitoring-and-observability">
 <a class="anchor" href="#monitoring-and-observability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Monitoring and observability</h3>
 
-<p>With moving openc3 to container based service, we needed a better way to monitor the internals of openc3. So here is some information on external services that you can use to monitor openc3. If you want to read more about <a href="https://sre.google/sre-book/monitoring-distributed-systems/">Monitoring Distributed Systems</a></p>
+<p>With moving COSMOS to container based service, we needed a better way to monitor the internals of COSMOS. So here is some information on external services that you can use to monitor COSMOS. If you want to read more about <a href="https://sre.google/sre-book/monitoring-distributed-systems/">Monitoring Distributed Systems</a></p>
 
 <h3 id="fluentfluentd">
 <a class="anchor" href="#fluentfluentd" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://www.fluentd.org/guides/recipes/docker-logging">Fluent/Fluentd</a>
@@ -141,6 +141,7 @@
 <a class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h4>
 
 <p>in_docker.conf</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;source&gt;
   @type forward
   port 24224
@@ -203,6 +204,7 @@
 </code></pre></div></div>
 
 <p>Dockerfile</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM fluent/fluentd:v1.10.3-1.0
 
 COPY ./in_docker.conf /fluentd/etc/fluent.conf
@@ -230,6 +232,7 @@ USER fluent
 <p>When testing this I found that depending on how you ingest your logs into the opendistro I found I had to disable security. Here is an example of the docker file.</p>
 
 <p>Dockerfile</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM amazon/opendistro-for-elasticsearch:1.12.0
 
 RUN /usr/share/elasticsearch/bin/elasticsearch-plugin remove opendistro_security
@@ -247,6 +250,7 @@ RUN /usr/share/elasticsearch/bin/elasticsearch-plugin remove opendistro_security
 <a class="anchor" href="#notes-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h4>
 
 <p>prometheus.yaml</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>global:
   scrape_interval: 15s
   evaluation_interval: 15s
@@ -283,6 +287,7 @@ scrape_configs:
 </code></pre></div></div>
 
 <p>Dockerfile</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM prom/prometheus:v2.24.1
 ADD prometheus.yaml /etc/prometheus/
 </code></pre></div></div>
@@ -299,6 +304,7 @@ ADD prometheus.yaml /etc/prometheus/
 <a class="anchor" href="#notes-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h4>
 
 <p>datasource.yaml</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: 1
 
 datasources:
@@ -310,6 +316,7 @@ datasources:
 </code></pre></div></div>
 
 <p>Dockerfile</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM grafana/grafana
 
 COPY datasource.yaml /etc/grafana/provisioning/datasources/
@@ -1779,7 +1786,7 @@ COPY datasource.yaml /etc/grafana/provisioning/datasources/
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2027,7 +2034,7 @@ COPY datasource.yaml /etc/grafana/provisioning/datasources/
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2117,7 +2124,7 @@ COPY datasource.yaml /etc/grafana/provisioning/datasources/
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2765,7 +2772,7 @@ COPY datasource.yaml /etc/grafana/provisioning/datasources/
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">
