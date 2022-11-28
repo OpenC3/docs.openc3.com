@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -112,25 +112,25 @@
 </ul></div>
         
         <h1>Custom Widgets</h1>
-        <p>OpenC3 5 allows you to build custom widgets which can be deployed with your <a href="/docs/v5/plugins">plugin</a> and used in <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>. Building custom widgets can utilitize any javascript frameworks but since OpenC3 is written with Vue.js, we will use that framework in this tutorial.</p>
+        <p>COSMOS allows you to build custom widgets which can be deployed with your <a href="/docs/v5/plugins">plugin</a> and used in <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>. Building custom widgets can utilitize any javascript frameworks but since COSMOS is written with Vue.js, we will use that framework in this tutorial.</p>
 
 <h2 id="custom-widgets">
 <a class="anchor" href="#custom-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Widgets</h2>
 
-<p>We’re basically going to follow the OpenC3 <a href="https://github.com/OpenC3/openc3/tree/master/openc3-init/plugins/packages/openc3-demo">Demo</a> and explain how that custom widget was created.</p>
+<p>We’re basically going to follow the COSMOS <a href="https://github.com/OpenC3/cosmos/tree/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo">Demo</a> and explain how that custom widget was created.</p>
 
-<p>If you look at the bottom of the Demo’s <a href="https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/plugin.txt">plugin.txt</a> file you’ll see we declare the widgets:</p>
+<p>If you look at the bottom of the Demo’s <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/plugin.txt">plugin.txt</a> file you’ll see we declare the widgets:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WIDGET BIG
 WIDGET HELLOWORLD
 </code></pre></div></div>
 
-<p>When the plugin is deployed this causes OpenC3 to look for the as-built widgets. For the BIG widget it will look for the widget at <code class="language-plaintext highlighter-rouge">tools/widgets/BigWidget/BigWidget.umd.min.js</code>. Similarly it looks for HELLOWORLD at <code class="language-plaintext highlighter-rouge">tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js</code>. These directories and file names may seem mysterious but it’s all about how the widgets get built.</p>
+<p>When the plugin is deployed this causes COSMOS to look for the as-built widgets. For the BIG widget it will look for the widget at <code class="language-plaintext highlighter-rouge">tools/widgets/BigWidget/BigWidget.umd.min.js</code>. Similarly it looks for HELLOWORLD at <code class="language-plaintext highlighter-rouge">tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js</code>. These directories and file names may seem mysterious but it’s all about how the widgets get built.</p>
 
 <h3 id="helloworld-widget">
 <a class="anchor" href="#helloworld-widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helloworld Widget</h3>
 
-<p>The Helloworld Widget source code is found in the plugin’s src directory and is called <a href="https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/src/HelloworldWidget.vue">HelloworldWidget.vue</a>. The basic structure is as follows:</p>
+<p>The Helloworld Widget source code is found in the plugin’s src directory and is called <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/src/HelloworldWidget.vue">HelloworldWidget.vue</a>. The basic structure is as follows:</p>
 
 <div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- Implement widget here --&gt;</span>
@@ -155,10 +155,10 @@ WIDGET HELLOWORLD
 <div class="note info">
   <h5>
 <a class="anchor" href="#vue--vuetify" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vue &amp; Vuetify</h5>
-  <p>For more information about how the OpenC3 frontend is built (including all the Widgets) please check out <a href="https://vuejs.org">Vue.js</a> and <a href="https://vuetifyjs.com">Vuetify</a>.</p>
+  <p>For more information about how the COSMOS frontend is built (including all the Widgets) please check out <a href="https://vuejs.org">Vue.js</a> and <a href="https://vuetifyjs.com">Vuetify</a>.</p>
 </div>
 
-<p>To build this custom widget we changed the Demo <a href="https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/Rakefile">Rakefile</a> to call <code class="language-plaintext highlighter-rouge">yarn run build</code> when the plugin is built. <code class="language-plaintext highlighter-rouge">yarn run XXX</code> looks for ‘scripts’ to run in the <a href="https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/package.json">package.json</a> file. If we open package.json we find the following:</p>
+<p>To build this custom widget we changed the Demo <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/Rakefile">Rakefile</a> to call <code class="language-plaintext highlighter-rouge">yarn run build</code> when the plugin is built. <code class="language-plaintext highlighter-rouge">yarn run XXX</code> looks for ‘scripts’ to run in the <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/package.json">package.json</a> file. If we open package.json we find the following:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vue-cli-service build --target lib --dest tools/widgets/HelloworldWidget --formats umd-min src/HelloworldWidget.vue --name HelloworldWidget &amp;&amp; vue-cli-service build --target lib --dest tools/widgets/BigWidget --formats umd-min src/BigWidget.vue --name BigWidget"</span><span class="w">
@@ -167,7 +167,7 @@ WIDGET HELLOWORLD
 
 <p>This uses the <code class="language-plaintext highlighter-rouge">vue-cli-service</code> to build the code found at <code class="language-plaintext highlighter-rouge">src/HelloworldWidget.vue</code> and formats as <code class="language-plaintext highlighter-rouge">umd-min</code> and puts it in the <code class="language-plaintext highlighter-rouge">tools/widgets/HelloworldWidget</code> directory. So this is why the plugin looks for the plugin at <code class="language-plaintext highlighter-rouge">tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js</code>. Click <a href="https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-build">here</a> for the <code class="language-plaintext highlighter-rouge">vue-cli-service build</code> documentation.</p>
 
-<p>If you look at the Demo plugin’s <a href="https://github.com/OpenC3/openc3/blob/master/openc3-init/plugins/packages/openc3-demo/targets/INST/screens/simple.txt">simple.txt</a> screen you’ll see we’re using the widgets:</p>
+<p>If you look at the Demo plugin’s <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/targets/INST/screens/simple.txt">simple.txt</a> screen you’ll see we’re using the widgets:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SCREEN AUTO AUTO 0.5
 LABELVALUE &lt;%= target_name %&gt; HEALTH_STATUS CCSDSSEQCNT
@@ -1645,7 +1645,7 @@ BIG &lt;%= target_name %&gt; HEALTH_STATUS TEMP1
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1893,7 +1893,7 @@ BIG &lt;%= target_name %&gt; HEALTH_STATUS TEMP1
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1983,7 +1983,7 @@ BIG &lt;%= target_name %&gt; HEALTH_STATUS TEMP1
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2631,7 +2631,7 @@ BIG &lt;%= target_name %&gt; HEALTH_STATUS TEMP1
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

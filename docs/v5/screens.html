@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -221,7 +221,7 @@
 </ul></div>
         
         <h1>Telemetry Screens</h1>
-        <p>This document provides the information necessary to generate and use OpenC3 Telemetry Screens, which are displayed by the OpenC3 Telemetry Viewer application.</p>
+        <p>This document provides the information necessary to generate and use COSMOS Telemetry Screens, which are displayed by the COSMOS Telemetry Viewer application.</p>
 
 <div style="clear:both;"></div>
 
@@ -238,7 +238,7 @@
   <tbody>
     <tr>
       <td>Widget</td>
-      <td>A widget is a graphical element on a OpenC3 telemetry screen. It could display text, graph data, provide a button, or perform any other display/user input task.</td>
+      <td>A widget is a graphical element on a COSMOS telemetry screen. It could display text, graph data, provide a button, or perform any other display/user input task.</td>
     </tr>
     <tr>
       <td>Screen</td>
@@ -246,7 +246,7 @@
     </tr>
     <tr>
       <td>Screen Definition File</td>
-      <td>A screen definition file is an ASCII file that tells OpenC3 Telemetry Viewer how to draw a screen. It is made up of a series of keyword/parameter lines that define the telemetry points that are displayed on the screen and how to display them.</td>
+      <td>A screen definition file is an ASCII file that tells Telemetry Viewer how to draw a screen. It is made up of a series of keyword/parameter lines that define the telemetry points that are displayed on the screen and how to display them.</td>
     </tr>
   </tbody>
 </table>
@@ -254,7 +254,7 @@
 <h2 id="telemetry-screen-definition-files">
 <a class="anchor" href="#telemetry-screen-definition-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Screen Definition Files</h2>
 
-<p>Telemetry screen definition files define the the contents of telemetry screens. They take the general form of a SCREEN keyword followed by a series of widget keywords that define the telemetry screen. Screen definition files specific to a particular target go in that target’s screens directory. For example: OpenC3/screens/version.txt. Screen definition files that combine telemetry from multiple targets typically go in the SYSTEM target’s screens folder. For example: SYSTEM/screens/overall.txt.</p>
+<p>Telemetry screen definition files define the the contents of telemetry screens. They take the general form of a SCREEN keyword followed by a series of widget keywords that define the telemetry screen. Screen definition files specific to a particular target go in that target’s screens directory. For example: TARGET/screens/version.txt. Screen definition files that combine telemetry from multiple targets typically go in the SYSTEM target’s screens folder. For example: SYSTEM/screens/overall.txt.</p>
 
 <h2 id="keywords">
 <a class="anchor" href="#keywords" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keywords:</h2>
@@ -510,7 +510,7 @@ BUTTON <span class="s2">"Push"</span> <span class="s2">"screen.get_named_widget(
 <h3 id="widgetname">
 <a class="anchor" href="#widgetname" aria-hidden="true"><span class="octicon octicon-link"></span></a>WIDGETNAME</h3>
 
-<p>All other keywords in a telemetry screen definition define the name of a widget and its unique parameters. These aren’t really keywords at all and widgets can have any name besides the real keywords listed above. Whenever a keyword is encountered that is unrecognized, it is assumed that a file of the form widgetname_widget.rb exists, and contains a class called WidgetnameWidget. Because of this convention, new widgets can be added to the system without any change to the telemetry screen definition format Please see the Widget Descriptions section below for the details on all widgets supplied with the OpenC3 core system.</p>
+<p>All other keywords in a telemetry screen definition define the name of a widget and its unique parameters. These aren’t really keywords at all and widgets can have any name besides the real keywords listed above. Whenever a keyword is encountered that is unrecognized, it is assumed that a file of the form widgetname_widget.rb exists, and contains a class called WidgetnameWidget. Because of this convention, new widgets can be added to the system without any change to the telemetry screen definition format Please see the Widget Descriptions section below for the details on all widgets supplied with the COSMOS core system.</p>
 
 <table>
   <thead>
@@ -577,7 +577,7 @@ END
 <h2 id="widget-descriptions">
 <a class="anchor" href="#widget-descriptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Widget Descriptions</h2>
 
-<p>This section describes the usage of all the telemetry screen widgets that are provided by the core OpenC3 system.</p>
+<p>This section describes the usage of all the telemetry screen widgets that are provided by the core COSMOS system.</p>
 
 <h2 id="layout-widgets">
 <a class="anchor" href="#layout-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout Widgets</h2>
@@ -5482,7 +5482,7 @@ SETTING TLM_OR INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -5730,7 +5730,7 @@ SETTING TLM_OR INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -5820,7 +5820,7 @@ SETTING TLM_OR INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -6468,7 +6468,7 @@ SETTING TLM_OR INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

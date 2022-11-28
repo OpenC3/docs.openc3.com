@@ -2,12 +2,12 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>OpenC3 and NASA cFS</title>
+  <title>COSMOS and NASA cFS</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -101,9 +101,9 @@
          
         <div class="toc"><ul id="toc" class="section-nav">
 <li class="toc-entry toc-h2"><a href="#working-configuration">Working configuration</a></li>
-<li class="toc-entry toc-h2"><a href="#setting-up-openc3">Setting up OpenC3</a>
+<li class="toc-entry toc-h2"><a href="#setting-up-cosmos">Setting up COSMOS</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#configuring-openc3">Configuring OpenC3</a></li>
+<li class="toc-entry toc-h3"><a href="#configuring-cosmos">Configuring COSMOS</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#setting-up-cfs">Setting up cFS</a>
@@ -113,7 +113,7 @@
 <li class="toc-entry toc-h3"><a href="#build-and-run-cfs">Build and run cFS</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#creating-a-openc3-plugin-for-tmtc-interface-with-cfs">Creating a OpenC3 plugin for TM/TC interface with cFS</a></li>
+<li class="toc-entry toc-h2"><a href="#creating-a-cosmos-plugin-for-tmtc-interface-with-cfs">Creating a COSMOS plugin for TM/TC interface with cFS</a></li>
 <li class="toc-entry toc-h2"><a href="#creating-tmtc-definitions">Creating TM/TC definitions</a>
 <ul>
 <li class="toc-entry toc-h5"><a href="#enabling-telemetry">Enabling Telemetry</a></li>
@@ -129,14 +129,14 @@
 </li>
 </ul></div>
         
-        <h1>OpenC3 and NASA cFS</h1>
+        <h1>COSMOS and NASA cFS</h1>
         <h2 id="working-configuration">
 <a class="anchor" href="#working-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working configuration</h2>
 
 <p>This tutorial has been tested using the following components:</p>
 
 <ul>
-  <li>OpenC3 v5 release <a href="https://github.com/OpenC3/openc3/releases/tag/v5.0.6">5.0.6</a>
+  <li>COSMOS v5 release <a href="https://github.com/OpenC3/cosmos/releases/tag/v5.0.6">5.0.6</a>
 </li>
   <li>cFS master-branch commit: 561b128 (June 1, 2022)</li>
   <li>Docker Desktop 4.9.0 on Windows</li>
@@ -144,13 +144,13 @@
 
 <p>Replace all <code class="language-plaintext highlighter-rouge">&lt;xxxxxx&gt;</code> with your matching paths and names. Example: <code class="language-plaintext highlighter-rouge">&lt;USERNAME&gt;</code>.</p>
 
-<h2 id="setting-up-openc3">
-<a class="anchor" href="#setting-up-openc3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up OpenC3</h2>
+<h2 id="setting-up-cosmos">
+<a class="anchor" href="#setting-up-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up COSMOS</h2>
 
-<p>Install OpenC3 according to the official <a href="/docs/v5/installation">installation</a> instructions.</p>
+<p>Install COSMOS according to the official <a href="/docs/v5/installation">installation</a> instructions.</p>
 
-<h3 id="configuring-openc3">
-<a class="anchor" href="#configuring-openc3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring OpenC3</h3>
+<h3 id="configuring-cosmos">
+<a class="anchor" href="#configuring-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring COSMOS</h3>
 
 <p>Change the Docker configuration for the interoperability with NASA cFS. For
 subscribing to the telemetry, you have to append a port binding in the file
@@ -162,14 +162,14 @@ match with the port number cFS is sending the telemetry on.</p>
     <span class="pi">-</span> <span class="s2">"</span><span class="s">1235:1235/udp"</span>
 </code></pre></div></div>
 
-<p>Run OpenC3, the first run takes a while (~15 min).</p>
+<p>Run COSMOS, the first run takes a while (~15 min).</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3.sh start
 </code></pre></div></div>
 
 <p>When started, connect with a browser to <a href="http://localhost:2900">http://localhost:2900</a>.</p>
 
-<p>For shutting down OpenC3:</p>
+<p>For shutting down COSMOS:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3.sh stop
 </code></pre></div></div>
@@ -225,27 +225,27 @@ match with the port number cFS is sending the telemetry on.</p>
 <h3 id="build-and-run-cfs">
 <a class="anchor" href="#build-and-run-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build and run cFS</h3>
 
-<p>Note we’re connecting to the OpenC3 network (<code class="language-plaintext highlighter-rouge">docker network ls</code>) and exposing the cFS ports.</p>
+<p>Note we’re connecting to the COSMOS network (<code class="language-plaintext highlighter-rouge">docker network ls</code>) and exposing the cFS ports.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> cfs <span class="nb">.</span>
 docker run <span class="nt">--cap-add</span> CAP_SYS_RESOURCE <span class="nt">--net</span><span class="o">=</span>openc3_default <span class="nt">--name</span> cfs <span class="nt">-p1234</span>:1234 <span class="nt">-p1235</span>:1235 cfs
 </code></pre></div></div>
 
-<h2 id="creating-a-openc3-plugin-for-tmtc-interface-with-cfs">
-<a class="anchor" href="#creating-a-openc3-plugin-for-tmtc-interface-with-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a OpenC3 plugin for TM/TC interface with cFS</h2>
+<h2 id="creating-a-cosmos-plugin-for-tmtc-interface-with-cfs">
+<a class="anchor" href="#creating-a-cosmos-plugin-for-tmtc-interface-with-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a COSMOS plugin for TM/TC interface with cFS</h2>
 
 <p>The detailed instructions how to create a plugin, can be found
 <a href="/docs/v5/gettingstarted">here</a>, in the chapter “Interfacing with Your Hardware”.</p>
 
 <p>Create a new plugin with the name <code class="language-plaintext highlighter-rouge">CFS</code>. <code class="language-plaintext highlighter-rouge">CFS</code> is the name of the plugin and
-must be in capital letters according to the OpenC3 documentation. This command
+must be in capital letters according to the COSMOS documentation. This command
 should create the plugin structure.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd .. to the location of the cfs dir</span>
 <span class="nv">$PATH_TO_OPENC3</span>/openc3.sh cli generate plugin CFS
 </code></pre></div></div>
 
-<p>If you’re on Linux, change the rights of this newly created plugin, because the OpenC3 script
+<p>If you’re on Linux, change the rights of this newly created plugin, because the COSMOS script
 creates the plugin to be owned by the root user.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nt">-R</span> &lt;USERNAME&gt;:&lt;USERGROUP&gt; openc3-cfs
@@ -411,7 +411,7 @@ the page.</p>
 <p>Click on the clip icon and navigate to where your plugin is stored and select
 the <code class="language-plaintext highlighter-rouge">openc3-cfs-1.0.0.xxx.gem</code> file. Right of the selection line click on <code class="language-plaintext highlighter-rouge">UPLOAD</code>.</p>
 
-<p>Determine the IP address the cFS container and OpenC3 operator container are running at:</p>
+<p>Determine the IP address the cFS container and COSMOS operator container are running at:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker network <span class="nb">ls
 </span>NETWORK ID     NAME             DRIVER    SCOPE
@@ -450,7 +450,7 @@ step is optional as long as you are fine with your plugin showing up as <code cl
 <div class="note warning">
   <h5>
 <a class="anchor" href="#port-subscription" aria-hidden="true"><span class="octicon octicon-link"></span></a>Port subscription</h5>
-  <p>The last uploaded plugin on OpenC3 will subscribe to TM on port 1235.
+  <p>The last uploaded plugin on COSMOS will subscribe to TM on port 1235.
   Other plugins will not receive any TM anymore.</p>
 </div>
 
@@ -1930,7 +1930,7 @@ the plugin's .gem file. Make sure your configuration is typo-free.</p>
     
       
   <li class="current">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2178,7 +2178,7 @@ the plugin's .gem file. Make sure your configuration is typo-free.</p>
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2268,7 +2268,7 @@ the plugin's .gem file. Make sure your configuration is typo-free.</p>
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2916,7 +2916,7 @@ the plugin's .gem file. Make sure your configuration is typo-free.</p>
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

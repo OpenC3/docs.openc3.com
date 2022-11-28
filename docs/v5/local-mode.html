@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -100,19 +100,19 @@
         </div>
          
         <h1>Local Mode</h1>
-        <p>Local Mode is a new feature in the <a href="/news/2022/09/02/openc3-5-0-9-released/">5.0.9</a> OpenC3 release. It is intended to capture the configuration of an edited plugin so it can be configuration managed. It allows you to edit portions of a plugin (scripts and screens) locally in the editor of your choice and instantly have those changes appear in the OpenC3 plugin. This avoids the plugin build / install cycle which is required when editing command and telemetry or interface definitions.</p>
+        <p>Local Mode is a new feature in the <a href="/news/2022/09/02/openc3-5-0-9-released/">5.0.9</a> COSMOS release. It is intended to capture the configuration of an edited plugin so it can be configuration managed. It allows you to edit portions of a plugin (scripts and screens) locally in the editor of your choice and instantly have those changes appear in the COSMOS plugin. This avoids the plugin build / install cycle which is required when editing command and telemetry or interface definitions.</p>
 
 <h2 id="using-local-mode">Using Local Mode</h2>
 
-<p>In this tutorial we will use the OpenC3 Demo as configured by the <a href="/docs/v5/installation">Installation Guide</a>. You should have cloned a <a href="https://github.com/OpenC3/openc3-project">openc3-project</a> and started it using <code class="language-plaintext highlighter-rouge">openc3.sh run</code>.</p>
+<p>In this tutorial we will use the COSMOS Demo as configured by the <a href="/docs/v5/installation">Installation Guide</a>. You should have cloned a <a href="https://github.com/OpenC3/cosmos-project">cosmos-project</a> and started it using <code class="language-plaintext highlighter-rouge">openc3.sh run</code>.</p>
 
-<p>If you check the project directory you should see a <code class="language-plaintext highlighter-rouge">plugins/DEFAULT/openc3-demo</code> directory. This will contain both the gem that was installed and a <code class="language-plaintext highlighter-rouge">plugin_instance.json</code> file. The <code class="language-plaintext highlighter-rouge">plugin_instance.json</code> file captures the plugin.txt values when the plugin was installed. Note, all files in the plugins directory are meant to be configuration managed with the project. This ensures if you make local edits and check them in, another user can clone the project and get the exact same configuration. We will demonstrate this later.</p>
+<p>If you check the project directory you should see a <code class="language-plaintext highlighter-rouge">plugins/DEFAULT/openc3-cosmos-demo</code> directory. This will contain both the gem that was installed and a <code class="language-plaintext highlighter-rouge">plugin_instance.json</code> file. The <code class="language-plaintext highlighter-rouge">plugin_instance.json</code> file captures the plugin.txt values when the plugin was installed. Note, all files in the plugins directory are meant to be configuration managed with the project. This ensures if you make local edits and check them in, another user can clone the project and get the exact same configuration. We will demonstrate this later.</p>
 
 <h3 id="editing-scripts">Editing scripts</h3>
 
 <div class="note info">
   <h5>Visual Studio Code</h5>
-  <p>This tutorial will use <a href="https://code.visualstudio.com">VS Code</a> which is the editor used by the OpenC3 developers.</p>
+  <p>This tutorial will use <a href="https://code.visualstudio.com">VS Code</a> which is the editor used by the COSMOS developers.</p>
 </div>
 
 <p>The most common use case for Local Mode is script development. Launch Script Runner and open the <code class="language-plaintext highlighter-rouge">INST/procedures/checks.rb</code> file. If you run this script you’ll notice that it has a few errors (by design) which prevent it from running to completion. Let’s fix it! Comment out the second and fourth lines and save the script. You should now notice that Local Mode has saved a copy of the script to <code class="language-plaintext highlighter-rouge">plugins/targets_modified/INST/procedures/checks.rb</code>.</p>
@@ -123,11 +123,11 @@
 
 <p><img src="/img/v5/guides/local_mode/reload_file.png" alt="Project Layout" /></p>
 
-<p>Clicking this reloads the file which has been synced into OpenC3 and now we see our comment.</p>
+<p>Clicking this reloads the file which has been synced into COSMOS and now we see our comment.</p>
 
 <p><img src="/img/v5/guides/local_mode/reloaded.png" alt="Project Layout" /></p>
 
-<p>It’s important not to delete this local file while in Local Mode or OpenC3 will display a server error 500. If this happens you can open the Minio Console at http://localhost:2900/minio/ and browse to the file in question to download and restore it.</p>
+<p>It’s important not to delete this local file while in Local Mode or COSMOS will display a server error 500. If this happens you can open the Minio Console at http://localhost:2900/minio/ and browse to the file in question to download and restore it.</p>
 
 <p><img src="/img/v5/guides/local_mode/minio.png" alt="Project Layout" /></p>
 
@@ -137,18 +137,18 @@
 
 <h2 id="configuration-management">Configuration Management</h2>
 
-<p>It is recommended to configuration manage the entire project including the plugins directory. This will allow any user who starts OpenC3 to launch an identical configuration. Plugins are created and updated with any modifications found in the targets_modified directory.</p>
+<p>It is recommended to configuration manage the entire project including the plugins directory. This will allow any user who starts COSMOS to launch an identical configuration. Plugins are created and updated with any modifications found in the targets_modified directory.</p>
 
 <p>At some point you will probably want to release your local changes back to the plugin they originated from. Simply copy the entire targets_modified/TARGET directory back to the original plugin. At that point you can rebuild the plugin using the CLI.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3-demo % ./openc3.sh cli rake build VERSION=1.0.1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openc3-cosmos-demo % ./openc3.sh cli rake build VERSION=1.0.1
   Successfully built RubyGem
-  Name: openc3-demo
+  Name: openc3-cosmos-demo
   Version: 1.0.1
-  File: openc3-demo-1.0.1.gem
+  File: openc3-cosmos-demo-1.0.1.gem
 </code></pre></div></div>
 
-<p>Upgrade the plugin using the Admin Plugins tab and the Upgrade link. When you select your newly built plugin, OpenC3 detects the existing changes and asks if you want to delete them. There is a stern warning attached because this will permanently remove these changes! Since we just moved over the changes and rebuilt the plugin we will check the box and INSTALL.</p>
+<p>Upgrade the plugin using the Admin Plugins tab and the Upgrade link. When you select your newly built plugin, COSMOS detects the existing changes and asks if you want to delete them. There is a stern warning attached because this will permanently remove these changes! Since we just moved over the changes and rebuilt the plugin we will check the box and INSTALL.</p>
 
 <p><img src="/img/v5/guides/local_mode/delete_modified.png" alt="Project Layout" /></p>
 
@@ -156,7 +156,7 @@
 
 <p><img src="/img/v5/guides/local_mode/project_update.png" alt="Project Layout" /></p>
 
-<p>Local Mode is a powerful way to develop scripts and screens on the local file system and automatically have them sync to OpenC3.</p>
+<p>Local Mode is a powerful way to develop scripts and screens on the local file system and automatically have them sync to COSMOS.</p>
 
       </article>
     </div>
@@ -1622,7 +1622,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1870,7 +1870,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1960,7 +1960,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2608,7 +2608,7 @@
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

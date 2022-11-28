@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -143,6 +143,7 @@
 <p>This is primarily a maintenance and bug fix release.</p>
 
 <h2 id="key-enhancements">Key Enhancements</h2>
+
 <ul>
   <li>Allow selecting and deleting script temp files</li>
   <li>Add map_target_to_interface to Javascript API</li>
@@ -152,6 +153,7 @@
 </ul>
 
 <h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
 <ul>
   <li>Fixed a bug where the core extension to tempfile wasn’t being required</li>
   <li>Ensured when using Keycloak Auth that tokens are refreshed 60 seconds before expiration</li>
@@ -160,18 +162,19 @@
 </ul>
 
 <h2 id="pull-request-links">Pull Request Links</h2>
+
 <ul>
-  <li>Add all targets to target packet item chooser by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/156">#156</a></li>
-  <li>require tempfile core ext by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/166">#166</a></li>
-  <li>Refresh tokens 60 seconds before expire by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/165">#165</a></li>
-  <li>Remove astro-badge by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/167">#167</a></li>
-  <li>Display and allow deleting script temp files by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/152">#152</a></li>
-  <li>Break screens into own controller by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/163">#163</a></li>
-  <li>map_target_to_interface updates by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/170">#170</a></li>
-  <li>Make Aws autoload only apply to S3 by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/169">#169</a></li>
-  <li>read client count from function rather than variable by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/168">#168</a></li>
-  <li>Bump deps, minio, traefik and add scripts_controller_spec by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/175">#175</a></li>
-  <li>Fix put_target_file with IO and local mode by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/176">#176</a></li>
+  <li>Add all targets to target packet item chooser by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/156">#156</a></li>
+  <li>require tempfile core ext by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/166">#166</a></li>
+  <li>Refresh tokens 60 seconds before expire by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/165">#165</a></li>
+  <li>Remove astro-badge by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/167">#167</a></li>
+  <li>Display and allow deleting script temp files by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/152">#152</a></li>
+  <li>Break screens into own controller by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/163">#163</a></li>
+  <li>map_target_to_interface updates by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/170">#170</a></li>
+  <li>Make Aws autoload only apply to S3 by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/169">#169</a></li>
+  <li>read client count from function rather than variable by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/168">#168</a></li>
+  <li>Bump deps, minio, traefik and add scripts_controller_spec by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/175">#175</a></li>
+  <li>Fix put_target_file with IO and local mode by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/176">#176</a></li>
 </ul>
 
 <p>Prerequisites:
@@ -182,8 +185,9 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
 Also requires docker compose version 1.27+</p>
 
 <p>To Run:</p>
+
 <ul>
-  <li>git clone https://github.com/openc3/openc3-project.git myproject</li>
+  <li>git clone https://github.com/OpenC3/cosmos-project.git myproject</li>
   <li>cd myproject</li>
   <li>Edit the .env file and change OPENC3_TAG to 5.0.11</li>
   <li>Run Linux/Mac: ./openc3.sh run</li>
@@ -198,7 +202,7 @@ Also requires docker compose version 1.27+</p>
 
 <p>Thanks!</p>
 
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.0.10...v5.0.11">Changelog</a></p>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.0.10...v5.0.11">Changelog</a></p>
 
   </div>
 </article>
@@ -256,7 +260,7 @@ Also requires docker compose version 1.27+</p>
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

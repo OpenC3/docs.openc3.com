@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -140,13 +140,14 @@
   <div class="post-content">
     <p>OpenC3 5.0.9 is here and with it a great new feature called Local Mode!</p>
 
-<p>Local mode defines a standard structure for your project’s OpenC3 configuration, primarily plugins, and keeps it in sync with what you do through the web interface.  It also encourages running from our official released containers, and not checking out the whole openc3 repo and building from source.</p>
+<p>Local mode defines a standard structure for your project’s OpenC3 configuration, primarily plugins, and keeps it in sync with what you do through the web interface. It also encourages running from our official released containers, and not checking out the whole openc3 repo and building from source.</p>
 
-<p>Local mode is best implemented using the project template now available at <a href="https://github.com/openc3/openc3-project">https://github.com/openc3/openc3-project</a>.</p>
+<p>Local mode is best implemented using the project template now available at <a href="https://github.com/OpenC3/cosmos-project">https://github.com/OpenC3/cosmos-project</a>.</p>
 
 <p>See getting started directions below.</p>
 
 <h2 id="key-enhancements">Key Enhancements</h2>
+
 <ul>
   <li>Local Mode</li>
   <li>Open source dependency versions updated</li>
@@ -158,6 +159,7 @@
 </ul>
 
 <h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
 <ul>
   <li>Numerous fixes to CmdSender - Code now coverage at 94%</li>
   <li>Fix TlmViewer screen upload</li>
@@ -165,31 +167,32 @@
 </ul>
 
 <h2 id="pull-request-links">Pull Request Links</h2>
+
 <ul>
-  <li>Add util pull and push to ghcr on release by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/69">#69</a></li>
-  <li>Add api highlighting by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/70">#70</a></li>
-  <li>Implement additional xtce keywords by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/51">#51</a></li>
-  <li>Bump alpine to 3.16.2 by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/81">#81</a></li>
-  <li>Add playwright as submodule by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/82">#82</a></li>
-  <li>Remove playwright submodule by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/83">#83</a></li>
-  <li>Upgrade to latest minio by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/85">#85</a></li>
-  <li>Add symlink to cosmos folder to increase compatibility by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/92">#92</a></li>
-  <li>Set tab title to tool name by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/94">#94</a></li>
-  <li>Full tlm api support by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/90">#90</a></li>
-  <li>Implement map_target_to_interface by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/96">#96</a></li>
-  <li>Suite detection by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/98">#98</a></li>
-  <li>Screen autocomplete by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/97">#97</a></li>
-  <li>Add summary to autocomplete and update summaries by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/100">#100</a></li>
-  <li>CmdSender state in history and hazardous indicator by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/102">#102</a></li>
-  <li>Command Sender fix quotes by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/104">#104</a></li>
-  <li>Fix tlm viewer screen upload by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/114">#114</a></li>
-  <li>Change scope localstorage by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/115">#115</a></li>
-  <li>Implement header based interceptor control by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/123">#123</a></li>
-  <li>Add coverage upload by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/119">#119</a></li>
-  <li>Update dependencies by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/126">#126</a></li>
-  <li>Upgrade to rails 7 by @jmthomas in <a href="https://github.com/OpenC3/openc3/pull/127">#127</a></li>
-  <li>Local mode by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/103">#103</a></li>
-  <li>Fix streaming api early stop by @ryanmelt in <a href="https://github.com/OpenC3/openc3/pull/128">#128</a></li>
+  <li>Add util pull and push to ghcr on release by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/69">#69</a></li>
+  <li>Add api highlighting by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/70">#70</a></li>
+  <li>Implement additional xtce keywords by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/51">#51</a></li>
+  <li>Bump alpine to 3.16.2 by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/81">#81</a></li>
+  <li>Add playwright as submodule by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/82">#82</a></li>
+  <li>Remove playwright submodule by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/83">#83</a></li>
+  <li>Upgrade to latest minio by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/85">#85</a></li>
+  <li>Add symlink to cosmos folder to increase compatibility by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/92">#92</a></li>
+  <li>Set tab title to tool name by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/94">#94</a></li>
+  <li>Full tlm api support by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/90">#90</a></li>
+  <li>Implement map_target_to_interface by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/96">#96</a></li>
+  <li>Suite detection by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/98">#98</a></li>
+  <li>Screen autocomplete by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/97">#97</a></li>
+  <li>Add summary to autocomplete and update summaries by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/100">#100</a></li>
+  <li>CmdSender state in history and hazardous indicator by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/102">#102</a></li>
+  <li>Command Sender fix quotes by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/104">#104</a></li>
+  <li>Fix tlm viewer screen upload by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/114">#114</a></li>
+  <li>Change scope localstorage by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/115">#115</a></li>
+  <li>Implement header based interceptor control by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/123">#123</a></li>
+  <li>Add coverage upload by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/119">#119</a></li>
+  <li>Update dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/126">#126</a></li>
+  <li>Upgrade to rails 7 by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/127">#127</a></li>
+  <li>Local mode by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/103">#103</a></li>
+  <li>Fix streaming api early stop by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/128">#128</a></li>
 </ul>
 
 <p>Prerequisites:
@@ -199,8 +202,9 @@ Docker - Running OpenC3 requires a working Docker or Podman installation. Typica
 Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
 
 <p>To Run:</p>
+
 <ul>
-  <li>git clone https://github.com/openc3/openc3-project.git myproject</li>
+  <li>git clone https://github.com/OpenC3/cosmos-project.git myproject</li>
   <li>cd myproject</li>
   <li>Edit the .env file and change OPENC3_TAG to 5.0.9</li>
   <li>Run Linux/Mac: ./openc3.sh run</li>
@@ -215,7 +219,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
 
 <p>Thanks!</p>
 
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.0.8...v5.0.9">Changelog</a></p>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.0.8...v5.0.9">Changelog</a></p>
 
   </div>
 </article>
@@ -273,7 +277,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

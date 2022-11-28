@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -124,7 +124,7 @@
 </ul></div>
         
         <h1>SSL-TLS</h1>
-        <p>OpenC3 5 is a container based service which does not support SSL/TLS out of the box. This guide will help you configure SSL and TLS. Learn more at the Traefik <a href="https://doc.traefik.io/traefik/routing/entrypoints/#tls">docs</a>.</p>
+        <p>COSMOS 5 is a container based service which does not support SSL/TLS out of the box. This guide will help you configure SSL and TLS. Learn more at the Traefik <a href="https://doc.traefik.io/traefik/routing/entrypoints/#tls">docs</a>.</p>
 
 <h3 id="generate-the-certificate">
 <a class="anchor" href="#generate-the-certificate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generate the certificate</h3>
@@ -133,7 +133,7 @@
   <p>Note: Self-signed certificates are considered insecure for the Internet. Firefox will treat the site as having an invalid certificate, while Chrome will act as if the connection was plain HTTP.</p>
 </blockquote>
 
-<p>To create a new Self-Signed SSL Certificate, use the openssl req command (run on linux from the OpenC3 root):</p>
+<p>To create a new Self-Signed SSL Certificate, use the openssl req command (run on linux from the cosmos-project root):</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-newkey</span> rsa:4096 <span class="se">\</span>
             <span class="nt">-x509</span> <span class="se">\</span>
@@ -1821,7 +1821,7 @@ The .crt file and the decrypted and encrypted .key files are available in the pa
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2069,7 +2069,7 @@ The .crt file and the decrypted and encrypted .key files are available in the pa
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2159,7 +2159,7 @@ The .crt file and the decrypted and encrypted .key files are available in the pa
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2807,7 +2807,7 @@ The .crt file and the decrypted and encrypted .key files are available in the pa
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

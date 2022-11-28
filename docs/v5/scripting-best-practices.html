@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -144,7 +144,7 @@
 <li class="toc-entry toc-h3"><a href="#checking-every-single-sample-of-a-telemetry-point">Checking Every Single Sample of a Telemetry Point</a></li>
 <li class="toc-entry toc-h3"><a href="#using-variables-in-mnemonics">Using Variables in Mnemonics</a></li>
 <li class="toc-entry toc-h3"><a href="#using-custom-wait_check_expression">Using Custom wait_check_expression</a></li>
-<li class="toc-entry toc-h3"><a href="#openc3-scripting-differences-from-regular-ruby-scripting">OpenC3 Scripting Differences from Regular Ruby Scripting</a>
+<li class="toc-entry toc-h3"><a href="#cosmos-scripting-differences-from-regular-ruby-scripting">COSMOS Scripting Differences from Regular Ruby Scripting</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#do-not-use-single-line-if-statements">Do not use single line if statements</a></li>
 </ul>
@@ -170,7 +170,7 @@
         <h2 id="introduction">
 <a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>This guide aims to provide the best practices for using the scripting capabilities provided by OpenC3. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using the OpenC3 Script Runner is also provided.</p>
+<p>This guide aims to provide the best practices for using the scripting capabilities provided by COSMOS. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using the COSMOS Script Runner is also provided.</p>
 
 <div style="clear:both;"></div>
 
@@ -180,7 +180,7 @@
 <h3 id="a-super-basic-script-example">
 <a class="anchor" href="#a-super-basic-script-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Super Basic Script Example</h3>
 
-<p>Most OpenC3 scripts can be broken down into the simple pattern of sending a command to a system/subsystem and then verifying that the command worked as expected. This pattern is most commonly implemented with cmd() followed by wait_check(), like the following:</p>
+<p>Most COSMOS scripts can be broken down into the simple pattern of sending a command to a system/subsystem and then verifying that the command worked as expected. This pattern is most commonly implemented with cmd() followed by wait_check(), like the following:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd</span><span class="p">(</span><span class="s2">"INST COLLECT with TYPE NORMAL, TEMP 10.0"</span><span class="p">)</span>
 <span class="n">wait_check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TYPE == 'NORMAL'"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -193,7 +193,7 @@
 <span class="n">wait_check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS &gt;= </span><span class="si">#{</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>90% of the OpenC3 scripts you write should be the simple patterns shown above except that you may need to check more than one item after each command to make sure the command worked as expected.</p>
+<p>90% of the COSMOS scripts you write should be the simple patterns shown above except that you may need to check more than one item after each command to make sure the command worked as expected.</p>
 
 <h3 id="kiss-keep-it-simple-stupid">
 <a class="anchor" href="#kiss-keep-it-simple-stupid" aria-hidden="true"><span class="octicon octicon-link"></span></a>KISS (Keep It Simple Stupid)</h3>
@@ -250,7 +250,7 @@
 <h3 id="script-runner">
 <a class="anchor" href="#script-runner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Runner</h3>
 
-<p>OpenC3 provides two unique ways to run scripts (also known as procedures). Script Runner provides both a script execution environment and a script editor. The script editor includes code completion for both OpenC3 methods and command/telemetry item names. It is also a great environment to develop and test scripts. Script Runner provides a framework for users that are familiar with a traditional scripting model with longer style procedures, and for users that want to be able to edit their scripts in place.</p>
+<p>COSMOS provides two unique ways to run scripts (also known as procedures). Script Runner provides both a script execution environment and a script editor. The script editor includes code completion for both COSMOS methods and command/telemetry item names. It is also a great environment to develop and test scripts. Script Runner provides a framework for users that are familiar with a traditional scripting model with longer style procedures, and for users that want to be able to edit their scripts in place.</p>
 
 <p>When opening a suite file (named with ‘suite’) Script Runner provides a more formal, but also more powerful, environment for running scripts. Suite files breaks scripts down into suites, groups, and scripts (individual methods). Suites are the highest-level concept and would typically cover a large procedure such as a thermal vacuum test, or a large operations scenario such as performing on orbit checkout. Groups capture a related set of scripts such as all the scripts regarding a specific mechanism. A Group might be a collection of scripts all related to a subsystem, or a specific series of tests such as an RF checkout. Scripts capture individual activities that can either pass or fail. Script Runner allows for running an entire suite, one or more groups, or one or more scripts easily. It also automatically produces reports indentifing test timing, pass / fail counts, etc.</p>
 
@@ -259,7 +259,7 @@
 <h3 id="looping-vs-unrolled-loops">
 <a class="anchor" href="#looping-vs-unrolled-loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>Looping vs Unrolled Loops</h3>
 
-<p>Loops are powerful constructs that allow you to perform the same operations multiple times without having to rewrite the same code over and over (See the DRY Concept). However, they can make restarting a OpenC3 script at the point of a failure difficult or impossible. If there is a low probability of something failing, then loops are an excellent choice. If a script is running a loop over a list of telemetry points, it may be a better choice to “unroll” the loop by making the loop body into a method, and then calling that method directly for each iteration of a loop that would have occurred.</p>
+<p>Loops are powerful constructs that allow you to perform the same operations multiple times without having to rewrite the same code over and over (See the DRY Concept). However, they can make restarting a COSMOS script at the point of a failure difficult or impossible. If there is a low probability of something failing, then loops are an excellent choice. If a script is running a loop over a list of telemetry points, it may be a better choice to “unroll” the loop by making the loop body into a method, and then calling that method directly for each iteration of a loop that would have occurred.</p>
 
 <p>For example:</p>
 
@@ -282,7 +282,7 @@
 <span class="n">check_temperature</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>In the unrolled version above, the OpenC3 “Start script at selected line” feature can be used to resume the script at any point.</p>
+<p>In the unrolled version above, the COSMOS “Start script at selected line” feature can be used to resume the script at any point.</p>
 
 <h2 id="script-organization">
 <a class="anchor" href="#script-organization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Organization</h2>
@@ -370,13 +370,13 @@
 <h3 id="instrumented-vs-uninstrumented-lines-require-vs-load">
 <a class="anchor" href="#instrumented-vs-uninstrumented-lines-require-vs-load" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instrumented vs Uninstrumented Lines (require vs load)</h3>
 
-<p>OpenC3 scripts are normally “instrumented”. This means that each line has some extra code added behind the scenes that primarily highlights the current executing line and catches exceptions if things fail such as a wait_check. If your script needs to use code in other files, there are a few ways to bring in that code. Some techniques bring in instrumented code and others bring in uninstrumented code. There are reasons to use both.</p>
+<p>COSMOS scripts are normally “instrumented”. This means that each line has some extra code added behind the scenes that primarily highlights the current executing line and catches exceptions if things fail such as a wait_check. If your script needs to use code in other files, there are a few ways to bring in that code. Some techniques bring in instrumented code and others bring in uninstrumented code. There are reasons to use both.</p>
 
-<p>load_utility (and the deprecated require_utility), bring in instrumented code from other files. When OpenC3 runs the code in the other file, Script Runner will dive into the other file and show each line highlighted as it executes. This should be the default way to bring in other files, as it allows continuing if something fails, and provides better visibility to operators.</p>
+<p>load_utility (and the deprecated require_utility), bring in instrumented code from other files. When COSMOS runs the code in the other file, Script Runner will dive into the other file and show each line highlighted as it executes. This should be the default way to bring in other files, as it allows continuing if something fails, and provides better visibility to operators.</p>
 
-<p>However, sometimes you don’t want to display code executing from other files. Externally developed ruby libraries generally do not like to be instrumented, and code that contains large loops or that just takes a long time to execute when highlighting lines, will be much faster if included in a method that does not instrument lines. Ruby provides two ways to bring in uninstrumented code. The first is the “load” keyword. Load will bring in the code from another file and will bring in any changes to the file if it is updated on the next call to load. “require” is like load but is optimized to only bring in the code from another file once. Therefore, if you use require and then change the file it requires, you must restart Script Runner to re-require the file and bring in the changes. In general, load is recommended over require for OpenC3 scripting. One gotcha with load is that it requires the full filename including extension, while the require keyword does not.</p>
+<p>However, sometimes you don’t want to display code executing from other files. Externally developed ruby libraries generally do not like to be instrumented, and code that contains large loops or that just takes a long time to execute when highlighting lines, will be much faster if included in a method that does not instrument lines. Ruby provides two ways to bring in uninstrumented code. The first is the “load” keyword. Load will bring in the code from another file and will bring in any changes to the file if it is updated on the next call to load. “require” is like load but is optimized to only bring in the code from another file once. Therefore, if you use require and then change the file it requires, you must restart Script Runner to re-require the file and bring in the changes. In general, load is recommended over require for COSMOS scripting. One gotcha with load is that it requires the full filename including extension, while the require keyword does not.</p>
 
-<p>Finally, OpenC3 scripting has a special syntax for disabling instrumentation in the middle of an instrumented script, with the disable_instrumentation method. This allows you to disable instrumentation for large loops and other activities that are too slow when running instrumented.</p>
+<p>Finally, COSMOS scripting has a special syntax for disabling instrumentation in the middle of an instrumented script, with the disable_instrumentation method. This allows you to disable instrumentation for large loops and other activities that are too slow when running instrumented.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">disable_instrumentation</span> <span class="k">do</span>
   <span class="c1"># Make sure nothing in here will raise exceptions!</span>
@@ -410,7 +410,7 @@
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variable_name</span> <span class="o">=</span> <span class="mi">5</span>
 </code></pre></div></div>
 
-<p>If necessary, you can also inject commands from the debug prompt using the normal commanding methods. These commands will be logged to the Script Runner message log, which may be advantageous over using a different OpenC3 tool like CmdSender (where the command would only be logged in the CmdTlmServer message log).</p>
+<p>If necessary, you can also inject commands from the debug prompt using the normal commanding methods. These commands will be logged to the Script Runner message log, which may be advantageous over using a different COSMOS tool like CmdSender (where the command would only be logged in the CmdTlmServer message log).</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd</span><span class="p">(</span><span class="s2">"INST COLLECT with TYPE NORMAL"</span><span class="p">)</span>
 </code></pre></div></div>
@@ -445,7 +445,7 @@
 <h3 id="user-input-best-practices">
 <a class="anchor" href="#user-input-best-practices" aria-hidden="true"><span class="octicon octicon-link"></span></a>User Input Best Practices</h3>
 
-<p>OpenC3 provides several different methods to gather manual user input in scripts. When using user input methods that allow for arbitrary values (like ask() and ask_string()), it is very important to validate the value given in your script before moving on. When asking for text input, it is extra important to handle different casing possibilities and to ensure that invalid input will either re-prompt the user or take a safe path.</p>
+<p>COSMOS provides several different methods to gather manual user input in scripts. When using user input methods that allow for arbitrary values (like ask() and ask_string()), it is very important to validate the value given in your script before moving on. When asking for text input, it is extra important to handle different casing possibilities and to ensure that invalid input will either re-prompt the user or take a safe path.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">answer</span> <span class="o">=</span> <span class="n">ask_string</span><span class="p">(</span><span class="s2">"Do you want to continue (y/n)?"</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">answer</span> <span class="o">!=</span> <span class="s1">'y'</span> <span class="n">and</span> <span class="n">answer</span> <span class="o">!=</span> <span class="s1">'Y'</span>
@@ -491,7 +491,7 @@
 <h3 id="outputing-extra-information-to-a-report">
 <a class="anchor" href="#outputing-extra-information-to-a-report" aria-hidden="true"><span class="octicon octicon-link"></span></a>Outputing Extra Information to a Report</h3>
 
-<p>OpenC3 Script Runner operating on a script suite automatically generates a report that shows the PASS/FAILED/SKIPPED state for each script. You can also inject arbitrary text into this report with using OpenC3::Group.puts “Your Text”. Alternatively, you can simply use puts to place text into the Script Runner message log.</p>
+<p>COSMOS Script Runner operating on a script suite automatically generates a report that shows the PASS/FAILED/SKIPPED state for each script. You can also inject arbitrary text into this report with using OpenC3::Group.puts “Your Text”. Alternatively, you can simply use puts to place text into the Script Runner message log.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyGroup</span> <span class="o">&lt;</span> <span class="no">OpenC3</span><span class="o">::</span><span class="no">Group</span>
   <span class="k">def</span> <span class="nf">script_1</span>
@@ -506,7 +506,7 @@
 <h3 id="getting-the-most-recent-value-of-a-telemetry-point-from-multiple-packets">
 <a class="anchor" href="#getting-the-most-recent-value-of-a-telemetry-point-from-multiple-packets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting the Most Recent Value of a Telemetry Point from Multiple Packets</h3>
 
-<p>Some systems include high rate data points with the same name in every packet. OpenC3 supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Assume the target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.</p>
+<p>Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Assume the target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the value of TEMP from the most recently received PACKET1</span>
 <span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST PACKET1 TEMP"</span><span class="p">)</span>
@@ -519,7 +519,7 @@
 <h3 id="checking-every-single-sample-of-a-telemetry-point">
 <a class="anchor" href="#checking-every-single-sample-of-a-telemetry-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking Every Single Sample of a Telemetry Point</h3>
 
-<p>When writing OpenC3 scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using the OpenC3 packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.</p>
+<p>When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using the COSMOS packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_packets</span><span class="p">([[</span><span class="s1">'INST'</span><span class="p">,</span> <span class="s1">'HEALTH_STATUS'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">,</span> <span class="s1">'ADCS'</span><span class="p">]])</span>
 <span class="n">wait</span> <span class="mf">1.5</span>
@@ -534,7 +534,7 @@
 <h3 id="using-variables-in-mnemonics">
 <a class="anchor" href="#using-variables-in-mnemonics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Variables in Mnemonics</h3>
 
-<p>Because command and telemetry mnemonics are just strings in OpenC3 scripts, you can make use of variables in some contexts to make reusable code. For example, a method can take a target name as an input to support multiple instances of a target. You could also pass in the value for a set of numbered telemetry points.</p>
+<p>Because command and telemetry mnemonics are just strings in COSMOS scripts, you can make use of variables in some contexts to make reusable code. For example, a method can take a target name as an input to support multiple instances of a target. You could also pass in the value for a set of numbered telemetry points.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">temp_number</span><span class="p">)</span>
   <span class="n">cmd</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">target_name</span><span class="si">}</span><span class="s2"> COLLECT with TYPE NORMAL"</span><span class="p">)</span>
@@ -547,7 +547,7 @@
 <h3 id="using-custom-wait_check_expression">
 <a class="anchor" href="#using-custom-wait_check_expression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Custom wait_check_expression</h3>
 
-<p>The OpenC3 wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.</p>
+<p>The COSMOS wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">two</span> <span class="o">=</span> <span class="mi">2</span>
@@ -563,13 +563,13 @@
 <span class="n">wait_check_expression</span><span class="p">(</span><span class="s2">"one &gt; 0 and one &lt; 10 # init value one = </span><span class="si">#{</span><span class="n">one</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="openc3-scripting-differences-from-regular-ruby-scripting">
-<a class="anchor" href="#openc3-scripting-differences-from-regular-ruby-scripting" aria-hidden="true"><span class="octicon octicon-link"></span></a>OpenC3 Scripting Differences from Regular Ruby Scripting</h3>
+<h3 id="cosmos-scripting-differences-from-regular-ruby-scripting">
+<a class="anchor" href="#cosmos-scripting-differences-from-regular-ruby-scripting" aria-hidden="true"><span class="octicon octicon-link"></span></a>COSMOS Scripting Differences from Regular Ruby Scripting</h3>
 
 <h4 id="do-not-use-single-line-if-statements">
 <a class="anchor" href="#do-not-use-single-line-if-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Do not use single line if statements</h4>
 
-<p>OpenC3 scripting instruments each line to catch exceptions if things go wrong. With single line if statements the exception handling doesn’t know which part of the statement failed and cannot properly continue. If an exception is raised in a single line if statement, then the entire script will stop and not be able to continue. Do not use single line if statements in OpenC3 scripts. (However, they are fine to use in interfaces and other Ruby code, just not OpenC3 scripts).</p>
+<p>COSMOS scripting instruments each line to catch exceptions if things go wrong. With single line if statements the exception handling doesn’t know which part of the statement failed and cannot properly continue. If an exception is raised in a single line if statement, then the entire script will stop and not be able to continue. Do not use single line if statements in COSMOS scripts. (However, they are fine to use in interfaces and other Ruby code, just not COSMOS scripts).</p>
 
 <p>Don’t do this:</p>
 
@@ -593,7 +593,7 @@
 <h3 id="common-reasons-checks-fail">
 <a class="anchor" href="#common-reasons-checks-fail" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common Reasons Checks Fail</h3>
 
-<p>There are three common reasons that checks fail in OpenC3 scripts:</p>
+<p>There are three common reasons that checks fail in COSMOS scripts:</p>
 
 <ol>
   <li>
@@ -616,7 +616,7 @@
 <h3 id="how-to-recover-from-anomalies">
 <a class="anchor" href="#how-to-recover-from-anomalies" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Recover from Anomalies</h3>
 
-<p>Once something has failed, and your script has stopped with a pink highlighted line, how can you recover? Fortunately, OpenC3 provides several mechanisms that can be used to recover after something in your script fails.</p>
+<p>Once something has failed, and your script has stopped with a pink highlighted line, how can you recover? Fortunately, COSMOS provides several mechanisms that can be used to recover after something in your script fails.</p>
 
 <ol>
   <li>
@@ -639,7 +639,7 @@
 
    Not necessarily a correction for a failure, but you can log notes or QA approval that occurred after a failure using Script -> Log Message to Script Log.
 
-If you do need to stop your script and restart, OpenC3 also provides several methods to prevent restarting the script from the beginning.
+If you do need to stop your script and restart, COSMOS also provides several methods to prevent restarting the script from the beginning.
 
 1. Execute From Cursor
 
@@ -664,17 +664,17 @@ If you do need to stop your script and restart, OpenC3 also provides several met
 <span class="nb">puts</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>If you are only using Windows, OpenC3 also contains a library for reading Excel files.</p>
+<p>If you are only using Windows, COSMOS also contains a library for reading Excel files.</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'OpenC3/win32/excel'</span>
-<span class="n">ss</span> <span class="o">=</span> <span class="no">ExcelSpreadsheet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'C:/git/openc3/demo/test.xlsx'</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'openc3/win32/excel'</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="no">ExcelSpreadsheet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'C:/git/cosmos/test.xlsx'</span><span class="p">)</span>
 <span class="nb">puts</span> <span class="n">ss</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div></div>
 
 <h3 id="when-to-use-modules">
 <a class="anchor" href="#when-to-use-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use Modules</h3>
 
-<p>Modules in Ruby have two purposes: namespacing and mixins. Namespacing allows having classes and methods with the same name, but with different meanings. For example, if they are namespaced, OpenC3 can have a Packet class and another Ruby library can have a Packet class. This isn’t typically useful for OpenC3 scripting though.</p>
+<p>Modules in Ruby have two purposes: namespacing and mixins. Namespacing allows having classes and methods with the same name, but with different meanings. For example, if they are namespaced, COSMOS can have a Packet class and another Ruby library can have a Packet class. This isn’t typically useful for COSMOS scripting though.</p>
 
 <p>Mixins allow adding common methods to classes without using inheritance. Mixins can be useful to add common functionality to some classes but not others, or to break up classes into multiple files.</p>
 
@@ -693,7 +693,7 @@ If you do need to stop your script and restart, OpenC3 also provides several met
 <h2 id="further-reading">
 <a class="anchor" href="#further-reading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further Reading</h2>
 
-<p>Please see the <a href="/docs/v5/scripting">Scripting Guide</a> for the full list of available scripting methods provided by OpenC3.</p>
+<p>Please see the <a href="/docs/v5/scripting">Scripting Guide</a> for the full list of available scripting methods provided by COSMOS.</p>
 
       </article>
     </div>
@@ -2159,7 +2159,7 @@ If you do need to stop your script and restart, OpenC3 also provides several met
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2407,7 +2407,7 @@ If you do need to stop your script and restart, OpenC3 also provides several met
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2497,7 +2497,7 @@ If you do need to stop your script and restart, OpenC3 also provides several met
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3145,7 +3145,7 @@ If you do need to stop your script and restart, OpenC3 also provides several met
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

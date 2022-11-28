@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -312,7 +312,7 @@
 </ul></div>
         
         <h1>Scripting Guide</h1>
-        <p>This document provides the information necessary to write test procedures using the OpenC3 scripting API. Scripting in OpenC3 is designed to be simple and intuitive. The code completion ability for command and telemetry mnemonics makes Script Runner the ideal place to write your procedures, however any text editor will do. If there is functionality that you don’t see here or perhaps an easier syntax for doing something, please submit a ticket.</p>
+        <p>This document provides the information necessary to write test procedures using the COSMOS scripting API. Scripting in COSMOS is designed to be simple and intuitive. The code completion ability for command and telemetry mnemonics makes Script Runner the ideal place to write your procedures, however any text editor will do. If there is functionality that you don’t see here or perhaps an easier syntax for doing something, please submit a ticket.</p>
 
 <h2 id="concepts">
 <a class="anchor" href="#concepts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Concepts</h2>
@@ -320,7 +320,7 @@
 <h3 id="ruby-programming-language">
 <a class="anchor" href="#ruby-programming-language" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ruby Programming Language</h3>
 
-<p>OpenC3 scripting is implemented using the Ruby Programming language. This should be largely transparent to the user, but if advanced processing needs to be done such as writing files, then knowledge of Ruby is necessary. Please see the Ruby Guide for more information about Ruby.</p>
+<p>COSMOS scripting is implemented using the Ruby Programming language. This should be largely transparent to the user, but if advanced processing needs to be done such as writing files, then knowledge of Ruby is necessary. Please see the Ruby Guide for more information about Ruby.</p>
 
 <p>A basic summary of Ruby:</p>
 
@@ -394,7 +394,7 @@
 <span class="n">clear_collects</span><span class="p">(</span><span class="s1">'INST2'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>This example shows several features of OpenC3 scripting in action. Notice the difference between ‘load’ and ‘load_utility’. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. ‘load_utility’ will visually execute the code line by line to show the user what is happening. Read <a href="/news/2017/11/13/require_vs_load/">Require vs Load</a> for much more detail.</p>
+<p>This example shows several features of COSMOS scripting in action. Notice the difference between ‘load’ and ‘load_utility’. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. ‘load_utility’ will visually execute the code line by line to show the user what is happening. Read <a href="/news/2017/11/13/require_vs_load/">Require vs Load</a> for much more detail.</p>
 
 <p>Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.</p>
 
@@ -409,7 +409,7 @@
 <h3 id="telemetry-types">
 <a class="anchor" href="#telemetry-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Types</h3>
 
-<p>There are four different ways that telemetry values can be retrieved in OpenC3. The following chart explains their differences.</p>
+<p>There are four different ways that telemetry values can be retrieved in COSMOS. The following chart explains their differences.</p>
 
 <table>
   <thead>
@@ -444,7 +444,7 @@
 <h3 id="using-subroutines">
 <a class="anchor" href="#using-subroutines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Subroutines</h3>
 
-<p>Subroutines in OpenC3 scripting are first class citizens. They can allow you to perform repetitive tasks without copying the same code multiple times and in multiple different test procedures. This reduces errors and makes your test procedures more maintainable. For example, if multiple test procedures need to turn on a power supply and check telemetry, they can both use a common subroutine. If a change needs to be made to how the power supply is turned on, then it only has to be done in one location and all test procedures reap the benefits. No need to worry about forgetting to update one. Additionally using subroutines allows your high level procedure to read very cleanly and makes it easier for others to review. See the Subroutine Example example.</p>
+<p>Subroutines in COSMOS scripting are first class citizens. They can allow you to perform repetitive tasks without copying the same code multiple times and in multiple different test procedures. This reduces errors and makes your test procedures more maintainable. For example, if multiple test procedures need to turn on a power supply and check telemetry, they can both use a common subroutine. If a change needs to be made to how the power supply is turned on, then it only has to be done in one location and all test procedures reap the benefits. No need to worry about forgetting to update one. Additionally using subroutines allows your high level procedure to read very cleanly and makes it easier for others to review. See the Subroutine Example example.</p>
 
 <h2 id="example-test-procedures">
 <a class="anchor" href="#example-test-procedures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Test Procedures</h2>
@@ -599,12 +599,12 @@
 <h2 id="test-procedure-api">
 <a class="anchor" href="#test-procedure-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test Procedure API</h2>
 
-<p>The following methods are designed to be used in test procedures. However, they can also be used in custom built OpenC3 tools. Please see the OpenC3 Tool API section for methods that are more efficient to use in custom tools.</p>
+<p>The following methods are designed to be used in test procedures. However, they can also be used in custom built COSMOS tools. Please see the COSMOS Tool API section for methods that are more efficient to use in custom tools.</p>
 
 <h3 id="migration-from-cosmos-v4">
 <a class="anchor" href="#migration-from-cosmos-v4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Migration from COSMOS v4</h3>
 
-<p>The following API methods are either deprecated (will not be ported to OpenC3 5) or currently unimplemented (eventually will be ported to OpenC3 5):</p>
+<p>The following API methods are either deprecated (will not be ported to COSMOS 5) or currently unimplemented (eventually will be ported to COSMOS 5):</p>
 
 <table>
   <thead>
@@ -1008,7 +1008,7 @@
   </tbody>
 </table>
 
-<p>The following API methods are new in OpenC3 5:</p>
+<p>The following API methods are new in COSMOS 5:</p>
 
 <table>
   <thead>
@@ -1359,7 +1359,7 @@
 
 <p>The open_file_dialog and open_files_dialog methods create a file dialog box so the user can select a single or multiple files. The selected file(s) is returned.</p>
 
-<p>Note: OpenC3 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn’t make sense in new architecture so you must request individual files.</p>
+<p>Note: COSMOS 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn’t make sense in new architecture so you must request individual files.</p>
 
 <p>Syntax:</p>
 
@@ -2492,7 +2492,7 @@
   <tbody>
     <tr>
       <td>Method Name</td>
-      <td>The OpenC3 scripting method to execute, e.g. ‘cmd’, ‘cmd_raw’, etc.</td>
+      <td>The COSMOS scripting method to execute, e.g. ‘cmd’, ‘cmd_raw’, etc.</td>
     </tr>
     <tr>
       <td>Method Params</td>
@@ -3891,7 +3891,7 @@
 <a class="anchor" href="#limits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limits</h2>
 
 <div class="note unreleased">
-  <p>Limits API not fully implemented in OpenC3 5</p>
+  <p>Limits API not fully implemented in COSMOS 5</p>
 </div>
 
 <p>These methods deal with handling telemetry limits.</p>
@@ -4259,7 +4259,7 @@
 <h3 id="get_overall_limits_state">
 <a class="anchor" href="#get_overall_limits_state" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_overall_limits_state</h3>
 
-<p>Returns the overall limits state for the OpenC3 system. Returns :GREEN, :YELLOW, :RED, or :STALE.</p>
+<p>Returns the overall limits state for the COSMOS system. Returns :GREEN, :YELLOW, :RED, or :STALE.</p>
 
 <p>Syntax:</p>
 
@@ -4480,12 +4480,12 @@
 <h2 id="interfaces">
 <a class="anchor" href="#interfaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interfaces</h2>
 
-<p>These methods allow the user to manipulate OpenC3 interfaces.</p>
+<p>These methods allow the user to manipulate COSMOS interfaces.</p>
 
 <h3 id="connect_interface">
 <a class="anchor" href="#connect_interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>connect_interface</h3>
 
-<p>Connects to targets associated with a OpenC3 interface.</p>
+<p>Connects to targets associated with a COSMOS interface.</p>
 
 <p>Syntax:</p>
 
@@ -4514,12 +4514,13 @@
 <p>Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect_interface</span><span class="p">(</span><span class="s2">"INT1"</span><span class="p">)</span>
+<span class="n">connect_interface</span><span class="p">(</span><span class="s2">"INT1"</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="disconnect_interface">
 <a class="anchor" href="#disconnect_interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>disconnect_interface</h3>
 
-<p>Disconnects from targets associated with a OpenC3 interface.</p>
+<p>Disconnects from targets associated with a COSMOS interface.</p>
 
 <p>Syntax:</p>
 
@@ -4684,12 +4685,12 @@
 <h2 id="routers">
 <a class="anchor" href="#routers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Routers</h2>
 
-<p>These methods allow the user to manipulate OpenC3 routers.</p>
+<p>These methods allow the user to manipulate COSMOS routers.</p>
 
 <h3 id="connect_router">
 <a class="anchor" href="#connect_router" aria-hidden="true"><span class="octicon octicon-link"></span></a>connect_router</h3>
 
-<p>Connects a OpenC3 router.</p>
+<p>Connects a COSMOS router.</p>
 
 <p>Syntax:</p>
 
@@ -4710,20 +4711,21 @@
     </tr>
     <tr>
       <td>Router Parameters</td>
-      <td>Parameters used to initialize the router. If none are given then the routerwill use the parameters that were given in the server configuration file.</td>
+      <td>Parameters used to initialize the router. If none are given then the router will use the parameters that were given in the server configuration file.</td>
     </tr>
   </tbody>
 </table>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect_ROUTER</span><span class="p">(</span><span class="s2">"INT1_ROUTER"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect_ROUTER</span><span class="p">(</span><span class="s2">"INST_ROUTER"</span><span class="p">)</span>
+<span class="n">connect_router</span><span class="p">(</span><span class="s2">"INST_ROUTER"</span><span class="p">,</span> <span class="mi">7779</span><span class="p">,</span> <span class="mi">7779</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s1">'PREIDENTIFIED'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="disconnect_router">
 <a class="anchor" href="#disconnect_router" aria-hidden="true"><span class="octicon octicon-link"></span></a>disconnect_router</h3>
 
-<p>Disconnects a OpenC3 router.</p>
+<p>Disconnects a COSMOS router.</p>
 
 <p>Syntax:</p>
 
@@ -4954,7 +4956,7 @@
 <a class="anchor" href="#opening-closing--creating-telemetry-screens" aria-hidden="true"><span class="octicon octicon-link"></span></a>Opening, Closing &amp; Creating Telemetry Screens</h2>
 
 <div class="note unreleased">
-  <p>Screen APIs not yet implemented in OpenC3 5</p>
+  <p>Screen APIs not yet implemented in COSMOS 5</p>
 </div>
 
 <p>These methods allow the user to open, close or create unique telemetry screens from within a test procedure.</p>
@@ -6917,7 +6919,7 @@ Consider breaking code like this into a seperate file and using either require/l
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -7165,7 +7167,7 @@ Consider breaking code like this into a seperate file and using either require/l
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -7255,7 +7257,7 @@ Consider breaking code like this into a seperate file and using either require/l
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -7903,7 +7905,7 @@ Consider breaking code like this into a seperate file and using either require/l
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

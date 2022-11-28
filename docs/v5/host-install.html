@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -100,16 +100,16 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#installing-openc3-directly-onto-a-host-no-containers">Installing OpenC3 Directly onto a Host (No Containers)</a></li>
+<li class="toc-entry toc-h2"><a href="#installing-cosmos-directly-onto-a-host-no-containers">Installing COSMOS Directly onto a Host (No Containers)</a></li>
 </ul></div>
         
         <h1>Host Install</h1>
-        <h2 id="installing-openc3-directly-onto-a-host-no-containers">
-<a class="anchor" href="#installing-openc3-directly-onto-a-host-no-containers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing OpenC3 Directly onto a Host (No Containers)</h2>
+        <h2 id="installing-cosmos-directly-onto-a-host-no-containers">
+<a class="anchor" href="#installing-cosmos-directly-onto-a-host-no-containers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing COSMOS Directly onto a Host (No Containers)</h2>
 
 <p>Note: THIS IS NOT A RECOMMENDED CONFIGURATION.</p>
 
-<p>OpenC3 5 is released as containers and intended to be run as containers. However, for various reasons someone might want to run OpenC3 directly on a host. These instructions will walk through getting OpenC3 5 installed and running directly on RHEL 7 or Centos 7. This configuration will create a working install, but falls short of the ideal in that it does not setup the OpenC3 processes as proper services on the host OS (that restart themselves on boot, and maintain themselves running in case of errors). Contributions that add that functionality are welcome.</p>
+<p>COSMOS 5 is released as containers and intended to be run as containers. However, for various reasons someone might want to run COSMOS directly on a host. These instructions will walk through getting COSMOS 5 installed and running directly on RHEL 7 or Centos 7. This configuration will create a working install, but falls short of the ideal in that it does not setup the COSMOS processes as proper services on the host OS (that restart themselves on boot, and maintain themselves running in case of errors). Contributions that add that functionality are welcome.</p>
 
 <p>Let’s get started.</p>
 
@@ -118,27 +118,27 @@
     <p>The starting assumption is that you have a fresh install of either RHEL 7 or Centos 7. You are running as a normal user that has sudo permissions, and has git installed.</p>
   </li>
   <li>
-    <p>Start by downloading the latest working version of OpenC3 from Github</p>
+    <p>Start by downloading the latest working version of COSMOS from Github</p>
 
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>cd ~
-git clone https://github.com/OpenC3/openc3.git
+git clone https://github.com/openc3/cosmos.git
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Run the OpenC3 installation script</p>
+    <p>Run the COSMOS installation script</p>
 
     <p>If you are feeling brave, you can run the one large installer script that installs everything in one step:</p>
 
     <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cd OpenC3/examples/hostinstall/centos7
+<div class="highlight"><pre class="highlight"><code>cd cosmos/examples/hostinstall/centos7
 ./openc3_install.sh
 </code></pre></div>    </div>
 
     <p>Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:</p>
 
     <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cd OpenC3/examples/hostinstall/centos7
+<div class="highlight"><pre class="highlight"><code>cd cosmos/examples/hostinstall/centos7
 ./openc3_install_packages.sh
 ./openc3_install_ruby.sh
 ./openc3_install_redis.sh
@@ -150,7 +150,7 @@ git clone https://github.com/OpenC3/openc3.git
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>If all was successful, you should be able to open Firefox, and goto: http://localhost:2900. Congrats you have OpenC3 running directly on a host.</p>
+    <p>If all was successful, you should be able to open Firefox, and goto: http://localhost:2900. Congrats you have COSMOS running directly on a host.</p>
   </li>
   <li>
     <p>As stated at the beginning, this is not currently a supported configuration. Contributions that help to improve it are welcome.</p>
@@ -1621,7 +1621,7 @@ git clone https://github.com/OpenC3/openc3.git
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1869,7 +1869,7 @@ git clone https://github.com/OpenC3/openc3.git
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1959,7 +1959,7 @@ git clone https://github.com/OpenC3/openc3.git
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2607,7 +2607,7 @@ git clone https://github.com/OpenC3/openc3.git
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

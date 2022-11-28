@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -100,11 +100,11 @@
         </div>
          
         <h1>Installation</h1>
-        <h2 id="installing-openc3">Installing OpenC3</h2>
+        <h2 id="installing-openc3-cosmos">Installing OpenC3 COSMOS</h2>
 
-<p>The following sections describe how to get OpenC3 installed on various operating systems. This document should help you setup you host machine to allow you to have a running version of OpenC3 in no time.</p>
+<p>The following sections describe how to get OpenC3 COSMOS installed on various operating systems. This document should help you setup you host machine to allow you to have a running version of COSMOS in no time.</p>
 
-<h2 id="installing-openc3-on-host-machines">Installing OpenC3 on Host Machines</h2>
+<h2 id="installing-openc3-cosmos-on-host-machines">Installing OpenC3 COSMOS on Host Machines</h2>
 
 <h3 id="preqrequisites">PREQREQUISITES</h3>
 
@@ -130,23 +130,23 @@ swap=0
   </li>
   <li>Modifying Docker connection timeouts (very rarely needed):
     <ul>
-      <li>Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a OpenC3 configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\Users\&lt;username&gt;\AppData\Roaming\Docker\settings.json. Modify the value <code class="language-plaintext highlighter-rouge">vpnKitMaxPortIdleTime</code> to change the timeout. <strong>Note:</strong> 0 means no timeout (idle connections not dropped)</li>
+      <li>Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a COSMOS configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\Users\&lt;username&gt;\AppData\Roaming\Docker\settings.json. Modify the value <code class="language-plaintext highlighter-rouge">vpnKitMaxPortIdleTime</code> to change the timeout. <strong>Note:</strong> 0 means no timeout (idle connections not dropped)</li>
     </ul>
   </li>
 </ul>
 
-<p><strong>Note:</strong> As of December 2021 the OpenC3 Docker containers are based on the Alpine Docker image.</p>
+<p><strong>Note:</strong> As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.</p>
 
 <h3 id="clone-project">CLONE PROJECT</h3>
 
-<p>Since the OpenC3 5.0.9 release we recommend using the project template to get started.</p>
+<p>Since the COSMOS 5.0.9 release we recommend using the project template to get started.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    git clone https://github.com/openc3/openc3-project.git tutorial
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    git clone https://github.com/OpenC3/cosmos-project.git tutorial
 </code></pre></div></div>
 
 <div class="note info">
   <h5>Offline Installation</h5>
-  <p style="margin-bottom:20px;">If you need to install in an offline environment you should first see if you're able to directly use the OpenC3 containers. If so you can first save the containers:</p>
+  <p style="margin-bottom:20px;">If you need to install in an offline environment you should first see if you're able to directly use the COSMOS containers. If so you can first save the containers:</p>
 
   <p style="margin-bottom:20px;"><code>./openc3.sh util save</code></p>
 
@@ -157,7 +157,7 @@ swap=0
 
 <h3 id="certificates">CERTIFICATES</h3>
 
-<p>The OpenC3 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the OpenC3 5 project that includes any certificates needed by your organization. <strong>Note</strong>: If you set the path to the ssl file in the <code class="language-plaintext highlighter-rouge">SSL_CERT_FILE</code> environment variables the openc3 setup script will copy it and place it for the docker container to load.</p>
+<p>The COSMOS containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the COSMOS 5 project that includes any certificates needed by your organization. <strong>Note</strong>: If you set the path to the ssl file in the <code class="language-plaintext highlighter-rouge">SSL_CERT_FILE</code> environment variables the openc3 setup script will copy it and place it for the docker container to load.</p>
 
 <div class="note warning">
   <h5>SSL Issues</h5>
@@ -183,7 +183,7 @@ You will need to create new ones with the names above and set their value to the
 
 <h3 id="run">RUN</h3>
 
-<p>Run <code class="language-plaintext highlighter-rouge">openc3.bat</code> start (Windows), or <code class="language-plaintext highlighter-rouge">./openc3.sh</code> start (linux/Mac).</p>
+<p>Run <code class="language-plaintext highlighter-rouge">openc3.bat run</code> (Windows), or <code class="language-plaintext highlighter-rouge">./openc3.sh run</code> (linux/Mac).</p>
 
 <p>Note, you can edit the .env file and change OPENC3_TAG to a specific release (e.g. 5.0.9) rather than ‘latest’.</p>
 
@@ -194,7 +194,7 @@ You will need to create new ones with the names above and set their value to the
 <p><code class="language-plaintext highlighter-rouge">openc3.*</code> takes multiple arguments. Run with no arguments for help. An example run of openc3.sh with no arguments will show a usage guide.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./openc3.sh
-Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
+Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
 *  cli: run a cli command as the default user ('cli help' for more info)
 *  cliroot: run a cli command as the root user ('cli help' for more info)
 *  start: start the docker-compose openc3
@@ -202,12 +202,6 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
 *  cleanup: cleanup network and volumes for openc3
 *  run: run the prebuilt containers for openc3
 *  util: various helper commands
-*    encode: encode a string to base64
-*    hash: hash a string using SHA-256
-*    save: save images to tar files
-*    load: load images to tar files
-*    clean: remove node_modules, coverage, etc
-*    hostsetup: setup host for redis
 </code></pre></div></div>
 
 <h3 id="connect">CONNECT</h3>
@@ -225,13 +219,13 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
 <div class="note">
   <h5>Find a problem in the documentation?</h5>
   <p>
-    Please <a href="https://github.com/OpenC3/openc3.github.io/issues/new/choose">create an issue</a> on
+    Please <a href="https://github.com/openc3/openc3.com/issues/new/choose">create an issue</a> on
     GitHub describing what we can do to make it better.
   </p>
   <h5>Let us know what could be better!</h5>
   <p>
-    Both using and hacking on OpenC3 should be fun, simple, and easy, so if for
-    some reason you find it's a pain, please <a href="https://github.com/OpenC3/openc3/issues/new/choose">create an issue</a> on
+    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
+    some reason you find it's a pain, please <a href="https://github.com/openc3/cosmos/issues/new/choose">create an issue</a> on
     GitHub describing your experience so we can make it better.
   </p>
 </div>
@@ -1700,7 +1694,7 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1948,7 +1942,7 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2038,7 +2032,7 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2686,7 +2680,7 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, build, deploy]
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

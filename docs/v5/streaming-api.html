@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -101,13 +101,13 @@
          
         <h1>Streaming API</h1>
         <div class="note">
-  <h5>This documentation is for OpenC3 Developers</h5>
-  <p>This information is just generally used behind the scenes in OpenC3 tools</p>
+  <h5>This documentation is for COSMOS Developers</h5>
+  <p>This information is just generally used behind the scenes in COSMOS tools</p>
 </div>
 
-<p>The OpenC3 5 Streaming Api is the primary interface to receive a stream of the telemetry packets and/or command packets that have passed through the OpenC3 system, both logged and continuously in realtime. Either raw binary packets or decommutated JSON packets can be requested.</p>
+<p>The COSMOS 5 Streaming Api is the primary interface to receive a stream of the telemetry packets and/or command packets that have passed through the COSMOS system, both logged and continuously in realtime. Either raw binary packets or decommutated JSON packets can be requested.</p>
 
-<p>This API is implemented over Websockets using the Rails ActionCable framework. Actioncable client libraries are known to exist for at least Javascript, Ruby, and Python. Other languages may exist or could be created. Websockets allow for easy interaction with the new OpenC3 5 Javascript based frontend.</p>
+<p>This API is implemented over Websockets using the Rails ActionCable framework. Actioncable client libraries are known to exist for at least Javascript, Ruby, and Python. Other languages may exist or could be created. Websockets allow for easy interaction with the new COSMOS 5 Javascript based frontend.</p>
 
 <p>The following interactions are all shown in Javascript, but would be very similar in any language.
 Connecting to this API begins by initiating an ActionCable connection.</p>
@@ -142,7 +142,7 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
 )
 </code></pre></div></div>
 
-<p>Subscribing to the StreamingApi requires passing a channel name set to “StreamingChannel”, a scope which is typically “DEFAULT”, and an access token (a password in OpenSource OpenC3). In Javascript you also pass a set of callback functions that run at various lifecycle points in the subscription. The most important of these are connected and received.</p>
+<p>Subscribing to the StreamingApi requires passing a channel name set to “StreamingChannel”, a scope which is typically “DEFAULT”, and an access token (a password in OpenSource COSMOS). In Javascript you also pass a set of callback functions that run at various lifecycle points in the subscription. The most important of these are connected and received.</p>
 
 <p>connected runs when the subscription is accepted by the StreamApi. This callback is the first opportunity to request specific data that you would like streamed. Data can also be added or removed at any time while the subscription is open.</p>
 
@@ -173,11 +173,11 @@ For example TLM__INST__ADCS__Q1__RAW.</p>
 <p>Each field is separated by two underscores __.</p>
 
 <p>Entire packets can also be requested by keys of the form: <code class="language-plaintext highlighter-rouge">&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;VALUE TYPE&gt;</code>. For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM__INST__ADCS__RAW or TLM__INST__ADCS).
-start_time and end_time are standard OpenC3 64-bit integer timestamps in nanoseconds since the Unix Epoch (midnight January 1st, 1970). If start_time is null, that indicates to start streaming from the current time in realtime, indefinitely until items are removed, or the subscription is unsubscribed. end_time is ignored if start_time is null. If start_time is given and end_time is null, that indicates to playback from the given starttime and then continue indefinitely in realtime. If both start_time and end_time are given, then that indicates a temporary playback of historical data.</p>
+start_time and end_time are standard COSMOS 64-bit integer timestamps in nanoseconds since the Unix Epoch (midnight January 1st, 1970). If start_time is null, that indicates to start streaming from the current time in realtime, indefinitely until items are removed, or the subscription is unsubscribed. end_time is ignored if start_time is null. If start_time is given and end_time is null, that indicates to playback from the given starttime and then continue indefinitely in realtime. If both start_time and end_time are given, then that indicates a temporary playback of historical data.</p>
 
 <p>Data returned by the streaming API is handled by the received callback in Javascript. Data is returned as a JSON Array, with a JSON object in the array for each packet returned. Results are batched, and the current implementation will return up to 100 packets in each batch (the array will have 100 entries). 100 packets per batch is not guaranteed, and batches may take on varying sizes based on the size of the data returned, or other factors. An empty array indicates that all data has been sent for a purely historical query and can be used as an end of data indicator.</p>
 
-<p>For decommutated items, each packet is represented as a JSON object with a ‘time’ field holding the OpenC3 nanosecond timestamp of the packet, and then each of the requested item keys with their corresponding value from the packet.</p>
+<p>For decommutated items, each packet is represented as a JSON object with a ‘time’ field holding the COSMOS nanosecond timestamp of the packet, and then each of the requested item keys with their corresponding value from the packet.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
   {
@@ -193,7 +193,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
 ]
 </code></pre></div></div>
 
-<p>For raw packets, each packet is represented as a JSON object with a time field holding the OpenC3 nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE__TELEMETRY__TARGETNAME__PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.</p>
+<p>For raw packets, each packet is represented as a JSON object with a time field holding the COSMOS nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE__TELEMETRY__TARGETNAME__PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
   {
@@ -1673,7 +1673,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1921,7 +1921,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2011,7 +2011,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2659,7 +2659,7 @@ start_time and end_time are standard OpenC3 64-bit integer timestamps in nanosec
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

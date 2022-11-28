@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -155,14 +155,14 @@
         <h2 id="telemetry-definition-files">
 <a class="anchor" href="#telemetry-definition-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Definition Files</h2>
 
-<p>Telemetry definition files define the telemetry packets that can be received and processed from OpenC3 targets. One large file can be used to define the telemetry packets, or multiple files can be used at the user’s discretion. Telemetry definition files are placed in the target’s cmd_tlm directory and are processed alphabetically. Therefore if you have some telemetry files that depend on others, e.g. they override or extend existing telemetry, they must be named last. The easist way to do this is to add an extension to an existing file name. For example, if you already have tlm.txt you can create tlm_override.txt for telemetry that depends on the definitions in tlm.txt. Note that due to the way the <a href="http://www.asciitable.com/">ASCII Table</a> is structured, files beginning with capital letters are processed before lower case letters.</p>
+<p>Telemetry definition files define the telemetry packets that can be received and processed from COSMOS targets. One large file can be used to define the telemetry packets, or multiple files can be used at the user’s discretion. Telemetry definition files are placed in the target’s cmd_tlm directory and are processed alphabetically. Therefore if you have some telemetry files that depend on others, e.g. they override or extend existing telemetry, they must be named last. The easist way to do this is to add an extension to an existing file name. For example, if you already have tlm.txt you can create tlm_override.txt for telemetry that depends on the definitions in tlm.txt. Note that due to the way the <a href="http://www.asciitable.com/">ASCII Table</a> is structured, files beginning with capital letters are processed before lower case letters.</p>
 
-<p>When defining telemetry items you can choose from the following data types: INT, UINT, FLOAT, STRING, BLOCK. These correspond to integers, unsigned integers, floating point numbers, strings and binary blocks of data. The only difference between a STRING and BLOCK is when OpenC3 reads a STRING type it stops reading when it encounters a null byte (0). This shows up when displaying the value in Packet Viewer or Tlm Viewer and in the output of Data Extractor.</p>
+<p>When defining telemetry items you can choose from the following data types: INT, UINT, FLOAT, STRING, BLOCK. These correspond to integers, unsigned integers, floating point numbers, strings and binary blocks of data. The only difference between a STRING and BLOCK is when COSMOS reads a STRING type it stops reading when it encounters a null byte (0). This shows up when displaying the value in Packet Viewer or Tlm Viewer and in the output of Data Extractor.</p>
 
 <h3 id="derived-items">
 <a class="anchor" href="#derived-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>Derived Items</h3>
 
-<p>OpenC3 has a concept of a derived item which is a telemetry item that doesn’t actually exist in the binary data. Derived items are typically computed based on other telemetry items. OpenC3 derived items are very similar to real items except they use the special DERIVED data type. Here is how a derived item might look in a telemetry definition.</p>
+<p>COSMOS has a concept of a derived item which is a telemetry item that doesn’t actually exist in the binary data. Derived items are typically computed based on other telemetry items. COSMOS derived items are very similar to real items except they use the special DERIVED data type. Here is how a derived item might look in a telemetry definition.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 </code></pre></div></div>
@@ -2735,7 +2735,7 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2983,7 +2983,7 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3073,7 +3073,7 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3721,7 +3721,7 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

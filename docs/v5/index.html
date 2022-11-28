@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
-  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/OpenC3/openc3/commits/master.atom">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
   <link rel="stylesheet" href="/css/screen.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -39,7 +39,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -75,7 +75,7 @@
     <a href="/contact/">Contact</a>
   </li>
   <li>
-    <a href="https://github.com/OpenC3/openc3" target="_blank">
+    <a href="https://github.com/openc3/cosmos" target="_blank">
       <span class="hide-on-mobiles">View on </span>
       GitHub
     </a>
@@ -100,40 +100,40 @@
         </div>
          
         <h1>Welcome</h1>
-        <p>This site aims to be a comprehensive guide to OpenC3. We’ll cover topics such
+        <p>This site aims to be a comprehensive guide to OpenC3 COSMOS. We’ll cover topics such
 as getting your configuration up and running, developing test and operations scripts,
 building custom telemetry screens, and give you some advice on participating in the future
-development of OpenC3 itself.</p>
+development of COSMOS itself.</p>
 
-<h2 id="so-what-is-openc3-exactly">So what is OpenC3, exactly?</h2>
+<h2 id="so-what-is-cosmos-exactly">So what is COSMOS, exactly?</h2>
 
-<p>OpenC3 is a suite of applications that can be used to control a set of embedded systems. These systems can be
+<p>COSMOS is a suite of applications that can be used to control a set of embedded systems. These systems can be
 anything from test equipment (power supplies, oscilloscopes, switched power strips, UPS devices, etc), to
 development boards (Arduinos, Raspberry Pi, Beaglebone, etc), to satellites.</p>
 
-<h3 id="openc3-architecture">OpenC3 Architecture</h3>
+<h3 id="cosmos-architecture">COSMOS Architecture</h3>
 
-<p><img src="/img/v5/architecture.png" alt="OpenC3 Architecture" /></p>
+<p><img src="/img/v5/architecture.png" alt="COSMOS Architecture" /></p>
 
-<p>OpenC3 5 is a cloud native, containerized, microservice oriented command and control system. All the OpenC3 microservices are docker containers which is why Docker is shown containing the entire OpenC3 system. The green boxes on the left represent external embedded systems (Targets) which OpenC3 connects to. The Redis data store contains the configuration for all the microservices, the current value table, as well as data streams containing decommutated data. The Minio data store contains plugins, targets, configuration data, text logs as well as binary logs of all the raw, decommutated, and reduced data. Users interact with OpenC3 from a web browser which routes through the internal Traefik load balancer.</p>
+<p>COSMOS 5 is a cloud native, containerized, microservice oriented command and control system. All the COSMOS microservices are docker containers which is why Docker is shown containing the entire COSMOS system. The green boxes on the left represent external embedded systems (Targets) which COSMOS connects to. The Redis data store contains the configuration for all the microservices, the current value table, as well as data streams containing decommutated data. The Minio data store contains plugins, targets, configuration data, text logs as well as binary logs of all the raw, decommutated, and reduced data. Users interact with COSMOS from a web browser which routes through the internal Traefik load balancer.</p>
 
-<p>Keep reading for an in-depth discussion of each of the OpenC3 Tools.</p>
+<p>Keep reading for an in-depth discussion of each of the COSMOS Tools.</p>
 
 <h2 id="helpful-hints">Helpful Hints</h2>
 
 <p>Throughout this guide there are a number of small-but-handy pieces of
-information that can make using OpenC3 easier, more interesting, and less
+information that can make using COSMOS easier, more interesting, and less
 hazardous. Here’s what to look out for.</p>
 
 <div class="note">
-  <h5>ProTips™ help you get more from OpenC3</h5>
-  <p>These are tips and tricks that will help you be a OpenC3 wizard!</p>
+  <h5>ProTips™ help you get more from COSMOS</h5>
+  <p>These are tips and tricks that will help you be a COSMOS wizard!</p>
 </div>
 
 <div class="note info">
   <h5>Notes are handy pieces of information</h5>
   <p>These are for the extra tidbits sometimes necessary to understand
-     OpenC3.</p>
+     COSMOS.</p>
 </div>
 
 <div class="note warning">
@@ -143,20 +143,20 @@ hazardous. Here’s what to look out for.</p>
 
 <div class="note unreleased">
   <h5>You'll see this by a feature that hasn't been released</h5>
-  <p>Some pieces of this website are for future versions of OpenC3 that
+  <p>Some pieces of this website are for future versions of COSMOS that
     are not yet released.</p>
 </div>
 
 <div class="note">
   <h5>Find a problem in the documentation?</h5>
   <p>
-    Please <a href="https://github.com/OpenC3/openc3.github.io/issues/new/choose">create an issue</a> on
+    Please <a href="https://github.com/openc3/openc3.com/issues/new/choose">create an issue</a> on
     GitHub describing what we can do to make it better.
   </p>
   <h5>Let us know what could be better!</h5>
   <p>
-    Both using and hacking on OpenC3 should be fun, simple, and easy, so if for
-    some reason you find it's a pain, please <a href="https://github.com/OpenC3/openc3/issues/new/choose">create an issue</a> on
+    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
+    some reason you find it's a pain, please <a href="https://github.com/openc3/cosmos/issues/new/choose">create an issue</a> on
     GitHub describing your experience so we can make it better.
   </p>
 </div>
@@ -1625,7 +1625,7 @@ hazardous. Here’s what to look out for.</p>
     
       
   <li class="">
-    <a href="/docs/v5/cfs">OpenC3 and NASA cFS</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1873,7 +1873,7 @@ hazardous. Here’s what to look out for.</p>
     
       
   <li class="">
-    <a href="/docs/v5/development">Developing OpenC3</a>
+    <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1963,7 +1963,7 @@ hazardous. Here’s what to look out for.</p>
     
       
   <li class="">
-    <a href="/docs/v5/testing">Testing OpenC3</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2611,7 +2611,7 @@ hazardous. Here’s what to look out for.</p>
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/OpenC3/openc3/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">
