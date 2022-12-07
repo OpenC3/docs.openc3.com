@@ -392,7 +392,7 @@ GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white <span class="c"># Set 
 <h3 id="setting">
 <a class="anchor" href="#setting" aria-hidden="true"><span class="octicon octicon-link"></span></a>SETTING</h3>
 
-<p>The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it.</p>
+<p>The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it. COSMOS supports the following settings: TEXTALIGN, PADDING, MARGIN, BACKCOLOR, TEXTCOLOR, BORDERCOLOR, WIDTH, HEIGHT, and RAW. When specifying a color, the value can be given as a common string, e.g. ‘red’, or by RGB values, e.g. 255 0 0. If the setting is a length the units are required, e.g. 200px. If the setting is RAW the value should be the raw stylesheet key and value, e.g. font-size 10px.</p>
 
 <table>
   <thead>
@@ -423,6 +423,11 @@ GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white <span class="c"># Set 
   LABEL ... <span class="c"># Various other widgets</span>
 END
 SETTING BACKCOLOR 163 185 163 <span class="c"># RGB color for the box background</span>
+
+LABELVALUE INST HEALTH_STATUS COLLECTS
+  SETTING BORDERCOLOR red
+  SETTING WIDTH 200px
+  SETTING RAW font-size 30px
 </code></pre></div></div>
 
 <h3 id="subsetting">
@@ -461,10 +466,10 @@ SETTING BACKCOLOR 163 185 163 <span class="c"># RGB color for the box background
 
 <!-- prettier-ignore -->
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERTICALBOX
-  LABELVALUE ...
+  LABELVALUE INST HEALTH_STATUS TEMP1
   SUBSETTING 0 TEXTCOLOR blue <span class="c"># Change only the label's color</span>
-  LABELVALUELIMITSBAR ...
-  SUBSETTING 0:0 TEXTCOLOR white <span class="c"># Change the label's text color to white</span>
+  LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
+  SUBSETTING 0:0 TEXTCOLOR green <span class="c"># Change the label's text color to green</span>
 END
 </code></pre></div></div>
 
