@@ -82,7 +82,7 @@ GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white # Set all text color t
 
 ### SETTING
 
-The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it.
+The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it. COSMOS supports the following settings: TEXTALIGN, PADDING, MARGIN, BACKCOLOR, TEXTCOLOR, BORDERCOLOR, WIDTH, HEIGHT, and RAW. When specifying a color, the value can be given as a common string, e.g. 'red', or by RGB values, e.g. 255 0 0. If the setting is a length the units are required, e.g. 200px. If the setting is RAW the value should be the raw stylesheet key and value, e.g. font-size 10px.
 
 | Parameter        | Description                  | Required |
 | ---------------- | ---------------------------- | -------- |
@@ -97,6 +97,11 @@ VERTICALBOX
   LABEL ... # Various other widgets
 END
 SETTING BACKCOLOR 163 185 163 # RGB color for the box background
+
+LABELVALUE INST HEALTH_STATUS COLLECTS
+  SETTING BORDERCOLOR red
+  SETTING WIDTH 200px
+  SETTING RAW font-size 30px
 ```
 
 ### SUBSETTING
@@ -114,10 +119,10 @@ Example Usage:
 <!-- prettier-ignore -->
 ```bash
 VERTICALBOX
-  LABELVALUE ...
+  LABELVALUE INST HEALTH_STATUS TEMP1
   SUBSETTING 0 TEXTCOLOR blue # Change only the label's color
-  LABELVALUELIMITSBAR ...
-  SUBSETTING 0:0 TEXTCOLOR white # Change the label's text color to white
+  LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
+  SUBSETTING 0:0 TEXTCOLOR green # Change the label's text color to green
 END
 ```
 
