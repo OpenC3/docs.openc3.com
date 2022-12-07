@@ -122,6 +122,8 @@
 <li class="toc-entry toc-h2"><a href="#interface-modifiers">INTERFACE Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#map_target">MAP_TARGET</a></li>
+<li class="toc-entry toc-h3"><a href="#map_cmd_target">MAP_CMD_TARGET</a></li>
+<li class="toc-entry toc-h3"><a href="#map_tlm_target">MAP_TLM_TARGET</a></li>
 <li class="toc-entry toc-h3"><a href="#dont_connect">DONT_CONNECT</a></li>
 <li class="toc-entry toc-h3"><a href="#dont_reconnect">DONT_RECONNECT</a></li>
 <li class="toc-entry toc-h3"><a href="#reconnect_delay">RECONNECT_DELAY</a></li>
@@ -154,6 +156,8 @@
 <li class="toc-entry toc-h3"><a href="#log_retain_time">LOG_RETAIN_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#reduced_log_retain_time">REDUCED_LOG_RETAIN_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#cleanup_poll_time">CLEANUP_POLL_TIME</a></li>
+<li class="toc-entry toc-h3"><a href="#target_microservice">TARGET_MICROSERVICE</a></li>
+<li class="toc-entry toc-h3"><a href="#packet">PACKET</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#microservice-modifiers">MICROSERVICE Modifiers</a>
@@ -539,6 +543,48 @@ This file follows the standard COSMOS configuration file format of keywords foll
     <tr>
       <td>Target Name</td>
       <td>Target name to map to this interface</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="map_cmd_target">
+<a class="anchor" href="#map_cmd_target" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_CMD_TARGET</h3>
+<p><strong>Maps a target name to an interface for commands only</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Command target name to map to this interface</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="map_tlm_target">
+<a class="anchor" href="#map_tlm_target" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_TLM_TARGET</h3>
+<p><strong>Maps a target name to an interface for telemetry only</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Telemetry target name to map to this interface</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -1081,6 +1127,48 @@ This file follows the standard COSMOS configuration file format of keywords foll
     <tr>
       <td>Time</td>
       <td>Number of seconds between runs of the cleanup process (default = 900 = 15 minutes)</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="target_microservice">
+<a class="anchor" href="#target_microservice" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET_MICROSERVICE</h3>
+<p><strong>Breaks a target microservice out into its own process. Can be used to give more resources to processing that is falling behind. If defined multiple times for the same type, will create multiple processes. Each process can be given specific packets to process with the PACKET keyword.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type</td>
+      <td>The target microservice type. Must be one of DECOM, COMMANDLOG, DECOMCMDLOG, PACKETLOG, DECOMLOG, REDUCER, or CLEANUP</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="packet">
+<a class="anchor" href="#packet" aria-hidden="true"><span class="octicon octicon-link"></span></a>PACKET</h3>
+<p><strong>Packet Name to allocate to the current TARGET_MICROSERVICE.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Packet Name</td>
+      <td>The packet name. Does not apply to REDUCER or CLEANUP target microservice types.</td>
       <td>True</td>
     </tr>
   </tbody>
