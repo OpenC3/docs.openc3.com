@@ -138,12 +138,14 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#target-modifiers">TARGET Modifiers</a>
 <ul>
+<li class="toc-entry toc-h3"><a href="#cmd_buffer_depth">CMD_BUFFER_DEPTH</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd_log_cycle_time">CMD_LOG_CYCLE_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd_log_cycle_size">CMD_LOG_CYCLE_SIZE</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd_log_retain_time">CMD_LOG_RETAIN_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd_decom_log_cycle_time">CMD_DECOM_LOG_CYCLE_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd_decom_log_cycle_size">CMD_DECOM_LOG_CYCLE_SIZE</a></li>
 <li class="toc-entry toc-h3"><a href="#cmd_decom_log_retain_time">CMD_DECOM_LOG_RETAIN_TIME</a></li>
+<li class="toc-entry toc-h3"><a href="#tlm_buffer_depth">TLM_BUFFER_DEPTH</a></li>
 <li class="toc-entry toc-h3"><a href="#tlm_log_cycle_time">TLM_LOG_CYCLE_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#tlm_log_cycle_size">TLM_LOG_CYCLE_SIZE</a></li>
 <li class="toc-entry toc-h3"><a href="#tlm_log_retain_time">TLM_LOG_RETAIN_TIME</a></li>
@@ -754,6 +756,27 @@ This file follows the standard COSMOS configuration file format of keywords foll
 <a class="anchor" href="#target-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET Modifiers</h2>
 <p>The following keywords must follow a TARGET keyword.</p>
 
+<h3 id="cmd_buffer_depth">
+<a class="anchor" href="#cmd_buffer_depth" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD_BUFFER_DEPTH</h3>
+<p><strong>Number of commands to buffer to ensure logged in order</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Buffer Depth</td>
+      <td>Buffer depth in packets (Default = 5)</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="cmd_log_cycle_time">
 <a class="anchor" href="#cmd_log_cycle_time" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD_LOG_CYCLE_TIME</h3>
 <p><strong>Command binary logs can be cycled on a time interval.</strong></p>
@@ -875,6 +898,27 @@ This file follows the standard COSMOS configuration file format of keywords foll
     <tr>
       <td>Time</td>
       <td>Number of seconds to keep decom command logs (default = nil = Forever)</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="tlm_buffer_depth">
+<a class="anchor" href="#tlm_buffer_depth" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLM_BUFFER_DEPTH</h3>
+<p><strong>Number of telemetry packets to buffer to ensure logged in order</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Buffer Depth</td>
+      <td>Buffer depth in packets (Default = 60)</td>
       <td>True</td>
     </tr>
   </tbody>

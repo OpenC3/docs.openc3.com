@@ -1177,8 +1177,8 @@ UNITS Kilometers KM
       <td>True</td>
     </tr>
     <tr>
-      <td>Hazardous</td>
-      <td>Indicates the state is hazardous. This will cause a popup to ask for user confirmation when sending this command.<br><br>Valid Values: <span class="values">HAZARDOUS</span>
+      <td>Hazardous / Disable Messages</td>
+      <td>Indicates the state is hazardous. This will cause a popup to ask for user confirmation when sending this command. For non-hazardous states you can also set DISABLE_MESSAGES which will not print the command when using that state.<br><br>Valid Values: <span class="values">HAZARDOUS</span>
 </td>
       <td>False</td>
     </tr>
@@ -1195,7 +1195,7 @@ UNITS Kilometers KM
   STATE FALSE 0
   STATE TRUE 1
 APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
-  STATE "NOOP" "NOOP"
+  STATE "NOOP" "NOOP" DISABLE_MESSAGES
   STATE "ARM LASER" "ARM LASER" HAZARDOUS "Arming the laser is an eye safety hazard"
   STATE "FIRE LASER" "FIRE LASER" HAZARDOUS "WARNING! Laser will be fired!"
 </code></pre></figure>
