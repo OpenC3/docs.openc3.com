@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>OpenC3 5.0.8 Released</title>
+  <title>OpenC3 COSMOS 5.2.0 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
@@ -122,8 +122,8 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    OpenC3 5.0.8 Released
-    <a href="/news/2022/08/13/openc3-5-0-8-released/" class="permalink" title="Permalink">∞</a>
+    OpenC3 COSMOS 5.2.0 Released
+    <a href="/news/2022/12/13/openc3-cosmos-5-2-0-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
@@ -132,7 +132,7 @@
   </span>
   <div class="post-meta">
     <span class="post-date">
-      13 Aug 2022
+      13 Dec 2022
     </span>
     <a href="https://github.com/ryanmelt" class="post-author">
       <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
@@ -140,62 +140,104 @@
     </a>
   </div>
   <div class="post-content">
-    <p>I’m happy to announce the third release of OpenC3!</p>
+    <h1 id="openc3-cosmos-520---modern-production-ready-command-and-control">OpenC3 COSMOS 5.2.0 - Modern, Production Ready, Command and Control</h1>
 
-<h2 id="key-enhancements">Key Enhancements</h2>
+<h1 id="welcome-to-openc3-cosmos-520">Welcome to OpenC3 COSMOS 5.2.0!</h1>
+
+<h2 id="ram-utilization-reduced-2-3x">RAM Utilization Reduced 2-3x</h2>
+
+<p>This release reduces total RAM utilization by 2-3x by combining the different microservices that support each target and each scope into a new single “multi” microservice. Each individual ruby interpreter uses 50-60Mb of RAM so this can save up to 300Mb of RAM per target, and up to 200Mb of RAM per scope over previous versions! Microservices can still be broken out with new keywords in plugin.txt if more performance is needed. Running COSMOS with our demo application now only uses about 1.3Gb of RAM.</p>
+
+<h2 id="targets-can-be-mapped-to-multiple-interfaces">Targets Can be Mapped to Multiple Interfaces</h2>
+
+<p>Another key feature of this release is that Targets can now be mapped to multiple interfaces. Typically this can be used to have a different interface for commands vs telemetry. Or it can be used to have multiple interfaces that can receive telemetry for a target. Sending commands to multiple interfaces is also supported, but generally not desirable.</p>
+
+<h2 id="new-stash-api">New Stash API</h2>
+
+<p>Scripts now have support for a new Stash API that allows saving state that can be retrieved by later runs of the same script (or other scripts). Data is stored and retrieved as key/value pairs.</p>
+
+<h2 id="other-highlighted-improvements-in-this-release">Other Highlighted Improvements In This Release</h2>
 
 <ul>
-  <li>New SPARKLINE telemetry screen widget</li>
-  <li>Telemetry Screen Value Aging</li>
-  <li>Updated Ruby / NPM dependency versions</li>
-  <li>Added POSITION keyword for TOOLs to enforce position in Nav Bar</li>
-  <li>Improved operator log messages</li>
+  <li>Support variable command timeouts for long duration commands</li>
+  <li>Improved Redis Debug Tab in Admin</li>
+  <li>Added support for global subsettings</li>
+  <li>Support DISABLE_MESSAGES for command states</li>
+  <li>Support multiline strings in config files</li>
+  <li>Made log buffer depths configurable</li>
+  <li>Added support for offline_access_token api to support Enterprise edition</li>
+  <li>Added a new migration system to support upgrades between versions</li>
+  <li>Improved cleanup microservice efficiency</li>
+  <li>Allow running scripts outside of lib and procedure folders</li>
+  <li>Added new plugin.txt keywords to breakout individual target microservices to support high load packets</li>
+  <li>Updated dependency versions</li>
 </ul>
 
 <h2 id="key-bug-fixes">Key Bug Fixes</h2>
 
 <ul>
-  <li>Fixed an issue with the UNKNOWN packet not showing</li>
-  <li>Fixed an issue where the system didn’t wait for a file to be fully available in S3</li>
-  <li>Fixed Cmd/Tlm Packet counts in CmdTlmServer</li>
-  <li>Fixed an issue where the Current Value Table would sometimes say packets don’t exist</li>
+  <li>Received time was being lost in the current value table for packets with a defined packet_time</li>
+  <li>Fixed several potential errors that could occur in reducer</li>
+  <li>Enforce that TlmViewer screen names must be lowercase</li>
+  <li>Fixed a bug where out of time order packets could cause the creation of a huge number of log files</li>
 </ul>
 
-<h2 id="pull-request-links">Pull Request Links</h2>
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
 
 <ul>
-  <li>Create UNKNOWN target in scope_model by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/54">#54</a></li>
-  <li>Fix linegraph widget and add sparkline by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/52">#52</a></li>
-  <li>Fix permission names by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/53">#53</a></li>
-  <li>ValueWidget telemetry aging by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/58">#58</a></li>
-  <li>Add put_object_and_check for S3 by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/61">#61</a></li>
-  <li>Display correct CMD/TLM counts when sorting by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/62">#62</a></li>
-  <li>Bump pysch, rdoc, dead_end by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/64">#64</a></li>
-  <li>Add POSITION keyword for tools by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/65">#65</a></li>
-  <li>Scope updates by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/63">#63</a></li>
-  <li>Print operator cmd in log by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/66">#66</a></li>
-  <li>Update NPM dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/67">#67</a></li>
-  <li>Move CvtModel back to Persistent Redis Store by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/68">#68</a></li>
+  <li>Disallow target_name &amp; microservice_name as VARIABLE names by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/278">#278</a></li>
+  <li>Support newlines in script dialogs by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/279">#279</a></li>
+  <li>Only display targets with screens by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/283">#283</a></li>
+  <li>Tlm viewer env to scripts by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/284">#284</a></li>
+  <li>Add script filename to script runner log message filename by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/289">#289</a></li>
+  <li>Support variable cmd timeouts by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/291">#291</a></li>
+  <li>Change hazardous error code by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/292">#292</a></li>
+  <li>Switch from cli using base to operator by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/298">#298</a></li>
+  <li>Stash api by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/300">#300</a></li>
+  <li>Redis tab improvements by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/306">#306</a></li>
+  <li>Map targets to multiple interfaces and Migrations by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/308">#308</a></li>
+  <li>Improve cache flags. Proper id on auth errors by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/309">#309</a></li>
+  <li>Multi microservice by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/311">#311</a></li>
+  <li>Add dialog validate by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/312">#312</a></li>
+  <li>Validate screen names and gem install local by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/313">#313</a></li>
+  <li>Update SETTING documentation by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/316">#316</a></li>
+  <li>Apply global subsettings along with global settings by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/318">#318</a></li>
+  <li>Disable message log for command states by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/319">#319</a></li>
+  <li>Support string concat in config files by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/315">#315</a></li>
+  <li>Set OPENC3_CLOUD default as local by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/320">#320</a></li>
+  <li>Fix packet time vs received time and remove dead code by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/321">#321</a></li>
+  <li>Bump dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/322">#322</a></li>
+  <li>offline access token, logger per microservice, no-store by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/324">#324</a></li>
+  <li>Fix removed TIMEFORMATTED and ace build by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/325">#325</a></li>
+  <li>Configurable buffer depth. Out of order error instead of new file by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/327">#327</a></li>
+  <li>Reducer nil checks by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/329">#329</a></li>
+  <li>Limit total in list_files_before_time by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/326">#326</a></li>
+  <li>No to_json in as_json by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/331">#331</a></li>
+  <li>Change default command buffer depth to 5 by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/332">#332</a></li>
+  <li>Don’t filter scripts to lib and procedures by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/335">#335</a></li>
+  <li>Better Checking for good offline_access token and clearing if bad by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/336">#336</a></li>
+  <li>Add Reducer check for file retrieve by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/337">#337</a></li>
+  <li>Fix reducer unit test by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/338">#338</a></li>
+  <li>Add variable File Suffix to files_between_time by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/339">#339</a></li>
 </ul>
-
-<h2 id="upgrade-notes">Upgrade Notes</h2>
-
-<p>This release requires reinstalling any plugins that include targets, because the Current Value Table moved between containers.</p>
 
 <p>Prerequisites:
 Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
 
 <p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
-Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
 
-<p>To Run:
-Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/OpenC3/cosmos/releases/tag/v5.0.8">Download Release Here</a>
-Extract the archive somewhere on your host computer
-Edit the .env file and change OPENC3_TAG to 5.0.8
-Run Linux/Mac: ./openc3.sh run
-Run Windows: openc3.bat run
-Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a>
-Have fun running OpenC3!</p>
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
 
 <p>Please see our documentation at https://openc3.com</p>
 
@@ -203,7 +245,7 @@ Have fun running OpenC3!</p>
 
 <p>Thanks!</p>
 
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.0.7...v5.0.8">Changelog</a></p>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/openc3/compare/v5.1.1...v5.2.0">Changelog</a></p>
 
   </div>
 </article>
@@ -223,7 +265,7 @@ Have fun running OpenC3!</p>
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2022/12/13/openc3-cosmos-5-2-0-released/">Version 5.2.0</a>
       </li>
       
