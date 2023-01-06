@@ -134,6 +134,7 @@
 <li class="toc-entry toc-h3"><a href="#log_raw">LOG_RAW</a></li>
 <li class="toc-entry toc-h3"><a href="#protocol">PROTOCOL</a></li>
 <li class="toc-entry toc-h3"><a href="#option">OPTION</a></li>
+<li class="toc-entry toc-h3"><a href="#secret">SECRET</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#target-modifiers">TARGET Modifiers</a>
@@ -172,6 +173,7 @@
 <li class="toc-entry toc-h3"><a href="#cmd">CMD</a></li>
 <li class="toc-entry toc-h3"><a href="#option-1">OPTION</a></li>
 <li class="toc-entry toc-h3"><a href="#container">CONTAINER</a></li>
+<li class="toc-entry toc-h3"><a href="#secret-1">SECRET</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#tool-modifiers">TOOL Modifiers</a>
@@ -694,7 +696,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 <div class="right">(Since 4.0.0)</div>
 <p><strong>Protocols modify the interface by processing the data</strong></p>
 
-<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> There is only one built in protocol implemented by override_protocol.rb. This protocol allows for Scripts to use the override_tlm() and normalize_tlm() methods to permanently change a telemetry value. Note, this differs from set_tlm() as set_tlm() is over-written by new incoming telemetry.<br><br> For information on creating your own custom protocol please see <a href="https://openc3.com/docs/v5/protocols">https://openc3.com/docs/v5/protocols</a></p>
+<p>Protocols can be either READ, WRITE, or READ_WRITE. READ protocols act on the data received by the interface while write acts on the data before it is sent out. READ_WRITE applies the protocol to both reading and writing.<br><br> For information on creating your own custom protocol please see <a href="https://openc3.com/docs/v5/protocols">https://openc3.com/docs/v5/protocols</a></p>
 
 <table>
   <thead>
@@ -747,6 +749,44 @@ This file follows the standard COSMOS configuration file format of keywords foll
     <tr>
       <td>Parameters</td>
       <td>Parameters to pass to the option</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="secret">
+<a class="anchor" href="#secret" aria-hidden="true"><span class="octicon octicon-link"></span></a>SECRET</h3>
+<p><strong>Define a secret needed by this interface</strong></p>
+
+<p>Defines a secret for this interface and optionally assigns its value to an option</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type</td>
+      <td>ENV or FILE.  ENV will mount the secret into an environment variable. FILE mounts the secret into a file.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Secret Name</td>
+      <td>The name of the secret to retrieve</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Environment Variable of File Path</td>
+      <td>Environment variable name or file path to store secret</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Option Name</td>
+      <td>Interface option to pass the secret value</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -1415,6 +1455,39 @@ This file follows the standard COSMOS configuration file format of keywords foll
       <td>Args</td>
       <td>Name of the container</td>
       <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="secret-1">
+<a class="anchor" href="#secret-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>SECRET</h3>
+<p><strong>Define a secret needed by this microservice</strong></p>
+
+<p>Defines a secret for this microservice</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type</td>
+      <td>ENV or FILE.  ENV will mount the secret into an environment variable. FILE mounts the secret into a file.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Secret Name</td>
+      <td>The name of the secret to retrieve</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Environment Variable of File Path</td>
+      <td>Environment variable name or file path to store secret</td>
+      <td>True</td>
     </tr>
   </tbody>
 </table>
@@ -4038,7 +4111,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2023 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

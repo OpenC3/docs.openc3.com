@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>OpenC3 5.0.11 Released</title>
+  <title>OpenC3 COSMOS 5.3.0 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.1">
@@ -124,8 +124,8 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    OpenC3 5.0.11 Released
-    <a href="/news/2022/10/03/openc3-5-0-11-released/" class="permalink" title="Permalink">∞</a>
+    OpenC3 COSMOS 5.3.0 Released
+    <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
@@ -134,7 +134,7 @@
   </span>
   <div class="post-meta">
     <span class="post-date">
-      03 Oct 2022
+      05 Jan 2023
     </span>
     <a href="https://github.com/ryanmelt" class="post-author">
       <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
@@ -142,43 +142,47 @@
     </a>
   </div>
   <div class="post-content">
-    <p>OpenC3 5.0.11 is here!</p>
+    <h1 id="openc3-cosmos-530---modern-production-ready-command-and-control">OpenC3 COSMOS 5.3.0 - Modern, Production Ready, Command and Control</h1>
 
-<p>This is primarily a maintenance and bug fix release.</p>
+<h1 id="welcome-to-openc3-cosmos-530">Welcome to OpenC3 COSMOS 5.3.0!</h1>
 
-<h2 id="key-enhancements">Key Enhancements</h2>
+<h2 id="new-secrets-framework">New Secrets Framework</h2>
+
+<p>COSMOS now contains a modular framework for interfacing with different Secrets management frameworks. This first release stores secrets into Redis, and they can be retrieved as needed by Interfaces and other Microservices. Kubernetes secrets support coming soon in COSMOS Enterprise Edition.</p>
+
+<h2 id="mqtt-interface">MQTT Interface</h2>
+
+<p>Added a new interface to support the MQTT message bus. Packets can be associated with MQTT topics by adding META TOPIC topicname to packet definitions. This allows for easy integration with MQTT.</p>
+
+<h2 id="interface-and-protocol-commands">Interface and Protocol Commands</h2>
+
+<p>The Interface and Protocol base classes now support an interface_cmd and protocol_cmd method respectively. This provides a framework for defining interface and protocol level APIs without having to define TARGETS that are handled by the Interface internally. Usage examples coming soon. Possible use cases include things like reseting interfaces without a connect/disconnect cycle, commands to support key management, and changing internal protocol settings during runtime.</p>
+
+<h2 id="other-highlighted-improvements-in-this-release">Other Highlighted Improvements In This Release</h2>
 
 <ul>
-  <li>Allow selecting and deleting script temp files</li>
-  <li>Add map_target_to_interface to Javascript API</li>
-  <li>Update map_target_to_interface to support an array of target_names</li>
-  <li>Update use of AWS SDK to better support using other SDKs besides just S3</li>
-  <li>Updated dependencies</li>
+  <li>Overriding telemetry now works without needing the OverrideProtocol</li>
+  <li>BLOCK data can now be properly displayed in PacketViewer</li>
+  <li>Dependency updates</li>
 </ul>
 
 <h2 id="key-bug-fixes">Key Bug Fixes</h2>
 
 <ul>
-  <li>Fixed a bug where the core extension to tempfile wasn’t being required</li>
-  <li>Ensured when using Keycloak Auth that tokens are refreshed 60 seconds before expiration</li>
-  <li>Fixed the client count status in CmdTlmServer</li>
-  <li>Fixed put_target_file given an IO object with Local Mode enabled</li>
+  <li>Fixed an issue when trying to identify and define packets when streaming raw packet through the StreamingApi</li>
 </ul>
 
-<h2 id="pull-request-links">Pull Request Links</h2>
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
 
 <ul>
-  <li>Add all targets to target packet item chooser by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/156">#156</a></li>
-  <li>require tempfile core ext by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/166">#166</a></li>
-  <li>Refresh tokens 60 seconds before expire by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/165">#165</a></li>
-  <li>Remove astro-badge by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/167">#167</a></li>
-  <li>Display and allow deleting script temp files by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/152">#152</a></li>
-  <li>Break screens into own controller by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/163">#163</a></li>
-  <li>map_target_to_interface updates by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/170">#170</a></li>
-  <li>Make Aws autoload only apply to S3 by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/169">#169</a></li>
-  <li>read client count from function rather than variable by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/168">#168</a></li>
-  <li>Bump deps, minio, traefik and add scripts_controller_spec by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/175">#175</a></li>
-  <li>Fix put_target_file with IO and local mode by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/176">#176</a></li>
+  <li>override_tlm sets all by default, works across processes by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/343">#343</a></li>
+  <li>Fix CVT override with full coverage by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/345">#345</a></li>
+  <li>Display binary encoded strings and BLOCK data by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/346">#346</a></li>
+  <li>Secrets, MQTT interface, interface &amp; protocol cmds by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/347">#347</a></li>
+  <li>Bump ace and fix VWidget by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/348">#348</a></li>
+  <li>Dont identify_and_define for StreamingApi by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/349">#349</a></li>
+  <li>Enforce require only once by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/350">#350</a></li>
+  <li>Add get_target_interfaces by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/352">#352</a></li>
 </ul>
 
 <p>Prerequisites:
@@ -191,13 +195,12 @@ Also requires docker compose version 1.27+</p>
 <p>To Run:</p>
 
 <ul>
-  <li>git clone https://github.com/OpenC3/cosmos-project.git myproject</li>
-  <li>cd myproject</li>
-  <li>Edit the .env file and change OPENC3_TAG to 5.0.11</li>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
   <li>Run Linux/Mac: ./openc3.sh run</li>
   <li>Run Windows: openc3.bat run</li>
   <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
-  <li>Have fun running OpenC3!</li>
+  <li>Have fun running OpenC3 COSMOS!</li>
 </ul>
 
 <p>Please see our documentation at https://openc3.com</p>
@@ -206,7 +209,7 @@ Also requires docker compose version 1.27+</p>
 
 <p>Thanks!</p>
 
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.0.10...v5.0.11">Changelog</a></p>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.2.0...v5.3.0">Changelog</a></p>
 
   </div>
 </article>
@@ -226,7 +229,7 @@ Also requires docker compose version 1.27+</p>
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/">Version 5.3.0</a>
       </li>
       
@@ -242,7 +245,7 @@ Also requires docker compose version 1.27+</p>
         <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/">Version 5.1.0</a>
       </li>
       
-      <li class="current">
+      <li class="">
         <a href="/news/2022/10/03/openc3-5-0-11-released/">Version 5.0.11</a>
       </li>
       
