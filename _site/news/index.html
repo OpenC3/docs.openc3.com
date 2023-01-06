@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/01/05/openc3-cosmos-5-3-0-released/">OpenC3 COSMOS 5.3.0 Released</option>
+      
       <option value="/news/2022/12/13/openc3-cosmos-5-2-0-released/">OpenC3 COSMOS 5.2.0 Released</option>
       
       <option value="/news/2022/11/19/openc3-cosmos-5-1-1-released/">OpenC3 COSMOS 5.1.1 Released</option>
@@ -121,6 +123,100 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/">
+      OpenC3 COSMOS 5.3.0 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      05 Jan 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-530---modern-production-ready-command-and-control">OpenC3 COSMOS 5.3.0 - Modern, Production Ready, Command and Control</h1>
+
+<h1 id="welcome-to-openc3-cosmos-530">Welcome to OpenC3 COSMOS 5.3.0!</h1>
+
+<h2 id="new-secrets-framework">New Secrets Framework</h2>
+
+<p>COSMOS now contains a modular framework for interfacing with different Secrets management frameworks. This first release stores secrets into Redis, and they can be retrieved as needed by Interfaces and other Microservices. Kubernetes secrets support coming soon in COSMOS Enterprise Edition.</p>
+
+<h2 id="mqtt-interface">MQTT Interface</h2>
+
+<p>Added a new interface to support the MQTT message bus. Packets can be associated with MQTT topics by adding META TOPIC topicname to packet definitions. This allows for easy integration with MQTT.</p>
+
+<h2 id="interface-and-protocol-commands">Interface and Protocol Commands</h2>
+
+<p>The Interface and Protocol base classes now support an interface_cmd and protocol_cmd method respectively. This provides a framework for defining interface and protocol level APIs without having to define TARGETS that are handled by the Interface internally. Usage examples coming soon. Possible use cases include things like reseting interfaces without a connect/disconnect cycle, commands to support key management, and changing internal protocol settings during runtime.</p>
+
+<h2 id="other-highlighted-improvements-in-this-release">Other Highlighted Improvements In This Release</h2>
+
+<ul>
+  <li>Overriding telemetry now works without needing the OverrideProtocol</li>
+  <li>BLOCK data can now be properly displayed in PacketViewer</li>
+  <li>Dependency updates</li>
+</ul>
+
+<h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
+<ul>
+  <li>Fixed an issue when trying to identify and define packets when streaming raw packet through the StreamingApi</li>
+</ul>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>override_tlm sets all by default, works across processes by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/343">#343</a></li>
+  <li>Fix CVT override with full coverage by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/345">#345</a></li>
+  <li>Display binary encoded strings and BLOCK data by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/346">#346</a></li>
+  <li>Secrets, MQTT interface, interface &amp; protocol cmds by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/347">#347</a></li>
+  <li>Bump ace and fix VWidget by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/348">#348</a></li>
+  <li>Dont identify_and_define for StreamingApi by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/349">#349</a></li>
+  <li>Enforce require only once by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/350">#350</a></li>
+  <li>Add get_target_interfaces by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/352">#352</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.2.0...v5.3.0">Changelog</a></p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2022/12/13/openc3-cosmos-5-2-0-released/">
@@ -1062,6 +1158,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/">Version 5.3.0</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2022/12/13/openc3-cosmos-5-2-0-released/">Version 5.2.0</a>
       </li>
       
@@ -1077,14 +1177,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2022/10/03/openc3-5-0-11-released/">Version 5.0.11</a>
       </li>
       
-      <li class="">
-        <a href="/news/2022/09/16/openc3-5-0-10-released/">Version 5.0.10</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                        
+                          
     </ul>
   </aside>
 </div>
@@ -1099,7 +1195,7 @@ Have fun running OpenC3!</p>
   <footer role="contentinfo">
   <div class="grid wider">
     <div class="unit one-third center-on-mobiles">
-      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
+      <p>The contents of this website are &copy;&nbsp;2023 <a href="http://openc3.com/" target="_blank">OpenC3</a> and Ball Aerospace under the terms of the <a href="https://github.com/openc3/cosmos/blob/master/LICENSE.txt" target="_blank">AGPLv3&nbsp;License</a>.</p>
       <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
     </div>
     <div class="unit two-thirds align-right center-on-mobiles">

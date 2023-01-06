@@ -33,6 +33,6 @@ exclude:
   - Rakefile
 
 # These are used by the plugins to generate content
-openc3_root_v5: ../openc3/openc3
+openc3_root_v5: ../cosmos/openc3
 openc3_meta_path: data/config
 openc3_tool_path: install/tools
