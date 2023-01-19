@@ -111,42 +111,7 @@ The Preidentified Protocol is used internally by the COSMOS Command and Telemetr
 
 ## Helper Protocols
 
-COSMOS provides the following helper protocols: Override, and Crc. These protocols provide helper functionality to Interfaces.
-
-### Override Protocol
-
-The Override Protocol allows telemetry items to be overridden when read. This action is permanent and any incoming data is overwritten with the new value. This is in contrast to using the set_tlm() API method which temporarily sets a telemetry value until new data arrives over the interface.
-
-To use this protocol, you must add it to your interface wherever that is defined. Typically, this is in the target's cmd_tlm_server.txt file but it could also be in the global cmd_tlm_server.txt. For example:
-
-```bash
-INTERFACE INST_INT simulated_target_interface.rb sim_inst.rb
-TARGET INST
-PROTOCOL READ OverrideProtocol
-```
-
-By adding this to your interface you now have access to the following APIs:
-
-```ruby
-# Permanently set the converted value of a telemetry point to a given value
-override_tlm(target_name, packet_name, item_name, value)
-# or
-override_tlm("target_name packet_name item_name = value")
-
-# Permanently set the raw value of a telemetry point to a given value
-override_tlm_raw(target_name, packet_name, item_name, value)
-# or
-override_tlm_raw("target_name packet_name item_name = value")
-
-# Clear an override of a telemetry point
-normalize_tlm(target_name, packet_name, item_name)
-# or
-normalize_tlm("target_name packet_name item_name")
-```
-
-| Parameter        | Description                                                                                                                                                                                                                             | Required | Default |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| Allow Empty Data | Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain. | No       | nil     |
+COSMOS provides the following helper protocols: Crc & Ignore. These protocols provide helper functionality to Interfaces.
 
 ### CRC Protocol
 
@@ -345,6 +310,5 @@ Please see the included COSMOS protocol code for examples of the above methods i
 [lib/openc3/interfaces/protocols/length_protocol.rb](https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/length_protocol.rb)
 [lib/openc3/interfaces/protocols/terminated_protocol.rb](https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/terminated_protocol.rb)
 [lib/openc3/interfaces/protocols/template_protocol.rb](https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/template_protocol.rb)
-[lib/openc3/interfaces/protocols/override_protocol.rb](https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/override_protocol.rb)
 [lib/openc3/interfaces/protocols/crc_protocol.rb](https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/crc_protocol.rb)
 [lib/openc3/interfaces/protocols/preidentified_protocol.rb](https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/preidentified_protocol.rb)

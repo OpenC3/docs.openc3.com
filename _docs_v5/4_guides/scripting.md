@@ -256,86 +256,98 @@ The following methods are designed to be used in test procedures. However, they 
 
 The following API methods are either deprecated (will not be ported to COSMOS 5) or currently unimplemented (eventually will be ported to COSMOS 5):
 
-| Method                                | Tool                         | Status                            |
-| ------------------------------------- | ---------------------------- | --------------------------------- |
-| clear                                 | Telemetry Viewer             | Unimplemented                     |
-| clear_all                             | Telemetry Viewer             | Unimplemented                     |
-| clear_disconnected_targets            | Script Runner                | Unimplemented                     |
-| close_local_screens                   | Telemetry Viewer             | Unimplemented                     |
-| cmd_tlm_clear_counters                | Command and Telemetry Server | Unimplemented                     |
-| cmd_tlm_reload                        | Command and Telemetry Server | Unimplemented                     |
-| display                               | Telemetry Viewer             | Unimplemented                     |
-| get_all_packet_logger_info            | Command and Telemetry Server | Deprecated                        |
-| get_background_tasks                  | Command and Telemetry Server | Deprecated                        |
-| get_cmd_list                          | Command and Telemetry Server | Deprecated, use get_all_commands  |
-| get_cmd_log_filename                  | Command and Telemetry Server | Deprecated                        |
-| get_cmd_param_list                    | Command and Telemetry Server | Deprecated use get_command        |
-| get_all_interface_info                | Command and Telemetry Server | Deprecated, use get_interface     |
-| get_disconnected_targets              | Script Runner                | Unimplemented                     |
-| get_interface_info                    | Command and Telemetry Server | Deprecated, use get_interface     |
-| get_interface_targets                 | Command and Telemetry Server | Deprecated                        |
-| get_output_logs_filenames             | Command and Telemetry Server | Deprecated                        |
-| get_packet                            | Command and Telemetry Server | Deprecated, use get_packets       |
-| get_packet_data                       | Command and Telemetry Server | Deprecated, use get_packets       |
-| get_packet_logger_info                | Command and Telemetry Server | Deprecated                        |
-| get_packet_loggers                    | Command and Telemetry Server | Deprecated                        |
-| get_replay_mode                       | Replay                       | Deprecated                        |
-| get_router_info                       | Command and Telemetry Server | Deprecated, use get_router        |
-| get_screen_definition                 | Telemetry Viewer             | Unimplemented                     |
-| get_screen_list                       | Telemetry Viewer             | Unimplemented                     |
-| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated                        |
-| get_server_message                    | Command and Telemetry Server | Deprecated                        |
-| get_server_message_log_filename       | Command and Telemetry Server | Deprecated                        |
-| get_server_status                     | Command and Telemetry Server | Unimplemented                     |
-| get_target_ignored_items              | Command and Telemetry Server | Deprecated, use get_target        |
-| get_target_ignored_parameters         | Command and Telemetry Server | Deprecated, use get_target        |
-| get_target_info                       | Command and Telemetry Server | Deprecated, use get_target        |
-| get_tlm_details                       | Command and Telemetry Server | Deprecated                        |
-| get_tlm_item_list                     | Command and Telemetry Server | Deprecated                        |
-| get_tlm_list                          | Command and Telemetry Server | Deprecated                        |
-| get_tlm_log_filename                  | Command and Telemetry Server | Deprecated                        |
-| interface_state                       | Command and Telemetry Server | Deprecated, use get_interface     |
-| local_screen                          | Script Runner                | Unimplemented                     |
-| map_target_to_interface               | Command and Telemetry Server | Unimplemented                     |
-| override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm      |
-| open_directory_dialog                 | Script Runner                | Deprecated                        |
-| replay_move_end                       | Replay                       | Deprecated                        |
-| replay_move_index                     | Replay                       | Deprecated                        |
-| replay_move_start                     | Replay                       | Deprecated                        |
-| replay_play                           | Replay                       | Deprecated                        |
-| replay_reverse_play                   | Replay                       | Deprecated                        |
-| replay_select_file                    | Replay                       | Deprecated                        |
-| replay_set_playback_delay             | Replay                       | Deprecated                        |
-| replay_status                         | Replay                       | Deprecated                        |
-| replay_step_back                      | Replay                       | Deprecated                        |
-| replay_step_forward                   | Replay                       | Deprecated                        |
-| replay_stop                           | Replay                       | Deprecated                        |
-| router_state                          | Command and Telemetry Server | Deprecated, use get_router        |
-| run_mode                              | Script Runner                | Unimplemented                     |
-| save_file_dialog                      | Script Runner                | Deprecated                        |
-| script_disconnect                     | Script Runner                | Unimplemented                     |
-| set_disconnected_targets              | Script Runner                | Unimplemented                     |
-| set_replay_mode                       | Replay                       | Deprecated                        |
-| set_stdout_max_lines                  | Script Runner                | Unimplemented                     |
-| set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm           |
-| show_backtrace                        | Script Runner                | Unimplemented                     |
-| shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                        |
-| start_cmd_log                         | Command and Telemetry Server | Deprecated                        |
-| start_logging                         | Command and Telemetry Server | Deprecated                        |
-| start_new_scriptrunner_message_log    | Command and Telemetry Server | Deprecated                        |
-| start_new_server_message_log          | Command and Telemetry Server | Deprecated                        |
-| start_tlm_log                         | Command and Telemetry Server | Deprecated                        |
-| step_mode                             | Script Runner                | Unimplemented                     |
-| stop_background_task                  | Command and Telemetry Server | Deprecated                        |
-| stop_cmd_log                          | Command and Telemetry Server | Deprecated                        |
-| stop_logging                          | Command and Telemetry Server | Deprecated                        |
-| stop_tlm_log                          | Command and Telemetry Server | Deprecated                        |
-| subscribe_limits_events               | Command and Telemetry Server | Unimplemented                     |
-| subscribe_packet_data                 | Command and Telemetry Server | Deprecated, use subscribe_packets |
-| subscribe_server_messages             | Command and Telemetry Server | Unimplemented                     |
-| unsubscribe_limits_events             | Command and Telemetry Server | Deprecated                        |
-| unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                        |
-| unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                        |
+| Method                                | Tool                         | Status                                                |
+| ------------------------------------- | ---------------------------- | ----------------------------------------------------- |
+| check_raw                             | Script Runner                | Deprecated, use check(..., type: :RAW)                |
+| check_formatted                       | Script Runner                | Deprecated, use check(..., type: :FORMATTED)          |
+| check_with_units                      | Script Runner                | Deprecated, use check(..., type: :WITH_UNITS)         |
+| check_tolerance_raw                   | Script Runner                | Deprecated, use check_tolerance(..., type: :RAW)      |
+| clear                                 | Telemetry Viewer             | Unimplemented                                         |
+| clear_all                             | Telemetry Viewer             | Unimplemented                                         |
+| clear_disconnected_targets            | Script Runner                | Unimplemented                                         |
+| close_local_screens                   | Telemetry Viewer             | Unimplemented                                         |
+| cmd_tlm_clear_counters                | Command and Telemetry Server | Unimplemented                                         |
+| cmd_tlm_reload                        | Command and Telemetry Server | Unimplemented                                         |
+| display                               | Telemetry Viewer             | Unimplemented                                         |
+| get_all_packet_logger_info            | Command and Telemetry Server | Deprecated                                            |
+| get_all_target_info                   | Command and Telemetry Server | Deprecated, use get_target_interfaces                 |
+| get_background_tasks                  | Command and Telemetry Server | Deprecated                                            |
+| get_cmd_list                          | Command and Telemetry Server | Deprecated, use get_all_commands                      |
+| get_cmd_log_filename                  | Command and Telemetry Server | Deprecated                                            |
+| get_cmd_param_list                    | Command and Telemetry Server | Deprecated, use get_command                           |
+| get_cmd_tlm_disconnect                | Script Runner                | Deprecated, use $disconnect                           |
+| get_disconnected_targets              | Script Runner                | Unimplemented                                         |
+| get_interface_info                    | Command and Telemetry Server | Deprecated, use get_interface                         |
+| get_interface_targets                 | Command and Telemetry Server | Deprecated                                            |
+| get_output_logs_filenames             | Command and Telemetry Server | Deprecated                                            |
+| get_packet                            | Command and Telemetry Server | Deprecated, use get_packets                           |
+| get_packet_data                       | Command and Telemetry Server | Deprecated, use get_packets                           |
+| get_packet_logger_info                | Command and Telemetry Server | Deprecated                                            |
+| get_packet_loggers                    | Command and Telemetry Server | Deprecated                                            |
+| get_replay_mode                       | Replay                       | Deprecated                                            |
+| get_router_info                       | Command and Telemetry Server | Deprecated, use get_router                            |
+| get_screen_definition                 | Telemetry Viewer             | Unimplemented                                         |
+| get_screen_list                       | Telemetry Viewer             | Unimplemented                                         |
+| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated                                            |
+| get_server_message                    | Command and Telemetry Server | Deprecated                                            |
+| get_server_message_log_filename       | Command and Telemetry Server | Deprecated                                            |
+| get_server_status                     | Command and Telemetry Server | Unimplemented                                         |
+| get_target_ignored_items              | Command and Telemetry Server | Deprecated, use get_target                            |
+| get_target_ignored_parameters         | Command and Telemetry Server | Deprecated, use get_target                            |
+| get_target_info                       | Command and Telemetry Server | Deprecated, use get_target                            |
+| get_tlm_details                       | Command and Telemetry Server | Deprecated                                            |
+| get_tlm_item_list                     | Command and Telemetry Server | Deprecated                                            |
+| get_tlm_list                          | Command and Telemetry Server | Deprecated                                            |
+| get_tlm_log_filename                  | Command and Telemetry Server | Deprecated                                            |
+| interface_state                       | Command and Telemetry Server | Deprecated, use get_interface                         |
+| local_screen                          | Script Runner                | Unimplemented                                         |
+| override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm                          |
+| open_directory_dialog                 | Script Runner                | Deprecated                                            |
+| replay_move_end                       | Replay                       | Deprecated                                            |
+| replay_move_index                     | Replay                       | Deprecated                                            |
+| replay_move_start                     | Replay                       | Deprecated                                            |
+| replay_play                           | Replay                       | Deprecated                                            |
+| replay_reverse_play                   | Replay                       | Deprecated                                            |
+| replay_select_file                    | Replay                       | Deprecated                                            |
+| replay_set_playback_delay             | Replay                       | Deprecated                                            |
+| replay_status                         | Replay                       | Deprecated                                            |
+| replay_step_back                      | Replay                       | Deprecated                                            |
+| replay_step_forward                   | Replay                       | Deprecated                                            |
+| replay_stop                           | Replay                       | Deprecated                                            |
+| router_state                          | Command and Telemetry Server | Deprecated, use get_router                            |
+| run_mode                              | Script Runner                | Unimplemented                                         |
+| save_file_dialog                      | Script Runner                | Deprecated                                            |
+| set_cmd_tlm_disconnect                | Script Runner                | Deprecated, use disconnect_script                     |
+| set_disconnected_targets              | Script Runner                | Unimplemented                                         |
+| set_replay_mode                       | Replay                       | Deprecated                                            |
+| set_stdout_max_lines                  | Script Runner                | Unimplemented                                         |
+| set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm                               |
+| show_backtrace                        | Script Runner                | Unimplemented                                         |
+| shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                                            |
+| start_cmd_log                         | Command and Telemetry Server | Deprecated                                            |
+| start_logging                         | Command and Telemetry Server | Deprecated                                            |
+| start_new_scriptrunner_message_log    | Command and Telemetry Server | Deprecated                                            |
+| start_new_server_message_log          | Command and Telemetry Server | Deprecated                                            |
+| start_tlm_log                         | Command and Telemetry Server | Deprecated                                            |
+| step_mode                             | Script Runner                | Unimplemented                                         |
+| stop_background_task                  | Command and Telemetry Server | Deprecated                                            |
+| stop_cmd_log                          | Command and Telemetry Server | Deprecated                                            |
+| stop_logging                          | Command and Telemetry Server | Deprecated                                            |
+| stop_tlm_log                          | Command and Telemetry Server | Deprecated                                            |
+| subscribe_limits_events               | Command and Telemetry Server | Unimplemented                                         |
+| subscribe_packet_data                 | Command and Telemetry Server | Deprecated, use subscribe_packets                     |
+| subscribe_server_messages             | Command and Telemetry Server | Unimplemented                                         |
+| tlm_raw                               | Script Runner                | Deprecated, use tlm(..., type: :RAW)                  |
+| tlm_formatted                         | Script Runner                | Deprecated, use tlm(..., type: :FORMATTED)            |
+| tlm_with_units                        | Script Runner                | Deprecated, use tlm(..., type: :WITH_UNITS)           |
+| tlm_variable                          | Script Runner                | Deprecated, use tlm() and pass type:)                 |
+| unsubscribe_limits_events             | Command and Telemetry Server | Deprecated                                            |
+| unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                                            |
+| unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                                            |
+| wait_raw                              | Script Runner                | Deprecated, use wait(..., type: :RAW)                 |
+| wait_check_raw                        | Script Runner                | Deprecated, use wait_check(..., type: :RAW)           |
+| wait_tolerance_raw                    | Script Runner                | Deprecated, use wait_tolerance(..., type: :RAW)       |
+| wait_check_tolerance_raw              | Script Runner                | Deprecated, use wait_check_tolerance(..., type: :RAW) |
 
 The following API methods are new in COSMOS 5:
 
@@ -1066,71 +1078,32 @@ check("INST HEALTH_STATUS COLLECTS > 1")
 
 ### check_raw
 
-Performs a verification of a telemetry item using its raw telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output. Note: In most cases using wait_check_raw is a better choice than using check_raw.
-
-Syntax:
-
-```ruby
-check_raw("<Target Name> <Packet Name> <Item Name> <Comparison>")
-```
-
-| Parameter   | Description                                                                                                                                                                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.                                                                                                                                                                                                         |
-| Packet Name | Name of the telemetry packet of the telemetry item.                                                                                                                                                                                               |
-| Item Name   | Name of the telemetry item.                                                                                                                                                                                                                       |
-| Comparison  | A comparison to perform against the telemetry item. If a comparison is not given then the telemetry item will just be printed into the script log. If a comparison is not given then the telemetry item will just be printed into the script log. |
+Deprecated: Use check with type: :RAW
 
 Example:
 
 ```ruby
-check_raw("INST HEALTH_STATUS COLLECTS > 1")
+check("INST HEALTH_STATUS COLLECTS > 1", type: :RAW)
 ```
 
 ### check_formatted
 
-Performs a verification of a telemetry item using its formatted telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.
-
-Syntax:
-
-```ruby
-check_formatted("<Target Name> <Packet Name> <Item Name> <Comparison>")
-```
-
-| Parameter   | Description                                                                                                                                                                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.                                                                                                                                                                                                         |
-| Packet Name | Name of the telemetry packet of the telemetry item.                                                                                                                                                                                               |
-| Item Name   | Name of the telemetry item.                                                                                                                                                                                                                       |
-| Comparison  | A comparison to perform against the telemetry item. If a comparison is not given then the telemetry item will just be printed into the script log. If a comparison is not given then the telemetry item will just be printed into the script log. |
+Deprecated: Use check with type: :FORMATTED
 
 Example:
 
 ```ruby
-check_formatted("INST HEALTH_STATUS COLLECTS == '1'")
+check("INST HEALTH_STATUS COLLECTS == '1'", type: :FORMATTED)
 ```
 
 ### check_with_units
 
-Performs a verification of a telemetry item using its formatted with units telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.
-
-Syntax:
-
-```ruby
-check_with_units("<Target Name> <Packet Name> <Item Name> <Comparison>")
-```
-
-| Parameter   | Description                                                                                                                                                                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.                                                                                                                                                                                                         |
-| Packet Name | Name of the telemetry packet of the telemetry item.                                                                                                                                                                                               |
-| Item Name   | Name of the telemetry item.                                                                                                                                                                                                                       |
-| Comparison  | A comparison to perform against the telemetry item. If a comparison is not given then the telemetry item will just be printed into the script log. If a comparison is not given then the telemetry item will just be printed into the script log. |
+Deprecated: Use check with type: :WITH_UNITS
 
 Example:
 
 ```ruby
-check_with_units("INST HEALTH_STATUS COLLECTS == '1'")
+check("INST HEALTH_STATUS COLLECTS == '1'", type: :WITH_UNITS)
 ```
 
 ### check_tolerance
@@ -1150,35 +1123,23 @@ check_tolerance("<Target Name> <Packet Name> <Item Name>", <Expected Value>, <To
 | Item Name      | Name of the telemetry item.                         |
 | Expected Value | Expected value of the telemetry item.               |
 | Tolerance      | ± Tolerance on the expected value.                  |
+| type:          | :CONVERTED (default) or :RAW                        |
 
 Example:
 
 ```ruby
 check_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0)
+check_tolerance("INST HEALTH_STATUS TEMP1", 50000, 20000, type: :RAW)
 ```
 
 ### check_tolerance_raw
 
-Checks a raw telemetry item against an expected value with a tolerance. If the verification fails then the script will be paused with an error. Note: In most cases using wait_check_tolerance_raw is a better choice than using check_tolerance_raw.
-
-Syntax:
-
-```ruby
-check_tolerance_raw("<Target Name> <Packet Name> <Item Name>", <Expected Value>, <Tolerance>)
-```
-
-| Parameter      | Description                                         |
-| -------------- | --------------------------------------------------- |
-| Target Name    | Name of the target of the telemetry item.           |
-| Packet Name    | Name of the telemetry packet of the telemetry item. |
-| Item Name      | Name of the telemetry item.                         |
-| Expected Value | Expected value of the telemetry item.               |
-| Tolerance      | ± Tolerance on the expected value.                  |
+Deprecated: Use check_tolerance with type: :RAW
 
 Example:
 
 ```ruby
-check_tolerance_raw("INST HEALTH_STATUS COLLECTS", 10.0, 5.0)
+check_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, type: :RAW)
 ```
 
 ### check_expression
@@ -1221,15 +1182,15 @@ Syntax:
 check_exception("<Method Name>", "<Method Params - optional>")
 ```
 
-| Parameter     | Description                                                         |
-| ------------- | ------------------------------------------------------------------- |
-| Method Name   | The COSMOS scripting method to execute, e.g. 'cmd', 'cmd_raw', etc. |
-| Method Params | Parameters for the method                                           |
+| Parameter     | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| Method Name   | The COSMOS scripting method to execute, e.g. 'cmd', etc. |
+| Method Params | Parameters for the method                                |
 
 Example:
 
 ```ruby
-check_exception("cmd", "INST", "COLLECT", "TYPE"=>"NORMAL")
+check_exception("cmd", "INST", "COLLECT", "TYPE" => "NORMAL")
 ```
 
 ### tlm
@@ -1247,7 +1208,7 @@ tlm("<Target Name> <Packet Name> <Item Name>")
 | Target Name | Name of the target of the telemetry item.                                                 |
 | Packet Name | Name of the telemetry packet of the telemetry item.                                       |
 | Item Name   | Name of the telemetry item.                                                               |
-| type:       | Named parameter specifying the type. :RAW, :FORMATTED, :CONVERTED (default), :WITH_UNITS. |
+| type:       | Named parameter specifying the type. :RAW, :CONVERTED (default), :FORMATTED, :WITH_UNITS. |
 
 Example:
 
@@ -1258,91 +1219,45 @@ raw_value = tlm("INST HEALTH_STATUS COLLECTS", type: :RAW)
 
 ### tlm_raw
 
-Reads the raw form of a specified telemetry item.
-
-Syntax:
-
-```ruby
-tlm_raw("<Target Name> <Packet Name> <Item Name>")
-```
-
-| Parameter   | Description                                         |
-| ----------- | --------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.           |
-| Packet Name | Name of the telemetry packet of the telemetry item. |
-| Item Name   | Name of the telemetry item.                         |
+Deprecated: Use tlm with type: :FORMATTED
 
 Example:
 
 ```ruby
-value = tlm_raw("INST HEALTH_STATUS COLLECTS")
+value = tlm("INST HEALTH_STATUS COLLECTS", type: :RAW)
 ```
 
 ### tlm_formatted
 
-Reads the formatted form of a specified telemetry item.
-
-Syntax:
-
-```ruby
-tlm_formatted("<Target Name> <Packet Name> <Item Name>")
-```
-
-| Parameter   | Description                                         |
-| ----------- | --------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.           |
-| Packet Name | Name of the telemetry packet of the telemetry item. |
-| Item Name   | Name of the telemetry item.                         |
+Deprecated: Use tlm with type: :FORMATTED
 
 Example:
 
 ```ruby
-value = tlm_formatted("INST HEALTH_STATUS COLLECTS")
+value = tlm("INST HEALTH_STATUS COLLECTS", type: :FORMATTED)
 ```
 
 ### tlm_with_units
 
-Reads the formatted with units form of a specified telemetry item.
-
-Syntax:
-
-```ruby
-tlm_with_units("<Target Name> <Packet Name> <Item Name>")
-```
-
-| Parameter   | Description                                         |
-| ----------- | --------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.           |
-| Packet Name | Name of the telemetry packet of the telemetry item. |
-| Item Name   | Name of the telemetry item.                         |
+Deprecated: Use tlm with type: :WITH_UNITS
 
 Example:
 
 ```ruby
-value = tlm_with_units("INST HEALTH_STATUS COLLECTS")
+value = tlm("INST HEALTH_STATUS COLLECTS", type: WITH_UNITS)
 ```
 
 ### tlm_variable
 
-Reads a specified telemetry item with a variable value type. This method is deprecated now that tlm() itself takes a type keyword to request the type of telemetry.
-
-Syntax:
-
-```ruby
-tlm_variable("<Target Name> <Packet Name> <Item Name>", <Value Type>)
-```
-
-| Parameter   | Description                                                      |
-| ----------- | ---------------------------------------------------------------- |
-| Target Name | Name of the target of the telemetry item.                        |
-| Packet Name | Name of the telemetry packet of the telemetry item.              |
-| Item Name   | Name of the telemetry item.                                      |
-| Value Type  | Value Type to read. :RAW, :CONVERTED, :FORMATTED, or :WITH_UNITS |
+Deprecated: Use tlm with type: :RAW, type: :CONVERTED (default), type: :FORMATTED, or type: :WITH_UNITS
 
 Example:
 
 ```ruby
-value = tlm_variable("INST HEALTH_STATUS COLLECTS", :RAW)
+value = tlm("INST HEALTH_STATUS COLLECTS", type: :RAW)
+value = tlm("INST HEALTH_STATUS COLLECTS", type: :CONVERTED)
+value = tlm("INST HEALTH_STATUS COLLECTS", type: :FORMATTED)
+value = tlm("INST HEALTH_STATUS COLLECTS", type: :WITH_UNITS)
 ```
 
 ### get_tlm_buffer
@@ -1567,7 +1482,7 @@ Example:
 set_tlm("INST HEALTH_STATUS COLLECTS = 5") # type is :CONVERTED by default
 check("INST HEALTH_STATUS COLLECTS == 5")
 set_tlm("INST HEALTH_STATUS COLLECTS = 10", type: :RAW)
-check_raw("INST HEALTH_STATUS COLLECTS == 10")
+check("INST HEALTH_STATUS COLLECTS == 10", type: :RAW)
 ```
 
 ### inject_tlm
@@ -1603,19 +1518,19 @@ Syntax:
 override_tlm("<Target> <Packet> <Item> = <Value>")
 ```
 
-| Parameter | Description                                                           |
-| --------- | --------------------------------------------------------------------- |
-| Target    | Target name                                                           |
-| Packet    | Packet name                                                           |
-| Item      | Item name                                                             |
-| Value     | Value to set                                                          |
-| type:     | Type to override, :RAW, :CONVERTED (default), :FORMATTED, :WITH_UNITS |
+| Parameter | Description                                                                 |
+| --------- | --------------------------------------------------------------------------- |
+| Target    | Target name                                                                 |
+| Packet    | Packet name                                                                 |
+| Item      | Item name                                                                   |
+| Value     | Value to set                                                                |
+| type:     | Type to override, :ALL (default), :RAW, :CONVERTED, :FORMATTED, :WITH_UNITS |
 
 Example:
 
 ```ruby
-override_tlm("INST HEALTH_STATUS TEMP1 = 5")
-override_tlm("INST HEALTH_STATUS TEMP2 = 0", type: :RAW)
+override_tlm("INST HEALTH_STATUS TEMP1 = 5") # All requests for TEMP1 return 5
+override_tlm("INST HEALTH_STATUS TEMP2 = 0", type: :RAW) # Only RAW tlm set to 0
 ```
 
 ### normalize_tlm
@@ -1740,36 +1655,12 @@ wait("INST HEALTH_STATUS COLLECTS == 3", 10)
 
 ### wait_raw
 
-Pauses the script for a configurable amount of time or until a raw telemetry item meets given criteria. It supports two different syntaxes as shown. If no parameters are given then an infinite wait occurs until the user presses Go. Note that on a timeout, wait_raw does not stop the script, usually wait_check_raw is a better choice.
-
-Syntax:
-
-```ruby
-wait_raw(<Time>)
-```
-
-| Parameter | Description                   |
-| --------- | ----------------------------- |
-| Time      | Time in Seconds to delay for. |
-
-```ruby
-wait_raw("<Target Name> <Packet Name> <Item Name> <Comparison>", <Timeout>, <Polling Rate (optional)>)
-```
-
-| Parameter    | Description                                                                                                    |
-| ------------ | -------------------------------------------------------------------------------------------------------------- |
-| Target Name  | Name of the target of the telemetry item.                                                                      |
-| Packet Name  | Name of the telemetry packet of the telemetry item.                                                            |
-| Item Name    | Name of the telemetry item.                                                                                    |
-| Comparison   | A comparison to perform against the telemetry item.                                                            |
-| Timeout      | Timeout in seconds. Script will proceed if the wait statement times out waiting for the comparison to be true. |
-| Polling Rate | How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.                           |
+Deprecated: Use wait with type: :RAW
 
 Examples:
 
 ```ruby
-wait_raw(5)
-wait_raw("INST HEALTH_STATUS COLLECTS == 3", 10)
+wait("INST HEALTH_STATUS COLLECTS == 3", 10, type: :RAW)
 ```
 
 ### wait_tolerance
@@ -1800,28 +1691,12 @@ wait_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
 
 ### wait_tolerance_raw
 
-Pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. Note that on a timeout, wait_tolerance_raw does not stop the script, usually wait_check_tolerance_raw is a better choice.
-
-Syntax:
-
-```ruby
-wait_tolerance_raw("<Target Name> <Packet Name> <Item Name>", <Expected Value>, <Tolerance>, <Timeout>, <Polling Rate (optional)>)
-```
-
-| Parameter      | Description                                                                                                    |
-| -------------- | -------------------------------------------------------------------------------------------------------------- |
-| Target Name    | Name of the target of the telemetry item.                                                                      |
-| Packet Name    | Name of the telemetry packet of the telemetry item.                                                            |
-| Item Name      | Name of the telemetry item.                                                                                    |
-| Expected Value | Expected value of the telemetry item.                                                                          |
-| Tolerance      | ± Tolerance on the expected value.                                                                             |
-| Timeout        | Timeout in seconds. Script will proceed if the wait statement times out waiting for the comparison to be true. |
-| Polling Rate   | How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.                           |
+Deprecated: Use wait_tolerance with type: :RAW
 
 Examples:
 
 ```ruby
-wait_tolerance_raw("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
+wait_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10, type: :RAW)
 ```
 
 ### wait_expression
@@ -1897,27 +1772,12 @@ wait_check("INST HEALTH_STATUS COLLECTS > 5", 10)
 
 ### wait_check_raw
 
-Combines the wait_raw and check_raw keywords into one. This pauses the script until the raw value of a telemetry item meets given criteria or times out. On a timeout the script stops.
-
-Syntax:
-
-```ruby
-wait_check_raw("<Target Name> <Packet Name> <Item Name> <Comparison>", <Timeout>, <Polling Rate (optional)>)
-```
-
-| Parameter    | Description                                                                                                 |
-| ------------ | ----------------------------------------------------------------------------------------------------------- |
-| Target Name  | Name of the target of the telemetry item.                                                                   |
-| Packet Name  | Name of the telemetry packet of the telemetry item.                                                         |
-| Item Name    | Name of the telemetry item.                                                                                 |
-| Comparison   | A comparison to perform against the telemetry item.                                                         |
-| Timeout      | Timeout in seconds. Script will stop if the wait statement times out waiting for the comparison to be true. |
-| Polling Rate | How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.                        |
+Deprecated: Use wait_check with type: :RAW
 
 Example:
 
 ```ruby
-wait_check_raw("INST HEALTH_STATUS COLLECTS > 5", 10)
+wait_check("INST HEALTH_STATUS COLLECTS > 5", 10, type: :RAW)
 ```
 
 ### wait_check_tolerance
@@ -1948,28 +1808,12 @@ wait_check_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
 
 ### wait_check_tolerance_raw
 
-Pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. On a timeout the script stops.
-
-Syntax:
-
-```ruby
-wait_check_tolerance_raw("<Target Name> <Packet Name> <Item Name>", <Expected Value>, <Tolerance>, <Timeout>, <Polling Rate (optional)>)
-```
-
-| Parameter      | Description                                                                                                 |
-| -------------- | ----------------------------------------------------------------------------------------------------------- |
-| Target Name    | Name of the target of the telemetry item.                                                                   |
-| Packet Name    | Name of the telemetry packet of the telemetry item.                                                         |
-| Item Name      | Name of the telemetry item.                                                                                 |
-| Expected Value | Expected value of the telemetry item.                                                                       |
-| Tolerance      | ± Tolerance on the expected value.                                                                          |
-| Timeout        | Timeout in seconds. Script will stop if the wait statement times out waiting for the comparison to be true. |
-| Polling Rate   | How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.                        |
+Deprecated: Use wait_check_tolerance with type: :RAW
 
 Examples:
 
 ```ruby
-wait_check_tolerance_raw("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
+wait_check_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10, type: :RAW)
 ```
 
 ### wait_check_expression
@@ -2403,16 +2247,16 @@ pp target
 # "plugin"=>nil}
 ```
 
-### get_all_target_info
+### get_target_interfaces
 
-Returns information about all targets. The return value is an array of arrays where each subarray contains the target name, interface name, command count, and telemetry count for a target.
+Returns the interfaces for all targets. The return value is an array of arrays where each subarray contains the target name, and a String of all the interface names.
 
 Syntax / Example:
 
 ```ruby
-target_info = get_all_target_info()
-target_info.each do |target_name, interface_name, cmd_count, tlm_count|
-  puts "Target: #{target_name}, Interface: #{interface_name}, Cmd count: #{cmd_count}, Tlm count: #{tlm_count}"
+target_ints = get_target_interfaces()
+target_ints.each do |target_name, interfaces|
+  puts "Target: #{target_name}, Interfaces: #{interfaces}"
 end
 ```
 
@@ -3092,43 +2936,12 @@ show_backtrace(true) # Enables showing backtrace for every error
 show_backtrace(false) # Disables showing backtrace for every error
 ```
 
-### shutdown_cmd_tlm
+### disconnect_script
 
-Disconnects from the Command and Telemetry Server. This is good practice to do before your tool shuts down.
-
-Syntax / Example:
-
-```ruby
-shutdown_cmd_tlm()
-```
-
-### set_cmd_tlm_disconnect
-
-Puts scripting into or out of disconnect mode. In disconnect mode, messages are not sent to CmdTlmServer. Instead things are reported as nominally succeeding. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.
-
-Syntax:
-
-```ruby
-set_cmd_tlm_disconnect(<Disconnect>, <Config File>)
-```
-
-| Parameter   | Description                                                                                                          |
-| ----------- | -------------------------------------------------------------------------------------------------------------------- |
-| Disconnect  | True or Fase. True enters disconnect mode and False leaves it.                                                       |
-| Config File | Command and Telemetry Server configuration file to use to simulate the CmdTlmServer. Defaults to cmd_tlm_server.txt. |
-
-Example:
-
-```ruby
-set_cmd_tlm_disconnect(true)
-```
-
-### get_cmd_tlm_disconnect
-
-Returns true if currently in disconnect mode.
+Puts scripting into disconnect mode. In disconnect mode, commands are not sent to targets, checks are all successful, and waits expire instantly. Requests for telemetry (tlm()) typically return 0. Disconnect mode is useful for dry-running scripts without having connected targets.
 
 Syntax / Example:
 
 ```ruby
-mode = get_cmd_tlm_disconnect()
+disconnect_script()
 ```
