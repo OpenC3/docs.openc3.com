@@ -98,7 +98,7 @@ Note we're connecting to the COSMOS network (`docker network ls`) and exposing t
 
 ```bash
 docker build -t cfs .
-docker run --cap-add CAP_SYS_RESOURCE --net=openc3_default --name cfs -p1234:1234 -p1235:1235 cfs
+docker run --cap-add CAP_SYS_RESOURCE --net=openc3-cosmos-network --name cfs -p1234:1234 -p1235:1235 cfs
 ```
 
 ## Creating a COSMOS plugin for TM/TC interface with cFS
@@ -283,12 +283,12 @@ Determine the IP address the cFS container and COSMOS operator container are run
 ```bash
 docker network ls
 NETWORK ID     NAME             DRIVER    SCOPE
-d842f813f1c7   openc3_default   bridge    local
+d842f813f1c7   openc3-cosmos-network   bridge    local
 
-docker network inspect openc3_default
+docker network inspect openc3-cosmos-network
 [
     {
-        "Name": "openc3_default",
+        "Name": "openc3-cosmos-network",
         ...
         "Containers": {
             "03cb6bf1b27c631fad1366e9342aeaa5b80f458a437195e4a95e674bb5f5983d": {

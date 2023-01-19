@@ -33,7 +33,7 @@ Interfaces also have the following methods that exist and have default implement
 
 ## Provided Interfaces
 
-COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) and [ROUTER]({{site.baseurl}}/docs/v5/plugins#router) keywords.
+COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, and Serial. The interface to use is defined by the [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) and [ROUTER]({{site.baseurl}}/docs/v5/plugins#router) keywords.
 
 ### TCPIP Client Interface
 
@@ -49,7 +49,7 @@ The TCPIP client interface connects to a TCPIP socket to send commands and recei
 | Protocol Type      | See Protocols.                                                                     | No       |
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                        | No       |
 
-cmd_tlm_server.txt Examples:
+plugin.txt Examples:
 
 ```bash
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
@@ -76,7 +76,7 @@ The TCPIP server interface creates a TCPIP server which listens for incoming con
 | Protocol Type      | See Protocols.                                                                     | No       |
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                        | No       |
 
-cmd_tlm_server.txt Examples:
+plugin.txt Examples:
 
 ```bash
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
@@ -105,7 +105,7 @@ The UDP interface uses UDP packets to send and receive telemetry from the target
 | Write Timeout     | Number of seconds to wait before aborting the write                                                                | No       | nil (block on write)                          |
 | Read Timeout      | Number of seconds to wait before aborting the read                                                                 | No       | nil (block on read)                           |
 
-cmd_tlm_server.txt Example:
+plugin.txt Example:
 
 ```bash
 INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
@@ -129,7 +129,7 @@ The serial interface connects to a target over a serial port. COSMOS provides dr
 | Protocol Type      | See Protocols.                                                                                | No       |
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                                   | No       |
 
-cmd_tlm_server.txt Examples:
+plugin.txt Examples:
 
 ```bash
 INTERFACE INTERFACE_NAME serial_interface.rb COM1 COM1 9600 NONE 1 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
@@ -142,50 +142,6 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 #
 ```
 
 See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the [OPTION]({{site.baseurl}}/docs/v5/plugins#option) modifier.
-
-### CmdTlmServer Interface
-
-<div class="note unreleased">
-  <p>This interface is changing in COSMOS 5. New documentation needed.</p>
-</div>
-
-The CmdTlmServer interface provides a connection to the COSMOS Command and Telemetry Server. This allows scripts and other COSMOS tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a COSMOS version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any COSMOS configuration.
-
-cmd_tlm_server.txt Example:
-
-```bash
-INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
-```
-
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
-
-### LINC Interface
-
-The LINC interface uses a single TCPIP socket to talk to a Ball Aerospace LINC Labview target.
-
-| Parameter            | Description                                                                                                                                                          | Required | Default             |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------- |
-| Host                 | Machine name to connect to                                                                                                                                           | Yes      |
-| Port                 | Port to write commands to and read telemetry from                                                                                                                    | Yes      |
-| Handshake Enabled    | Enable command handshaking where commands block until the corresponding handshake message is received                                                                | No       | true                |
-| Response Timeout     | Number of seconds to wait for a handshaking response                                                                                                                 | No       | 5 seconds           |
-| Read Timeout         | Number of seconds to wait before aborting the read                                                                                                                   | No       | nil (block on read) |
-| Write Timeout        | Number of seconds to wait before aborting the write                                                                                                                  | No       | 5 seconds           |
-| Length Bit Offset    | The bit offset of the length field. Every packet using this interface must have the same structure such that the length field is the same size at the same location. | No       | 0 bits              |
-| Length Bit Size      | The size in bits of the length field                                                                                                                                 | No       | 16 bits             |
-| Length Value Offset  | The offset to apply to the length field value. For example if the length field indicates packet length minus one, this value should be one.                          | No       | 4                   |
-| Fieldname GUID       | Fieldname of the GUID field                                                                                                                                          | No       | 'HDR_GUID'          |
-| Length Endianness    | The endianness of the length field. Must be either 'BIG_ENDIAN' or 'LITTLE_ENDIAN'.                                                                                  | No       | 'BIG_ENDIAN'        |
-| Fieldname Cmd Length | Fieldname of the length field                                                                                                                                        | No       | 'HDR_LENGTH'        |
-
-cmd_tlm_server.txt Examples:
-
-```bash
-INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080
-INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 true 5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
-```
-
-See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of the INTERFACE keyword. See [Interface Modifiers]({{site.baseurl}}/docs/v5/plugins#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
 
 ## Streams
 
@@ -216,18 +172,16 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 
 COSMOS also defines the following helper protocols:
 
-| Name                                                             | Description                                                         |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [Override]({{site.baseurl}}/docs/v5/protocols#override-protocol) | Allows telemetry items to be fixed to given value when read         |
-| [CRC]({{site.baseurl}}/docs/v5/protocols#crc-protocol)           | Adds CRCs to outgoing packets and verifies CRCs on incoming packets |
-| [Ignore]({{site.baseurl}}/docs/v5/protocols#ignore-protocol)     | Ignores the specified packet by dropping it                         |
+| Name                                                         | Description                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------------- |
+| [CRC]({{site.baseurl}}/docs/v5/protocols#crc-protocol)       | Adds CRCs to outgoing packets and verifies CRCs on incoming packets |
+| [Ignore]({{site.baseurl}}/docs/v5/protocols#ignore-protocol) | Ignores the specified packet by dropping it                         |
 
 These protocols are declared after the INTERFACE:
 
 ```bash
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 TARGET TGT
-PROTOCOL READ OverrideProtocol
 PROTOCOL WRITE CrcProtocol CRC # See the documentation for parameters
 ```
 
