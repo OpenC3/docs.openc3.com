@@ -112,7 +112,6 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#helper-protocols">Helper Protocols</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#override-protocol">Override Protocol</a></li>
 <li class="toc-entry toc-h3"><a href="#crc-protocol">CRC Protocol</a></li>
 <li class="toc-entry toc-h3"><a href="#ignore-packet-protocol">Ignore Packet Protocol</a></li>
 </ul>
@@ -535,56 +534,7 @@
 <h2 id="helper-protocols">
 <a class="anchor" href="#helper-protocols" aria-hidden="true"><span class="octicon octicon-link"></span></a>Helper Protocols</h2>
 
-<p>COSMOS provides the following helper protocols: Override, and Crc. These protocols provide helper functionality to Interfaces.</p>
-
-<h3 id="override-protocol">
-<a class="anchor" href="#override-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Override Protocol</h3>
-
-<p>The Override Protocol allows telemetry items to be overridden when read. This action is permanent and any incoming data is overwritten with the new value. This is in contrast to using the set_tlm() API method which temporarily sets a telemetry value until new data arrives over the interface.</p>
-
-<p>To use this protocol, you must add it to your interface wherever that is defined. Typically, this is in the target’s cmd_tlm_server.txt file but it could also be in the global cmd_tlm_server.txt. For example:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INST_INT simulated_target_interface.rb sim_inst.rb
-TARGET INST
-PROTOCOL READ OverrideProtocol
-</code></pre></div></div>
-
-<p>By adding this to your interface you now have access to the following APIs:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Permanently set the converted value of a telemetry point to a given value</span>
-<span class="n">override_tlm</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="c1"># or</span>
-<span class="n">override_tlm</span><span class="p">(</span><span class="s2">"target_name packet_name item_name = value"</span><span class="p">)</span>
-
-<span class="c1"># Permanently set the raw value of a telemetry point to a given value</span>
-<span class="n">override_tlm_raw</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="c1"># or</span>
-<span class="n">override_tlm_raw</span><span class="p">(</span><span class="s2">"target_name packet_name item_name = value"</span><span class="p">)</span>
-
-<span class="c1"># Clear an override of a telemetry point</span>
-<span class="n">normalize_tlm</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">)</span>
-<span class="c1"># or</span>
-<span class="n">normalize_tlm</span><span class="p">(</span><span class="s2">"target_name packet_name item_name"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
-    </tr>
-  </tbody>
-</table>
+<p>COSMOS provides the following helper protocols: Crc &amp; Ignore. These protocols provide helper functionality to Interfaces.</p>
 
 <h3 id="crc-protocol">
 <a class="anchor" href="#crc-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>CRC Protocol</h3>
@@ -878,7 +828,6 @@ PROTOCOL READ OverrideProtocol
 <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/length_protocol.rb">lib/openc3/interfaces/protocols/length_protocol.rb</a>
 <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/terminated_protocol.rb">lib/openc3/interfaces/protocols/terminated_protocol.rb</a>
 <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/template_protocol.rb">lib/openc3/interfaces/protocols/template_protocol.rb</a>
-<a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/override_protocol.rb">lib/openc3/interfaces/protocols/override_protocol.rb</a>
 <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/crc_protocol.rb">lib/openc3/interfaces/protocols/crc_protocol.rb</a>
 <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/interfaces/protocols/preidentified_protocol.rb">lib/openc3/interfaces/protocols/preidentified_protocol.rb</a></p>
 

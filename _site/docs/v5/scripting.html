@@ -246,7 +246,7 @@
 <ul>
 <li class="toc-entry toc-h3"><a href="#get_target_list">get_target_list</a></li>
 <li class="toc-entry toc-h3"><a href="#get_target">get_target</a></li>
-<li class="toc-entry toc-h3"><a href="#get_all_target_info">get_all_target_info</a></li>
+<li class="toc-entry toc-h3"><a href="#get_target_interfaces">get_target_interfaces</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#interfaces">Interfaces</a>
@@ -304,9 +304,7 @@
 <li class="toc-entry toc-h3"><a href="#step_mode">step_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#run_mode">run_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#show_backtrace">show_backtrace</a></li>
-<li class="toc-entry toc-h3"><a href="#shutdown_cmd_tlm">shutdown_cmd_tlm</a></li>
-<li class="toc-entry toc-h3"><a href="#set_cmd_tlm_disconnect">set_cmd_tlm_disconnect</a></li>
-<li class="toc-entry toc-h3"><a href="#get_cmd_tlm_disconnect">get_cmd_tlm_disconnect</a></li>
+<li class="toc-entry toc-h3"><a href="#disconnect_script">disconnect_script</a></li>
 </ul>
 </li>
 </ul></div>
@@ -616,6 +614,26 @@
   </thead>
   <tbody>
     <tr>
+      <td>check_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use check(…, type: :RAW)</td>
+    </tr>
+    <tr>
+      <td>check_formatted</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use check(…, type: :FORMATTED)</td>
+    </tr>
+    <tr>
+      <td>check_with_units</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use check(…, type: :WITH_UNITS)</td>
+    </tr>
+    <tr>
+      <td>check_tolerance_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use check_tolerance(…, type: :RAW)</td>
+    </tr>
+    <tr>
       <td>clear</td>
       <td>Telemetry Viewer</td>
       <td>Unimplemented</td>
@@ -656,6 +674,11 @@
       <td>Deprecated</td>
     </tr>
     <tr>
+      <td>get_all_target_info</td>
+      <td>Command and Telemetry Server</td>
+      <td>Deprecated, use get_target_interfaces</td>
+    </tr>
+    <tr>
       <td>get_background_tasks</td>
       <td>Command and Telemetry Server</td>
       <td>Deprecated</td>
@@ -673,12 +696,12 @@
     <tr>
       <td>get_cmd_param_list</td>
       <td>Command and Telemetry Server</td>
-      <td>Deprecated use get_command</td>
+      <td>Deprecated, use get_command</td>
     </tr>
     <tr>
-      <td>get_all_interface_info</td>
-      <td>Command and Telemetry Server</td>
-      <td>Deprecated, use get_interface</td>
+      <td>get_cmd_tlm_disconnect</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use $disconnect</td>
     </tr>
     <tr>
       <td>get_disconnected_targets</td>
@@ -806,11 +829,6 @@
       <td>Unimplemented</td>
     </tr>
     <tr>
-      <td>map_target_to_interface</td>
-      <td>Command and Telemetry Server</td>
-      <td>Unimplemented</td>
-    </tr>
-    <tr>
       <td>override_tlm_raw</td>
       <td>Command and Telemetry Server</td>
       <td>Deprecated, use override_tlm</td>
@@ -891,9 +909,9 @@
       <td>Deprecated</td>
     </tr>
     <tr>
-      <td>script_disconnect</td>
+      <td>set_cmd_tlm_disconnect</td>
       <td>Script Runner</td>
-      <td>Unimplemented</td>
+      <td>Deprecated, use disconnect_script</td>
     </tr>
     <tr>
       <td>set_disconnected_targets</td>
@@ -991,6 +1009,26 @@
       <td>Unimplemented</td>
     </tr>
     <tr>
+      <td>tlm_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use tlm(…, type: :RAW)</td>
+    </tr>
+    <tr>
+      <td>tlm_formatted</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use tlm(…, type: :FORMATTED)</td>
+    </tr>
+    <tr>
+      <td>tlm_with_units</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use tlm(…, type: :WITH_UNITS)</td>
+    </tr>
+    <tr>
+      <td>tlm_variable</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use tlm() and pass type:)</td>
+    </tr>
+    <tr>
       <td>unsubscribe_limits_events</td>
       <td>Command and Telemetry Server</td>
       <td>Deprecated</td>
@@ -1004,6 +1042,26 @@
       <td>unsubscribe_server_messages</td>
       <td>Command and Telemetry Server</td>
       <td>Deprecated</td>
+    </tr>
+    <tr>
+      <td>wait_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use wait(…, type: :RAW)</td>
+    </tr>
+    <tr>
+      <td>wait_check_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use wait_check(…, type: :RAW)</td>
+    </tr>
+    <tr>
+      <td>wait_tolerance_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use wait_tolerance(…, type: :RAW)</td>
+    </tr>
+    <tr>
+      <td>wait_check_tolerance_raw</td>
+      <td>Script Runner</td>
+      <td>Deprecated, use wait_check_tolerance(…, type: :RAW)</td>
     </tr>
   </tbody>
 </table>
@@ -2229,127 +2287,31 @@
 <h3 id="check_raw">
 <a class="anchor" href="#check_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>check_raw</h3>
 
-<p>Performs a verification of a telemetry item using its raw telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output. Note: In most cases using wait_check_raw is a better choice than using check_raw.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt; &lt;Comparison&gt;"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Comparison</td>
-      <td>A comparison to perform against the telemetry item. If a comparison is not given then the telemetry item will just be printed into the script log. If a comparison is not given then the telemetry item will just be printed into the script log.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use check with type: :RAW</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS &gt; 1"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS &gt; 1"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="check_formatted">
 <a class="anchor" href="#check_formatted" aria-hidden="true"><span class="octicon octicon-link"></span></a>check_formatted</h3>
 
-<p>Performs a verification of a telemetry item using its formatted telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_formatted</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt; &lt;Comparison&gt;"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Comparison</td>
-      <td>A comparison to perform against the telemetry item. If a comparison is not given then the telemetry item will just be printed into the script log. If a comparison is not given then the telemetry item will just be printed into the script log.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use check with type: :FORMATTED</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_formatted</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == '1'"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == '1'"</span><span class="p">,</span> <span class="ss">type: :FORMATTED</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="check_with_units">
 <a class="anchor" href="#check_with_units" aria-hidden="true"><span class="octicon octicon-link"></span></a>check_with_units</h3>
 
-<p>Performs a verification of a telemetry item using its formatted with units telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_with_units</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt; &lt;Comparison&gt;"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Comparison</td>
-      <td>A comparison to perform against the telemetry item. If a comparison is not given then the telemetry item will just be printed into the script log. If a comparison is not given then the telemetry item will just be printed into the script log.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use check with type: :WITH_UNITS</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_with_units</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == '1'"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == '1'"</span><span class="p">,</span> <span class="ss">type: :WITH_UNITS</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="check_tolerance">
@@ -2390,58 +2352,27 @@
       <td>Tolerance</td>
       <td>± Tolerance on the expected value.</td>
     </tr>
+    <tr>
+      <td>type:</td>
+      <td>:CONVERTED (default) or :RAW</td>
+    </tr>
   </tbody>
 </table>
 
 <p>Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_tolerance</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="n">check_tolerance</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TEMP1"</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="check_tolerance_raw">
 <a class="anchor" href="#check_tolerance_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>check_tolerance_raw</h3>
 
-<p>Checks a raw telemetry item against an expected value with a tolerance. If the verification fails then the script will be paused with an error. Note: In most cases using wait_check_tolerance_raw is a better choice than using check_tolerance_raw.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_tolerance_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Expected</span> <span class="no">Value</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Tolerance</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Expected Value</td>
-      <td>Expected value of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Tolerance</td>
-      <td>± Tolerance on the expected value.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use check_tolerance with type: :RAW</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_tolerance_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_tolerance</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="check_expression">
@@ -2504,7 +2435,7 @@
   <tbody>
     <tr>
       <td>Method Name</td>
-      <td>The COSMOS scripting method to execute, e.g. ‘cmd’, ‘cmd_raw’, etc.</td>
+      <td>The COSMOS scripting method to execute, e.g. ‘cmd’, etc.</td>
     </tr>
     <tr>
       <td>Method Params</td>
@@ -2515,7 +2446,7 @@
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_exception</span><span class="p">(</span><span class="s2">"cmd"</span><span class="p">,</span> <span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">,</span> <span class="s2">"TYPE"</span><span class="o">=&gt;</span><span class="s2">"NORMAL"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_exception</span><span class="p">(</span><span class="s2">"cmd"</span><span class="p">,</span> <span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">,</span> <span class="s2">"TYPE"</span> <span class="o">=&gt;</span> <span class="s2">"NORMAL"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="tlm">
@@ -2550,7 +2481,7 @@
     </tr>
     <tr>
       <td>type:</td>
-      <td>Named parameter specifying the type. :RAW, :FORMATTED, :CONVERTED (default), :WITH_UNITS.</td>
+      <td>Named parameter specifying the type. :RAW, :CONVERTED (default), :FORMATTED, :WITH_UNITS.</td>
     </tr>
   </tbody>
 </table>
@@ -2564,157 +2495,44 @@
 <h3 id="tlm_raw">
 <a class="anchor" href="#tlm_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>tlm_raw</h3>
 
-<p>Reads the raw form of a specified telemetry item.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tlm_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use tlm with type: :FORMATTED</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="tlm_formatted">
 <a class="anchor" href="#tlm_formatted" aria-hidden="true"><span class="octicon octicon-link"></span></a>tlm_formatted</h3>
 
-<p>Reads the formatted form of a specified telemetry item.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tlm_formatted</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use tlm with type: :FORMATTED</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm_formatted</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: :FORMATTED</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="tlm_with_units">
 <a class="anchor" href="#tlm_with_units" aria-hidden="true"><span class="octicon octicon-link"></span></a>tlm_with_units</h3>
 
-<p>Reads the formatted with units form of a specified telemetry item.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tlm_with_units</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use tlm with type: :WITH_UNITS</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm_with_units</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: </span><span class="no">WITH_UNITS</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="tlm_variable">
 <a class="anchor" href="#tlm_variable" aria-hidden="true"><span class="octicon octicon-link"></span></a>tlm_variable</h3>
 
-<p>Reads a specified telemetry item with a variable value type. This method is deprecated now that tlm() itself takes a type keyword to request the type of telemetry.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tlm_variable</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Value</span> <span class="no">Type</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Value Type</td>
-      <td>Value Type to read. :RAW, :CONVERTED, :FORMATTED, or :WITH_UNITS</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use tlm with type: :RAW, type: :CONVERTED (default), type: :FORMATTED, or type: :WITH_UNITS</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm_variable</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">:RAW</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: :CONVERTED</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: :FORMATTED</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="ss">type: :WITH_UNITS</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="get_tlm_buffer">
@@ -3052,7 +2870,7 @@
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS = 5"</span><span class="p">)</span> <span class="c1"># type is :CONVERTED by default</span>
 <span class="n">check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == 5"</span><span class="p">)</span>
 <span class="n">set_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS = 10"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
-<span class="n">check_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == 10"</span><span class="p">)</span>
+<span class="n">check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == 10"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="inject_tlm">
@@ -3133,15 +2951,15 @@
     </tr>
     <tr>
       <td>type:</td>
-      <td>Type to override, :RAW, :CONVERTED (default), :FORMATTED, :WITH_UNITS</td>
+      <td>Type to override, :ALL (default), :RAW, :CONVERTED, :FORMATTED, :WITH_UNITS</td>
     </tr>
   </tbody>
 </table>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">override_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TEMP1 = 5"</span><span class="p">)</span>
-<span class="n">override_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TEMP2 = 0"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">override_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TEMP1 = 5"</span><span class="p">)</span> <span class="c1"># All requests for TEMP1 return 5</span>
+<span class="n">override_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TEMP2 = 0"</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span> <span class="c1"># Only RAW tlm set to 0</span>
 </code></pre></div></div>
 
 <h3 id="normalize_tlm">
@@ -3349,70 +3167,11 @@
 <h3 id="wait_raw">
 <a class="anchor" href="#wait_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>wait_raw</h3>
 
-<p>Pauses the script for a configurable amount of time or until a raw telemetry item meets given criteria. It supports two different syntaxes as shown. If no parameters are given then an infinite wait occurs until the user presses Go. Note that on a timeout, wait_raw does not stop the script, usually wait_check_raw is a better choice.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_raw</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Time</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Time</td>
-      <td>Time in Seconds to delay for.</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt; &lt;Comparison&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Timeout</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Polling</span> <span class="no">Rate</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Comparison</td>
-      <td>A comparison to perform against the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Timeout</td>
-      <td>Timeout in seconds. Script will proceed if the wait statement times out waiting for the comparison to be true.</td>
-    </tr>
-    <tr>
-      <td>Polling Rate</td>
-      <td>How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use wait with type: :RAW</p>
 
 <p>Examples:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_raw</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">wait_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == 3"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS == 3"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="wait_tolerance">
@@ -3472,55 +3231,11 @@
 <h3 id="wait_tolerance_raw">
 <a class="anchor" href="#wait_tolerance_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>wait_tolerance_raw</h3>
 
-<p>Pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. Note that on a timeout, wait_tolerance_raw does not stop the script, usually wait_check_tolerance_raw is a better choice.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_tolerance_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Expected</span> <span class="no">Value</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Tolerance</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Timeout</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Polling</span> <span class="no">Rate</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Expected Value</td>
-      <td>Expected value of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Tolerance</td>
-      <td>± Tolerance on the expected value.</td>
-    </tr>
-    <tr>
-      <td>Timeout</td>
-      <td>Timeout in seconds. Script will proceed if the wait statement times out waiting for the comparison to be true.</td>
-    </tr>
-    <tr>
-      <td>Polling Rate</td>
-      <td>How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use wait_tolerance with type: :RAW</p>
 
 <p>Examples:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_tolerance_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_tolerance</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="wait_expression">
@@ -3660,51 +3375,11 @@
 <h3 id="wait_check_raw">
 <a class="anchor" href="#wait_check_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>wait_check_raw</h3>
 
-<p>Combines the wait_raw and check_raw keywords into one. This pauses the script until the raw value of a telemetry item meets given criteria or times out. On a timeout the script stops.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_check_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt; &lt;Comparison&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Timeout</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Polling</span> <span class="no">Rate</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Comparison</td>
-      <td>A comparison to perform against the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Timeout</td>
-      <td>Timeout in seconds. Script will stop if the wait statement times out waiting for the comparison to be true.</td>
-    </tr>
-    <tr>
-      <td>Polling Rate</td>
-      <td>How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use wait_check with type: :RAW</p>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_check_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS &gt; 5"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_check</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS &gt; 5"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="wait_check_tolerance">
@@ -3764,55 +3439,11 @@
 <h3 id="wait_check_tolerance_raw">
 <a class="anchor" href="#wait_check_tolerance_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>wait_check_tolerance_raw</h3>
 
-<p>Pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. On a timeout the script stops.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_check_tolerance_raw</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt; &lt;Packet Name&gt; &lt;Item Name&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Expected</span> <span class="no">Value</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Tolerance</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Timeout</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Polling</span> <span class="no">Rate</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the telemetry packet of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Expected Value</td>
-      <td>Expected value of the telemetry item.</td>
-    </tr>
-    <tr>
-      <td>Tolerance</td>
-      <td>± Tolerance on the expected value.</td>
-    </tr>
-    <tr>
-      <td>Timeout</td>
-      <td>Timeout in seconds. Script will stop if the wait statement times out waiting for the comparison to be true.</td>
-    </tr>
-    <tr>
-      <td>Polling Rate</td>
-      <td>How often the comparison is evaluated in seconds. Defaults to 0.25 if not specified.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Deprecated: Use wait_check_tolerance with type: :RAW</p>
 
 <p>Examples:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_check_tolerance_raw</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wait_check_tolerance</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS COLLECTS"</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="ss">type: :RAW</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="wait_check_expression">
@@ -4476,16 +4107,16 @@
 <span class="c1"># "plugin"=&gt;nil}</span>
 </code></pre></div></div>
 
-<h3 id="get_all_target_info">
-<a class="anchor" href="#get_all_target_info" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_all_target_info</h3>
+<h3 id="get_target_interfaces">
+<a class="anchor" href="#get_target_interfaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_target_interfaces</h3>
 
-<p>Returns information about all targets. The return value is an array of arrays where each subarray contains the target name, interface name, command count, and telemetry count for a target.</p>
+<p>Returns the interfaces for all targets. The return value is an array of arrays where each subarray contains the target name, and a String of all the interface names.</p>
 
 <p>Syntax / Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">target_info</span> <span class="o">=</span> <span class="n">get_all_target_info</span><span class="p">()</span>
-<span class="n">target_info</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target_name</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">,</span> <span class="n">cmd_count</span><span class="p">,</span> <span class="n">tlm_count</span><span class="o">|</span>
-  <span class="nb">puts</span> <span class="s2">"Target: </span><span class="si">#{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">, Interface: </span><span class="si">#{</span><span class="n">interface_name</span><span class="si">}</span><span class="s2">, Cmd count: </span><span class="si">#{</span><span class="n">cmd_count</span><span class="si">}</span><span class="s2">, Tlm count: </span><span class="si">#{</span><span class="n">tlm_count</span><span class="si">}</span><span class="s2">"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">target_ints</span> <span class="o">=</span> <span class="n">get_target_interfaces</span><span class="p">()</span>
+<span class="n">target_ints</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target_name</span><span class="p">,</span> <span class="n">interfaces</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"Target: </span><span class="si">#{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">, Interfaces: </span><span class="si">#{</span><span class="n">interfaces</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
 </code></pre></div></div>
 
@@ -5413,58 +5044,14 @@ Consider breaking code like this into a seperate file and using either require/l
 <span class="n">show_backtrace</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="c1"># Disables showing backtrace for every error</span>
 </code></pre></div></div>
 
-<h3 id="shutdown_cmd_tlm">
-<a class="anchor" href="#shutdown_cmd_tlm" aria-hidden="true"><span class="octicon octicon-link"></span></a>shutdown_cmd_tlm</h3>
+<h3 id="disconnect_script">
+<a class="anchor" href="#disconnect_script" aria-hidden="true"><span class="octicon octicon-link"></span></a>disconnect_script</h3>
 
-<p>Disconnects from the Command and Telemetry Server. This is good practice to do before your tool shuts down.</p>
-
-<p>Syntax / Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">shutdown_cmd_tlm</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h3 id="set_cmd_tlm_disconnect">
-<a class="anchor" href="#set_cmd_tlm_disconnect" aria-hidden="true"><span class="octicon octicon-link"></span></a>set_cmd_tlm_disconnect</h3>
-
-<p>Puts scripting into or out of disconnect mode. In disconnect mode, messages are not sent to CmdTlmServer. Instead things are reported as nominally succeeding. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_cmd_tlm_disconnect</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Disconnect</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Config</span> <span class="no">File</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Disconnect</td>
-      <td>True or Fase. True enters disconnect mode and False leaves it.</td>
-    </tr>
-    <tr>
-      <td>Config File</td>
-      <td>Command and Telemetry Server configuration file to use to simulate the CmdTlmServer. Defaults to cmd_tlm_server.txt.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_cmd_tlm_disconnect</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="get_cmd_tlm_disconnect">
-<a class="anchor" href="#get_cmd_tlm_disconnect" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_tlm_disconnect</h3>
-
-<p>Returns true if currently in disconnect mode.</p>
+<p>Puts scripting into disconnect mode. In disconnect mode, commands are not sent to targets, checks are all successful, and waits expire instantly. Requests for telemetry (tlm()) typically return 0. Disconnect mode is useful for dry-running scripts without having connected targets.</p>
 
 <p>Syntax / Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mode</span> <span class="o">=</span> <span class="n">get_cmd_tlm_disconnect</span><span class="p">()</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">disconnect_script</span><span class="p">()</span>
 </code></pre></div></div>
 
       </article>
