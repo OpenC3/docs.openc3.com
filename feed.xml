@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Thu, 05 Jan 2023 19:08:04 -0700</pubDate>
-    <lastBuildDate>Thu, 05 Jan 2023 19:08:04 -0700</lastBuildDate>
+    <pubDate>Fri, 20 Jan 2023 01:05:30 +0000</pubDate>
+    <lastBuildDate>Fri, 20 Jan 2023 01:05:30 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.1</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -28,7 +28,7 @@
     <item>
       <title>OpenC3 COSMOS 5.3.0 Released</title>
       <link>https://openc3.com/news/2023/01/05/openc3-cosmos-5-3-0-released/</link>
-      <pubDate>Thu, 05 Jan 2023 06:00:00 -0700</pubDate>
+      <pubDate>Thu, 05 Jan 2023 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -109,7 +109,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
     <item>
       <title>OpenC3 COSMOS 5.2.0 Released</title>
       <link>https://openc3.com/news/2022/12/13/openc3-cosmos-5-2-0-released/</link>
-      <pubDate>Tue, 13 Dec 2022 06:00:00 -0700</pubDate>
+      <pubDate>Tue, 13 Dec 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -228,7 +228,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
     <item>
       <title>OpenC3 COSMOS 5.1.1 Released</title>
       <link>https://openc3.com/news/2022/11/19/openc3-cosmos-5-1-1-released/</link>
-      <pubDate>Sat, 19 Nov 2022 06:00:00 -0700</pubDate>
+      <pubDate>Sat, 19 Nov 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -293,7 +293,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
     <item>
       <title>OpenC3 COSMOS 5.1.0 Released</title>
       <link>https://openc3.com/news/2022/11/17/openc3-cosmos-5-1-0-released/</link>
-      <pubDate>Thu, 17 Nov 2022 06:00:00 -0700</pubDate>
+      <pubDate>Thu, 17 Nov 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -444,7 +444,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
     <item>
       <title>OpenC3 5.0.11 Released</title>
       <link>https://openc3.com/news/2022/10/03/openc3-5-0-11-released/</link>
-      <pubDate>Mon, 03 Oct 2022 07:00:00 -0600</pubDate>
+      <pubDate>Mon, 03 Oct 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -522,7 +522,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
     <item>
       <title>OpenC3 5.0.10 Released</title>
       <link>https://openc3.com/news/2022/09/16/openc3-5-0-10-released/</link>
-      <pubDate>Fri, 16 Sep 2022 07:00:00 -0600</pubDate>
+      <pubDate>Fri, 16 Sep 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -600,7 +600,7 @@ Also requires docker compose version 1.27+&lt;/p&gt;
     <item>
       <title>OpenC3 5.0.9 Released</title>
       <link>https://openc3.com/news/2022/09/02/openc3-5-0-9-released/</link>
-      <pubDate>Fri, 02 Sep 2022 07:00:00 -0600</pubDate>
+      <pubDate>Fri, 02 Sep 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -695,7 +695,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>OpenC3 5.0.8 Released</title>
       <link>https://openc3.com/news/2022/08/13/openc3-5-0-8-released/</link>
-      <pubDate>Sat, 13 Aug 2022 07:00:00 -0600</pubDate>
+      <pubDate>Sat, 13 Aug 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -772,7 +772,7 @@ Have fun running OpenC3!&lt;/p&gt;
     <item>
       <title>OpenC3 5.0.7 Released</title>
       <link>https://openc3.com/news/2022/08/04/openc3-5-0-7-released/</link>
-      <pubDate>Thu, 04 Aug 2022 07:00:00 -0600</pubDate>
+      <pubDate>Thu, 04 Aug 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -832,7 +832,7 @@ Have fun running OpenC3!&lt;/p&gt;
     <item>
       <title>OpenC3 5.0.6 Released</title>
       <link>https://openc3.com/news/2022/07/29/openc3-5-0-6-released/</link>
-      <pubDate>Fri, 29 Jul 2022 07:00:00 -0600</pubDate>
+      <pubDate>Fri, 29 Jul 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       

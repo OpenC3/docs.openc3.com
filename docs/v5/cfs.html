@@ -228,7 +228,7 @@ match with the port number cFS is sending the telemetry on.</p>
 <p>Note we’re connecting to the COSMOS network (<code class="language-plaintext highlighter-rouge">docker network ls</code>) and exposing the cFS ports.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> cfs <span class="nb">.</span>
-docker run <span class="nt">--cap-add</span> CAP_SYS_RESOURCE <span class="nt">--net</span><span class="o">=</span>openc3_default <span class="nt">--name</span> cfs <span class="nt">-p1234</span>:1234 <span class="nt">-p1235</span>:1235 cfs
+docker run <span class="nt">--cap-add</span> CAP_SYS_RESOURCE <span class="nt">--net</span><span class="o">=</span>openc3-cosmos-network <span class="nt">--name</span> cfs <span class="nt">-p1234</span>:1234 <span class="nt">-p1235</span>:1235 cfs
 </code></pre></div></div>
 
 <h2 id="creating-a-cosmos-plugin-for-tmtc-interface-with-cfs">
@@ -415,12 +415,12 @@ the <code class="language-plaintext highlighter-rouge">openc3-cfs-1.0.0.xxx.gem<
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker network <span class="nb">ls
 </span>NETWORK ID     NAME             DRIVER    SCOPE
-d842f813f1c7   openc3_default   bridge    <span class="nb">local
+d842f813f1c7   openc3-cosmos-network   bridge    <span class="nb">local
 
-</span>docker network inspect openc3_default
+</span>docker network inspect openc3-cosmos-network
 <span class="o">[</span>
     <span class="o">{</span>
-        <span class="s2">"Name"</span>: <span class="s2">"openc3_default"</span>,
+        <span class="s2">"Name"</span>: <span class="s2">"openc3-cosmos-network"</span>,
         ...
         <span class="s2">"Containers"</span>: <span class="o">{</span>
             <span class="s2">"03cb6bf1b27c631fad1366e9342aeaa5b80f458a437195e4a95e674bb5f5983d"</span>: <span class="o">{</span>

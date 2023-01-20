@@ -107,8 +107,6 @@
 <li class="toc-entry toc-h3"><a href="#tcpip-server-interface">TCPIP Server Interface</a></li>
 <li class="toc-entry toc-h3"><a href="#udp-interface">UDP Interface</a></li>
 <li class="toc-entry toc-h3"><a href="#serial-interface">Serial Interface</a></li>
-<li class="toc-entry toc-h3"><a href="#cmdtlmserver-interface">CmdTlmServer Interface</a></li>
-<li class="toc-entry toc-h3"><a href="#linc-interface">LINC Interface</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#streams">Streams</a></li>
@@ -161,7 +159,7 @@
 <h2 id="provided-interfaces">
 <a class="anchor" href="#provided-interfaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Provided Interfaces</h2>
 
-<p>COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, Serial, Command Telemetry Server, and LINC. The interface to use is defined by the <a href="/docs/v5/plugins#interface">INTERFACE</a> and <a href="/docs/v5/plugins#router">ROUTER</a> keywords.</p>
+<p>COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UDP, and Serial. The interface to use is defined by the <a href="/docs/v5/plugins#interface">INTERFACE</a> and <a href="/docs/v5/plugins#router">ROUTER</a> keywords.</p>
 
 <h3 id="tcpip-client-interface">
 <a class="anchor" href="#tcpip-client-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>TCPIP Client Interface</h3>
@@ -215,7 +213,7 @@
   </tbody>
 </table>
 
-<p>cmd_tlm_server.txt Examples:</p>
+<p>plugin.txt Examples:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
@@ -275,7 +273,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
   </tbody>
 </table>
 
-<p>cmd_tlm_server.txt Examples:</p>
+<p>plugin.txt Examples:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil BURST 4 0xDEADBEEF
@@ -354,7 +352,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
   </tbody>
 </table>
 
-<p>cmd_tlm_server.txt Example:</p>
+<p>plugin.txt Example:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
 </code></pre></div></div>
@@ -423,7 +421,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
   </tbody>
 </table>
 
-<p>cmd_tlm_server.txt Examples:</p>
+<p>plugin.txt Examples:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME serial_interface.rb COM1 COM1 9600 NONE 1 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS1 /dev/ttyS1 38400 ODD 1 10.0 nil BURST 4 0xDEADBEEF
@@ -435,120 +433,6 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the <a href="/docs/v5/plugins#option">OPTION</a> modifier.</p>
-
-<h3 id="cmdtlmserver-interface">
-<a class="anchor" href="#cmdtlmserver-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>CmdTlmServer Interface</h3>
-
-<div class="note unreleased">
-  <p>This interface is changing in COSMOS 5. New documentation needed.</p>
-</div>
-
-<p>The CmdTlmServer interface provides a connection to the COSMOS Command and Telemetry Server. This allows scripts and other COSMOS tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a COSMOS version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any COSMOS configuration.</p>
-
-<p>cmd_tlm_server.txt Example:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE COSMOS_INT cmd_tlm_server_interface.rb
-</code></pre></div></div>
-
-<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
-
-<h3 id="linc-interface">
-<a class="anchor" href="#linc-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>LINC Interface</h3>
-
-<p>The LINC interface uses a single TCPIP socket to talk to a Ball Aerospace LINC Labview target.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Host</td>
-      <td>Machine name to connect to</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Port</td>
-      <td>Port to write commands to and read telemetry from</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Handshake Enabled</td>
-      <td>Enable command handshaking where commands block until the corresponding handshake message is received</td>
-      <td>No</td>
-      <td>true</td>
-    </tr>
-    <tr>
-      <td>Response Timeout</td>
-      <td>Number of seconds to wait for a handshaking response</td>
-      <td>No</td>
-      <td>5 seconds</td>
-    </tr>
-    <tr>
-      <td>Read Timeout</td>
-      <td>Number of seconds to wait before aborting the read</td>
-      <td>No</td>
-      <td>nil (block on read)</td>
-    </tr>
-    <tr>
-      <td>Write Timeout</td>
-      <td>Number of seconds to wait before aborting the write</td>
-      <td>No</td>
-      <td>5 seconds</td>
-    </tr>
-    <tr>
-      <td>Length Bit Offset</td>
-      <td>The bit offset of the length field. Every packet using this interface must have the same structure such that the length field is the same size at the same location.</td>
-      <td>No</td>
-      <td>0 bits</td>
-    </tr>
-    <tr>
-      <td>Length Bit Size</td>
-      <td>The size in bits of the length field</td>
-      <td>No</td>
-      <td>16 bits</td>
-    </tr>
-    <tr>
-      <td>Length Value Offset</td>
-      <td>The offset to apply to the length field value. For example if the length field indicates packet length minus one, this value should be one.</td>
-      <td>No</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>Fieldname GUID</td>
-      <td>Fieldname of the GUID field</td>
-      <td>No</td>
-      <td>‘HDR_GUID’</td>
-    </tr>
-    <tr>
-      <td>Length Endianness</td>
-      <td>The endianness of the length field. Must be either ‘BIG_ENDIAN’ or ‘LITTLE_ENDIAN’.</td>
-      <td>No</td>
-      <td>‘BIG_ENDIAN’</td>
-    </tr>
-    <tr>
-      <td>Fieldname Cmd Length</td>
-      <td>Fieldname of the length field</td>
-      <td>No</td>
-      <td>‘HDR_LENGTH’</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>cmd_tlm_server.txt Examples:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080
-INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 <span class="nb">true </span>5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
-</code></pre></div></div>
-
-<p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
 
 <h2 id="streams">
 <a class="anchor" href="#streams" aria-hidden="true"><span class="octicon octicon-link"></span></a>Streams</h2>
@@ -615,10 +499,6 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
   </thead>
   <tbody>
     <tr>
-      <td><a href="/docs/v5/protocols#override-protocol">Override</a></td>
-      <td>Allows telemetry items to be fixed to given value when read</td>
-    </tr>
-    <tr>
       <td><a href="/docs/v5/protocols#crc-protocol">CRC</a></td>
       <td>Adds CRCs to outgoing packets and verifies CRCs on incoming packets</td>
     </tr>
@@ -633,7 +513,6 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 TARGET TGT
-PROTOCOL READ OverrideProtocol
 PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for parameters</span>
 </code></pre></div></div>
 
