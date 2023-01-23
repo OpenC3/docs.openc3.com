@@ -5,7 +5,7 @@
   <title>Script Runner</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.1">
+  <meta name="generator" content="Jekyll v4.3.2">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -154,9 +154,12 @@
   <li>Clears the editor and filename</li>
   <li>Opens a dialog to select a file to open</li>
   <li>Saves the currently opened file to disk</li>
-  <li>Opens a dialog to allow the user to rename the current file</li>
+  <li>Rename the current file</li>
   <li>Downloads the current file to the browser</li>
-  <li>Deletes the current file (Permanently!)</li>
+  <li>Deletes the current file (Permanently!)
+<br>
+<br>
+</li>
 </ul>
 
 <h4 id="file-open">
@@ -164,7 +167,7 @@
 
 <p>The Open and Save Dialogs deserve a little more explanation. When you select File Open the File Open Dialog appears. Initially it displays a tree view of the installed targets. You can manually open the folders and browse for the file you want. You can also use the search box at the top and start typing part of the filename to filter the results.</p>
 
-<p><img src="/img/v5/script_runner/file_open_check.png" alt="File Open Dialog"></p>
+<p><img src="/img/v5/script_runner/file_open.png" alt="File Open Dialog"></p>
 
 <h4 id="file-save-as">
 <a class="anchor" href="#file-save-as" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Save As</h4>
@@ -178,19 +181,22 @@
 
 <!-- Image sized to match up with bullets -->
 
-<p><img src="/img/v5/script_runner/script_menu.png" alt="Script Menu" style="float: left; margin-right: 50px; height: 230px;"></p>
+<p><img src="/img/v5/script_runner/script_menu.png" alt="Script Menu" style="float: left; margin-right: 50px; height: 410px;"></p>
 
 <ul>
-  <li>Opens tab to display currently running scripts</li>
-  <li>Performs a Ruby Syntax check on the current file</li>
-  <li>Shows the Call Stack of the running script (only active when running)</li>
-  <li>Displays the Debug prompt to allow Stepping and <a href="/docs/v5/script-runner#debugging-scripts">debugging</a>
-</li>
-  <li>Disconnects from real interfaces for safe script <a href="/docs/v5/script-runner#debugging-scripts">debugging</a>
-</li>
+  <li>Display started and finished scripts</li>
+  <li>Show environment variables</li>
+  <li>Show defined metadata</li>
+  <li>Perform a Ruby syntax check</li>
+  <li>Perform a script mnemonic check</li>
+  <li>View the instrumented script</li>
+  <li>Shows the script call stack</li>
+  <li>Display the <a href="/docs/v5/script-runner#debugging-scripts">debug</a> prompt</li>
+  <li>Disconnect from real interfaces</li>
+  <li>Delete all sccript breakpoints</li>
 </ul>
 
-<p>The Running Scripts page lists the currently running scripts. This allows other users to connect to running scripts and follow along with the currently executing script.</p>
+<p>The Started Scripts popup lists the currently running scripts. This allows other users to connect to running scripts and follow along with the currently executing script. It also lists previously executed scripts so you can download the script log.</p>
 
 <p><img src="/img/v5/script_runner/running_scripts.png" alt="Running Scripts"></p>
 
@@ -214,9 +220,9 @@
 <h2 id="running-script-suites">
 <a class="anchor" href="#running-script-suites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Script Suites</h2>
 
-<p>If a script has the word ‘suite’ in the filename it automatically prompts Script Runner to parse the file to populate the Suite, Group, and Script drop down menus.</p>
+<p>If a script is structured as a Suite (it inherits from OpenC3::Suite) it automatically causes Script Runner to parse the file to populate the Suite, Group, and Script drop down menus.</p>
 
-<p><img src="/img/v5/script_runner/suite_script.png" alt="Suite Script"></p>
+<p><img src="/img/v5/script_runner/script_suite.png" alt="Suite Script"></p>
 
 <p>All suite files should start with the following line:</p>
 
@@ -306,9 +312,11 @@
 <h2 id="debugging-scripts">
 <a class="anchor" href="#debugging-scripts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging Scripts</h2>
 
-<div class="note unreleased">
-  <p>TODO</p>
-</div>
+<p>When you enable the Debug prompt an additional line appears between the script and the Log Messages. You can type local variables to cause them to be output in the Log Messages. You can also set local variables by typing <code class="language-plaintext highlighter-rouge">var = 10</code>.</p>
+
+<p><img src="/img/v5/script_runner/debug.png" alt="Debug"></p>
+
+<p>The Step button allows you to step line by line through the script. Clicking Go continues regular execution.</p>
 
       </article>
     </div>
@@ -507,6 +515,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -537,6 +547,8 @@
   
     
     
+    
+      
     
       
     
@@ -645,6 +657,38 @@
       
     
       
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Table Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/ssl-tls">SSL-TLS</a>
   </li>
@@ -697,42 +741,6 @@
       
     
       
-  <li class="">
-    <a href="/docs/v5/cmd-sender">Command Sender</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -753,90 +761,6 @@
       
     
       
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-extractor">Data Extractor</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-viewer">Data Viewer</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
     
       
     
@@ -921,20 +845,18 @@
       
     
       
-    
-      
-    
-      
-    
-      
   <li class="">
-    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1038,13 +960,19 @@
     
       
   <li class="">
-    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1147,14 +1075,278 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/screens">Telemetry Screens</a>
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table-manager">Table Manager</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/handbooks">Handbooks</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
     
       
     
@@ -1191,8 +1383,50 @@
   <!-- prettier-ignore -->
   
   
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1222,25 +1456,229 @@
     
       
   <li class="">
-    <a href="/docs/v5/autonomic">Autonomic</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
   
-</ul>
-
     
-    <h4>Guides</h4>
-    <!-- prettier-ignore -->
-    <!-- prettier-ignore -->
-
-
-<ul>
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/local-mode">Local Mode</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1367,14 +1805,108 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/local-mode">Local Mode</a>
+    <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1517,6 +2049,12 @@
       
     
       
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
   </li>
@@ -1581,48 +2119,6 @@
       
     
       
-  <li class="">
-    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -1644,209 +2140,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/monitoring">Monitoring</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1865,6 +2159,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2021,6 +2323,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -2029,6 +2339,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2193,6 +2511,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2201,6 +2527,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2365,6 +2699,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2373,6 +2715,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2465,6 +2815,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2643,6 +3001,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2651,6 +3017,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
