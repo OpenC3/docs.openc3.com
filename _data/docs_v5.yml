@@ -15,34 +15,37 @@
     - telemetry
     - interfaces
     - protocols
+    - table
     - ssl_tls
 
 - title: Tool User Manuals
   docs:
-    - cmd_sender
     - cmd_tlm_server
+    - limits_monitor
+    - cmd_sender
+    - script_runner
+    - packet_viewer
+    - tlm_viewer
+    - tlm_grapher
     - data_extractor
     - data_viewer
-    - limits_monitor
-    - packet_viewer
-    - script_runner
-    - tlm_grapher
-    - tlm_viewer
-    - screens
+    - bucket_explorer
+    - table_manager
+    - handbooks
     - calendar
-    - autonomic
 
 - title: Guides
   docs:
-    - logging
+    - cfs
+    - custom_widgets
+    - little_endian_bitfields
     - local_mode
+    - logging
+    - monitoring
+    - raspberrypi
     - scripting
     - scripting_best_practices
-    - little_endian_bitfields
-    - custom_widgets
-    - monitoring
-    - cfs
-    - raspberrypi
+    - telemetry_screens
 
 - title: Development
   docs:

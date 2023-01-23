@@ -41,18 +41,23 @@ When you select File Save the Save Configuration dialog appears. It displays a l
 
 <img src="{{site.baseurl}}/img/v5/telemetry_grapher/graph_menu.png"
      alt="File Menu"
-     style="float: left; margin-right: 50px; height: 80px;" />
+     style="float: left; margin-right: 50px; height: 200px;" />
 
 - Add a new graph
-- Edit the current graph
+- Start / Resume graphing
+- Pause graph
+- Stop graph
+- Edit grapher settings
 
-Editing the graph allows you to change the graph title among other items.
+Editing the grapher settings brings up a dialog to change settings affecting every graph in the Telemetry Grapher tool. Changing the Seconds Graphed changes the visible windows displaying graph points. The smaller of Seconds Graphed and Points Graphed will be used when calculating the number of points to display. Changing the Points Saved will affect performance of the browser window if set too high. The default of 1,000,000 points can store over 11.5 days of 1Hz data points.
+
+Editing an individual graph by clicking the pencil icon in title bar of the graph brings up the edit graph dialog.
 
 ![Edit Graph]({{site.baseurl}}/img/v5/telemetry_grapher/edit_graph.png)
 
 Editing the Start Date and Start Time will re-query the data to begin at the specified time. This operation can take several seconds depending on how far back data is requested. Similarly, specifying the End Date and End Time will limit the data request to the specified time. Leaving the End Date / End Time fields blank will cause Telemetry Grapher to continue to graph items in real-time as they arrive.
 
-Changing the Min X and Max X values simply sets the graph scale. Deleting the Min X and Max X values allows the graph to scale automatically as values arrive. Compare the following graph with the minimum set to -20 and the maximum set to 20 with the first graph image (auto-scale).
+Changing the Min Y and Max Y values simply sets the graph scale. Deleting the Min Y and Max Y values allows the graph to scale automatically as values arrive. Compare the following graph with the minimum set to -20 and the maximum set to 20 with the first graph image (auto-scale).
 
 ![Min Max]({{site.baseurl}}/img/v5/telemetry_grapher/graph_min_max.png)
 
@@ -91,31 +96,3 @@ The line button minimizes the graph to effectively hide it. This allows you to f
 ![Minimized]({{site.baseurl}}/img/v5/telemetry_grapher/minimized.png)
 
 The final X button closes the graph.
-
-## Grapher Controls
-
-The left side of Telemetry Grapher contains a drawer that expands when moused over. These control the overall operation of Telemetry Grapher.
-
-<!-- Image sized to match up with bullets -->
-
-<img src="{{site.baseurl}}/img/v5/telemetry_grapher/grapher_controls.png"
-     alt="Controls"
-     style="float: left; margin-right: 50px; height: 355px;" />
-
-<div style="height: 25px" />
-- Start a paused or stopped graph
-- Pause the graph (continue to receive updates)
-- Stop the graph (disconnect)
-<div style="height: 2px" />
-- Number of seconds graphed
-- Total telemetry points kept in memory
-- Number of points to graph
-<div style="height: 2px" />
-
-Changing the Points Saved will affect performance of the browser window if set too high. The default of 1,000,000 points can store over 11.5 days of 1Hz data points.
-
-The smaller of Seconds Graphed and Points Graphed will be used when calculating the number of points to display.
-
-While the graph is paused it continues to receive updates. The Stop button disconnects Telemetry Grapher from the backend and no longer receives data. If you Start again there will be a gap where no data was received.
-
-![Stop Start]({{site.baseurl}}/img/v5/telemetry_grapher/stop_start.png)

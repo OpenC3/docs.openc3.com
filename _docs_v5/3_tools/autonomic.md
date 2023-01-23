@@ -74,9 +74,3 @@ Reactions wait for triggers to be evaluated to true and perform actions such as 
   ]
 }
 ```
-
-### Autonomic lifecycle
-
-> TODO
-
-![Autonomic Lifecycle]({{site.baseurl}}/img/v5/autonomic/autonomic_lifecycle.png)
