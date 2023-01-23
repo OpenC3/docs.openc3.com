@@ -5,7 +5,7 @@
   <title>Limits Monitor</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.1">
+  <meta name="generator" content="Jekyll v4.3.2">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -135,7 +135,7 @@
 
 <p>The main interface of Limits Monitor is the Limits tab. This is where items are displayed when they violate a yellow or red limit.</p>
 
-<p><img src="/img/v5/limits_monitor/limits.png" alt="Limits"></p>
+<p><img src="/img/v5/limits_monitor/limits_monitor.png" alt="Limits"></p>
 
 <p>Items with limits values are displayed using a red yellow green limits bar displaying where the current value lies within the defined limits (as shown by the various TEMP items). Items with yellow or red <a href="/docs/v5/telemetry#state">states</a> are simply displayed with their state color (as shown by GROUND1STATUS). The COSMOS Demo contains both INST HEALTH_STATUS TEMP2 and INST2 HEALTH_STATUS TEMP2 which are identically named items within different target packets. Limits Monitor only displays the item name to save space, however if you mouse over the value box the full target and packet name is displayed.</p>
 
@@ -143,7 +143,7 @@
 
 <p>Clicking the first nested ‘X’ icon ignores the entire packet where the item resides. Any additional items in that packet which go out of limits are also ignored by Limits Monitor. Clicking the second (middle) ‘X’ ignores ONLY that specific item. If any packets or items are ignored the Overall Limits State is updated to indicate “(Some items ignored)” to indicate the Limits State is potentially being affected by ignored items.</p>
 
-<p>Clicking the last icon (eye with strike-through) temporarily hides the specified item. This is different from ignoring an item because if this item goes out of limits it will be again be displayed. Hiding an item is useful if the item has gone back to green and you want to continue to track it but want to clean up the current list of items. For example, we might hide TEMP2 and GROUND2STATUS in the above example as they have transitioned back to green.</p>
+<p>Clicking the last icon (eye with strike-through) temporarily hides the specified item. This is different from ignoring an item because if this item goes out of limits it will be again be displayed. Hiding an item is useful if the item has gone back to green and you want to continue to track it but want to clean up the current list of items. For example, we might hide GROUND1STATUS and GROUND2STATUS in the above example as they have transitioned back to green.</p>
 
 <h2 id="log-tab">
 <a class="anchor" href="#log-tab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log Tab</h2>
@@ -349,6 +349,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -379,6 +381,8 @@
   
     
     
+    
+      
     
       
     
@@ -487,6 +491,38 @@
       
     
       
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Table Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/ssl-tls">SSL-TLS</a>
   </li>
@@ -539,42 +575,6 @@
       
     
       
-  <li class="">
-    <a href="/docs/v5/cmd-sender">Command Sender</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -595,90 +595,6 @@
       
     
       
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-extractor">Data Extractor</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-viewer">Data Viewer</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
     
       
     
@@ -763,20 +679,18 @@
       
     
       
-    
-      
-    
-      
-    
-      
   <li class="">
-    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
     
       
     
@@ -880,13 +794,19 @@
     
       
   <li class="">
-    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
     
       
     
@@ -989,14 +909,278 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/screens">Telemetry Screens</a>
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table-manager">Table Manager</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/handbooks">Handbooks</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
     
       
     
@@ -1033,8 +1217,50 @@
   <!-- prettier-ignore -->
   
   
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1064,25 +1290,229 @@
     
       
   <li class="">
-    <a href="/docs/v5/autonomic">Autonomic</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
   
-</ul>
-
     
-    <h4>Guides</h4>
-    <!-- prettier-ignore -->
-    <!-- prettier-ignore -->
-
-
-<ul>
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/local-mode">Local Mode</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1209,14 +1639,108 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/local-mode">Local Mode</a>
+    <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1359,6 +1883,12 @@
       
     
       
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
   </li>
@@ -1423,48 +1953,6 @@
       
     
       
-  <li class="">
-    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -1486,209 +1974,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/monitoring">Monitoring</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1707,6 +1993,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1863,6 +2157,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -1871,6 +2173,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2035,6 +2345,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2043,6 +2361,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2207,6 +2533,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2215,6 +2549,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2307,6 +2649,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2485,6 +2835,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2493,6 +2851,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     

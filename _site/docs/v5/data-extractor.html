@@ -5,7 +5,7 @@
   <title>Data Extractor</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.1">
+  <meta name="generator" content="Jekyll v4.3.2">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -170,7 +170,6 @@
 <p><img src="/img/v5/data_extractor/mode_menu.png" alt="Mode Menu" style="float: left; margin-right: 50px; height: 250px;"></p>
 
 <ul>
-  <li>Skip ignored items when <a href="/docs/v5/data-extractor#adding-targets-packets-items">adding</a> targets or packets</li>
   <li>Fill empty cells with the previous value</li>
   <li>Add a Matlab comment (‘%’) to the header</li>
   <li>Only output changed values</li>
@@ -188,9 +187,9 @@
 
 <p><img src="/img/v5/data_extractor/date_chooser.png" alt="Date Chooser"></p>
 
-<p>Start Time and End Time are simple text fields. If you enter an invalid time, Data Extractor will warn you and indicate the correct syntax.</p>
+<p>Clicking the Start Time and End Time icon opens up a Time Chooser dialog. Note you can also manually type in the time.</p>
 
-<p><img src="/img/v5/data_extractor/time_validation.png" alt="Time Validation"></p>
+<p><img src="/img/v5/data_extractor/time_chooser.png" alt="Time Chooser"></p>
 
 <h3 id="adding-targets-packets-items">
 <a class="anchor" href="#adding-targets-packets-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Targets Packets Items</h3>
@@ -237,14 +236,14 @@
 
 <p><img src="/img/v5/data_extractor/edit_temp1.png" alt="Edit TEMP1"></p>
 
-<p>If we change TEMP1 back to CONVERTED the item list is again updated. Note that (CONVERTED) is not shown as this is the default output.</p>
+<p>If we change TEMP1 back to CONVERTED the item list is again updated.</p>
 
 <p><img src="/img/v5/data_extractor/items_table_temp1.png" alt="Edit TEMP1"></p>
 
 <h2 id="processing-items">
 <a class="anchor" href="#processing-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>Processing Items</h2>
 
-<p>Clicking the Process button starts the processing of the items list. A progress bar is shown above the table and the Process button changes to Cancel to allow cancelling the process.</p>
+<p>Clicking the Process button starts the processing of the items list. A progress wheel is shown on the left side of the table and the Process button changes to Cancel to allow cancelling the process.</p>
 
 <p><img src="/img/v5/data_extractor/processing.png" alt="Processing"></p>
 
@@ -449,6 +448,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -479,6 +480,8 @@
   
     
     
+    
+      
     
       
     
@@ -587,6 +590,38 @@
       
     
       
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Table Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/ssl-tls">SSL-TLS</a>
   </li>
@@ -639,42 +674,6 @@
       
     
       
-  <li class="">
-    <a href="/docs/v5/cmd-sender">Command Sender</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -695,90 +694,6 @@
       
     
       
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="current">
-    <a href="/docs/v5/data-extractor">Data Extractor</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-viewer">Data Viewer</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
     
       
     
@@ -863,20 +778,18 @@
       
     
       
-    
-      
-    
-      
-    
-      
   <li class="">
-    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
     
       
     
@@ -980,13 +893,19 @@
     
       
   <li class="">
-    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1089,14 +1008,278 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/screens">Telemetry Screens</a>
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="current">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table-manager">Table Manager</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/handbooks">Handbooks</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
     
       
     
@@ -1133,8 +1316,50 @@
   <!-- prettier-ignore -->
   
   
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1164,25 +1389,229 @@
     
       
   <li class="">
-    <a href="/docs/v5/autonomic">Autonomic</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
   
-</ul>
-
     
-    <h4>Guides</h4>
-    <!-- prettier-ignore -->
-    <!-- prettier-ignore -->
-
-
-<ul>
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/local-mode">Local Mode</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1309,14 +1738,108 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/local-mode">Local Mode</a>
+    <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1459,6 +1982,12 @@
       
     
       
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
   </li>
@@ -1523,48 +2052,6 @@
       
     
       
-  <li class="">
-    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -1586,209 +2073,7 @@
     
       
   <li class="">
-    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/monitoring">Monitoring</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1807,6 +2092,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1963,6 +2256,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -1971,6 +2272,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2135,6 +2444,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2143,6 +2460,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2307,6 +2632,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2315,6 +2648,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2407,6 +2748,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2585,6 +2934,14 @@
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2593,6 +2950,14 @@
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     

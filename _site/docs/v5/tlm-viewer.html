@@ -5,7 +5,7 @@
   <title>Telemetry Viewer</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.1">
+  <meta name="generator" content="Jekyll v4.3.2">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -100,8 +100,19 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#file-menu-items">File Menu Items</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#open-configuration">Open Configuration</a></li>
+<li class="toc-entry toc-h4"><a href="#save-configuration">Save Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#selecting-screens">Selecting Screens</a></li>
+<li class="toc-entry toc-h2"><a href="#new-screen">New Screen</a></li>
+<li class="toc-entry toc-h2"><a href="#edit-screen">Edit Screen</a></li>
 <li class="toc-entry toc-h2"><a href="#screen-window-management">Screen Window Management</a></li>
 <li class="toc-entry toc-h2"><a href="#building-screens">Building Screens</a></li>
 </ul></div>
@@ -114,15 +125,59 @@
 
 <p><img src="/img/v5/telemetry_viewer/telemetry_viewer.png" alt="Telemetry Viewer"></p>
 
+<h3 id="file-menu-items">
+<a class="anchor" href="#file-menu-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Menu Items</h3>
+
+<!-- Image sized to match up with bullets -->
+
+<p><img src="/img/v5/telemetry_viewer/file_menu.png" alt="File Menu" style="float: left; margin-right: 50px; height: 80px;"></p>
+
+<ul>
+  <li>Open a saved configuration</li>
+  <li>Save the current configuration</li>
+</ul>
+
+<h4 id="open-configuration">
+<a class="anchor" href="#open-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Open Configuration</h4>
+
+<p>The Open and Save Configuration options deserve a little more explanation. When you select File Open the Open Configuration dialog appears. It displays a list of all saved configurations (TVAC in this example). You select a configuration and then click Ok to load it. You can delete existing configurations by clicking the Trash icon next to a configuration name.</p>
+
+<p><img src="/img/v5/telemetry_viewer/open_config.png" alt="Open Config"></p>
+
+<h4 id="save-configuration">
+<a class="anchor" href="#save-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Save Configuration</h4>
+
+<p>When you select File Save the Save Configuration dialog appears. It displays a list of all saved configurations (TVAC in this example). You click the Configuration Name text field, enter the name of your new configuration, and click Ok to save. You can delete existing configurations by clicking the Trash icon next to a configuration name.</p>
+
+<p><img src="/img/v5/telemetry_viewer/save_config.png" alt="Save Config"></p>
+
 <h2 id="selecting-screens">
 <a class="anchor" href="#selecting-screens" aria-hidden="true"><span class="octicon octicon-link"></span></a>Selecting Screens</h2>
 
 <p>Selecting a target from the Select Target drop down automatically updates the available screens for that target in the Select Screen drop down. Clicking Show Screen causes that screen to display.</p>
 
+<h2 id="new-screen">
+<a class="anchor" href="#new-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>New Screen</h2>
+
+<p>Clicking New Screen brings up the new screen dialog.</p>
+
+<p><img src="/img/v5/telemetry_viewer/new_screen.png" alt="Telemetry Viewer"></p>
+
+<p>Screens are owned by Targets so Select Target chooses where the screen will be created. Screen names must be unique so all the existing screen names are listed for that target. Screens can be based on a Packet such that all the items in that particular packet will be generated in a simple vertical screen similar to Packet Viewer. This is a good starting point for customizing a screen.</p>
+
+<h2 id="edit-screen">
+<a class="anchor" href="#edit-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Edit Screen</h2>
+
+<p>Clicking the pencil icon in the title bar of the screen brings up the edit dialog.</p>
+
+<p><img src="/img/v5/telemetry_viewer/edit_screen.png" alt="Telemetry Viewer"></p>
+
+<p>The screen source is displayed in an editor with syntax highlighting and auto-completion. You can download the screen source using the download button in the upper right or delete the screen using the trash icon in the upper left. Click Save to save the screen edits at which point Telemetry Viewer will re-render the screen.</p>
+
 <h2 id="screen-window-management">
 <a class="anchor" href="#screen-window-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screen Window Management</h2>
 
-<p>All screens can be moved around the browser window by clicking their title bar and moving them. Other screens will move around intelligently to fill the space. This allows you order the screens no matter which order they were created in.</p>
+<p>All screens can be moved around the browser window by clicking their title bar and moving them. Other screens will move around intelligently to fill the space. This allows you to order the screens no matter which order they were created in.</p>
 
 <p>Each screen has buttons in the upper right of the title bar. The line button minimizes the screen to effectively hide it. This allows you to focus on a single screen without closing existing screens.</p>
 
@@ -134,7 +189,7 @@
 <a class="anchor" href="#building-screens" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building Screens</h2>
 
 <p>For documentation on how to build Telemetry Screens and how to configure the
-screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.</p>
+screen widgets please see the <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>.</p>
 
       </article>
     </div>
@@ -333,6 +388,8 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -363,6 +420,8 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
     
       
     
@@ -471,6 +530,38 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Table Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/ssl-tls">SSL-TLS</a>
   </li>
@@ -523,42 +614,6 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
-  <li class="">
-    <a href="/docs/v5/cmd-sender">Command Sender</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -579,90 +634,6 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-extractor">Data Extractor</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/data-viewer">Data Viewer</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
     
       
     
@@ -747,20 +718,18 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
-    
-      
-    
-      
-    
-      
   <li class="">
-    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
+    <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
     
       
     
@@ -864,13 +833,19 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
     
       
   <li class="">
-    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
+    <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
     
       
     
@@ -973,14 +948,278 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/screens">Telemetry Screens</a>
+    <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-extractor">Data Extractor</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/data-viewer">Data Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table-manager">Table Manager</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/handbooks">Handbooks</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
     
       
     
@@ -1017,8 +1256,50 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   <!-- prettier-ignore -->
   
   
+</ul>
+
+    
+    <h4>Guides</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1048,25 +1329,229 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
     
       
   <li class="">
-    <a href="/docs/v5/autonomic">Autonomic</a>
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
   
-</ul>
-
     
-    <h4>Guides</h4>
-    <!-- prettier-ignore -->
-    <!-- prettier-ignore -->
-
-
-<ul>
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
+  </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/local-mode">Local Mode</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1193,14 +1678,108 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/local-mode">Local Mode</a>
+    <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1343,6 +1922,12 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
   </li>
@@ -1407,48 +1992,6 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
-  <li class="">
-    <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
       
     
@@ -1470,209 +2013,7 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
     
       
   <li class="">
-    <a href="/docs/v5/custom-widgets">Custom Widgets</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/monitoring">Monitoring</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
+    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1691,6 +2032,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1847,6 +2196,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -1855,6 +2212,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2019,6 +2384,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2027,6 +2400,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2191,6 +2572,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2199,6 +2588,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2291,6 +2688,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -2469,6 +2874,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
       
     
       
+    
+      
+    
+      
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2477,6 +2890,14 @@ screen widgets please see the <a href="/docs/v5/screens">Telemetry Screens</a>.<
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
