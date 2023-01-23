@@ -28,18 +28,18 @@ This dialog changes the refresh rate of Packet Viewer to reduce load on both you
      alt="File Menu"
      style="float: left; margin-right: 50px; height: 240px;" />
 
-- Hides [ignored items]({{site.baseurl}}/docs/v5/target#ignore_item)
-- Show [derived]({{site.baseurl}}/docs/v5/telemetry#derived-items) items last
-- Display formatted telemetry items with units
-- Display formatted telemetry items
-- Display converted telemetry items
-- Display raw telemetry items
+- Shows [ignored items]({{site.baseurl}}/docs/v5/target#ignore_item)
+- Display [derived]({{site.baseurl}}/docs/v5/telemetry#derived-items) items last
+- Display formatted items with units
+- Display formatted items
+- Display converted items
+- Display raw items
 
 ## Selecting Packets
 
 Initially opening Packet Viewer will open the first alphabetical Target and Packet. Click the drop down menus to update the Items table to a new packet. To filter the list of items you can type in the search box.
 
-![Items Table TEMP]({{site.baseurl}}/img/v5/packet_viewer/items_table_temp.png)
+![Items Table TEMP]({{site.baseurl}}/img/v5/packet_viewer/select_packet.png)
 
 ### Details
 

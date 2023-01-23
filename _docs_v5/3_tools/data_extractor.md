@@ -45,7 +45,6 @@ When you select File Save the Save Configuration dialog appears. It displays a l
      alt="Mode Menu"
      style="float: left; margin-right: 50px; height: 250px;" />
 
-- Skip ignored items when [adding]({{site.baseurl}}/docs/v5/data-extractor#adding-targets-packets-items) targets or packets
 - Fill empty cells with the previous value
 - Add a Matlab comment ('%') to the header
 - Only output changed values
@@ -60,9 +59,9 @@ Data Extractor provides text fields where you specify the time range to extract 
 
 ![Date Chooser]({{site.baseurl}}/img/v5/data_extractor/date_chooser.png)
 
-Start Time and End Time are simple text fields. If you enter an invalid time, Data Extractor will warn you and indicate the correct syntax.
+Clicking the Start Time and End Time icon opens up a Time Chooser dialog. Note you can also manually type in the time.
 
-![Time Validation]({{site.baseurl}}/img/v5/data_extractor/time_validation.png)
+![Time Chooser]({{site.baseurl}}/img/v5/data_extractor/time_chooser.png)
 
 ### Adding Targets Packets Items
 
@@ -106,13 +105,13 @@ Clicking the pencil next to an individual item brings up a similar dialog.
 
 ![Edit TEMP1]({{site.baseurl}}/img/v5/data_extractor/edit_temp1.png)
 
-If we change TEMP1 back to CONVERTED the item list is again updated. Note that (CONVERTED) is not shown as this is the default output.
+If we change TEMP1 back to CONVERTED the item list is again updated.
 
 ![Edit TEMP1]({{site.baseurl}}/img/v5/data_extractor/items_table_temp1.png)
 
 ## Processing Items
 
-Clicking the Process button starts the processing of the items list. A progress bar is shown above the table and the Process button changes to Cancel to allow cancelling the process.
+Clicking the Process button starts the processing of the items list. A progress wheel is shown on the left side of the table and the Process button changes to Cancel to allow cancelling the process.
 
 ![Processing]({{site.baseurl}}/img/v5/data_extractor/processing.png)
 

@@ -23,15 +23,17 @@ Script Runner is both an editor of COSMOS scripts as well as executes scripts. S
 - Clears the editor and filename
 - Opens a dialog to select a file to open
 - Saves the currently opened file to disk
-- Opens a dialog to allow the user to rename the current file
+- Rename the current file
 - Downloads the current file to the browser
 - Deletes the current file (Permanently!)
+  <br/>
+  <br/>
 
 #### File Open
 
 The Open and Save Dialogs deserve a little more explanation. When you select File Open the File Open Dialog appears. Initially it displays a tree view of the installed targets. You can manually open the folders and browse for the file you want. You can also use the search box at the top and start typing part of the filename to filter the results.
 
-![File Open Dialog]({{site.baseurl}}/img/v5/script_runner/file_open_check.png)
+![File Open Dialog]({{site.baseurl}}/img/v5/script_runner/file_open.png)
 
 #### File Save As
 
@@ -45,15 +47,20 @@ When saving a file for the first time, or using File Save As, the File Save As D
 
 <img src="{{site.baseurl}}/img/v5/script_runner/script_menu.png"
      alt="Script Menu"
-     style="float: left; margin-right: 50px; height: 230px;" />
+     style="float: left; margin-right: 50px; height: 410px;" />
 
-- Opens tab to display currently running scripts
-- Performs a Ruby Syntax check on the current file
-- Shows the Call Stack of the running script (only active when running)
-- Displays the Debug prompt to allow Stepping and [debugging]({{site.baseurl}}/docs/v5/script-runner#debugging-scripts)
-- Disconnects from real interfaces for safe script [debugging]({{site.baseurl}}/docs/v5/script-runner#debugging-scripts)
+- Display started and finished scripts
+- Show environment variables
+- Show defined metadata
+- Perform a Ruby syntax check
+- Perform a script mnemonic check
+- View the instrumented script
+- Shows the script call stack
+- Display the [debug]({{site.baseurl}}/docs/v5/script-runner#debugging-scripts) prompt
+- Disconnect from real interfaces
+- Delete all sccript breakpoints
 
-The Running Scripts page lists the currently running scripts. This allows other users to connect to running scripts and follow along with the currently executing script.
+The Started Scripts popup lists the currently running scripts. This allows other users to connect to running scripts and follow along with the currently executing script. It also lists previously executed scripts so you can download the script log.
 
 ![Running Scripts]({{site.baseurl}}/img/v5/script_runner/running_scripts.png)
 
@@ -75,9 +82,9 @@ This allows checks that depend on telemetry changing to potentially be retried a
 
 ## Running Script Suites
 
-If a script has the word 'suite' in the filename it automatically prompts Script Runner to parse the file to populate the Suite, Group, and Script drop down menus.
+If a script is structured as a Suite (it inherits from OpenC3::Suite) it automatically causes Script Runner to parse the file to populate the Suite, Group, and Script drop down menus.
 
-![Suite Script]({{site.baseurl}}/img/v5/script_runner/suite_script.png)
+![Suite Script]({{site.baseurl}}/img/v5/script_runner/script_suite.png)
 
 All suite files should start with the following line:
 
@@ -160,6 +167,8 @@ Break the loop if an Error occurs. Only available if the Loop option is set.
 
 ## Debugging Scripts
 
-<div class="note unreleased">
-  <p>TODO</p>
-</div>
+When you enable the Debug prompt an additional line appears between the script and the Log Messages. You can type local variables to cause them to be output in the Log Messages. You can also set local variables by typing `var = 10`.
+
+![Debug]({{site.baseurl}}/img/v5/script_runner/debug.png)
+
+The Step button allows you to step line by line through the script. Clicking Go continues regular execution.
