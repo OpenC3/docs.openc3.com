@@ -10,6 +10,14 @@ Telemetry definition files define the telemetry packets that can be received and
 
 When defining telemetry items you can choose from the following data types: INT, UINT, FLOAT, STRING, BLOCK. These correspond to integers, unsigned integers, floating point numbers, strings and binary blocks of data. The only difference between a STRING and BLOCK is when COSMOS reads a STRING type it stops reading when it encounters a null byte (0). This shows up when displaying the value in Packet Viewer or Tlm Viewer and in the output of Data Extractor.
 
+### ID Items
+
+All packets require identification items so the incoming data can be matched to a packet structure. These items are defined using the [ID_ITEM]({{site.baseurl}}/docs/v5/telemetry#id_item) and [APPEND_ID_ITEM]({{site.baseurl}}/docs/v5/telemetry#append_id_item). As data is read from the interface and refined by the protocol, the resulting packet is identified by matching all the ID fields. Note that ideally all packets in a particular target should use the exact same bit offset, bit size, and data type to identify. If this is not the case, you must set [TLM_UNIQUE_ID_MODE]({{site.baseurl}}/docs/v5/target#tlm_unique_id_mode) in the target.txt file which incurs a performance penalty on every packet identification.
+
+### Variable Sized Items
+
+COSMOS specifies a variable sized item with a bit size of 0. When a packet is identified, all other data that isn't explicitly defined will be put into the variable sized item. These items are typically used for packets containing memory dumps which vary in size depending on the number of bytes dumped. Note that there can only be one variable sized item per packet.
+
 ### Derived Items
 
 COSMOS has a concept of a derived item which is a telemetry item that doesn't actually exist in the binary data. Derived items are typically computed based on other telemetry items. COSMOS derived items are very similar to real items except they use the special DERIVED data type. Here is how a derived item might look in a telemetry definition.
@@ -18,7 +26,7 @@ COSMOS has a concept of a derived item which is a telemetry item that doesn't ac
 ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 ```
 
-Note the bit offset and bit size of 0 and the data type of DERIVED. This definition must be followed by one of the CONVERSION keywords to generate the value.
+Note the bit offset and bit size of 0 and the data type of DERIVED. This definition must be followed by a CONVERSION keyword, e.g. [READ_CONVERSION]({{site.baseurl}}/docs/v5/telemetry#read_conversion), to generate the value.
 
 <div style="clear:both;"></div>
 
