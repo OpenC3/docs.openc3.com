@@ -72,7 +72,7 @@ Podman is an alternative container technology to Docker that is actively promote
 
 1. Edit compose.yaml
 
-Edit compose.yaml and uncomment the user: 0:0 lines.
+  Edit compose.yaml and uncomment the user: 0:0 lines.
 
 1. Run COSMOS
 
