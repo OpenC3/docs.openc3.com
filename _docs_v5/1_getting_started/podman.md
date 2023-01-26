@@ -10,7 +10,7 @@ title: Podman
   <p style="margin-bottom:20px;">These directions are for installing and running COSMOS using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
 </div>
 
-Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.
+Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.6 and RHEL 9, but should be similar on other operating systems.
 
 1. Install Prerequisite Packages
 
@@ -70,11 +70,17 @@ Podman is an alternative container technology to Docker that is actively promote
 
    Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)
 
+1. Edit compose.yaml
+
+Edit compose.yaml and uncomment the user: 0:0 lines.
+
 1. Run COSMOS
 
    ```
-   cd COSMOS
+   cd cosmos
    ./openc3.sh start
+   or to use our released containers
+   ./openc3.sh run
    ```
 
 1. Wait until everything is built and running and then goto http://localhost:2900 in your browser
