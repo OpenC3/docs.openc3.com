@@ -26,7 +26,7 @@ COSMOS has a concept of a derived item which is a telemetry item that doesn't ac
 ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 ```
 
-Note the bit offset and bit size of 0 and the data type of DERIVED. This definition must be followed by a CONVERSION keyword, e.g. [READ_CONVERSION]({{site.baseurl}}/docs/v5/telemetry#read_conversion), to generate the value.
+Note the bit offset and bit size of 0 and the data type of DERIVED. For this reason DERIVED items should be declared using ITEM rather than APPEND_ITEM. They can be defined anywhere in the packet definition but are typically placed at the end. The ITEM definition must be followed by a CONVERSION keyword, e.g. [READ_CONVERSION]({{site.baseurl}}/docs/v5/telemetry#read_conversion), to generate the value.
 
 <div style="clear:both;"></div>
 
