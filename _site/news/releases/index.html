@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/02/01/openc3-cosmos-5-4-0-released/">OpenC3 COSMOS 5.4.0 Released</option>
+      
       <option value="/news/2023/01/05/openc3-cosmos-5-3-0-released/">OpenC3 COSMOS 5.3.0 Released</option>
       
       <option value="/news/2022/12/13/openc3-cosmos-5-2-0-released/">OpenC3 COSMOS 5.2.0 Released</option>
@@ -123,6 +125,145 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2023/02/01/openc3-cosmos-5-4-0-released/">
+      OpenC3 COSMOS 5.4.0 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      01 Feb 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-540---modern-production-ready-command-and-control">OpenC3 COSMOS 5.4.0 - Modern, Production Ready, Command and Control</h1>
+
+<h1 id="welcome-to-openc3-cosmos-540">Welcome to OpenC3 COSMOS 5.4.0!</h1>
+
+<h2 id="bucket-explorer">Bucket Explorer</h2>
+
+<p>COSMOS now comes with a new tool called Bucket Explorer that allows browsing files in whatever bucket technology is being used. This provides a cross-cloud solution with a Minio Console-like interface.</p>
+
+<h2 id="metrics">Metrics</h2>
+
+<p>The CmdTlmServer Status tab now includes a curated list of metrics that can be useful to monitor the health of COSMOS. Includes various counters and latency measurements.</p>
+
+<h2 id="navigation-categories">Navigation Categories</h2>
+
+<p>The Navigation bar can now be organized into Categories that can be collapsed and expanded.</p>
+
+<h2 id="permissions-updates-to-better-support-local-mode-on-linux">Permissions Updates to Better Support Local Mode on Linux</h2>
+
+<p>Updates to openc3.sh and compose.yaml to better support permissions when running using local mode on linux. This supports running from user ids other than 1000, and makes sure that files written to the host filesystem have the same user id as the user who is running COSMOS.</p>
+
+<h2 id="better-plugin-installation-errors">Better Plugin Installation Errors</h2>
+
+<p>Plugin installation errors now include line numbers, and attempts to capture all installation errors, rather than just the first.</p>
+
+<h2 id="trivy-clamav-and-codeql-scans">Trivy, ClamAV, and CodeQL Scans</h2>
+
+<p>Our CI/CD process now includes Trivy scans for finding CVE vulnerabilities and ClamAV scans to check for Malware.</p>
+
+<h2 id="other-highlighted-improvements-in-this-release">Other Highlighted Improvements In This Release</h2>
+
+<ul>
+  <li>DataExtractor updated to handle very large lists of items</li>
+  <li>CmdSender nows lists parameter ranges</li>
+  <li>Several tools now remember pagination settings</li>
+  <li>Always force an install of plugins if using the GUI</li>
+  <li>Enabled/Disable limits from Details dialog</li>
+</ul>
+
+<h2 id="key-bug-fixes">Key Bug Fixes</h2>
+
+<ul>
+  <li>Removed UNKNOWN from CmdSender target list</li>
+</ul>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>Remove UNKNOWN from target chooser by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/373">#373</a></li>
+  <li>CmdSender display range, set default state value by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/377">#377</a></li>
+  <li>Save graph start/stop times in config by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/378">#378</a></li>
+  <li>Hide ignored, derived last, and * derived by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/374">#374</a></li>
+  <li>Fix unknown in demo by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/380">#380</a></li>
+  <li>Fix github release if checks by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/381">#381</a></li>
+  <li>Default PV rows to 20, max 1000, store choice to localStorage by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/379">#379</a></li>
+  <li>Support categories in AppNav by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/384">#384</a></li>
+  <li>Data Extractor DataTable instead of list by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/387">#387</a></li>
+  <li>Initial metrics framework by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/389">#389</a></li>
+  <li>Bucket Explorer by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/388">#388</a></li>
+  <li>Various fixes found during tool documentation updates by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/397">#397</a></li>
+  <li>Check for bad value_type on packet read_item by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/395">#395</a></li>
+  <li>Minor bucket updates by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/407">#407</a></li>
+  <li>Updates for podman permissions by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/408">#408</a></li>
+  <li>Remove initialize from Suite and Group by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/399">#399</a></li>
+  <li>Add line no &amp; usage info to plugin error by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/401">#401</a></li>
+  <li>Describe changed plugin.txt on install by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/423">#423</a></li>
+  <li>Add first last page options by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/418">#418</a></li>
+  <li>Test trivy scan by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/410">#410</a></li>
+  <li>Always save when starting script, clear breakpoints by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/416">#416</a></li>
+  <li>Only enable Step while running, add step_mode, run_mode, show_backtrace by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/421">#421</a></li>
+  <li>Clamav Scans by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/427">#427</a></li>
+  <li>Trivy scan local container builds by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/429">#429</a></li>
+  <li>Force install from Plugins tab, add MIT license to plugin template by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/426">#426</a></li>
+  <li>Prompt for cleanup by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/422">#422</a></li>
+  <li>Add :z and OPENC3_REGISTRY to cli by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/417">#417</a></li>
+  <li>Bump json5 from 1.0.1 to 1.0.2 in /openc3-cosmos-init/plugins by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/433">#433</a></li>
+  <li>Bump decode-uri-component from 0.2.0 to 0.2.2 in /openc3-cosmos-init/plugins by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/432">#432</a></li>
+  <li>Bump json5 from 1.0.1 to 1.0.2 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/431">#431</a></li>
+  <li>Update dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/434">#434</a></li>
+  <li>Enable limits from DetailsDialog by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/430">#430</a></li>
+  <li>Support non-1000 user ids on linux with local mode by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/437">#437</a></li>
+  <li>Add inject_tlm to javascript api by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/438">#438</a></li>
+  <li>break out reducer microservice by default by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/439">#439</a></li>
+  <li>Easier to click nav by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/441">#441</a></li>
+  <li>Update demo microservices to inherit Microservice by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/440">#440</a></li>
+  <li>Simplify DEMO further with PORT by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/442">#442</a></li>
+  <li>Make sure other tools have offline access by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/443">#443</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.3.0...v5.4.0">Changelog</a></p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/">
@@ -1158,6 +1299,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/02/01/openc3-cosmos-5-4-0-released/">Version 5.4.0</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/">Version 5.3.0</a>
       </li>
       
@@ -1173,14 +1318,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/">Version 5.1.0</a>
       </li>
       
-      <li class="">
-        <a href="/news/2022/10/03/openc3-5-0-11-released/">Version 5.0.11</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                          
+                            
     </ul>
   </aside>
 </div>
