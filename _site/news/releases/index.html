@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/02/04/openc3-cosmos-5-4-2-released/">OpenC3 COSMOS 5.4.2 Released</option>
+      
       <option value="/news/2023/02/02/openc3-cosmos-5-4-1-released/">OpenC3 COSMOS 5.4.1 Released</option>
       
       <option value="/news/2023/02/01/openc3-cosmos-5-4-0-released/">OpenC3 COSMOS 5.4.0 Released</option>
@@ -129,6 +131,76 @@
         
   <article>
   <h2>
+    <a href="/news/2023/02/04/openc3-cosmos-5-4-2-released/">
+      OpenC3 COSMOS 5.4.2 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      04 Feb 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-542---modern-production-ready-command-and-control">OpenC3 COSMOS 5.4.2 - Modern, Production Ready, Command and Control</h1>
+
+<h1 id="welcome-to-openc3-cosmos-542">Welcome to OpenC3 COSMOS 5.4.2!</h1>
+
+<h2 id="patch-release-2">Patch Release 2</h2>
+
+<p>Scripts Now Can List Set Overrides and Warn if Running with Telemetry Overrides
+Fixed Regression in Minio Console
+Command Only Targets Are Now Supported
+Added a force option to openc3.sh cleanup to bypass the are you sure prompt</p>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>Script overrides by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/450">#450</a></li>
+  <li>Minio console working by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/453">#453</a></li>
+  <li>Handle command only target by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/455">#455</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.4.1...v5.4.2">Changelog</a></p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
     <a href="/news/2023/02/02/openc3-cosmos-5-4-1-released/">
       OpenC3 COSMOS 5.4.1 Released
     </a>
@@ -160,8 +232,8 @@ Fix for Suite Runner, internal suite detection</p>
 <h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
 
 <ul>
-  <li>set user for cli by @ryanmelt in https://github.com/OpenC3/cosmos/pull/447</li>
-  <li>Fix build_suites and add spec by @jmthomas in https://github.com/OpenC3/cosmos/pull/446</li>
+  <li>set user for cli by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/447">#447</a></li>
+  <li>Fix build_suites and add spec by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/446">#446</a></li>
 </ul>
 
 <p>Prerequisites:
@@ -1368,6 +1440,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/02/04/openc3-cosmos-5-4-2-released/">Version 5.4.2</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2023/02/02/openc3-cosmos-5-4-1-released/">Version 5.4.1</a>
       </li>
       
@@ -1383,14 +1459,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2022/12/13/openc3-cosmos-5-2-0-released/">Version 5.2.0</a>
       </li>
       
-      <li class="">
-        <a href="/news/2022/11/19/openc3-cosmos-5-1-1-released/">Version 5.1.1</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                              
+                                
     </ul>
   </aside>
 </div>
