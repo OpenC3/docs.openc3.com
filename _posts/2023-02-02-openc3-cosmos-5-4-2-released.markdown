@@ -1,25 +1,28 @@
 ---
 layout: news_item
-title: "OpenC3 COSMOS 5.4.1 Released"
-date: 2023-02-02 6:00:00 -0700
+title: "OpenC3 COSMOS 5.4.2 Released"
+date: 2023-02-04 6:00:00 -0700
 author: ryanmelt
-version: 5.4.1
+version: 5.4.2
 categories: [release]
 ---
 
-# OpenC3 COSMOS 5.4.1 - Modern, Production Ready, Command and Control
+# OpenC3 COSMOS 5.4.2 - Modern, Production Ready, Command and Control
 
-# Welcome to OpenC3 COSMOS 5.4.1!
+# Welcome to OpenC3 COSMOS 5.4.2!
 
-## Patch Release
+## Patch Release 2
 
-Add proper permission on linux to the openc3.sh cli command.
-Fix for Suite Runner, internal suite detection
+Scripts Now Can List Set Overrides and Warn if Running with Telemetry Overrides
+Fixed Regression in Minio Console
+Command Only Targets Are Now Supported
+Added a force option to openc3.sh cleanup to bypass the are you sure prompt
 
 ## All Pull Requests in this Release
 
-- set user for cli by @ryanmelt in [#447](https://github.com/OpenC3/cosmos/pull/447)
-- Fix build_suites and add spec by @jmthomas in [#446](https://github.com/OpenC3/cosmos/pull/446)
+- Script overrides by @jmthomas in [#450](https://github.com/OpenC3/cosmos/pull/450)
+- Minio console working by @jmthomas in [#453](https://github.com/OpenC3/cosmos/pull/453)
+- Handle command only target by @ryanmelt in [#455](https://github.com/OpenC3/cosmos/pull/455)
 
 Prerequisites:
 Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!
@@ -43,4 +46,4 @@ Try it out and let us know what you think! Please submit any issues as Github ti
 
 Thanks!
 
-**Full Changelog**: [Changelog](https://github.com/OpenC3/cosmos/compare/v5.4.0...v5.4.1)
+**Full Changelog**: [Changelog](https://github.com/OpenC3/cosmos/compare/v5.4.1...v5.4.2)
