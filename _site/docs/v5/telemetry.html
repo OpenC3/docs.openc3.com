@@ -102,6 +102,8 @@
         <div class="toc"><ul id="toc" class="section-nav">
 <li class="toc-entry toc-h2"><a href="#telemetry-definition-files">Telemetry Definition Files</a>
 <ul>
+<li class="toc-entry toc-h3"><a href="#id-items">ID Items</a></li>
+<li class="toc-entry toc-h3"><a href="#variable-sized-items">Variable Sized Items</a></li>
 <li class="toc-entry toc-h3"><a href="#derived-items">Derived Items</a></li>
 </ul>
 </li>
@@ -159,6 +161,16 @@
 
 <p>When defining telemetry items you can choose from the following data types: INT, UINT, FLOAT, STRING, BLOCK. These correspond to integers, unsigned integers, floating point numbers, strings and binary blocks of data. The only difference between a STRING and BLOCK is when COSMOS reads a STRING type it stops reading when it encounters a null byte (0). This shows up when displaying the value in Packet Viewer or Tlm Viewer and in the output of Data Extractor.</p>
 
+<h3 id="id-items">
+<a class="anchor" href="#id-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>ID Items</h3>
+
+<p>All packets require identification items so the incoming data can be matched to a packet structure. These items are defined using the <a href="/docs/v5/telemetry#id_item">ID_ITEM</a> and <a href="/docs/v5/telemetry#append_id_item">APPEND_ID_ITEM</a>. As data is read from the interface and refined by the protocol, the resulting packet is identified by matching all the ID fields. Note that ideally all packets in a particular target should use the exact same bit offset, bit size, and data type to identify. If this is not the case, you must set <a href="/docs/v5/target#tlm_unique_id_mode">TLM_UNIQUE_ID_MODE</a> in the target.txt file which incurs a performance penalty on every packet identification.</p>
+
+<h3 id="variable-sized-items">
+<a class="anchor" href="#variable-sized-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variable Sized Items</h3>
+
+<p>COSMOS specifies a variable sized item with a bit size of 0. When a packet is identified, all other data that isn’t explicitly defined will be put into the variable sized item. These items are typically used for packets containing memory dumps which vary in size depending on the number of bytes dumped. Note that there can only be one variable sized item per packet.</p>
+
 <h3 id="derived-items">
 <a class="anchor" href="#derived-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>Derived Items</h3>
 
@@ -167,7 +179,7 @@
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 </code></pre></div></div>
 
-<p>Note the bit offset and bit size of 0 and the data type of DERIVED. This definition must be followed by one of the CONVERSION keywords to generate the value.</p>
+<p>Note the bit offset and bit size of 0 and the data type of DERIVED. For this reason DERIVED items should be declared using ITEM rather than APPEND_ITEM. They can be defined anywhere in the packet definition but are typically placed at the end. The ITEM definition must be followed by a CONVERSION keyword, e.g. <a href="/docs/v5/telemetry#read_conversion">READ_CONVERSION</a>, to generate the value.</p>
 
 <div style="clear:both;"></div>
 
