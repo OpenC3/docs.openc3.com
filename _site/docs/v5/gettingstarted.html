@@ -175,14 +175,14 @@
   <li>
     <p>The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND BOB EXAMPLE BIG_ENDIAN <span class="s2">"Packet description"</span>
-  <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
-  APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
-  APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 2.5      <span class="s2">"Value"</span>
-  APPEND_PARAMETER    BOOL  8       UINT   MIN MAX  0        <span class="s2">"Boolean"</span>
-    STATE FALSE 0
-    STATE TRUE 1
-  APPEND_PARAMETER    LABEL 0       STRING          <span class="s2">"OpenC3"</span> <span class="s2">"The label to apply"</span>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">BOB</span> <span class="no">EXAMPLE</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Packet description"</span>
+  <span class="c1"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
+  <span class="no">APPEND_ID_PARAMETER</span> <span class="no">ID</span>    <span class="mi">16</span>      <span class="no">INT</span>    <span class="mi">1</span>   <span class="mi">1</span>    <span class="mi">1</span>        <span class="s2">"Identifier"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">VALUE</span> <span class="mi">32</span>      <span class="no">FLOAT</span>  <span class="mi">0</span>   <span class="mf">10.5</span> <span class="mf">2.5</span>      <span class="s2">"Value"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">BOOL</span>  <span class="mi">8</span>       <span class="no">UINT</span>   <span class="no">MIN</span> <span class="no">MAX</span>  <span class="mi">0</span>        <span class="s2">"Boolean"</span>
+    <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">LABEL</span> <span class="mi">0</span>       <span class="no">STRING</span>          <span class="s2">"OpenC3"</span> <span class="s2">"The label to apply"</span>
 </code></pre></div>    </div>
 
     <p>What does this all mean?</p>
@@ -201,14 +201,14 @@
   <li>
     <p>Now open the openc3-cosmos-bob/targets/BOB/cmd_tlm/tlm.txt:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY BOB STATUS BIG_ENDIAN <span class="s2">"Telemetry description"</span>
-  <span class="c"># Keyword      Name  BitSize Type   ID Description</span>
-  APPEND_ID_ITEM ID    16      INT    1  <span class="s2">"Identifier"</span>
-  APPEND_ITEM    VALUE 32      FLOAT     <span class="s2">"Value"</span>
-  APPEND_ITEM    BOOL  8       UINT      <span class="s2">"Boolean"</span>
-    STATE FALSE 0
-    STATE TRUE 1
-  APPEND_ITEM    LABEL 0       STRING    <span class="s2">"The label to apply"</span>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">BOB</span> <span class="no">STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Telemetry description"</span>
+  <span class="c1"># Keyword      Name  BitSize Type   ID Description</span>
+  <span class="no">APPEND_ID_ITEM</span> <span class="no">ID</span>    <span class="mi">16</span>      <span class="no">INT</span>    <span class="mi">1</span>  <span class="s2">"Identifier"</span>
+  <span class="no">APPEND_ITEM</span>    <span class="no">VALUE</span> <span class="mi">32</span>      <span class="no">FLOAT</span>     <span class="s2">"Value"</span>
+  <span class="no">APPEND_ITEM</span>    <span class="no">BOOL</span>  <span class="mi">8</span>       <span class="no">UINT</span>      <span class="s2">"Boolean"</span>
+    <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+  <span class="no">APPEND_ITEM</span>    <span class="no">LABEL</span> <span class="mi">0</span>       <span class="no">STRING</span>    <span class="s2">"The label to apply"</span>
 </code></pre></div>    </div>
 
     <ul>
@@ -225,15 +225,15 @@
   <li>
     <p>Now we need to tell COSMOS how to connect to our BOB target. Open the openc3-cosmos-bob/plugin.txt file:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Set VARIABLEs here to allow variation in your plugin</span>
-<span class="c"># See https://openc3.com/docs/v5/plugins for more information</span>
-VARIABLE bob_target_name BOB
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set VARIABLEs here to allow variation in your plugin</span>
+<span class="c1"># See https://openc3.com/docs/v5/plugins for more information</span>
+<span class="no">VARIABLE</span> <span class="n">bob_target_name</span> <span class="no">BOB</span>
 
-<span class="c"># Modify this according to your actual target connection</span>
-<span class="c"># See https://openc3.com/docs/v5/interfaces for more information</span>
-TARGET BOB &lt;%<span class="o">=</span> bob_target_name %&gt;
-INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
-  MAP_TARGET &lt;%<span class="o">=</span> bob_target_name %&gt;
+<span class="c1"># Modify this according to your actual target connection</span>
+<span class="c1"># See https://openc3.com/docs/v5/interfaces for more information</span>
+<span class="no">TARGET</span> <span class="no">BOB</span> <span class="o">&lt;</span><span class="sx">%= bob_target_name %&gt;
+INTERFACE &lt;%=</span> <span class="n">bob_target_name</span> <span class="sx">%&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
+  MAP_TARGET &lt;%= bob_target_name %&gt;</span>
 </code></pre></div>    </div>
 
     <ul>
@@ -273,14 +273,14 @@ INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_i
   <li>
     <p>Let’s modify our BOB target and then update the copy in COSMOS. If you open Command Sender in COSMOS to BOB EXAMPLE you should see the VALUE parameter has value 2.5. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt and change the Default value for VALUE to 5 and the description to “New Value”.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND BOB EXAMPLE BIG_ENDIAN <span class="s2">"Packet description"</span>
-  <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
-  APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
-  APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 5        <span class="s2">"New Value"</span>
-  APPEND_PARAMETER    BOOL  8       UINT   MIN MAX  0        <span class="s2">"Boolean"</span>
-    STATE FALSE 0
-    STATE TRUE 1
-  APPEND_PARAMETER    LABEL 0       STRING          <span class="s2">"OpenC3"</span> <span class="s2">"The label to apply"</span>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">BOB</span> <span class="no">EXAMPLE</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Packet description"</span>
+  <span class="c1"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
+  <span class="no">APPEND_ID_PARAMETER</span> <span class="no">ID</span>    <span class="mi">16</span>      <span class="no">INT</span>    <span class="mi">1</span>   <span class="mi">1</span>    <span class="mi">1</span>        <span class="s2">"Identifier"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">VALUE</span> <span class="mi">32</span>      <span class="no">FLOAT</span>  <span class="mi">0</span>   <span class="mf">10.5</span> <span class="mi">5</span>        <span class="s2">"New Value"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">BOOL</span>  <span class="mi">8</span>       <span class="no">UINT</span>   <span class="no">MIN</span> <span class="no">MAX</span>  <span class="mi">0</span>        <span class="s2">"Boolean"</span>
+    <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">LABEL</span> <span class="mi">0</span>       <span class="no">STRING</span>          <span class="s2">"OpenC3"</span> <span class="s2">"The label to apply"</span>
 </code></pre></div>    </div>
   </li>
   <li>

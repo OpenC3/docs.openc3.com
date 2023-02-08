@@ -114,11 +114,6 @@
 <li class="toc-entry toc-h2"><a href="#plugintxt-configuration-file">plugin.txt Configuration File</a></li>
 <li class="toc-entry toc-h2"><a href="#variable">VARIABLE</a></li>
 <li class="toc-entry toc-h2"><a href="#interface-1">INTERFACE</a></li>
-<li class="toc-entry toc-h2"><a href="#router-1">ROUTER</a></li>
-<li class="toc-entry toc-h2"><a href="#target-1">TARGET</a></li>
-<li class="toc-entry toc-h2"><a href="#microservice-1">MICROSERVICE</a></li>
-<li class="toc-entry toc-h2"><a href="#tool-1">TOOL</a></li>
-<li class="toc-entry toc-h2"><a href="#widget">WIDGET</a></li>
 <li class="toc-entry toc-h2"><a href="#interface-modifiers">INTERFACE Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#map_target">MAP_TARGET</a></li>
@@ -137,6 +132,8 @@
 <li class="toc-entry toc-h3"><a href="#secret">SECRET</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#router-1">ROUTER</a></li>
+<li class="toc-entry toc-h2"><a href="#target-1">TARGET</a></li>
 <li class="toc-entry toc-h2"><a href="#target-modifiers">TARGET Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#cmd_buffer_depth">CMD_BUFFER_DEPTH</a></li>
@@ -163,6 +160,7 @@
 <li class="toc-entry toc-h3"><a href="#packet">PACKET</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#microservice-1">MICROSERVICE</a></li>
 <li class="toc-entry toc-h2"><a href="#microservice-modifiers">MICROSERVICE Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#env">ENV</a></li>
@@ -176,6 +174,7 @@
 <li class="toc-entry toc-h3"><a href="#secret-1">SECRET</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#tool-1">TOOL</a></li>
 <li class="toc-entry toc-h2"><a href="#tool-modifiers">TOOL Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#url">URL</a></li>
@@ -187,6 +186,7 @@
 <li class="toc-entry toc-h3"><a href="#position">POSITION</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#widget">WIDGET</a></li>
 </ul></div>
         
         <h1>Plugins</h1>
@@ -368,7 +368,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
     <tr>
       <td>Filename</td>
-      <td>Ruby file to use when instantiating the interface.<br><br>Valid Values: <span class="values">tcpip_client_interface.rb, tcpip_server_interface.rb, udp_interface.rb, serial_interface.rb, cmd_tlm_server_interface.rb, linc_interface.rb</span>
+      <td>Ruby file to use when instantiating the interface.<br><br>Valid Values: <span class="values">tcpip_client_interface.rb, tcpip_server_interface.rb, udp_interface.rb, serial_interface.rb</span>
 </td>
       <td>True</td>
     </tr>
@@ -376,156 +376,6 @@ This file follows the standard COSMOS configuration file format of keywords foll
 </table>
 
 <p>Additional parameters are required. Please see the <a href="/docs/v5/interfaces">Interfaces</a> documentation for more details.</p>
-
-<h2 id="router-1">
-<a class="anchor" href="#router-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTER</h2>
-<p><strong>Create router to receive commands and output telemetry packets from one or more interfaces</strong></p>
-
-<p>Creates an router which receives command packets from their remote clients and sends them to associated interfaces. They receive telemetry packets from their interfaces and send them to their remote clients. This allows routers to be intermediaries between an external client and an actual device.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the router</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Filename</td>
-      <td>Ruby file to use when instantiating the interface.<br><br>Valid Values: <span class="values">tcpip_client_interface.rb, tcpip_server_interface.rb, udp_interface.rb, serial_interface.rb, cmd_tlm_server_interface.rb, linc_interface.rb</span>
-</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Additional parameters are required. Please see the <a href="/docs/v5/interfaces">Interfaces</a> documentation for more details.</p>
-
-<h2 id="target-1">
-<a class="anchor" href="#target-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET</h2>
-<p><strong>Defines a new target</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Folder Name</td>
-      <td>The target folder</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td>The target name. While this is almost always the same as Folder Name it can be different to create multiple targets based on the same target folder.</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">TARGET INST INST</code></pre></figure>
-
-<h2 id="microservice-1">
-<a class="anchor" href="#microservice-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>MICROSERVICE</h2>
-<p><strong>Defines a new microservice</strong></p>
-
-<p>Defines a microservice that the plugin adds to the OpenC3 system. Microservices are background software processes that perform persistent processing.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Microservice Folder Name</td>
-      <td>The exact name of the microservice folder in the plugin. ie. microservices/<microservice folder="" name=""></microservice>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Microservice Name</td>
-      <td>The specific name of this instance of the microservice in the OpenC3 system</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">MICROSERVICE EXAMPLE example-microservice</code></pre></figure>
-
-<h2 id="tool-1">
-<a class="anchor" href="#tool-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOOL</h2>
-<p><strong>Define a tool</strong></p>
-
-<p>Defines a tool that the plugin adds to the OpenC3 system. Tools are web based applications that make use of the Single-SPA javascript library that allows them to by dynamically added to the running system as independent frontend microservices.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Tool Folder Name</td>
-      <td>The exact name of the tool folder in the plugin. ie. tools/<tool folder="" name=""></tool>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Tool Name</td>
-      <td>Name of the tool that is displayed in the OpenC3 Navigation menu</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">TOOL DEMO Demo</code></pre></figure>
-
-<h2 id="widget">
-<a class="anchor" href="#widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>WIDGET</h2>
-<p><strong>Define a custom widget</strong></p>
-
-<p>Defines a custom widget that can be used in Telemetry Viewer screens.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Widget Name</td>
-      <td>The name of the widget wil be used to build a path to the widget implementation. For example, <code class="language-plaintext highlighter-rouge">WIDGET HELLOWORLD</code> will find the as-built file tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js. See the <a href="/docs/v5/custom-widgets">Custom Widgets</a> guide for more details.</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">WIDGET HELLOWORLD</code></pre></figure>
 
 <h2 id="interface-modifiers">
 <a class="anchor" href="#interface-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>INTERFACE Modifiers</h2>
@@ -791,6 +641,67 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<h2 id="router-1">
+<a class="anchor" href="#router-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTER</h2>
+<p><strong>Create router to receive commands and output telemetry packets from one or more interfaces</strong></p>
+
+<p>Creates an router which receives command packets from their remote clients and sends them to associated interfaces. They receive telemetry packets from their interfaces and send them to their remote clients. This allows routers to be intermediaries between an external client and an actual device.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the router</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Filename</td>
+      <td>Ruby file to use when instantiating the interface.<br><br>Valid Values: <span class="values">tcpip_client_interface.rb, tcpip_server_interface.rb, udp_interface.rb, serial_interface.rb</span>
+</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Additional parameters are required. Please see the <a href="/docs/v5/interfaces">Interfaces</a> documentation for more details.</p>
+
+<h2 id="target-1">
+<a class="anchor" href="#target-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET</h2>
+<p><strong>Defines a new target</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Folder Name</td>
+      <td>The target folder</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>The target name. While this is almost always the same as Folder Name it can be different to create multiple targets based on the same target folder.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TARGET</span> <span class="no">INST</span> <span class="no">INST</span>
+</code></pre></div></div>
 
 <h2 id="target-modifiers">
 <a class="anchor" href="#target-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET Modifiers</h2>
@@ -1218,7 +1129,9 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="target_microservice">
 <a class="anchor" href="#target_microservice" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET_MICROSERVICE</h3>
-<p><strong>Breaks a target microservice out into its own process. Can be used to give more resources to processing that is falling behind. If defined multiple times for the same type, will create multiple processes. Each process can be given specific packets to process with the PACKET keyword.</strong></p>
+<p><strong>Breaks a target microservice out into its own process.</strong></p>
+
+<p>Can be used to give more resources to processing that is falling behind. If defined multiple times for the same type, will create multiple processes. Each process can be given specific packets to process with the PACKET keyword.</p>
 
 <table>
   <thead>
@@ -1257,6 +1170,39 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<h2 id="microservice-1">
+<a class="anchor" href="#microservice-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>MICROSERVICE</h2>
+<p><strong>Defines a new microservice</strong></p>
+
+<p>Defines a microservice that the plugin adds to the OpenC3 system. Microservices are background software processes that perform persistent processing.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Microservice Folder Name</td>
+      <td>The exact name of the microservice folder in the plugin. ie. microservices/<microservice folder="" name=""></microservice>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Microservice Name</td>
+      <td>The specific name of this instance of the microservice in the OpenC3 system</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">example</span><span class="o">-</span><span class="n">microservice</span>
+</code></pre></div></div>
 
 <h2 id="microservice-modifiers">
 <a class="anchor" href="#microservice-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>MICROSERVICE Modifiers</h2>
@@ -1492,6 +1438,39 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<h2 id="tool-1">
+<a class="anchor" href="#tool-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOOL</h2>
+<p><strong>Define a tool</strong></p>
+
+<p>Defines a tool that the plugin adds to the OpenC3 system. Tools are web based applications that make use of the Single-SPA javascript library that allows them to by dynamically added to the running system as independent frontend microservices.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tool Folder Name</td>
+      <td>The exact name of the tool folder in the plugin. ie. tools/<tool folder="" name=""></tool>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Tool Name</td>
+      <td>Name of the tool that is displayed in the OpenC3 Navigation menu</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TOOL</span> <span class="no">DEMO</span> <span class="no">Demo</span>
+</code></pre></div></div>
+
 <h2 id="tool-modifiers">
 <a class="anchor" href="#tool-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOOL Modifiers</h2>
 <p>The following keywords must follow a TOOL keyword.</p>
@@ -1659,6 +1638,33 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<h2 id="widget">
+<a class="anchor" href="#widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>WIDGET</h2>
+<p><strong>Define a custom widget</strong></p>
+
+<p>Defines a custom widget that can be used in Telemetry Viewer screens.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Widget Name</td>
+      <td>The name of the widget wil be used to build a path to the widget implementation. For example, <code class="language-plaintext highlighter-rouge">WIDGET HELLOWORLD</code> will find the as-built file tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js. See the <a href="/docs/v5/custom-widgets">Custom Widgets</a> guide for more details.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">WIDGET</span> <span class="no">HELLOWORLD</span>
+</code></pre></div></div>
 
 
       </article>

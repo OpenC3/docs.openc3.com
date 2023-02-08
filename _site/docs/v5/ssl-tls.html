@@ -135,7 +135,7 @@
 
 <p>To create a new Self-Signed SSL Certificate, use the openssl req command (run on linux from the cosmos-project root):</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-newkey</span> rsa:4096 <span class="se">\</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-newkey</span> rsa:4096 <span class="se">\</span>
             <span class="nt">-x509</span> <span class="se">\</span>
             <span class="nt">-sha256</span> <span class="se">\</span>
             <span class="nt">-days</span> 3650 <span class="se">\</span>
@@ -345,16 +345,16 @@ The .crt file and the decrypted and encrypted .key files are available in the pa
   <li>https://pkg.go.dev/crypto/tls#pkg-constants</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tls:
-  options:
-    default:
-      cipherSuites:
-        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tls</span><span class="pi">:</span>
+  <span class="na">options</span><span class="pi">:</span>
+    <span class="na">default</span><span class="pi">:</span>
+      <span class="na">cipherSuites</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</span>
+        <span class="pi">-</span> <span class="s">TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256</span>
+        <span class="pi">-</span> <span class="s">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</span>
+        <span class="pi">-</span> <span class="s">TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</span>
+        <span class="pi">-</span> <span class="s">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</span>
+        <span class="pi">-</span> <span class="s">TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256</span>
 </code></pre></div></div>
 
       </article>

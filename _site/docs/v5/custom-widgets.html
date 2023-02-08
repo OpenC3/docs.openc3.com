@@ -121,8 +121,8 @@
 
 <p>If you look at the bottom of the Demo’s <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/plugin.txt">plugin.txt</a> file you’ll see we declare the widgets:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WIDGET BIG
-WIDGET HELLOWORLD
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">WIDGET</span> <span class="no">BIG</span>
+<span class="no">WIDGET</span> <span class="no">HELLOWORLD</span>
 </code></pre></div></div>
 
 <p>When the plugin is deployed this causes COSMOS to look for the as-built widgets. For the BIG widget it will look for the widget at <code class="language-plaintext highlighter-rouge">tools/widgets/BigWidget/BigWidget.umd.min.js</code>. Similarly it looks for HELLOWORLD at <code class="language-plaintext highlighter-rouge">tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js</code>. These directories and file names may seem mysterious but it’s all about how the widgets get built.</p>
@@ -169,11 +169,11 @@ WIDGET HELLOWORLD
 
 <p>If you look at the Demo plugin’s <a href="https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/targets/INST/screens/simple.txt">simple.txt</a> screen you’ll see we’re using the widgets:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SCREEN AUTO AUTO 0.5
-LABELVALUE &lt;%= target_name %&gt; HEALTH_STATUS CCSDSSEQCNT
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SCREEN</span> <span class="no">AUTO</span> <span class="no">AUTO</span> <span class="mf">0.5</span>
+<span class="no">LABELVALUE</span> <span class="o">&lt;</span><span class="sx">%= target_name %&gt; HEALTH_STATUS CCSDSSEQCNT
 HELLOWORLD
-BIG &lt;%= target_name %&gt; HEALTH_STATUS TEMP1
-</code></pre></div></div>
+BIG &lt;%=</span> <span class="n">target_name</span> <span class="sx">%&gt; HEALTH_STATUS TEMP1
+</span></code></pre></div></div>
 
 <p>Opening this screen in Telemetry Viewer results in the following:</p>
 

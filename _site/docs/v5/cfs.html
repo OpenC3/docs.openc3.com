@@ -256,15 +256,15 @@ communication happens over UDP. <code class="language-plaintext highlighter-roug
 sends the telemetry messages. <code class="language-plaintext highlighter-rouge">port_tc</code> indicates the port on which cFS listens to the
 telecommands.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VARIABLE ip 127.0.0.1
-VARIABLE port_tm 1235
-VARIABLE port_tc 1234
-VARIABLE cfs_target_name CFS
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VARIABLE</span> <span class="n">ip</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="no">VARIABLE</span> <span class="n">port_tm</span> <span class="mi">1235</span>
+<span class="no">VARIABLE</span> <span class="n">port_tc</span> <span class="mi">1234</span>
+<span class="no">VARIABLE</span> <span class="n">cfs_target_name</span> <span class="no">CFS</span>
 
-TARGET CFS &lt;%<span class="o">=</span> cfs_target_name %&gt;
-<span class="c"># hostname   write_dest_port   read_port   write_src_port   interface_address   ttl   write_timeout   read_timeout   bind_address</span>
-INTERFACE &lt;%<span class="o">=</span> cfs_target_name %&gt;_INT udp_interface.rb &lt;%<span class="o">=</span> ip %&gt; &lt;%<span class="o">=</span> port_tc %&gt; &lt;%<span class="o">=</span> port_tm %&gt; nil nil 128 nil nil
-  MAP_TARGET &lt;%<span class="o">=</span> cfs_target_name %&gt;
+<span class="no">TARGET</span> <span class="no">CFS</span> <span class="o">&lt;</span><span class="sx">%= cfs_target_name %&gt;
+# hostname   write_dest_port   read_port   write_src_port   interface_address   ttl   write_timeout   read_timeout   bind_address
+INTERFACE &lt;%=</span> <span class="n">cfs_target_name</span> <span class="sx">%&gt;_INT udp_interface.rb &lt;%= ip %&gt;</span> <span class="o">&lt;</span><span class="sx">%= port_tc %&gt; &lt;%=</span> <span class="n">port_tm</span> <span class="sx">%&gt; nil nil 128 nil nil
+  MAP_TARGET &lt;%= cfs_target_name %&gt;</span>
 </code></pre></div></div>
 
 <p>Note that the two arguments to the <code class="language-plaintext highlighter-rouge">TARGET</code> parameter are:</p>
@@ -301,17 +301,17 @@ content.</p>
 
 <p><code class="language-plaintext highlighter-rouge">to_lab_cmds.txt</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND CFS TO_LAB_ENABLE BIG_ENDIAN <span class="s2">"Enable telemetry"</span>
-  <span class="c">#                   NAME      BITS TYPE   min VAL     max VAL    init VAL  DESCRIPTION</span>
-  APPEND_ID_PARAMETER STREAM_ID  16  UINT   0x1880      0x1880     0x1880    <span class="s2">"Stream ID"</span>
-    FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER    SEQUENCE   16  UINT   0xC000      MAX_UINT16 0xC000    <span class="s2">""</span>
-    FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER    PKT_LEN    16  UINT   0x0001      0xFFFF     0x0012    <span class="s2">"length of the packet"</span>
-  APPEND_PARAMETER    CMD_ID      8  UINT   6           6          6         <span class="s2">""</span>
-  APPEND_PARAMETER    CHECKSUM    8  UINT   MIN_UINT8   MAX_UINT8  0x98      <span class="s2">""</span>
-    FORMAT_STRING <span class="s2">"0x%2X"</span>
-  APPEND_PARAMETER    DEST_IP   144  STRING <span class="s2">"127.0.0.1"</span>                      <span class="s2">"Destination IP, i.e. 172.16.9.112, pc-57"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">CFS</span> <span class="no">TO_LAB_ENABLE</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Enable telemetry"</span>
+  <span class="c1">#                   NAME      BITS TYPE   min VAL     max VAL    init VAL  DESCRIPTION</span>
+  <span class="no">APPEND_ID_PARAMETER</span> <span class="no">STREAM_ID</span>  <span class="mi">16</span>  <span class="no">UINT</span>   <span class="mh">0x1880</span>      <span class="mh">0x1880</span>     <span class="mh">0x1880</span>    <span class="s2">"Stream ID"</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">SEQUENCE</span>   <span class="mi">16</span>  <span class="no">UINT</span>   <span class="mh">0xC000</span>      <span class="no">MAX_UINT16</span> <span class="mh">0xC000</span>    <span class="s2">""</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">PKT_LEN</span>    <span class="mi">16</span>  <span class="no">UINT</span>   <span class="mh">0x0001</span>      <span class="mh">0xFFFF</span>     <span class="mh">0x0012</span>    <span class="s2">"length of the packet"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">CMD_ID</span>      <span class="mi">8</span>  <span class="no">UINT</span>   <span class="mi">6</span>           <span class="mi">6</span>          <span class="mi">6</span>         <span class="s2">""</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">CHECKSUM</span>    <span class="mi">8</span>  <span class="no">UINT</span>   <span class="no">MIN_UINT8</span>   <span class="no">MAX_UINT8</span>  <span class="mh">0x98</span>      <span class="s2">""</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%2X"</span>
+  <span class="no">APPEND_PARAMETER</span>    <span class="no">DEST_IP</span>   <span class="mi">144</span>  <span class="no">STRING</span> <span class="s2">"127.0.0.1"</span>                      <span class="s2">"Destination IP, i.e. 172.16.9.112, pc-57"</span>
 </code></pre></div></div>
 
 <div class="note info">
@@ -324,57 +324,57 @@ content.</p>
 
 <p><code class="language-plaintext highlighter-rouge">cfs_cmds.txt</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND CFS NOOP BIG_ENDIAN <span class="s2">"NOOP Command"</span>
-  <span class="c"># cFS primary header</span>
-  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER       PKT_LEN     16   UINT   0x0001      0x0001      0x0001      <span class="s2">"Packet length"</span>
-  <span class="c"># cFS CMD secondary header</span>
-  APPEND_PARAMETER       CMD_ID       8   UINT   0           0           0           <span class="s2">""</span>
-  APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">CFS</span> <span class="no">NOOP</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"NOOP Command"</span>
+  <span class="c1"># cFS primary header</span>
+  <span class="no">APPEND_ID_PARAMETER</span>    <span class="no">STREAM_ID</span>   <span class="mi">16</span>   <span class="no">UINT</span>   <span class="mh">0x1882</span>      <span class="mh">0x1882</span>      <span class="mh">0x1882</span>      <span class="s2">"Packet Identification"</span>
+      <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">SEQUENCE</span>    <span class="mi">16</span>   <span class="no">UINT</span>   <span class="no">MIN_UINT16</span>  <span class="no">MAX_UINT16</span>  <span class="mh">0xC000</span>      <span class="s2">""</span>
+      <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">PKT_LEN</span>     <span class="mi">16</span>   <span class="no">UINT</span>   <span class="mh">0x0001</span>      <span class="mh">0x0001</span>      <span class="mh">0x0001</span>      <span class="s2">"Packet length"</span>
+  <span class="c1"># cFS CMD secondary header</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">CMD_ID</span>       <span class="mi">8</span>   <span class="no">UINT</span>   <span class="mi">0</span>           <span class="mi">0</span>           <span class="mi">0</span>           <span class="s2">""</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">CHECKSUM</span>     <span class="mi">8</span>   <span class="no">UINT</span>   <span class="no">MIN_UINT8</span>   <span class="no">MAX_UINT8</span>   <span class="no">MIN_UINT8</span>   <span class="s2">""</span>
 
-COMMAND CFS RESET BIG_ENDIAN <span class="s2">"Reset Counters Command"</span>
-  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER       PKT_LEN     16   UINT   0x0001      0x0001      0x0001      <span class="s2">"Packet length"</span>
-  APPEND_PARAMETER       CMD_ID       8   UINT   1           1           1           <span class="s2">""</span>
-  APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
+<span class="no">COMMAND</span> <span class="no">CFS</span> <span class="no">RESET</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Reset Counters Command"</span>
+  <span class="no">APPEND_ID_PARAMETER</span>    <span class="no">STREAM_ID</span>   <span class="mi">16</span>   <span class="no">UINT</span>   <span class="mh">0x1882</span>      <span class="mh">0x1882</span>      <span class="mh">0x1882</span>      <span class="s2">"Packet Identification"</span>
+      <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">SEQUENCE</span>    <span class="mi">16</span>   <span class="no">UINT</span>   <span class="no">MIN_UINT16</span>  <span class="no">MAX_UINT16</span>  <span class="mh">0xC000</span>      <span class="s2">""</span>
+      <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">PKT_LEN</span>     <span class="mi">16</span>   <span class="no">UINT</span>   <span class="mh">0x0001</span>      <span class="mh">0x0001</span>      <span class="mh">0x0001</span>      <span class="s2">"Packet length"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">CMD_ID</span>       <span class="mi">8</span>   <span class="no">UINT</span>   <span class="mi">1</span>           <span class="mi">1</span>           <span class="mi">1</span>           <span class="s2">""</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">CHECKSUM</span>     <span class="mi">8</span>   <span class="no">UINT</span>   <span class="no">MIN_UINT8</span>   <span class="no">MAX_UINT8</span>   <span class="no">MIN_UINT8</span>   <span class="s2">""</span>
 
-COMMAND CFS PROCESS BIG_ENDIAN <span class="s2">"Process Command"</span>
-  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_PARAMETER       PKT_LEN     16   UINT   0x0001      0x0001      0x0001      <span class="s2">"Packet length"</span>
-  APPEND_PARAMETER       CMD_ID       8   UINT   2           2           2           <span class="s2">""</span>
-  APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
+<span class="no">COMMAND</span> <span class="no">CFS</span> <span class="no">PROCESS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Process Command"</span>
+  <span class="no">APPEND_ID_PARAMETER</span>    <span class="no">STREAM_ID</span>   <span class="mi">16</span>   <span class="no">UINT</span>   <span class="mh">0x1882</span>      <span class="mh">0x1882</span>      <span class="mh">0x1882</span>      <span class="s2">"Packet Identification"</span>
+      <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">SEQUENCE</span>    <span class="mi">16</span>   <span class="no">UINT</span>   <span class="no">MIN_UINT16</span>  <span class="no">MAX_UINT16</span>  <span class="mh">0xC000</span>      <span class="s2">""</span>
+      <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">PKT_LEN</span>     <span class="mi">16</span>   <span class="no">UINT</span>   <span class="mh">0x0001</span>      <span class="mh">0x0001</span>      <span class="mh">0x0001</span>      <span class="s2">"Packet length"</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">CMD_ID</span>       <span class="mi">8</span>   <span class="no">UINT</span>   <span class="mi">2</span>           <span class="mi">2</span>           <span class="mi">2</span>           <span class="s2">""</span>
+  <span class="no">APPEND_PARAMETER</span>       <span class="no">CHECKSUM</span>     <span class="mi">8</span>   <span class="no">UINT</span>   <span class="no">MIN_UINT8</span>   <span class="no">MAX_UINT8</span>   <span class="no">MIN_UINT8</span>   <span class="s2">""</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">cfs_tlm.txt</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY CFS HK BIG_ENDIAN <span class="s2">"housekeeping telemetry"</span>
-  <span class="c">#                NAME       BITS  TYPE    ID      DESCRIPTION</span>
-  APPEND_ID_ITEM   STREAM_ID   16   UINT    0x0883  <span class="s2">"Stream ID"</span>
-    FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_ITEM      SEQUENCE    16   UINT            <span class="s2">"Packet Sequence"</span>
-    FORMAT_STRING <span class="s2">"0x%04X"</span>
-  APPEND_ITEM      PKT_LEN     16   UINT            <span class="s2">"Length of the packet"</span>
-  <span class="c"># telemetry secondary header</span>
-  APPEND_ITEM      SECONDS     32   UINT            <span class="s2">""</span>
-        UNITS Seconds sec
-  APPEND_ITEM      SUBSECS     16   UINT            <span class="s2">""</span>
-        UNITS Milliseconds ms
-  <span class="c"># some bytes not known for what</span>
-  APPEND_ITEM      SPARE2ALIGN 32   UINT            <span class="s2">"Spares"</span>
-  <span class="c"># payload</span>
-  APPEND_ITEM      CMD_ERRS     8   UINT            <span class="s2">"Command Error Counter"</span>
-  APPEND_ITEM      CMD_CNT      8   UINT            <span class="s2">"Command Counter"</span>
-  <span class="c"># spare / alignment</span>
-  APPEND_ITEM      SPARE       16   UINT            <span class="s2">"Spares"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">CFS</span> <span class="no">HK</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"housekeeping telemetry"</span>
+  <span class="c1">#                NAME       BITS  TYPE    ID      DESCRIPTION</span>
+  <span class="no">APPEND_ID_ITEM</span>   <span class="no">STREAM_ID</span>   <span class="mi">16</span>   <span class="no">UINT</span>    <span class="mh">0x0883</span>  <span class="s2">"Stream ID"</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">SEQUENCE</span>    <span class="mi">16</span>   <span class="no">UINT</span>            <span class="s2">"Packet Sequence"</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%04X"</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">PKT_LEN</span>     <span class="mi">16</span>   <span class="no">UINT</span>            <span class="s2">"Length of the packet"</span>
+  <span class="c1"># telemetry secondary header</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">SECONDS</span>     <span class="mi">32</span>   <span class="no">UINT</span>            <span class="s2">""</span>
+        <span class="no">UNITS</span> <span class="no">Seconds</span> <span class="n">sec</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">SUBSECS</span>     <span class="mi">16</span>   <span class="no">UINT</span>            <span class="s2">""</span>
+        <span class="no">UNITS</span> <span class="no">Milliseconds</span> <span class="n">ms</span>
+  <span class="c1"># some bytes not known for what</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">SPARE2ALIGN</span> <span class="mi">32</span>   <span class="no">UINT</span>            <span class="s2">"Spares"</span>
+  <span class="c1"># payload</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">CMD_ERRS</span>     <span class="mi">8</span>   <span class="no">UINT</span>            <span class="s2">"Command Error Counter"</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">CMD_CNT</span>      <span class="mi">8</span>   <span class="no">UINT</span>            <span class="s2">"Command Counter"</span>
+  <span class="c1"># spare / alignment</span>
+  <span class="no">APPEND_ITEM</span>      <span class="no">SPARE</span>       <span class="mi">16</span>   <span class="no">UINT</span>            <span class="s2">"Spares"</span>
 </code></pre></div></div>
 
 <p>Build the plugin from the base of your plugin folder:</p>

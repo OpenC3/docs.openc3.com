@@ -104,31 +104,15 @@
 <li class="toc-entry toc-h1"><a href="#command-keywords">Command Keywords</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#command">COMMAND</a></li>
-<li class="toc-entry toc-h2"><a href="#select_command">SELECT_COMMAND</a></li>
 <li class="toc-entry toc-h2"><a href="#command-modifiers">COMMAND Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#parameter">PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#append_parameter">APPEND_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#id_parameter">ID_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#append_id_parameter">APPEND_ID_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#array_parameter">ARRAY_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#append_array_parameter">APPEND_ARRAY_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#select_parameter">SELECT_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#delete_parameter">DELETE_PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#hidden">HIDDEN</a></li>
-<li class="toc-entry toc-h3"><a href="#disabled">DISABLED</a></li>
-<li class="toc-entry toc-h3"><a href="#disable_messages">DISABLE_MESSAGES</a></li>
-<li class="toc-entry toc-h3"><a href="#meta">META</a></li>
-<li class="toc-entry toc-h3"><a href="#hazardous">HAZARDOUS</a></li>
-<li class="toc-entry toc-h3"><a href="#accessor">ACCESSOR</a></li>
-<li class="toc-entry toc-h3"><a href="#template">TEMPLATE</a></li>
-<li class="toc-entry toc-h3"><a href="#template_file">TEMPLATE_FILE</a></li>
 <li class="toc-entry toc-h3"><a href="#parameter-modifiers">PARAMETER Modifiers</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#format_string">FORMAT_STRING</a></li>
 <li class="toc-entry toc-h4"><a href="#units">UNITS</a></li>
 <li class="toc-entry toc-h4"><a href="#description">DESCRIPTION</a></li>
-<li class="toc-entry toc-h4"><a href="#meta-1">META</a></li>
+<li class="toc-entry toc-h4"><a href="#meta">META</a></li>
 <li class="toc-entry toc-h4"><a href="#overlap">OVERLAP</a></li>
 <li class="toc-entry toc-h4"><a href="#key">KEY</a></li>
 <li class="toc-entry toc-h4"><a href="#required">REQUIRED</a></li>
@@ -152,8 +136,24 @@
 <li class="toc-entry toc-h4"><a href="#overflow">OVERFLOW</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#append_parameter">APPEND_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#id_parameter">ID_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#append_id_parameter">APPEND_ID_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#array_parameter">ARRAY_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#append_array_parameter">APPEND_ARRAY_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#select_parameter">SELECT_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#delete_parameter">DELETE_PARAMETER</a></li>
+<li class="toc-entry toc-h3"><a href="#hidden">HIDDEN</a></li>
+<li class="toc-entry toc-h3"><a href="#disabled">DISABLED</a></li>
+<li class="toc-entry toc-h3"><a href="#disable_messages">DISABLE_MESSAGES</a></li>
+<li class="toc-entry toc-h3"><a href="#meta-1">META</a></li>
+<li class="toc-entry toc-h3"><a href="#hazardous">HAZARDOUS</a></li>
+<li class="toc-entry toc-h3"><a href="#accessor">ACCESSOR</a></li>
+<li class="toc-entry toc-h3"><a href="#template">TEMPLATE</a></li>
+<li class="toc-entry toc-h3"><a href="#template_file">TEMPLATE_FILE</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#select_command">SELECT_COMMAND</a></li>
 <li class="toc-entry toc-h2"><a href="#example-file">Example File</a></li>
 </ul>
 </li>
@@ -210,38 +210,8 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">COMMAND INST COLLECT BIG_ENDIAN "Start collect"</code></pre></figure>
-
-<h2 id="select_command">
-<a class="anchor" href="#select_command" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_COMMAND</h2>
-<p><strong>Selects an existing command packet for editing</strong></p>
-
-<p>Typically used in a separate configuration file from where the original command is defined to override or add to the existing command definition</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target this command is associated with</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Command Name</td>
-      <td>Name of the command to select</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SELECT_COMMAND INST COLLECT</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">INST</span> <span class="no">COLLECT</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Start collect"</span>
+</code></pre></div></div>
 
 <h2 id="command-modifiers">
 <a class="anchor" href="#command-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>COMMAND Modifiers</h2>
@@ -341,601 +311,12 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">PARAMETER SYNC 0 32 UINT 0xDEADBEEF 0xDEADBEEF 0xDEADBEEF "Sync pattern"
-PARAMETER DATA 32 32 INT MIN MAX 0 "Data value"
-PARAMETER VALUE 64 32 FLOAT 0 10.5 2.5
-PARAMETER LABEL 96 96 STRING "OPENC3" "The label to apply"
-PARAMETER BLOCK 192 0 BLOCK 0x0 "Block of binary data"
-</code></pre></figure>
-
-<h3 id="append_parameter">
-<a class="anchor" href="#append_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_PARAMETER</h3>
-<p><strong>Defines a command parameter in the current command packet</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the parameter. Must be unique within the command.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
-</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Minimum Value</td>
-      <td>Minimum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Maximum Value</td>
-      <td>Maximum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Default Value</td>
-      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Default Value</td>
-      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_PARAMETER SYNC 32 UINT 0xDEADBEEF 0xDEADBEEF 0xDEADBEEF "Sync pattern"
-APPEND_PARAMETER VALUE 32 FLOAT 0 10.5 2.5
-APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
-</code></pre></figure>
-
-<h3 id="id_parameter">
-<a class="anchor" href="#id_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>ID_PARAMETER</h3>
-<p><strong>Defines an identification command parameter in the current command packet</strong></p>
-
-<p>ID parameters are used to identify the binary block of data as a particular command. A command packet may have one or more ID_PARAMETERs and all must match the binary data for the command to be identified.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the parameter. Must be unique within the command.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Offset</td>
-      <td>Bit offset into the command packet of the Most Significant Bit of this parameter. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived parameters.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
-</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Minimum Value</td>
-      <td>Minimum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Maximum Value</td>
-      <td>Maximum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>ID Value</td>
-      <td>Identification value for this parameter. The binary data must match this value for the buffer to be identified as this packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Default Value</td>
-      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ID_PARAMETER OPCODE 32 32 UINT 2 2 2 "Opcode identifier"</code></pre></figure>
-
-<h3 id="append_id_parameter">
-<a class="anchor" href="#append_id_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ID_PARAMETER</h3>
-<p><strong>Defines an identification command parameter in the current command packet</strong></p>
-
-<p>ID parameters are used to identify the binary block of data as a particular command. A command packet may have one or more ID_PARAMETERs and all must match the binary data for the command to be identified.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the parameter. Must be unique within the command.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
-</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Minimum Value</td>
-      <td>Minimum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Maximum Value</td>
-      <td>Maximum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>ID Value</td>
-      <td>Identification value for this parameter. The binary data must match this value for the buffer to be identified as this packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Default Value</td>
-      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ID_PARAMETER OPCODE 32 UINT 2 2 2 "Opcode identifier"</code></pre></figure>
-
-<h3 id="array_parameter">
-<a class="anchor" href="#array_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>ARRAY_PARAMETER</h3>
-<p><strong>Defines a command parameter in the current command packet that is an array</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the parameter. Must be unique within the command.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Offset</td>
-      <td>Bit offset into the command packet of the Most Significant Bit of this parameter. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived parameters.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Bit Size</td>
-      <td>Bit size of each array item</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Data Type</td>
-      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Array Bit Size</td>
-      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ARRAY_PARAMETER ARRAY 64 64 FLOAT 640 "Array of 10 64bit floats"</code></pre></figure>
-
-<h3 id="append_array_parameter">
-<a class="anchor" href="#append_array_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ARRAY_PARAMETER</h3>
-<p><strong>Defines a command parameter in the current command packet that is an array</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the parameter. Must be unique within the command.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Bit Size</td>
-      <td>Bit size of each array item</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Data Type</td>
-      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Array Bit Size</td>
-      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ARRAY_PARAMETER ARRAY 64 FLOAT 640 "Array of 10 64bit floats"</code></pre></figure>
-
-<h3 id="select_parameter">
-<a class="anchor" href="#select_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_PARAMETER</h3>
-<p><strong>Selects an existing command parameter for editing</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Parameter</td>
-      <td>Name of the parameter to select for modification</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SELECT_COMMAND INST COLLECT
-  SELECT_PARAMETER DURATION
-</code></pre></figure>
-
-<h3 id="delete_parameter">
-<a class="anchor" href="#delete_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>DELETE_PARAMETER</h3>
-<div class="right">(Since 4.4.1)</div>
-<p><strong>Deletes an existing command parameter from the packet definition</strong></p>
-
-<p>Deleting a parameter from the command definition does not remove the defined space for that parameter. Thus unless you redefine a new parameter, there will be a “hole” in the packet where the data is not accessible. You can use SELECT_COMMAND and then PARAMETER to define a new parameter.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Parameter</td>
-      <td>Name of the parameter to delete</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SELECT_COMMAND INST COLLECT
-  DELETE_PARAMETER DURATION
-</code></pre></figure>
-
-<h3 id="hidden">
-<a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h3>
-<p><strong>Hides this command from all OpenC3 tools such as Command Sender and Handbook Creator</strong></p>
-
-<p>Hidden commands do not appear in the Script Runner popup helper when writing scripts. The command still exists in the system and can be sent by scripts.</p>
-
-<h3 id="disabled">
-<a class="anchor" href="#disabled" aria-hidden="true"><span class="octicon octicon-link"></span></a>DISABLED</h3>
-<p><strong>Disables this command from being sent</strong></p>
-
-<p>Hides the command and also disables it from being sent by scripts. Attempts to send DISABLED commands result in an error message.</p>
-
-<h3 id="disable_messages">
-<a class="anchor" href="#disable_messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>DISABLE_MESSAGES</h3>
-<p><strong>Disable the Server from printing cmd(…) messages. Commands are still logged.</strong></p>
-
-<h3 id="meta">
-<a class="anchor" href="#meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h3>
-<p><strong>Stores metadata for the current command</strong></p>
-
-<p>Meta data is user specific data that can be used by custom tools for various purposes. One example is to store additional information needed to generate source code header files.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Meta Name</td>
-      <td>Name of the metadata to store</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Meta Values</td>
-      <td>One or more values to be stored for this Meta Name</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">META FSW_TYPE "struct command"</code></pre></figure>
-
-<h3 id="hazardous">
-<a class="anchor" href="#hazardous" aria-hidden="true"><span class="octicon octicon-link"></span></a>HAZARDOUS</h3>
-<p><strong>Designates the current command as hazardous</strong></p>
-
-<p>Sending a hazardous command causes a dialog asking for confirmation before sending the command</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Description</td>
-      <td>Description for why the command is hazardous which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="accessor">
-<a class="anchor" href="#accessor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ACCESSOR</h3>
-<div class="right">(Since 5.0.10)</div>
-<p><strong>Defines the class used to read and write raw values from the packet</strong></p>
-
-<p>Defines the class that is used too read raw values from the packet. Defaults to BinaryAccessor. Provided accessors also include JsonAccessor, CborAccessor, HtmlAccessor, and XmlAccessor.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Accessor Class Name</td>
-      <td>The name of the accessor class</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="template">
-<a class="anchor" href="#template" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMPLATE</h3>
-<div class="right">(Since 5.0.10)</div>
-<p><strong>Defines a template string used to initialize the command before default values are filled in</strong></p>
-
-<p>Generally the template string is formatted in JSON or HTML and then values are filled in with command parameters. Must be UTF-8 encoded.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Template</td>
-      <td>The template string which should be enclosed in quotes</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="template_file">
-<a class="anchor" href="#template_file" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMPLATE_FILE</h3>
-<div class="right">(Since 5.0.10)</div>
-<p><strong>Defines a template file used to initialize the command before default values are filled in</strong></p>
-
-<p>Generally the template file is formatted in JSON or HTML and then values are filled in with command parameters. Can be binary or UTF-8.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Template File Path</td>
-      <td>The relative path to the template file. Filename should generally start with an underscore.</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">PARAMETER</span> <span class="no">SYNC</span> <span class="mi">0</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mh">0xDEADBEEF</span> <span class="mh">0xDEADBEEF</span> <span class="mh">0xDEADBEEF</span> <span class="s2">"Sync pattern"</span>
+<span class="no">PARAMETER</span> <span class="no">DATA</span> <span class="mi">32</span> <span class="mi">32</span> <span class="no">INT</span> <span class="no">MIN</span> <span class="no">MAX</span> <span class="mi">0</span> <span class="s2">"Data value"</span>
+<span class="no">PARAMETER</span> <span class="no">VALUE</span> <span class="mi">64</span> <span class="mi">32</span> <span class="no">FLOAT</span> <span class="mi">0</span> <span class="mf">10.5</span> <span class="mf">2.5</span>
+<span class="no">PARAMETER</span> <span class="no">LABEL</span> <span class="mi">96</span> <span class="mi">96</span> <span class="no">STRING</span> <span class="s2">"OPENC3"</span> <span class="s2">"The label to apply"</span>
+<span class="no">PARAMETER</span> <span class="no">BLOCK</span> <span class="mi">192</span> <span class="mi">0</span> <span class="no">BLOCK</span> <span class="mh">0x0</span> <span class="s2">"Block of binary data"</span>
+</code></pre></div></div>
 
 <h3 id="parameter-modifiers">
 <a class="anchor" href="#parameter-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>PARAMETER Modifiers</h3>
@@ -963,7 +344,8 @@ APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">FORMAT_STRING "0x%0X"</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+</code></pre></div></div>
 
 <h4 id="units">
 <a class="anchor" href="#units" aria-hidden="true"><span class="octicon octicon-link"></span></a>UNITS</h4>
@@ -992,9 +374,9 @@ APPEND_PARAMETER LABEL 0 STRING "OPENC3" "The label to apply"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">UNITS Celsius C
-UNITS Kilometers KM
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">UNITS</span> <span class="no">Celsius</span> <span class="no">C</span>
+<span class="no">UNITS</span> <span class="no">Kilometers</span> <span class="no">KM</span>
+</code></pre></div></div>
 
 <h4 id="description">
 <a class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>DESCRIPTION</h4>
@@ -1017,8 +399,8 @@ UNITS Kilometers KM
   </tbody>
 </table>
 
-<h4 id="meta-1">
-<a class="anchor" href="#meta-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h4>
+<h4 id="meta">
+<a class="anchor" href="#meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h4>
 <p><strong>Stores custom user metadata</strong></p>
 
 <p>Meta data is user specific data that can be used by custom tools for various purposes. One example is to store additional information needed to generate source code header files.</p>
@@ -1046,7 +428,8 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">META TEST "This parameter is for test purposes only"</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">META</span> <span class="no">TEST</span> <span class="s2">"This parameter is for test purposes only"</span>
+</code></pre></div></div>
 
 <h4 id="overlap">
 <a class="anchor" href="#overlap" aria-hidden="true"><span class="octicon octicon-link"></span></a>OVERLAP</h4>
@@ -1080,7 +463,8 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">KEY $.book.title</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">KEY</span> <span class="vg">$.</span><span class="n">book</span><span class="p">.</span><span class="nf">title</span>
+</code></pre></div></div>
 
 <h4 id="required">
 <a class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRED</h4>
@@ -1191,14 +575,14 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_PARAMETER ENABLE 32 UINT 0 1 0 "Enable setting"
-  STATE FALSE 0
-  STATE TRUE 1
-APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
-  STATE "NOOP" "NOOP" DISABLE_MESSAGES
-  STATE "ARM LASER" "ARM LASER" HAZARDOUS "Arming the laser is an eye safety hazard"
-  STATE "FIRE LASER" "FIRE LASER" HAZARDOUS "WARNING! Laser will be fired!"
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_PARAMETER</span> <span class="no">ENABLE</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="s2">"Enable setting"</span>
+  <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+  <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+<span class="no">APPEND_PARAMETER</span> <span class="no">STRING</span> <span class="mi">1024</span> <span class="no">STRING</span> <span class="s2">"NOOP"</span> <span class="s2">"String parameter"</span>
+  <span class="no">STATE</span> <span class="s2">"NOOP"</span> <span class="s2">"NOOP"</span> <span class="no">DISABLE_MESSAGES</span>
+  <span class="no">STATE</span> <span class="s2">"ARM LASER"</span> <span class="s2">"ARM LASER"</span> <span class="no">HAZARDOUS</span> <span class="s2">"Arming the laser is an eye safety hazard"</span>
+  <span class="no">STATE</span> <span class="s2">"FIRE LASER"</span> <span class="s2">"FIRE LASER"</span> <span class="no">HAZARDOUS</span> <span class="s2">"WARNING! Laser will be fired!"</span>
+</code></pre></div></div>
 
 <h4 id="write_conversion">
 <a class="anchor" href="#write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>WRITE_CONVERSION</h4>
@@ -1231,23 +615,23 @@ APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">WRITE_CONVERSION the_great_conversion.rb 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">WRITE_CONVERSION</span> <span class="n">the_great_conversion</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">1000</span>
 
-Defined in the_great_conversion.rb:
+<span class="no">Defined</span> <span class="k">in</span> <span class="n">the_great_conversion</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span>
 
-require 'openc3/conversions/conversion'
-module OpenC3
-  class TheGreatConversion &lt; Conversion
-    def initialize(multiplier)
-      super()
-      @multiplier = multiplier.to_f
-    end
-    def call(value, packet, buffer)
-      return value * multiplier
-    end
-  end
-end
-</code></pre></figure>
+<span class="nb">require</span> <span class="s1">'openc3/conversions/conversion'</span>
+<span class="k">module</span> <span class="nn">OpenC3</span>
+  <span class="k">class</span> <span class="nc">TheGreatConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">multiplier</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">()</span>
+      <span class="vi">@multiplier</span> <span class="o">=</span> <span class="n">multiplier</span><span class="p">.</span><span class="nf">to_f</span>
+    <span class="k">end</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h4 id="poly_write_conversion">
 <a class="anchor" href="#poly_write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>POLY_WRITE_CONVERSION</h4>
@@ -1278,7 +662,8 @@ end
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">POLY_WRITE_CONVERSION 10 0.5 0.25</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">POLY_WRITE_CONVERSION</span> <span class="mi">10</span> <span class="mf">0.5</span> <span class="mf">0.25</span>
+</code></pre></div></div>
 
 <h4 id="seg_poly_write_conversion">
 <a class="anchor" href="#seg_poly_write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>SEG_POLY_WRITE_CONVERSION</h4>
@@ -1314,10 +699,10 @@ end
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SEG_POLY_WRITE_CONVERSION 0 10 0.5 0.25 # Apply the conversion to all values &lt; 50
-SEG_POLY_WRITE_CONVERSION 50 11 0.5 0.275 # Apply the conversion to all values &gt;= 50 and &lt; 100
-SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &gt;= 100
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SEG_POLY_WRITE_CONVERSION</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mf">0.5</span> <span class="mf">0.25</span> <span class="c1"># Apply the conversion to all values &lt; 50</span>
+<span class="no">SEG_POLY_WRITE_CONVERSION</span> <span class="mi">50</span> <span class="mi">11</span> <span class="mf">0.5</span> <span class="mf">0.275</span> <span class="c1"># Apply the conversion to all values &gt;= 50 and &lt; 100</span>
+<span class="no">SEG_POLY_WRITE_CONVERSION</span> <span class="mi">100</span> <span class="mi">12</span> <span class="mf">0.5</span> <span class="mf">0.3</span> <span class="c1"># Apply the conversion to all values &gt;= 100</span>
+</code></pre></div></div>
 
 <h4 id="generic_write_conversion_start">
 <a class="anchor" href="#generic_write_conversion_start" aria-hidden="true"><span class="octicon octicon-link"></span></a>GENERIC_WRITE_CONVERSION_START</h4>
@@ -1330,11 +715,11 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 <div class="note warning"><p>Generic conversions are not a good long term solution. Consider creating a conversion class and using WRITE_CONVERSION instead. WRITE_CONVERSION is easier to debug and higher performance.</p></div>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_PARAMETER ITEM1 32 UINT 0 0xFFFFFFFF 0
-  GENERIC_WRITE_CONVERSION_START
-    (value * 1.5).to_i # Convert the value by a scale factor
-  GENERIC_WRITE_CONVERSION_END
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_PARAMETER</span> <span class="no">ITEM1</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0xFFFFFFFF</span> <span class="mi">0</span>
+  <span class="no">GENERIC_WRITE_CONVERSION_START</span>
+    <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">).</span><span class="nf">to_i</span> <span class="c1"># Convert the value by a scale factor</span>
+  <span class="no">GENERIC_WRITE_CONVERSION_END</span>
+</code></pre></div></div>
 
 <h4 id="generic_write_conversion_end">
 <a class="anchor" href="#generic_write_conversion_end" aria-hidden="true"><span class="octicon octicon-link"></span></a>GENERIC_WRITE_CONVERSION_END</h4>
@@ -1365,7 +750,634 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">OVERFLOW TRUNCATE</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">OVERFLOW</span> <span class="no">TRUNCATE</span>
+</code></pre></div></div>
+
+<h3 id="append_parameter">
+<a class="anchor" href="#append_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_PARAMETER</h3>
+<p><strong>Defines a command parameter in the current command packet</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the parameter. Must be unique within the command.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
+</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Minimum Value</td>
+      <td>Minimum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Maximum Value</td>
+      <td>Maximum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Default Value</td>
+      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Default Value</td>
+      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_PARAMETER</span> <span class="no">SYNC</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mh">0xDEADBEEF</span> <span class="mh">0xDEADBEEF</span> <span class="mh">0xDEADBEEF</span> <span class="s2">"Sync pattern"</span>
+<span class="no">APPEND_PARAMETER</span> <span class="no">VALUE</span> <span class="mi">32</span> <span class="no">FLOAT</span> <span class="mi">0</span> <span class="mf">10.5</span> <span class="mf">2.5</span>
+<span class="no">APPEND_PARAMETER</span> <span class="no">LABEL</span> <span class="mi">0</span> <span class="no">STRING</span> <span class="s2">"OPENC3"</span> <span class="s2">"The label to apply"</span>
+</code></pre></div></div>
+
+<h3 id="id_parameter">
+<a class="anchor" href="#id_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>ID_PARAMETER</h3>
+<p><strong>Defines an identification command parameter in the current command packet</strong></p>
+
+<p>ID parameters are used to identify the binary block of data as a particular command. A command packet may have one or more ID_PARAMETERs and all must match the binary data for the command to be identified.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the parameter. Must be unique within the command.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Offset</td>
+      <td>Bit offset into the command packet of the Most Significant Bit of this parameter. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived parameters.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
+</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Minimum Value</td>
+      <td>Minimum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Maximum Value</td>
+      <td>Maximum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>ID Value</td>
+      <td>Identification value for this parameter. The binary data must match this value for the buffer to be identified as this packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Default Value</td>
+      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ID_PARAMETER</span> <span class="no">OPCODE</span> <span class="mi">32</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="s2">"Opcode identifier"</span>
+</code></pre></div></div>
+
+<h3 id="append_id_parameter">
+<a class="anchor" href="#append_id_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ID_PARAMETER</h3>
+<p><strong>Defines an identification command parameter in the current command packet</strong></p>
+
+<p>ID parameters are used to identify the binary block of data as a particular command. A command packet may have one or more ID_PARAMETERs and all must match the binary data for the command to be identified.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the parameter. Must be unique within the command.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
+</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Minimum Value</td>
+      <td>Minimum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Maximum Value</td>
+      <td>Maximum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>ID Value</td>
+      <td>Identification value for this parameter. The binary data must match this value for the buffer to be identified as this packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Default Value</td>
+      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ID_PARAMETER</span> <span class="no">OPCODE</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="s2">"Opcode identifier"</span>
+</code></pre></div></div>
+
+<h3 id="array_parameter">
+<a class="anchor" href="#array_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>ARRAY_PARAMETER</h3>
+<p><strong>Defines a command parameter in the current command packet that is an array</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the parameter. Must be unique within the command.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Offset</td>
+      <td>Bit offset into the command packet of the Most Significant Bit of this parameter. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived parameters.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Bit Size</td>
+      <td>Bit size of each array item</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Data Type</td>
+      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Array Bit Size</td>
+      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ARRAY_PARAMETER</span> <span class="no">ARRAY</span> <span class="mi">64</span> <span class="mi">64</span> <span class="no">FLOAT</span> <span class="mi">640</span> <span class="s2">"Array of 10 64bit floats"</span>
+</code></pre></div></div>
+
+<h3 id="append_array_parameter">
+<a class="anchor" href="#append_array_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ARRAY_PARAMETER</h3>
+<p><strong>Defines a command parameter in the current command packet that is an array</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the parameter. Must be unique within the command.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Bit Size</td>
+      <td>Bit size of each array item</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Data Type</td>
+      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Array Bit Size</td>
+      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ARRAY_PARAMETER</span> <span class="no">ARRAY</span> <span class="mi">64</span> <span class="no">FLOAT</span> <span class="mi">640</span> <span class="s2">"Array of 10 64bit floats"</span>
+</code></pre></div></div>
+
+<h3 id="select_parameter">
+<a class="anchor" href="#select_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_PARAMETER</h3>
+<p><strong>Selects an existing command parameter for editing</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Parameter</td>
+      <td>Name of the parameter to select for modification</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_COMMAND</span> <span class="no">INST</span> <span class="no">COLLECT</span>
+  <span class="no">SELECT_PARAMETER</span> <span class="no">DURATION</span>
+</code></pre></div></div>
+
+<h3 id="delete_parameter">
+<a class="anchor" href="#delete_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>DELETE_PARAMETER</h3>
+<div class="right">(Since 4.4.1)</div>
+<p><strong>Deletes an existing command parameter from the packet definition</strong></p>
+
+<p>Deleting a parameter from the command definition does not remove the defined space for that parameter. Thus unless you redefine a new parameter, there will be a “hole” in the packet where the data is not accessible. You can use SELECT_COMMAND and then PARAMETER to define a new parameter.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Parameter</td>
+      <td>Name of the parameter to delete</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_COMMAND</span> <span class="no">INST</span> <span class="no">COLLECT</span>
+  <span class="no">DELETE_PARAMETER</span> <span class="no">DURATION</span>
+</code></pre></div></div>
+
+<h3 id="hidden">
+<a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h3>
+<p><strong>Hides this command from all OpenC3 tools such as Command Sender and Handbook Creator</strong></p>
+
+<p>Hidden commands do not appear in the Script Runner popup helper when writing scripts. The command still exists in the system and can be sent by scripts.</p>
+
+<h3 id="disabled">
+<a class="anchor" href="#disabled" aria-hidden="true"><span class="octicon octicon-link"></span></a>DISABLED</h3>
+<p><strong>Disables this command from being sent</strong></p>
+
+<p>Hides the command and also disables it from being sent by scripts. Attempts to send DISABLED commands result in an error message.</p>
+
+<h3 id="disable_messages">
+<a class="anchor" href="#disable_messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>DISABLE_MESSAGES</h3>
+<p><strong>Disable the Server from printing cmd(…) messages. Commands are still logged.</strong></p>
+
+<h3 id="meta-1">
+<a class="anchor" href="#meta-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h3>
+<p><strong>Stores metadata for the current command</strong></p>
+
+<p>Meta data is user specific data that can be used by custom tools for various purposes. One example is to store additional information needed to generate source code header files.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Meta Name</td>
+      <td>Name of the metadata to store</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Meta Values</td>
+      <td>One or more values to be stored for this Meta Name</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">META</span> <span class="no">FSW_TYPE</span> <span class="s2">"struct command"</span>
+</code></pre></div></div>
+
+<h3 id="hazardous">
+<a class="anchor" href="#hazardous" aria-hidden="true"><span class="octicon octicon-link"></span></a>HAZARDOUS</h3>
+<p><strong>Designates the current command as hazardous</strong></p>
+
+<p>Sending a hazardous command causes a dialog asking for confirmation before sending the command</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Description</td>
+      <td>Description for why the command is hazardous which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="accessor">
+<a class="anchor" href="#accessor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ACCESSOR</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines the class used to read and write raw values from the packet</strong></p>
+
+<p>Defines the class that is used too read raw values from the packet. Defaults to BinaryAccessor. Provided accessors also include JsonAccessor, CborAccessor, HtmlAccessor, and XmlAccessor.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Accessor Class Name</td>
+      <td>The name of the accessor class</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="template">
+<a class="anchor" href="#template" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMPLATE</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines a template string used to initialize the command before default values are filled in</strong></p>
+
+<p>Generally the template string is formatted in JSON or HTML and then values are filled in with command parameters. Must be UTF-8 encoded.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Template</td>
+      <td>The template string which should be enclosed in quotes</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="template_file">
+<a class="anchor" href="#template_file" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMPLATE_FILE</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines a template file used to initialize the command before default values are filled in</strong></p>
+
+<p>Generally the template file is formatted in JSON or HTML and then values are filled in with command parameters. Can be binary or UTF-8.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Template File Path</td>
+      <td>The relative path to the template file. Filename should generally start with an underscore.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="select_command">
+<a class="anchor" href="#select_command" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_COMMAND</h2>
+<p><strong>Selects an existing command packet for editing</strong></p>
+
+<p>Typically used in a separate configuration file from where the original command is defined to override or add to the existing command definition</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Name of the target this command is associated with</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Command Name</td>
+      <td>Name of the command to select</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_COMMAND</span> <span class="no">INST</span> <span class="no">COLLECT</span>
+</code></pre></div></div>
 
 <h2 id="example-file">
 <a class="anchor" href="#example-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example File</h2>

@@ -114,7 +114,9 @@
 </ul></div>
         
         <h1>Interface Configuration</h1>
-        <p>Interface classes provide the code that COSMOS uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and COSMOS provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with <a href="/docs/v5/protocols">Protocols</a> rather than implementing a new interface.</p>
+        <p>Interfaces are the connection to the external embedded systems called targets. Interfaces are defined by the top level <a href="/docs/v5/plugins#interface-1">INTERFACE</a> keyword in the plugin.txt file.</p>
+
+<p>Interface classes provide the code that COSMOS uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and COSMOS provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with <a href="/docs/v5/protocols">Protocols</a> rather than implementing a new interface.</p>
 
 <div class="note info">
   Note that Interfaces and Routers are very similar and share the same configuration parameters. Routers are simply Interfaces which route an existing Interface's telemetry data out to the connected target and routes the connected target's commands back to the original Interface's target.
@@ -182,12 +184,12 @@
     </tr>
     <tr>
       <td>Write Port</td>
-      <td>Port to write commands to (can be the same as read port)</td>
+      <td>Port to write commands to (can be the same as read port). Pass nil to make the interface read only.</td>
       <td>Yes</td>
     </tr>
     <tr>
       <td>Read Port</td>
-      <td>Port to read telemetry from (can be the same as write port)</td>
+      <td>Port to read telemetry from (can be the same as write port). Pass nil to make the interface write only.</td>
       <td>Yes</td>
     </tr>
     <tr>
@@ -215,13 +217,13 @@
 
 <p>plugin.txt Examples:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
-</span>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 <span class="c"># no built-in protocol</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">LENGTH</span> <span class="mi">0</span> <span class="mi">16</span> <span class="mi">0</span> <span class="mi">1</span> <span class="no">BIG_ENDIAN</span> <span class="mi">4</span> <span class="mh">0xBA5EBA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span> <span class="mi">4</span> <span class="mh">0xDEADBEEF</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">FIXED</span> <span class="mi">6</span> <span class="mi">0</span> <span class="kp">nil</span> <span class="kp">true</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TERMINATED</span> <span class="mh">0x0D0A</span> <span class="mh">0x0D0A</span> <span class="kp">true</span> <span class="mi">0</span> <span class="mh">0xF005BA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TEMPLATE</span> <span class="mh">0xA</span> <span class="mh">0xA</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">PREIDENTIFIED</span> <span class="mh">0xCAFEBABE</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="c1"># no built-in protocol</span>
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
@@ -275,13 +277,13 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 
 <p>plugin.txt Examples:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
-INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
-</span>INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span class="c"># no built-in protocol</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_server_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">LENGTH</span> <span class="mi">0</span> <span class="mi">16</span> <span class="mi">0</span> <span class="mi">1</span> <span class="no">BIG_ENDIAN</span> <span class="mi">4</span> <span class="mh">0xBA5EBA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_server_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span> <span class="mi">4</span> <span class="mh">0xDEADBEEF</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_server_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">FIXED</span> <span class="mi">6</span> <span class="mi">0</span> <span class="kp">nil</span> <span class="kp">true</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_server_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TERMINATED</span> <span class="mh">0x0D0A</span> <span class="mh">0x0D0A</span> <span class="kp">true</span> <span class="mi">0</span> <span class="mh">0xF005BA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TEMPLATE</span> <span class="mh">0xA</span> <span class="mh">0xA</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_server_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">PREIDENTIFIED</span> <span class="mh">0xCAFEBABE</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="c1"># no built-in protocol</span>
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, TcpipServerInterface processes the <a href="/docs/v5/plugins#option">OPTION</a> modifier.</p>
@@ -354,7 +356,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
 
 <p>plugin.txt Example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">udp_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mi">8082</span> <span class="kp">nil</span> <span class="mi">128</span> <span class="mf">10.0</span> <span class="kp">nil</span>
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
@@ -423,13 +425,13 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
 
 <p>plugin.txt Examples:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME serial_interface.rb COM1 COM1 9600 NONE 1 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
-INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS1 /dev/ttyS1 38400 ODD 1 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME serial_interface.rb COM2 COM2 19200 EVEN 1 10.0 nil FIXED 6 0 nil <span class="nb">true
-</span>INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
-INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS0 /dev/ttyS0 57600 NONE 1 10.0 nil PREIDENTIFIED 0xCAFEBABE
-INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <span class="c"># no built-in protocol</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="no">COM1</span> <span class="no">COM1</span> <span class="mi">9600</span> <span class="no">NONE</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">LENGTH</span> <span class="mi">0</span> <span class="mi">16</span> <span class="mi">0</span> <span class="mi">1</span> <span class="no">BIG_ENDIAN</span> <span class="mi">4</span> <span class="mh">0xBA5EBA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="sr">/dev/</span><span class="n">ttyS1</span> <span class="sr">/dev/</span><span class="n">ttyS1</span> <span class="mi">38400</span> <span class="no">ODD</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span> <span class="mi">4</span> <span class="mh">0xDEADBEEF</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="no">COM2</span> <span class="no">COM2</span> <span class="mi">19200</span> <span class="no">EVEN</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">FIXED</span> <span class="mi">6</span> <span class="mi">0</span> <span class="kp">nil</span> <span class="kp">true</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="no">COM4</span> <span class="no">COM4</span> <span class="mi">115200</span> <span class="no">NONE</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TERMINATED</span> <span class="mh">0x0D0A</span> <span class="mh">0x0D0A</span> <span class="kp">true</span> <span class="mi">0</span> <span class="mh">0xF005BA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="no">COM4</span> <span class="no">COM4</span> <span class="mi">115200</span> <span class="no">NONE</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TEMPLATE</span> <span class="mh">0xA</span> <span class="mh">0xA</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="sr">/dev/</span><span class="n">ttyS0</span> <span class="sr">/dev/</span><span class="n">ttyS0</span> <span class="mi">57600</span> <span class="no">NONE</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">PREIDENTIFIED</span> <span class="mh">0xCAFEBABE</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="no">COM4</span> <span class="no">COM4</span> <span class="mi">115200</span> <span class="no">NONE</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="c1"># no built-in protocol</span>
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugins#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugins#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword. Note, SerialInterface processes the <a href="/docs/v5/plugins#option">OPTION</a> modifier.</p>
@@ -481,11 +483,11 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 
 <p>These protocols are declared directly after the interface:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
-</span>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span> <span class="mi">4</span> <span class="mh">0xDEADBEEF</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">FIXED</span> <span class="mi">6</span> <span class="mi">0</span> <span class="kp">nil</span> <span class="kp">true</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">LENGTH</span> <span class="mi">0</span> <span class="mi">16</span> <span class="mi">0</span> <span class="mi">1</span> <span class="no">BIG_ENDIAN</span> <span class="mi">4</span> <span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TERMINATED</span> <span class="mh">0x0D0A</span> <span class="mh">0x0D0A</span> <span class="kp">true</span> <span class="mi">0</span> <span class="mh">0xF005BA11</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="no">TEMPLATE</span> <span class="mh">0xA</span> <span class="mh">0xA</span>
+<span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">PREIDENTIFIED</span> <span class="mh">0xCAFEBABE</span>
 </code></pre></div></div>
 
 <p>COSMOS also defines the following helper protocols:</p>
@@ -511,9 +513,9 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 
 <p>These protocols are declared after the INTERFACE:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-TARGET TGT
-PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for parameters</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">INTERFACE_NAME</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8080</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span> <span class="mi">4</span> <span class="mh">0xDEADBEEF</span>
+<span class="no">TARGET</span> <span class="no">TGT</span>
+<span class="no">PROTOCOL</span> <span class="no">WRITE</span> <span class="no">CrcProtocol</span> <span class="no">CRC</span> <span class="c1"># See the documentation for parameters</span>
 </code></pre></div></div>
 
 <p>Note the first parameter after the PROTOCOL keyword is how to apply the protocol: READ, WRITE, or READ_WRITE. Read applies the protocol on incoming packets (telemetry) and write on outgoing packets (commands). The next parameter is the protocol filename or class name. All other parameters are protocol specific.</p>

@@ -115,46 +115,46 @@
 
     <p>Note: This downloads and installs docker-compose from the latest 1.x release on Github. If your operating system has a docker-compose package, it will be easier to install using that instead. RHEL8 does not have a docker-compose package.</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum groupinstall "Development Tools"
-sudo yum install podman-docker podman-plugins
-curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o docker-compose
-sudo mv docker-compose /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum groupinstall <span class="s2">"Development Tools"</span>
+<span class="nb">sudo </span>yum <span class="nb">install </span>podman-docker podman-plugins
+curl <span class="nt">-L</span> https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 <span class="nt">-o</span> docker-compose
+<span class="nb">sudo mv </span>docker-compose /usr/local/bin/docker-compose
+<span class="nb">sudo chmod</span> +x /usr/local/bin/docker-compose
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/local/bin/docker-compose /usr/bin/docker-compose
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Configure Host OS for Redis</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
-echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
-echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
-sysctl -w vm.max_map_count=262144
-exit
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
+<span class="nb">echo </span>never <span class="o">&gt;</span> /sys/kernel/mm/transparent_hugepage/enabled
+<span class="nb">echo </span>never <span class="o">&gt;</span> /sys/kernel/mm/transparent_hugepage/defrag
+sysctl <span class="nt">-w</span> vm.max_map_count<span class="o">=</span>262144
+<span class="nb">exit</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Start rootless podman socket service</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable --now --user podman.socket
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl <span class="nb">enable</span> <span class="nt">--now</span> <span class="nt">--user</span> podman.socket
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Put the following into your .bashrc file (or .bash_profile or whatever)</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export DOCKER_HOST="unix:$XDG_RUNTIME_DIR/podman/podman.sock"
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">"unix:</span><span class="nv">$XDG_RUNTIME_DIR</span><span class="s2">/podman/podman.sock"</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Source the profile file for your current terminal</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source .bashrc
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> .bashrc
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Get COSMOS - A release or the current main branch (main branch shown)</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/OpenC3/cosmos.git
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/OpenC3/cosmos.git
 </code></pre></div>    </div>
   </li>
   <li>
@@ -162,8 +162,8 @@ exit
 
     <p>If you don’t want podman to keep querying you for which registry to use, you can create a $HOME/.config/containers/registries.conf and modify to just have the main docker registry (or modify the /etc/containers/registries.conf file directly)</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p $HOME/.config/containers
-cp /etc/containers/registries.conf $HOME/.config/containers/.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/.config/containers
+<span class="nb">cp</span> /etc/containers/registries.conf <span class="nv">$HOME</span>/.config/containers/.
 </code></pre></div>    </div>
 
     <p>Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)</p>
@@ -179,7 +179,7 @@ cp /etc/containers/registries.conf $HOME/.config/containers/.
   <li>
     <p>Run COSMOS</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd cosmos
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos
 ./openc3.sh start
 or to use our released containers
 ./openc3.sh run

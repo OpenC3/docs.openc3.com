@@ -119,15 +119,15 @@
   </li>
 </ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct {
-  unsigned short a:4;
-  unsigned short b:8;
-  unsigned short c:4;
-}
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">a</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">b</span><span class="o">:</span><span class="mi">8</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">c</span><span class="o">:</span><span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
 
-ITEM A 4 4 UINT "struct item a"
-ITEM B 12 8 UINT "struct item b"
-ITEM C 8 4 UINT "struct item c"
+<span class="n">ITEM</span> <span class="n">A</span> <span class="mi">4</span> <span class="mi">4</span> <span class="n">UINT</span> <span class="s">"struct item a"</span>
+<span class="n">ITEM</span> <span class="n">B</span> <span class="mi">12</span> <span class="mi">8</span> <span class="n">UINT</span> <span class="s">"struct item b"</span>
+<span class="n">ITEM</span> <span class="n">C</span> <span class="mi">8</span> <span class="mi">4</span> <span class="n">UINT</span> <span class="s">"struct item c"</span>
 </code></pre></div></div>
 
 <p>This is hard to visualize, but the structure above gets spread out in a byte array like the following after byte swapping: least significant 4 bits of b, 4-bits a, 4-bits c, most significant 4 bits of b.</p>
