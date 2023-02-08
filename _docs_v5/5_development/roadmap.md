@@ -4,7 +4,7 @@ title: Roadmap
 toc: true
 ---
 
-Our product roadmap is a living documention living in Github Projects. You can find it at the link below.
+Our product roadmap is a Github Project found at the link below.
 
 [Roadmap](https://github.com/orgs/openc3/projects/2/views/1)
 

@@ -4,6 +4,8 @@ title: Interface Configuration
 toc: true
 ---
 
+Interfaces are the connection to the external embedded systems called targets. Interfaces are defined by the top level [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface-1) keyword in the plugin.txt file.
+
 Interface classes provide the code that COSMOS uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and COSMOS provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with [Protocols]({{site.baseurl}}/docs/v5/protocols) rather than implementing a new interface.
 
 <div class="note info">
@@ -39,19 +41,19 @@ COSMOS provides the following interfaces for use: TCPIP Client, TCPIP Server, UD
 
 The TCPIP client interface connects to a TCPIP socket to send commands and receive telemetry. This interface is used for targets which open a socket and wait for a connection. This is the most common type of interface.
 
-| Parameter          | Description                                                                        | Required |
-| ------------------ | ---------------------------------------------------------------------------------- | -------- |
-| Host               | Machine name to connect to                                                         | Yes      |
-| Write Port         | Port to write commands to (can be the same as read port)                           | Yes      |
-| Read Port          | Port to read telemetry from (can be the same as write port)                        | Yes      |
-| Write Timeout      | Number of seconds to wait before aborting the write. Pass 'nil' to block on write. | Yes      |
-| Read Timeout       | Number of seconds to wait before aborting the read. Pass 'nil' to block on read.   | Yes      |
-| Protocol Type      | See Protocols.                                                                     | No       |
-| Protocol Arguments | See Protocols for the arguments each stream protocol takes.                        | No       |
+| Parameter          | Description                                                                                             | Required |
+| ------------------ | ------------------------------------------------------------------------------------------------------- | -------- |
+| Host               | Machine name to connect to                                                                              | Yes      |
+| Write Port         | Port to write commands to (can be the same as read port). Pass nil to make the interface read only.     | Yes      |
+| Read Port          | Port to read telemetry from (can be the same as write port). Pass nil to make the interface write only. | Yes      |
+| Write Timeout      | Number of seconds to wait before aborting the write. Pass 'nil' to block on write.                      | Yes      |
+| Read Timeout       | Number of seconds to wait before aborting the read. Pass 'nil' to block on read.                        | Yes      |
+| Protocol Type      | See Protocols.                                                                                          | No       |
+| Protocol Arguments | See Protocols for the arguments each stream protocol takes.                                             | No       |
 
 plugin.txt Examples:
 
-```bash
+```ruby
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil true
@@ -78,7 +80,7 @@ The TCPIP server interface creates a TCPIP server which listens for incoming con
 
 plugin.txt Examples:
 
-```bash
+```ruby
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil FIXED 6 0 nil true
@@ -107,7 +109,7 @@ The UDP interface uses UDP packets to send and receive telemetry from the target
 
 plugin.txt Example:
 
-```bash
+```ruby
 INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
 ```
 
@@ -131,7 +133,7 @@ The serial interface connects to a target over a serial port. COSMOS provides dr
 
 plugin.txt Examples:
 
-```bash
+```ruby
 INTERFACE INTERFACE_NAME serial_interface.rb COM1 COM1 9600 NONE 1 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS1 /dev/ttyS1 38400 ODD 1 10.0 nil BURST 4 0xDEADBEEF
 INTERFACE INTERFACE_NAME serial_interface.rb COM2 COM2 19200 EVEN 1 10.0 nil FIXED 6 0 nil true
@@ -162,7 +164,7 @@ Protocols define the behaviour of an Interface, including differentiating packet
 
 These protocols are declared directly after the interface:
 
-```bash
+```ruby
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil true
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A true 0 0xF005BA11
@@ -179,7 +181,7 @@ COSMOS also defines the following helper protocols:
 
 These protocols are declared after the INTERFACE:
 
-```bash
+```ruby
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 TARGET TGT
 PROTOCOL WRITE CrcProtocol CRC # See the documentation for parameters

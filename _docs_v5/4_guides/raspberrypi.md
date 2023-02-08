@@ -54,7 +54,7 @@ Let's get started!
 
 1. From SSH, Enter the following commands
 
-   ```
+```bash
    sudo sysctl -w vm.max_map_count=262144
    sudo sysctl -w vm.overcommit_memory=1
    sudo apt update
@@ -69,7 +69,7 @@ Let's get started!
    git clone https://github.com/OpenC3/cosmos.git
    cd cosmos
    ./openc3.sh start
-   ```
+```
 
 Note: It takes awhile to build COSMOS on a Pi (about an hour). Be patient, and in the future we'll have precompiled containers that will make first launch way faster.
 

@@ -4,7 +4,7 @@ title: Testing COSMOS
 toc: true
 ---
 
-## Cypress
+## Playwright
 
 ### Prerequesits
 
@@ -36,10 +36,10 @@ toc: true
 
 1. Open COSMOS in your browser. At the login screen, set the password to "password".
 
-1. Run tests (Note add the --headed option to visually watch tests)
+1. Run tests (Note the --headed option visually displays tests, leave it off to run in the background)
 
    ```bash
-   cosmos-playwright % yarn playwright test --project=chromium
+   cosmos-playwright % yarn playwright test --project=chromium --headed
    ```
 
 1. _[Optional]_ Fix istanbul/nyc coverage source lookups (use `fixwindows` if not on Linux).
@@ -63,6 +63,7 @@ Code coverage reports can be viewed at `openc3-playwright/coverage/index.html`
 1. Navigate to **cosmos/openc3** folder. Run the command:
 
    ```bash
+   cosmos/openc3 % rake build
    cosmos/openc3 % bundle exec rspec
    ```
 

@@ -236,7 +236,7 @@ Note that the debug prompt keeps the command history and you can scroll through 
 
 ### Breakpoints
 
-While in Debug mode (Script -> Toggle Debug), you can right-click at any point in a script in Script Runner and select “Add Breakpoint”. This places a breakpoint on the selected line and the script will automatically pause when it hits the breakpoint. Once stopped at the breakpoint, you can evaluate the state of the system using telemetry screens or the built-in debugging capabilities.
+You can click the line number (left side gutter) in Script Runner to add a breakpoint. The script will automatically pause when it hits the breakpoint. Once stopped at the breakpoint, you can evaluate variables using the Debug line.
 
 ### Using Disconnect Mode
 
@@ -425,27 +425,17 @@ Once something has failed, and your script has stopped with a pink highlighted l
 
    After a failure, the Script Runner “Pause” button changes to “Retry”. Clicking on the Retry button will re-execute the line the failed. For failures due to timing issues, this will often resolve the issue and allow the script to continue. Make note of the failure and be sure to update your script prior to the next run.
 
-2. Use the Debug Prompt
+1. Use the Debug Prompt
 
    By selecting Script -> Toggle Debug, you can perform arbitrary actions that may be needed to correct the situation without stopping the running script. You can also inspect variables to help determine why something failed.
 
-<!-- 2. Execute Selected Lines While Paused
+1. Execute Selection
 
-   Sometimes re-executing a command or a few other lines of a script can correct problems. This can happen when commanding is over an unreliable transport layer such as UDP or a noisy serial line. For these scenarios, users can highlight the lines of the script they want to run again, right-click, and select “Execute Selected Lines While Paused”. This will run the selected lines again with the full script context (all required variables will still be in scope), and then return. Afterwards you can retry the line that failed or just proceed with “Go”.
+   If only a small section of a script needs to be run, then “Execute Selection" can be used to execute only a small portion of the script. This can also be used when a script is paused or stopped in error.
 
-1. Log Message to Script Log
+1. Run from here
 
-   Not necessarily a correction for a failure, but you can log notes or QA approval that occurred after a failure using Script -> Log Message to Script Log.
-
-If you do need to stop your script and restart, COSMOS also provides several methods to prevent restarting the script from the beginning.
-
-1. Execute From Cursor
-
-   By clicking into a script, and right clicking to select “Execute From Cursor”, users can restart a script at an arbitrary point. This works well if no required variable definitions exist earlier in the script. A workaround can be to start using “Execute from Cursor”, immediately pause (by hitting pause or by previously setting a breakpoint), and then “Run Selected Lines While Paused” to bring in the necessary variable declarations.
-
-2. Execute Selected Lines
-
-   If only a small section of a script needs to be run, then “Execute Selected Lines” can be used to execute only a small portion of the script. -->
+   By clicking into a script, and right clicking to select "Run from here", users can restart a script at an arbitrary point. This works well if no required variable definitions exist earlier in the script.
 
 ## Advanced Topics
 

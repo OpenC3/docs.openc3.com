@@ -12,7 +12,7 @@ We're basically going to follow the COSMOS [Demo](https://github.com/OpenC3/cosm
 
 If you look at the bottom of the Demo's [plugin.txt](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/plugin.txt) file you'll see we declare the widgets:
 
-```
+```ruby
 WIDGET BIG
 WIDGET HELLOWORLD
 ```
@@ -61,7 +61,7 @@ This uses the `vue-cli-service` to build the code found at `src/HelloworldWidget
 
 If you look at the Demo plugin's [simple.txt](https://github.com/OpenC3/cosmos/blob/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/targets/INST/screens/simple.txt) screen you'll see we're using the widgets:
 
-```
+```ruby
 SCREEN AUTO AUTO 0.5
 LABELVALUE <%= target_name %> HEALTH_STATUS CCSDSSEQCNT
 HELLOWORLD

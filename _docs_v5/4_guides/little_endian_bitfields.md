@@ -15,7 +15,7 @@ Here are the rules on how COSMOS handles LITTLE_ENDIAN data:
 
 1. LITTLE_ENDIAN bit fields must define their bit_offset as the location of the most significant bit of the bitfield in BIG_ENDIAN space as described in rule 1 above. So for example. The following C struct at the beginning of a packet would be defined like so:
 
-```
+```c
 struct {
   unsigned short a:4;
   unsigned short b:8;

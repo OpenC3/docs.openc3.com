@@ -322,7 +322,7 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | set_replay_mode                       | Replay                       | Deprecated                                            |
 | set_stdout_max_lines                  | Script Runner                | Unimplemented                                         |
 | set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm                               |
-| show_backtrace                        | Script Runner                | Unimplemented                                         |
+| show_backtrace                        | Script Runner                | Deprecated, backtrace always shown                    |
 | shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                                            |
 | start_cmd_log                         | Command and Telemetry Server | Deprecated                                            |
 | start_logging                         | Command and Telemetry Server | Deprecated                                            |
@@ -2883,27 +2883,6 @@ set_stdout_max_lines(2000)
 
 These methods allow the user to debug scripts with ScriptRunner.
 
-### insert_return
-
-Inserts a ruby return statement into the currently executing context. This can be used to break out of methods early from the ScriptRunner Debug prompt.
-
-Syntax:
-
-```ruby
-insert_return (<return value (optional)>, ...)
-```
-
-| Parameter    | Description                                          |
-| ------------ | ---------------------------------------------------- |
-| return value | One or more values that are returned from the method |
-
-Example:
-
-```ruby
-insert_return()
-insert_return(5, 10)
-```
-
 ### step_mode
 
 Places ScriptRunner into step mode where Go must be hit to proceed to the next line.
@@ -2922,18 +2901,6 @@ Syntax / Example:
 
 ```ruby
 run_mode()
-```
-
-### show_backtrace
-
-Makes ScriptRunner print out a backtrace when an error occurs. Also prints out a backtrace for the most recent error.
-
-Syntax / Example:
-
-```ruby
-show_backtrace # Shows the backtrace for the latest error
-show_backtrace(true) # Enables showing backtrace for every error
-show_backtrace(false) # Disables showing backtrace for every error
 ```
 
 ### disconnect_script
