@@ -60,7 +60,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 
 1. The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:
 
-   ```bash
+   ```ruby
    COMMAND BOB EXAMPLE BIG_ENDIAN "Packet description"
      # Keyword           Name  BitSize Type   Min Max  Default  Description
      APPEND_ID_PARAMETER ID    16      INT    1   1    1        "Identifier"
@@ -84,7 +84,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 
 1. Now open the openc3-cosmos-bob/targets/BOB/cmd_tlm/tlm.txt:
 
-   ```bash
+   ```ruby
    TELEMETRY BOB STATUS BIG_ENDIAN "Telemetry description"
      # Keyword      Name  BitSize Type   ID Description
      APPEND_ID_ITEM ID    16      INT    1  "Identifier"
@@ -105,7 +105,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 
 1. Now we need to tell COSMOS how to connect to our BOB target. Open the openc3-cosmos-bob/plugin.txt file:
 
-   ```bash
+   ```ruby
    # Set VARIABLEs here to allow variation in your plugin
    # See {{site.url}}{{site.baseurl}}/docs/v5/plugins for more information
    VARIABLE bob_target_name BOB
@@ -145,7 +145,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 
 1. Let's modify our BOB target and then update the copy in COSMOS. If you open Command Sender in COSMOS to BOB EXAMPLE you should see the VALUE parameter has value 2.5. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt and change the Default value for VALUE to 5 and the description to "New Value".
 
-   ```bash
+   ```ruby
    COMMAND BOB EXAMPLE BIG_ENDIAN "Packet description"
      # Keyword           Name  BitSize Type   Min Max  Default  Description
      APPEND_ID_PARAMETER ID    16      INT    1   1    1        "Identifier"

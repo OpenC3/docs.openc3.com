@@ -22,7 +22,7 @@ COSMOS specifies a variable sized item with a bit size of 0. When a packet is id
 
 COSMOS has a concept of a derived item which is a telemetry item that doesn't actually exist in the binary data. Derived items are typically computed based on other telemetry items. COSMOS derived items are very similar to real items except they use the special DERIVED data type. Here is how a derived item might look in a telemetry definition.
 
-```
+```ruby
 ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 ```
 
@@ -39,7 +39,7 @@ Note the bit offset and bit size of 0 and the data type of DERIVED. For this rea
 **Example File: TARGET/cmd_tlm/tlm.txt**
 
 <!-- prettier-ignore -->
-```bash
+```ruby
 TELEMETRY TARGET HS BIG_ENDIAN "Health and Status for My Target"
   ITEM CCSDSVER 0 3 UINT "CCSDS PACKET VERSION NUMBER (SEE CCSDS 133.0-B-1)"
   ITEM CCSDSTYPE 3 1 UINT "CCSDS PACKET TYPE (COMMAND OR TELEMETRY)"
@@ -69,7 +69,7 @@ TELEMETRY TARGET HS BIG_ENDIAN "Health and Status for My Target"
   MACRO_APPEND_END
   ITEM TIMESECONDS 0 0 DERIVED "DERIVED TIME SINCE EPOCH IN SECONDS"
     GENERIC_READ_CONVERSION_START FLOAT 32
-      ((packet.read('ccsdsday') \* 86400.0) + (packet.read('ccsdsmsod') / 1000.0) + (packet.read('ccsdsusoms') / 1000000.0)  )
+      ((packet.read('ccsdsday') * 86400.0) + (packet.read('ccsdsmsod') / 1000.0) + (packet.read('ccsdsusoms') / 1000000.0)  )
     GENERIC_READ_CONVERSION_END
   ITEM TIMEFORMATTED 0 0 DERIVED "DERIVED TIME SINCE EPOCH AS A FORMATTED STRING"
     GENERIC_READ_CONVERSION_START STRING 216

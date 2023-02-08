@@ -16,7 +16,7 @@ Let's get started.
 
 2. Start by downloading the latest working version of COSMOS from Github
 
-   ```
+   ```bash
    cd ~
    git clone https://github.com/openc3/cosmos.git
    ```
@@ -25,14 +25,14 @@ Let's get started.
 
    If you are feeling brave, you can run the one large installer script that installs everything in one step:
 
-   ```
+   ```bash
    cd cosmos/examples/hostinstall/centos7
    ./openc3_install.sh
    ```
 
    Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:
 
-   ```
+   ```bash
    cd cosmos/examples/hostinstall/centos7
    ./openc3_install_packages.sh
    ./openc3_install_ruby.sh

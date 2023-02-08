@@ -6,19 +6,22 @@ toc: true
 
 OpenC3 COSMOS is a command and control system providing commanding, scripting, and data visualization capabilities for embedded systems and systems of systems. COSMOS is intended for use during all phases of testing (board, box, integrated system) and during operations.
 
-COSMOS is currently made up of the following 11 applications:
+COSMOS is currently made up of the following applications:
 
 1. **Command and Telemetry Server** - Provides status of realtime commanding, telemetry reception, logging, limits monitoring, and packet routing.
-2. **Limits Monitor** - Monitors telemetry with defined limits and shows items that currently are or have violated limits.
-3. **Command Sender** - Provides a graphical interface for manually sending individual commands.
-4. **Script Runner** - Executes scripts and provides highlighting of the currently executing line. Now also includes TestRunner functionality.
-5. **Packet Viewer** - Provides realtime visualization of every telemetry packet that has been defined.
-6. **Telemetry Viewer** - Provides custom telemetry screen functionality with advanced layout and visualization widgets.
-7. **Telemetry Grapher** - Provides realtime and offline graphing of telemetry data.
-8. **Data Extractor** - Extracts telemetry and command packet log files into CSV data.
-9. **Data Viewer** - Provides text based telemetry visualization for items.
-10. **Timeline** - Provides scheduling of commands and scripts. Also provides a framework for reserving resources.
-11. **Admin** - Provides an administrative interface to COSMOS.
+1. **Limits Monitor** - Monitors telemetry with defined limits and shows items that currently are or have violated limits.
+1. **Command Sender** - Provides a graphical interface for manually sending individual commands.
+1. **Script Runner** - Executes scripts and provides highlighting of the currently executing line. Now also includes TestRunner functionality.
+1. **Packet Viewer** - Provides realtime visualization of every telemetry packet that has been defined.
+1. **Telemetry Viewer** - Provides custom telemetry screen functionality with advanced layout and visualization widgets.
+1. **Telemetry Grapher** - Provides realtime and offline graphing of telemetry data.
+1. **Data Extractor** - Extracts telemetry and command packet log files into CSV data.
+1. **Data Viewer** - Provides text based telemetry visualization for items.
+1. **Bucket Explorer** - Browse the COSMOS bucket storage in any cloud environment.
+1. **Table Manager** - Binary file editor with Script Runner integration for upload / download.
+1. **Handbooks** - Generate html page of the command and telemetry definitions.
+1. **Calendar** - Provides scheduling of commands and scripts. Also provides a framework for reserving resources.
+1. **Admin** - Provides an administrative interface to COSMOS.
 
 More detailed descriptions, requirements, and design for each tool are found later in this document. Additionally, each of the above applications is built using COSMOS libraries that are available for use as a framework to develop custom program/project applications.
 
@@ -40,19 +43,16 @@ The COSMOS system uses several terms that are important to understand. The follo
 
 ## Overall Architecture and Context Diagram
 
-The following diagram shows how the applications that make up the COSMOS system relate to each other and to the targets that COSMOS is controlling.
+The following diagram shows the COSMOS 5 architecture.
 
-<img src="{{site.baseurl}}/img/architecture.png" alt="COSMOS Architecture">
+![COSMOS Architecture]({{site.baseurl}}/img/v5/architecture.png)
 
 Key aspects of this architecture:
 
-- The COSMOS tools are grouped into four broad categories:
-  - Realtime Commanding and Scripting
-  - Realtime Telemetry Visualization
-  - Offline Analysis
-  - Utilities
+COSMOS 5 is a cloud native, containerized, microservice oriented command and control system. All the COSMOS microservices are docker containers which is why Docker is shown containing the entire COSMOS system. The green boxes on the left represent external embedded systems (Targets) which COSMOS connects to. The Redis data store contains the configuration for all the microservices, the current value table, as well as data streams containing decommutated data. The Minio data store contains plugins, targets, configuration data, text logs as well as binary logs of all the raw, decommutated, and reduced data. Users interact with COSMOS from a web browser which routes through the internal Traefik load balancer.
+
 - COSMOS can connect to many different kinds of targets. The examples include things like Flight software (FSW), Ground Support Equipment (GSE), Labview, and COTS targets such as an Agilent power supply. Any embedded system that provides a communication interface can be connected to COSMOS.
-- COSMOS ships with interfaces for connecting over TCP/IP, UDP, and serial connections. This covers most systems, but custom interfaces can also be written to connect to anything that a computer can talk to.
+- COSMOS ships with interfaces for connecting over TCP/IP, UDP, MQTT, and serial connections. This covers most systems, but custom interfaces can also be written to connect to anything.
 - All realtime communication with targets flows through the COSMOS system. This ensures all commands and telemetry are logged.
 - Every tool is configured with plain text configuration files.
 - Program specific tools can be written using the COSMOS libraries that can interact with the realtime command and telemetry streams and can process logged data.
@@ -224,18 +224,6 @@ Telemetry Grapher performs graphing of telemetry points in both realtime and log
 | TG-9     | Telemetry Grapher shall support saving its configuration.                  | Save the current configuration.                         |
 | TG-10    | Telemetry Grapher shall support loading its configuration.                 | Load the previously saved configuration.                |
 
-## Data Viewer
-
-Data Viewer provides for textual display of telemetry packets where other display methods are not a good fit. It is especially useful for memory dumps and for log message type data display.
-
-| Reqt. ID | Description                                                         | Test Description                          |
-| -------- | ------------------------------------------------------------------- | ----------------------------------------- |
-| DV-1     | Data Viewer shall support realtime processing of telemetry packets. | Press Start to start realtime processing. |
-| DV-2     | Data Viewer shall support logged playback of telemetry packets.     | Select a time range to playback.          |
-| DV-3     | Data Viewer shall support textual display of telemetry packets.     | View the display of data.                 |
-| DV-4     | Data Viewer shall support multiple tabs for data display.           | Switch between several tabs of data.      |
-| DV-5     | Data Viewer shall support deleting tabs.                            | Delete a tab.                             |
-
 ## Data Extractor
 
 Data Extractor processes logged data and extracts data into a CSV format for analysis in Excel or other tools.
@@ -250,22 +238,34 @@ Data Extractor processes logged data and extracts data into a CSV format for ana
 | DE-6     | Data Extractor shall support loading configurations.                                                                              | Select File->Load Config                 |
 | DE-7     | Data Extractor shall support deleting items                                                                                       | Select an Item and press delete          |
 
-## Timeline
+## Data Viewer
 
-Timeline
+Data Viewer provides for textual display of telemetry packets where other display methods are not a good fit. It is especially useful for memory dumps and for log message type data display.
 
-The Timeline tool provides a user interface and API for initiating scheduled actions in COSMOS
+| Reqt. ID | Description                                                         | Test Description                          |
+| -------- | ------------------------------------------------------------------- | ----------------------------------------- |
+| DV-1     | Data Viewer shall support realtime processing of telemetry packets. | Press Start to start realtime processing. |
+| DV-2     | Data Viewer shall support logged playback of telemetry packets.     | Select a time range to playback.          |
+| DV-3     | Data Viewer shall support textual display of telemetry packets.     | View the display of data.                 |
+| DV-4     | Data Viewer shall support multiple tabs for data display.           | Switch between several tabs of data.      |
+| DV-5     | Data Viewer shall support deleting tabs.                            | Delete a tab.                             |
+
+## Calendar
+
+Calendar
+
+The Calendar tool provides a user interface and API for initiating scheduled actions in COSMOS
 
 | Reqt. ID | Description                                                    | Test Description                           |
 | -------- | -------------------------------------------------------------- | ------------------------------------------ |
-| TL-1     | Timeline shall allow creating new timelines                    | Click the button and create a new timeline |
-| TL-2     | Timeline shall allow scheduling commands for future execection | Add a command to a timeline                |
-| TL-3     | Timeline shall allow scheduling scripts for future execution   | Add a script to a timeline                 |
-| TL-4     | Timeline shall allow for reserving a resource                  | Add a reservation to a timeline            |
-| TL-5     | Timeline shall track success or failure of commands            | Look at status from a completed command    |
-| TL-6     | Timeline shall track success or failure of scripts             | Look at status from a completed script     |
-| TL-7     | Timeline shall allow deleting activities from timelines        | Delete a preexisting item from a timeline  |
-| TL-8     | Timeline shall allow deleting timelines                        | Delete a timeline                          |
+| TL-1     | Calendar shall allow creating new timelines                    | Click the button and create a new timeline |
+| TL-2     | Calendar shall allow scheduling commands for future execection | Add a command to a timeline                |
+| TL-3     | Calendar shall allow scheduling scripts for future execution   | Add a script to a timeline                 |
+| TL-4     | Calendar shall allow for reserving a resource                  | Add a reservation to a timeline            |
+| TL-5     | Calendar shall track success or failure of commands            | Look at status from a completed command    |
+| TL-6     | Calendar shall track success or failure of scripts             | Look at status from a completed script     |
+| TL-7     | Calendar shall allow deleting activities from timelines        | Delete a preexisting item from a timeline  |
+| TL-8     | Calendar shall allow deleting timelines                        | Delete a timeline                          |
 
 ## Admin
 

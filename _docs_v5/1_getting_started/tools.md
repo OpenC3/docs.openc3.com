@@ -97,11 +97,35 @@ Quickly view the data you care about.
 - View both raw and decomed data.
 - Save and load configurations.
 
-## Timeline
+## Bucket Explorer
+
+Browse the bucket storage backend in a local or cloud environment.
+
+![Bucket Explorer]({{site.baseurl}}/img/v5/bucket_explorer/bucket_explorer.png)
+
+- Browse the bucket directory structure.
+- Upload, download, and delete files.
+
+## Table Manager
+
+Edit binary files with a easy to use GUI.
+
+![Table Manager]({{site.baseurl}}/img/v5/table_manager/table_manager.png)
+
+- Create new files using text based configuration files.
+- Upload and download tables using Script Runner integrations.
+
+## Handbooks
+
+Display the command and telemetry definitions in a formatted web page.
+
+![Handbooks]({{site.baseurl}}/img/v5/handbooks/handbooks.png)
+
+## Calendar
 
 Schedule commands and scripts to be run.
 
-![Timeline]({{site.baseurl}}/img/v5/timeline/timeline.png)
+![Calendar]({{site.baseurl}}/img/v5/calendar/calendar.png)
 
 - View activities and timelines
 - Set times for scripts or cmds to be run

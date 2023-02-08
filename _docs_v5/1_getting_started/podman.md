@@ -16,7 +16,7 @@ Podman is an alternative container technology to Docker that is actively promote
 
    Note: This downloads and installs docker-compose from the latest 1.x release on Github. If your operating system has a docker-compose package, it will be easier to install using that instead. RHEL8 does not have a docker-compose package.
 
-   ```
+   ```bash
    sudo yum groupinstall "Development Tools"
    sudo yum install podman-docker podman-plugins
    curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o docker-compose
@@ -27,7 +27,7 @@ Podman is an alternative container technology to Docker that is actively promote
 
 1. Configure Host OS for Redis
 
-   ```
+   ```bash
    su
    echo never > /sys/kernel/mm/transparent_hugepage/enabled
    echo never > /sys/kernel/mm/transparent_hugepage/defrag
@@ -37,25 +37,25 @@ Podman is an alternative container technology to Docker that is actively promote
 
 1. Start rootless podman socket service
 
-   ```
+   ```bash
    systemctl enable --now --user podman.socket
    ```
 
 1. Put the following into your .bashrc file (or .bash_profile or whatever)
 
-   ```
+   ```bash
    export DOCKER_HOST="unix:$XDG_RUNTIME_DIR/podman/podman.sock"
    ```
 
 1. Source the profile file for your current terminal
 
-   ```
+   ```bash
    source .bashrc
    ```
 
 1. Get COSMOS - A release or the current main branch (main branch shown)
 
-   ```
+   ```bash
    git clone https://github.com/OpenC3/cosmos.git
    ```
 
@@ -63,7 +63,7 @@ Podman is an alternative container technology to Docker that is actively promote
 
    If you don't want podman to keep querying you for which registry to use, you can create a $HOME/.config/containers/registries.conf and modify to just have the main docker registry (or modify the /etc/containers/registries.conf file directly)
 
-   ```
+   ```bash
    mkdir -p $HOME/.config/containers
    cp /etc/containers/registries.conf $HOME/.config/containers/.
    ```
@@ -72,11 +72,11 @@ Podman is an alternative container technology to Docker that is actively promote
 
 1. Edit compose.yaml
 
-  Edit compose.yaml and uncomment the user: 0:0 lines.
+Edit compose.yaml and uncomment the user: 0:0 lines.
 
 1. Run COSMOS
 
-   ```
+   ```bash
    cd cosmos
    ./openc3.sh start
    or to use our released containers

@@ -5,5 +5,5 @@ gem 'jekyll-toc'
 gem 'jekyll-redirect-from'
 gem 'rake'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-gem 'webrick', '~> 1.7'
+gem 'webrick', '~> 1.8'
 gem 'psych', '~> 3.0'

@@ -12,7 +12,7 @@ COSMOS 5 is a container based service which does not support SSL/TLS out of the 
 
 To create a new Self-Signed SSL Certificate, use the openssl req command (run on linux from the cosmos-project root):
 
-```sh
+```bash
 openssl req -newkey rsa:4096 \
             -x509 \
             -sha256 \
@@ -194,7 +194,7 @@ openssl rsa -in [keyfile-encrypted.key] -outform PEM -out [keyfile-encrypted-pem
 - https://doc.traefik.io/traefik/https/tls/#cipher-suites
 - https://pkg.go.dev/crypto/tls#pkg-constants
 
-```
+```yaml
 tls:
   options:
     default:

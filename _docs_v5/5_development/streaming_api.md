@@ -23,11 +23,11 @@ This call opens the HTTP connection to the given URL and upgrades it to a websoc
 
 A subscription describes a set of data that you want the API to stream to you. Creating a subscription looks like this:
 
-```
+```javascript
 subscription = cable.subscriptions.create(
   {
-    channel: 'StreamingChannel',
-    scope: 'DEFAULT',
+    channel: "StreamingChannel",
+    scope: "DEFAULT",
     token: token,
   },
   {
@@ -44,7 +44,7 @@ subscription = cable.subscriptions.create(
       // Handle the subscription being rejected
     },
   }
-)
+);
 ```
 
 Subscribing to the StreamingApi requires passing a channel name set to “StreamingChannel”, a scope which is typically “DEFAULT”, and an access token (a password in OpenSource COSMOS). In Javascript you also pass a set of callback functions that run at various lifecycle points in the subscription. The most important of these are connected and received.
@@ -55,18 +55,21 @@ Data can be added to the stream by requesting individual items from a packet (de
 
 Adding items to stream is done as follows:
 
-```
-var items = ["TLM__INST__ADCS__Q1__RAW", "CMD__INST__COLLECT__DURATION__WITH_UNITS"]
-var packets = ["TLM__INST__ADCS", "CMD__INST__COLLECT"]
-this.subscription.perform('add', {
-  scope: 'DEFAULT',
+```javascript
+var items = [
+  "TLM__INST__ADCS__Q1__RAW",
+  "CMD__INST__COLLECT__DURATION__WITH_UNITS",
+];
+var packets = ["TLM__INST__ADCS", "CMD__INST__COLLECT"];
+this.subscription.perform("add", {
+  scope: "DEFAULT",
   token: token,
-  mode: 'DECOM',
+  mode: "DECOM",
   items: items,
   packets: packets,
   start_time: this.startDateTime,
   end_time: this.endDateTime,
-})
+});
 ```
 
 Mode is either RAW, DECOM, REDUCED_MINUTE, REDUCED_HOUR, or REDUCED_DAY and all items/packets requested in a single add must be in the same mode. However different modes can be used across calls to add.
@@ -85,34 +88,34 @@ Data returned by the streaming API is handled by the received callback in Javasc
 
 For decommutated items, each packet is represented as a JSON object with a 'time' field holding the COSMOS nanosecond timestamp of the packet, and then each of the requested item keys with their corresponding value from the packet.
 
-```
+```json
 [
   {
-    time: 1234657585858,
-    'TLM__INST__ADCS__Q1__RAW': 50.0,
-    'TLM__INST__ADCS__Q2__RAW': 100.0
+    "time": 1234657585858,
+    "TLM__INST__ADCS__Q1__RAW": 50.0,
+    "TLM__INST__ADCS__Q2__RAW": 100.0
   },
   {
-    time: 1234657585859,
-    'TLM__INST__ADCS__Q1__RAW': 60.0,
-    'TLM__INST__ADCS__Q2__RAW': 110.0
-  },
+    "time": 1234657585859,
+    "TLM__INST__ADCS__Q1__RAW": 60.0,
+    "TLM__INST__ADCS__Q2__RAW": 110.0
+  }
 ]
 ```
 
 For raw packets, each packet is represented as a JSON object with a time field holding the COSMOS nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE\_\_TELEMETRY\_\_TARGETNAME\_\_PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.
 
-```
+```json
 [
   {
-    time: 1234657585858,
-    packet: 'DEFAULT__TELEMETRY__INST__ADCS,
-    buffer: 'SkdfjGodkdfjdfoekfsg',
+    "time": 1234657585858,
+    "packet": "DEFAULT__TELEMETRY__INST__ADCS",
+    "buffer": "SkdfjGodkdfjdfoekfsg"
   },
   {
-    time: 1234657585859,
-    packet: 'DEFAULT__TELEMETRY__INST__ADCS',
-    buffer: '3i5n49dmnfg9fl32k3',
-  },
+    "time": 1234657585859,
+    "packet": "DEFAULT__TELEMETRY__INST__ADCS",
+    "buffer": "3i5n49dmnfg9fl32k3"
+  }
 ]
 ```

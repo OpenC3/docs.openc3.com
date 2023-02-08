@@ -96,25 +96,25 @@ module Jekyll
         end
         if data['example']
           page << "\nExample Usage:\n"
-          page << "<figure class=\"highlight\"><pre><code class=\"language-bash\" data-lang=\"bash\">"
-          page << "#{data['example'].gsub('<','&lt;').gsub('>','&gt;')}</code></pre></figure>\n"
+          page << "```ruby\n"
+          page << "#{data['example'].strip}\n"
+          page << "```\n"
         end
-        modifiers[keyword] = data['modifiers']
-      end
-      bump_level = false
-      modifiers.each do |keyword, modifiers|
-        if modifiers
-          unless @modifiers.values.include?(modifiers.keys)
+        saved_level = @level
+        if data['modifiers']
+          bump_level = false
+          unless @modifiers.values.include?(data['modifiers'].keys)
             if bump_level == false
               bump_level = true
               @level += 1
             end
-            @modifiers[keyword] = modifiers.keys
+            @modifiers[keyword] = data['modifiers'].keys
             page << "\n#{'#' * (@level - 1)} #{keyword} Modifiers\n"
             page << "The following keywords must follow a #{keyword} keyword.\n"
-            build_page(modifiers, page)
+            build_page(data['modifiers'], page)
           end
         end
+        @level = saved_level
       end
     end
 
