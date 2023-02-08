@@ -100,7 +100,7 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h1"><a href="#target-keywords">Target Keywords</a>
+<li class="toc-entry toc-h1"><a href="#targettxt-keywords">target.txt Keywords</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#require">REQUIRE</a></li>
 <li class="toc-entry toc-h2"><a href="#ignore_parameter">IGNORE_PARAMETER</a></li>
@@ -114,10 +114,10 @@
 </ul></div>
         
         <h1>Target Configuration</h1>
-        <p>Each target is self contained in a target directory named after the target. In the root of the target directory there is a configuration file named target.txt which configures the individual target.</p>
+        <p>Targets are the external embedded systems that COSMOS connects to. Targets are defined by the top level <a href="/docs/v5/plugins#target-1">TARGET</a> keyword in the plugin.txt file. Each target is self contained in a target directory named after the target. In the root of the target directory there is a configuration file named target.txt which configures the individual target.</p>
 
-<h1 id="target-keywords">
-<a class="anchor" href="#target-keywords" aria-hidden="true"><span class="octicon octicon-link"></span></a>Target Keywords</h1>
+<h1 id="targettxt-keywords">
+<a class="anchor" href="#targettxt-keywords" aria-hidden="true"><span class="octicon octicon-link"></span></a>target.txt Keywords</h1>
 
 <h2 id="require">
 <a class="anchor" href="#require" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRE</h2>
@@ -143,7 +143,8 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">REQUIRE limits_response.rb</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">REQUIRE</span> <span class="n">limits_response</span><span class="p">.</span><span class="nf">rb</span>
+</code></pre></div></div>
 
 <h2 id="ignore_parameter">
 <a class="anchor" href="#ignore_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>IGNORE_PARAMETER</h2>
@@ -169,7 +170,8 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">IGNORE_PARAMETER CCSDS_VERSION</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">IGNORE_PARAMETER</span> <span class="no">CCSDS_VERSION</span>
+</code></pre></div></div>
 
 <h2 id="ignore_item">
 <a class="anchor" href="#ignore_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>IGNORE_ITEM</h2>
@@ -195,7 +197,8 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">IGNORE_ITEM CCSDS_VERSION</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">IGNORE_ITEM</span> <span class="no">CCSDS_VERSION</span>
+</code></pre></div></div>
 
 <h2 id="commands">
 <a class="anchor" href="#commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>COMMANDS</h2>
@@ -223,9 +226,9 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">COMMANDS inst_cmds_v2.txt
-TELEMETRY inst_tlm_v2.txt
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMANDS</span> <span class="n">inst_cmds_v2</span><span class="p">.</span><span class="nf">txt</span>
+<span class="no">TELEMETRY</span> <span class="n">inst_tlm_v2</span><span class="p">.</span><span class="nf">txt</span>
+</code></pre></div></div>
 
 <h2 id="telemetry">
 <a class="anchor" href="#telemetry" aria-hidden="true"><span class="octicon octicon-link"></span></a>TELEMETRY</h2>
@@ -253,9 +256,9 @@ TELEMETRY inst_tlm_v2.txt
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">COMMANDS inst_cmds_v2.txt
-TELEMETRY inst_tlm_v2.txt
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMANDS</span> <span class="n">inst_cmds_v2</span><span class="p">.</span><span class="nf">txt</span>
+<span class="no">TELEMETRY</span> <span class="n">inst_tlm_v2</span><span class="p">.</span><span class="nf">txt</span>
+</code></pre></div></div>
 
 <h2 id="cmd_unique_id_mode">
 <a class="anchor" href="#cmd_unique_id_mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD_UNIQUE_ID_MODE</h2>

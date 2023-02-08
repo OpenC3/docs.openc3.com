@@ -119,95 +119,109 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
 
 <p>A subscription describes a set of data that you want the API to stream to you. Creating a subscription looks like this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>subscription = cable.subscriptions.create(
-  {
-    channel: 'StreamingChannel',
-    scope: 'DEFAULT',
-    token: token,
-  },
-  {
-    received: (data) =&gt; {
-      // Handle received data
-    },
-    connected: () =&gt; {
-      // First chance to add what you want to stream here
-    },
-    disconnected: () =&gt; {
-      // Handle the subscription being disconnected
-    },
-    rejected: () =&gt; {
-      // Handle the subscription being rejected
-    },
-  }
-)
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">subscription</span> <span class="o">=</span> <span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="na">channel</span><span class="p">:</span> <span class="dl">"</span><span class="s2">StreamingChannel</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DEFAULT</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">token</span><span class="p">:</span> <span class="nx">token</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">received</span><span class="p">:</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// Handle received data</span>
+    <span class="p">},</span>
+    <span class="na">connected</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// First chance to add what you want to stream here</span>
+    <span class="p">},</span>
+    <span class="na">disconnected</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// Handle the subscription being disconnected</span>
+    <span class="p">},</span>
+    <span class="na">rejected</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// Handle the subscription being rejected</span>
+    <span class="p">},</span>
+  <span class="p">}</span>
+<span class="p">);</span>
 </code></pre></div></div>
 
-<p>Subscribing to the StreamingApi requires passing a channel name set to “StreamingChannel”, a scope which is typically “DEFAULT”, and an access token (a password in OpenSource COSMOS). In Javascript you also pass a set of callback functions that run at various lifecycle points in the subscription. The most important of these are connected and received.</p>
+<p>Subscribing to the StreamingApi requires passing a channel name set to “StreamingChannel”, a scope which is typically “DEFAULT”, and an access token (a password in OpenSource COSMOS). In Javascript you also pass a set of callback functions that run at various lifecycle points in the subscription. The most important of these are <code class="language-plaintext highlighter-rouge">connected</code> and <code class="language-plaintext highlighter-rouge">received</code>.</p>
 
-<p>connected runs when the subscription is accepted by the StreamApi. This callback is the first opportunity to request specific data that you would like streamed. Data can also be added or removed at any time while the subscription is open.</p>
+<p><code class="language-plaintext highlighter-rouge">connected</code> runs when the subscription is accepted by the StreamApi. This callback is the first opportunity to request specific data that you would like streamed. Data can also be added or removed at any time while the subscription is open.</p>
 
-<p>Data can be added to the stream by requesting individual items from a packet (decommutated data only), or by requesting the entire packet (both raw and decommutated data).</p>
+<p>Data can be added to the stream by requesting individual items from a packet or by requesting the entire packet.</p>
 
 <p>Adding items to stream is done as follows:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var items = ["TLM__INST__ADCS__Q1__RAW", "CMD__INST__COLLECT__DURATION__WITH_UNITS"]
-var packets = ["TLM__INST__ADCS", "CMD__INST__COLLECT"]
-this.subscription.perform('add', {
-  scope: 'DEFAULT',
-  token: token,
-  mode: 'DECOM',
-  items: items,
-  packets: packets,
-  start_time: this.startDateTime,
-  end_time: this.endDateTime,
-})
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__TLM__INST__ADCS__Q1__RAW</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__CMD__INST__COLLECT__DURATION__WITH_UNITS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">],</span>
+<span class="p">];</span>
+<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">openc3Scope</span><span class="p">,</span>
+    <span class="na">token</span><span class="p">:</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">openc3Token</span><span class="p">,</span>
+    <span class="na">items</span><span class="p">:</span> <span class="nx">items</span><span class="p">,</span>
+    <span class="na">start_time</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">startDateTime</span><span class="p">,</span>
+    <span class="na">end_time</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">endDateTime</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">});</span>
 </code></pre></div></div>
 
-<p>Mode is either RAW, DECOM, REDUCED_MINUTE, REDUCED_HOUR, or REDUCED_DAY and all items/packets requested in a single add must be in the same mode. However different modes can be used across calls to add.</p>
+<p>The values in the item name are separated by double underscores, e.g. <code class="language-plaintext highlighter-rouge">&lt;MODE&gt;__&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;ITEM NAME&gt;__&lt;VALUE TYPE&gt;__&lt;REDUCED TYPE&gt;</code>. Mode is either RAW, DECOM, REDUCED_MINUTE, REDUCED_HOUR, or REDUCED_DAY. The next parameter is CMD or TLM followed by the target, packet and item names. The Value Type is one of RAW, CONVERTED, FORMATTED, or WITH_UNITS. The last parameter is optional if you want to use the reduced data types. Reduced Type is one of SAMPLE, MIN, MAX, AVG, or STDDEV.</p>
 
-<p>Items are requested by keys of the form: <code class="language-plaintext highlighter-rouge">&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;ITEM NAME&gt;__&lt;VALUE TYPE&gt;</code>
-For example TLM__INST__ADCS__Q1__RAW.</p>
+<p>Adding packets to stream is done as follows:</p>
 
-<p>Value type should be one of: RAW, CONVERTED, FORMATTED, or WITH_UNITS</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">packets</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">RAW__TLM__INST__ADCS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__TLM__INST__HEALTH_STATUS__FORMATTED</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">],</span>
+<span class="p">];</span>
+<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">openc3Scope</span><span class="p">,</span>
+    <span class="na">token</span><span class="p">:</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">openc3Token</span><span class="p">,</span>
+    <span class="na">packets</span><span class="p">:</span> <span class="nx">packets</span><span class="p">,</span>
+    <span class="na">start_time</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">startDateTime</span><span class="p">,</span>
+    <span class="na">end_time</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">endDateTime</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
 
-<p>Each field is separated by two underscores __.</p>
+<p>The values in the packet name are separated by double underscores, e.g. <code class="language-plaintext highlighter-rouge">&lt;MODE&gt;__&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;VALUE TYPE&gt;</code>. Mode is either RAW or DECOM. The next parameter is CMD or TLM followed by the target and packet names. The Value Type is one of RAW, CONVERTED, FORMATTED, or WITH_UNITS.</p>
 
-<p>Entire packets can also be requested by keys of the form: <code class="language-plaintext highlighter-rouge">&lt;CMD or TLM&gt;__&lt;TARGET NAME&gt;__&lt;PACKET NAME&gt;__&lt;VALUE TYPE&gt;</code>. For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM__INST__ADCS__RAW or TLM__INST__ADCS).
+<p>For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM__INST__ADCS__RAW or TLM__INST__ADCS).
 start_time and end_time are standard COSMOS 64-bit integer timestamps in nanoseconds since the Unix Epoch (midnight January 1st, 1970). If start_time is null, that indicates to start streaming from the current time in realtime, indefinitely until items are removed, or the subscription is unsubscribed. end_time is ignored if start_time is null. If start_time is given and end_time is null, that indicates to playback from the given starttime and then continue indefinitely in realtime. If both start_time and end_time are given, then that indicates a temporary playback of historical data.</p>
 
 <p>Data returned by the streaming API is handled by the received callback in Javascript. Data is returned as a JSON Array, with a JSON object in the array for each packet returned. Results are batched, and the current implementation will return up to 100 packets in each batch (the array will have 100 entries). 100 packets per batch is not guaranteed, and batches may take on varying sizes based on the size of the data returned, or other factors. An empty array indicates that all data has been sent for a purely historical query and can be used as an end of data indicator.</p>
 
 <p>For decommutated items, each packet is represented as a JSON object with a ‘time’ field holding the COSMOS nanosecond timestamp of the packet, and then each of the requested item keys with their corresponding value from the packet.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
-  {
-    time: 1234657585858,
-    'TLM__INST__ADCS__Q1__RAW': 50.0,
-    'TLM__INST__ADCS__Q2__RAW': 100.0
-  },
-  {
-    time: 1234657585859,
-    'TLM__INST__ADCS__Q1__RAW': 60.0,
-    'TLM__INST__ADCS__Q2__RAW': 110.0
-  },
-]
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234657585858</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"TLM__INST__ADCS__Q1__RAW"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"TLM__INST__ADCS__Q2__RAW"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234657585859</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"TLM__INST__ADCS__Q1__RAW"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"TLM__INST__ADCS__Q2__RAW"</span><span class="p">:</span><span class="w"> </span><span class="mf">110.0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
 
 <p>For raw packets, each packet is represented as a JSON object with a time field holding the COSMOS nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE__TELEMETRY__TARGETNAME__PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
-  {
-    time: 1234657585858,
-    packet: 'DEFAULT__TELEMETRY__INST__ADCS,
-    buffer: 'SkdfjGodkdfjdfoekfsg',
-  },
-  {
-    time: 1234657585859,
-    packet: 'DEFAULT__TELEMETRY__INST__ADCS',
-    buffer: '3i5n49dmnfg9fl32k3',
-  },
-]
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234657585858</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"packet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT__TELEMETRY__INST__ADCS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"buffer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SkdfjGodkdfjdfoekfsg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234657585859</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"packet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT__TELEMETRY__INST__ADCS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"buffer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3i5n49dmnfg9fl32k3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
 
       </article>
     </div>

@@ -111,16 +111,16 @@
 <li class="toc-entry toc-h2"><a href="#packet-viewer">Packet Viewer</a></li>
 <li class="toc-entry toc-h2"><a href="#telemetry-viewer">Telemetry Viewer</a></li>
 <li class="toc-entry toc-h2"><a href="#telemetry-grapher">Telemetry Grapher</a></li>
-<li class="toc-entry toc-h2"><a href="#data-viewer">Data Viewer</a></li>
 <li class="toc-entry toc-h2"><a href="#data-extractor">Data Extractor</a></li>
-<li class="toc-entry toc-h2"><a href="#timeline">Timeline</a></li>
+<li class="toc-entry toc-h2"><a href="#data-viewer">Data Viewer</a></li>
+<li class="toc-entry toc-h2"><a href="#calendar">Calendar</a></li>
 <li class="toc-entry toc-h2"><a href="#admin">Admin</a></li>
 </ul></div>
         
         <h1>Requirements and Design</h1>
         <p>OpenC3 COSMOS is a command and control system providing commanding, scripting, and data visualization capabilities for embedded systems and systems of systems. COSMOS is intended for use during all phases of testing (board, box, integrated system) and during operations.</p>
 
-<p>COSMOS is currently made up of the following 11 applications:</p>
+<p>COSMOS is currently made up of the following applications:</p>
 
 <ol>
   <li>
@@ -142,7 +142,13 @@
   <li>
 <strong>Data Viewer</strong> - Provides text based telemetry visualization for items.</li>
   <li>
-<strong>Timeline</strong> - Provides scheduling of commands and scripts. Also provides a framework for reserving resources.</li>
+<strong>Bucket Explorer</strong> - Browse the COSMOS bucket storage in any cloud environment.</li>
+  <li>
+<strong>Table Manager</strong> - Binary file editor with Script Runner integration for upload / download.</li>
+  <li>
+<strong>Handbooks</strong> - Generate html page of the command and telemetry definitions.</li>
+  <li>
+<strong>Calendar</strong> - Provides scheduling of commands and scripts. Also provides a framework for reserving resources.</li>
   <li>
 <strong>Admin</strong> - Provides an administrative interface to COSMOS.</li>
 </ol>
@@ -204,23 +210,17 @@
 <h2 id="overall-architecture-and-context-diagram">
 <a class="anchor" href="#overall-architecture-and-context-diagram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overall Architecture and Context Diagram</h2>
 
-<p>The following diagram shows how the applications that make up the COSMOS system relate to each other and to the targets that COSMOS is controlling.</p>
+<p>The following diagram shows the COSMOS 5 architecture.</p>
 
-<p><img src="/img/architecture.png" alt="COSMOS Architecture"></p>
+<p><img src="/img/v5/architecture.png" alt="COSMOS Architecture"></p>
 
 <p>Key aspects of this architecture:</p>
 
+<p>COSMOS 5 is a cloud native, containerized, microservice oriented command and control system. All the COSMOS microservices are docker containers which is why Docker is shown containing the entire COSMOS system. The green boxes on the left represent external embedded systems (Targets) which COSMOS connects to. The Redis data store contains the configuration for all the microservices, the current value table, as well as data streams containing decommutated data. The Minio data store contains plugins, targets, configuration data, text logs as well as binary logs of all the raw, decommutated, and reduced data. Users interact with COSMOS from a web browser which routes through the internal Traefik load balancer.</p>
+
 <ul>
-  <li>The COSMOS tools are grouped into four broad categories:
-    <ul>
-      <li>Realtime Commanding and Scripting</li>
-      <li>Realtime Telemetry Visualization</li>
-      <li>Offline Analysis</li>
-      <li>Utilities</li>
-    </ul>
-  </li>
   <li>COSMOS can connect to many different kinds of targets. The examples include things like Flight software (FSW), Ground Support Equipment (GSE), Labview, and COTS targets such as an Agilent power supply. Any embedded system that provides a communication interface can be connected to COSMOS.</li>
-  <li>COSMOS ships with interfaces for connecting over TCP/IP, UDP, and serial connections. This covers most systems, but custom interfaces can also be written to connect to anything that a computer can talk to.</li>
+  <li>COSMOS ships with interfaces for connecting over TCP/IP, UDP, MQTT, and serial connections. This covers most systems, but custom interfaces can also be written to connect to anything.</li>
   <li>All realtime communication with targets flows through the COSMOS system. This ensures all commands and telemetry are logged.</li>
   <li>Every tool is configured with plain text configuration files.</li>
   <li>Program specific tools can be written using the COSMOS libraries that can interact with the realtime command and telemetry streams and can process logged data.</li>
@@ -907,48 +907,6 @@
   </tbody>
 </table>
 
-<h2 id="data-viewer">
-<a class="anchor" href="#data-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Viewer</h2>
-
-<p>Data Viewer provides for textual display of telemetry packets where other display methods are not a good fit. It is especially useful for memory dumps and for log message type data display.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Reqt. ID</th>
-      <th>Description</th>
-      <th>Test Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DV-1</td>
-      <td>Data Viewer shall support realtime processing of telemetry packets.</td>
-      <td>Press Start to start realtime processing.</td>
-    </tr>
-    <tr>
-      <td>DV-2</td>
-      <td>Data Viewer shall support logged playback of telemetry packets.</td>
-      <td>Select a time range to playback.</td>
-    </tr>
-    <tr>
-      <td>DV-3</td>
-      <td>Data Viewer shall support textual display of telemetry packets.</td>
-      <td>View the display of data.</td>
-    </tr>
-    <tr>
-      <td>DV-4</td>
-      <td>Data Viewer shall support multiple tabs for data display.</td>
-      <td>Switch between several tabs of data.</td>
-    </tr>
-    <tr>
-      <td>DV-5</td>
-      <td>Data Viewer shall support deleting tabs.</td>
-      <td>Delete a tab.</td>
-    </tr>
-  </tbody>
-</table>
-
 <h2 id="data-extractor">
 <a class="anchor" href="#data-extractor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Extractor</h2>
 
@@ -1001,12 +959,54 @@
   </tbody>
 </table>
 
-<h2 id="timeline">
-<a class="anchor" href="#timeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline</h2>
+<h2 id="data-viewer">
+<a class="anchor" href="#data-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Viewer</h2>
 
-<p>Timeline</p>
+<p>Data Viewer provides for textual display of telemetry packets where other display methods are not a good fit. It is especially useful for memory dumps and for log message type data display.</p>
 
-<p>The Timeline tool provides a user interface and API for initiating scheduled actions in COSMOS</p>
+<table>
+  <thead>
+    <tr>
+      <th>Reqt. ID</th>
+      <th>Description</th>
+      <th>Test Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DV-1</td>
+      <td>Data Viewer shall support realtime processing of telemetry packets.</td>
+      <td>Press Start to start realtime processing.</td>
+    </tr>
+    <tr>
+      <td>DV-2</td>
+      <td>Data Viewer shall support logged playback of telemetry packets.</td>
+      <td>Select a time range to playback.</td>
+    </tr>
+    <tr>
+      <td>DV-3</td>
+      <td>Data Viewer shall support textual display of telemetry packets.</td>
+      <td>View the display of data.</td>
+    </tr>
+    <tr>
+      <td>DV-4</td>
+      <td>Data Viewer shall support multiple tabs for data display.</td>
+      <td>Switch between several tabs of data.</td>
+    </tr>
+    <tr>
+      <td>DV-5</td>
+      <td>Data Viewer shall support deleting tabs.</td>
+      <td>Delete a tab.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="calendar">
+<a class="anchor" href="#calendar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calendar</h2>
+
+<p>Calendar</p>
+
+<p>The Calendar tool provides a user interface and API for initiating scheduled actions in COSMOS</p>
 
 <table>
   <thead>
@@ -1019,42 +1019,42 @@
   <tbody>
     <tr>
       <td>TL-1</td>
-      <td>Timeline shall allow creating new timelines</td>
+      <td>Calendar shall allow creating new timelines</td>
       <td>Click the button and create a new timeline</td>
     </tr>
     <tr>
       <td>TL-2</td>
-      <td>Timeline shall allow scheduling commands for future execection</td>
+      <td>Calendar shall allow scheduling commands for future execection</td>
       <td>Add a command to a timeline</td>
     </tr>
     <tr>
       <td>TL-3</td>
-      <td>Timeline shall allow scheduling scripts for future execution</td>
+      <td>Calendar shall allow scheduling scripts for future execution</td>
       <td>Add a script to a timeline</td>
     </tr>
     <tr>
       <td>TL-4</td>
-      <td>Timeline shall allow for reserving a resource</td>
+      <td>Calendar shall allow for reserving a resource</td>
       <td>Add a reservation to a timeline</td>
     </tr>
     <tr>
       <td>TL-5</td>
-      <td>Timeline shall track success or failure of commands</td>
+      <td>Calendar shall track success or failure of commands</td>
       <td>Look at status from a completed command</td>
     </tr>
     <tr>
       <td>TL-6</td>
-      <td>Timeline shall track success or failure of scripts</td>
+      <td>Calendar shall track success or failure of scripts</td>
       <td>Look at status from a completed script</td>
     </tr>
     <tr>
       <td>TL-7</td>
-      <td>Timeline shall allow deleting activities from timelines</td>
+      <td>Calendar shall allow deleting activities from timelines</td>
       <td>Delete a preexisting item from a timeline</td>
     </tr>
     <tr>
       <td>TL-8</td>
-      <td>Timeline shall allow deleting timelines</td>
+      <td>Calendar shall allow deleting timelines</td>
       <td>Delete a timeline</td>
     </tr>
   </tbody>

@@ -141,7 +141,6 @@
 <ul>
 <li class="toc-entry toc-h3"><a href="#array">ARRAY</a></li>
 <li class="toc-entry toc-h3"><a href="#block">BLOCK</a></li>
-<li class="toc-entry toc-h3"><a href="#formatfontvalue">FORMATFONTVALUE</a></li>
 <li class="toc-entry toc-h3"><a href="#formatvalue">FORMATVALUE</a></li>
 <li class="toc-entry toc-h3"><a href="#labelformatvalue">LABELFORMATVALUE</a></li>
 <li class="toc-entry toc-h3"><a href="#labelprogressbar">LABELPROGRESSBAR</a></li>
@@ -299,7 +298,7 @@
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SCREEN AUTO AUTO 1.0 FIXED
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SCREEN</span> <span class="no">AUTO</span> <span class="no">AUTO</span> <span class="mf">1.0</span> <span class="no">FIXED</span>
 </code></pre></div></div>
 
 <h3 id="end">
@@ -342,7 +341,7 @@
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GLOBAL_SETTING LABELVALUELIMITSBAR COLORBLIND TRUE
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">GLOBAL_SETTING</span> <span class="no">LABELVALUELIMITSBAR</span> <span class="no">COLORBLIND</span> <span class="no">TRUE</span>
 </code></pre></div></div>
 
 <h3 id="global_subsetting">
@@ -385,8 +384,8 @@
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GLOBAL_SUBSETTING LABELVALUELIMITSBAR 1 COLORBLIND TRUE
-GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white <span class="c"># Set all text color to white for labelvaluelimitsbars</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">GLOBAL_SUBSETTING</span> <span class="no">LABELVALUELIMITSBAR</span> <span class="mi">1</span> <span class="no">COLORBLIND</span> <span class="no">TRUE</span>
+<span class="no">GLOBAL_SUBSETTING</span> <span class="no">LABELVALUELIMITSBAR</span> <span class="mi">0</span><span class="p">:</span><span class="mi">0</span> <span class="no">TEXTCOLOR</span> <span class="n">white</span> <span class="c1"># Set all text color to white for labelvaluelimitsbars</span>
 </code></pre></div></div>
 
 <h3 id="setting">
@@ -419,15 +418,15 @@ GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white <span class="c"># Set 
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERTICALBOX
-  LABEL ... <span class="c"># Various other widgets</span>
-END
-SETTING BACKCOLOR 163 185 163 <span class="c"># RGB color for the box background</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VERTICALBOX</span>
+  <span class="no">LABEL</span> <span class="o">...</span> <span class="c1"># Various other widgets</span>
+<span class="k">END</span>
+<span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="mi">163</span> <span class="mi">185</span> <span class="mi">163</span> <span class="c1"># RGB color for the box background</span>
 
-LABELVALUE INST HEALTH_STATUS COLLECTS
-  SETTING BORDERCOLOR red
-  SETTING WIDTH 200px
-  SETTING RAW font-size 30px
+<span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">COLLECTS</span>
+  <span class="no">SETTING</span> <span class="no">BORDERCOLOR</span> <span class="n">red</span>
+  <span class="no">SETTING</span> <span class="no">WIDTH</span> <span class="mi">200</span><span class="n">px</span>
+  <span class="no">SETTING</span> <span class="no">RAW</span> <span class="n">font</span><span class="o">-</span><span class="n">size</span> <span class="mi">30</span><span class="n">px</span>
 </code></pre></div></div>
 
 <h3 id="subsetting">
@@ -465,12 +464,12 @@ LABELVALUE INST HEALTH_STATUS COLLECTS
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERTICALBOX
-  LABELVALUE INST HEALTH_STATUS TEMP1
-  SUBSETTING 0 TEXTCOLOR blue <span class="c"># Change only the label's color</span>
-  LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
-  SUBSETTING 0:0 TEXTCOLOR green <span class="c"># Change the label's text color to green</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VERTICALBOX</span>
+  <span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+  <span class="no">SUBSETTING</span> <span class="mi">0</span> <span class="no">TEXTCOLOR</span> <span class="n">blue</span> <span class="c1"># Change only the label's color</span>
+  <span class="no">LABELVALUELIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+  <span class="no">SUBSETTING</span> <span class="mi">0</span><span class="p">:</span><span class="mi">0</span> <span class="no">TEXTCOLOR</span> <span class="n">green</span> <span class="c1"># Change the label's text color to green</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="named_widget">
@@ -508,8 +507,8 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NAMED_WIDGET DURATION TEXTFIELD
-BUTTON <span class="s2">"Push"</span> <span class="s2">"screen.get_named_widget('DURATION').text()"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">DURATION</span> <span class="no">TEXTFIELD</span>
+<span class="no">BUTTON</span> <span class="s2">"Push"</span> <span class="s2">"screen.get_named_widget('DURATION').text()"</span>
 </code></pre></div></div>
 
 <h3 id="widgetname">
@@ -547,36 +546,36 @@ BUTTON <span class="s2">"Push"</span> <span class="s2">"screen.get_named_widget(
 <p>Example File: <target>/myscreen.txt</target></p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SCREEN AUTO AUTO 0.5
-VERTICAL
-  TITLE <span class="s2">"&lt;%= @target_name %&gt; Commanding Examples"</span>
-  LABELVALUE INST HEALTH_STATUS COLLECTS
-  LABELVALUE INST HEALTH_STATUS COLLECT_TYPE
-  LABELVALUE INST HEALTH_STATUS DURATION
-  VERTICALBOX
-    SECTIONHEADER <span class="s2">"Send Collect Command:"</span>
-    HORIZONTAL
-      LABEL <span class="s2">"Type: "</span>
-      NAMED_WIDGET COLLECT_TYPE COMBOBOX NORMAL SPECIAL
-    END
-    HORIZONTAL
-      LABEL <span class="s2">"  Duration: "</span>
-      NAMED_WIDGET DURATION TEXTFIELD 12 <span class="s2">"10.0"</span>
-    END
-    BUTTON <span class="s1">'Start Collect'</span> <span class="s2">"api.cmd('INST COLLECT with TYPE '+screen.get_named_widget('COLLECT_TYPE').text()+', DURATION '+screen.get_named_widget('DURATION').text())"</span>
-  END
-  SETTING BACKCOLOR 163 185 163
-  VERTICALBOX
-    SECTIONHEADER <span class="s2">"Parameter-less Commands:"</span>
-    NAMED_WIDGET GROUP RADIOGROUP 1 <span class="c"># Select 'Clear' initially, 0-based index</span>
-      RADIOBUTTON <span class="s1">'Abort'</span>
-      RADIOBUTTON <span class="s1">'Clear'</span>
-    END
-    NAMED_WIDGET CHECK CHECKBUTTON <span class="s1">'Ignore Hazardous Checks'</span> <span class="c"># No option is by default UNCHECKED</span>
-    BUTTON <span class="s1">'Send'</span> <span class="s2">"screen.get_named_widget('GROUP').selected() === 0 ? api.cmd('INST ABORT') : (screen.get_named_widget('CHECK').checked() ? api.cmd_no_hazardous_check('INST CLEAR') : api.cmd('INST CLEAR'))"</span>
-  END
-  SETTING BACKCOLOR 163 185 163
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SCREEN</span> <span class="no">AUTO</span> <span class="no">AUTO</span> <span class="mf">0.5</span>
+<span class="no">VERTICAL</span>
+  <span class="no">TITLE</span> <span class="s2">"&lt;%= @target_name %&gt; Commanding Examples"</span>
+  <span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">COLLECTS</span>
+  <span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">COLLECT_TYPE</span>
+  <span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">DURATION</span>
+  <span class="no">VERTICALBOX</span>
+    <span class="no">SECTIONHEADER</span> <span class="s2">"Send Collect Command:"</span>
+    <span class="no">HORIZONTAL</span>
+      <span class="no">LABEL</span> <span class="s2">"Type: "</span>
+      <span class="no">NAMED_WIDGET</span> <span class="no">COLLECT_TYPE</span> <span class="no">COMBOBOX</span> <span class="no">NORMAL</span> <span class="no">SPECIAL</span>
+    <span class="k">END</span>
+    <span class="no">HORIZONTAL</span>
+      <span class="no">LABEL</span> <span class="s2">"  Duration: "</span>
+      <span class="no">NAMED_WIDGET</span> <span class="no">DURATION</span> <span class="no">TEXTFIELD</span> <span class="mi">12</span> <span class="s2">"10.0"</span>
+    <span class="k">END</span>
+    <span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s2">"api.cmd('INST COLLECT with TYPE '+screen.get_named_widget('COLLECT_TYPE').text()+', DURATION '+screen.get_named_widget('DURATION').text())"</span>
+  <span class="k">END</span>
+  <span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="mi">163</span> <span class="mi">185</span> <span class="mi">163</span>
+  <span class="no">VERTICALBOX</span>
+    <span class="no">SECTIONHEADER</span> <span class="s2">"Parameter-less Commands:"</span>
+    <span class="no">NAMED_WIDGET</span> <span class="no">GROUP</span> <span class="no">RADIOGROUP</span> <span class="mi">1</span> <span class="c1"># Select 'Clear' initially, 0-based index</span>
+      <span class="no">RADIOBUTTON</span> <span class="s1">'Abort'</span>
+      <span class="no">RADIOBUTTON</span> <span class="s1">'Clear'</span>
+    <span class="k">END</span>
+    <span class="no">NAMED_WIDGET</span> <span class="no">CHECK</span> <span class="no">CHECKBUTTON</span> <span class="s1">'Ignore Hazardous Checks'</span> <span class="c1"># No option is by default UNCHECKED</span>
+    <span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s2">"screen.get_named_widget('GROUP').selected() === 0 ? api.cmd('INST ABORT') : (screen.get_named_widget('CHECK').checked() ? api.cmd_no_hazardous_check('INST CLEAR') : api.cmd('INST CLEAR'))"</span>
+  <span class="k">END</span>
+  <span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="mi">163</span> <span class="mi">185</span> <span class="mi">163</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h2 id="widget-descriptions">
@@ -619,10 +618,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERTICAL 50
-  LABEL <span class="s2">"TEST"</span>
-  LABEL <span class="s2">"SCREEN"</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VERTICAL</span> <span class="mi">50</span>
+  <span class="no">LABEL</span> <span class="s2">"TEST"</span>
+  <span class="no">LABEL</span> <span class="s2">"SCREEN"</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="verticalbox">
@@ -660,10 +659,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERTICALBOX Info
-  LABEL <span class="s2">"TEST"</span>
-  LABEL <span class="s2">"SCREEN"</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VERTICALBOX</span> <span class="no">Info</span>
+  <span class="no">LABEL</span> <span class="s2">"TEST"</span>
+  <span class="no">LABEL</span> <span class="s2">"SCREEN"</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="horizontal">
@@ -691,10 +690,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HORIZONTAL 100
-  LABEL <span class="s2">"TEST"</span>
-  LABEL <span class="s2">"SCREEN"</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">HORIZONTAL</span> <span class="mi">100</span>
+  <span class="no">LABEL</span> <span class="s2">"TEST"</span>
+  <span class="no">LABEL</span> <span class="s2">"SCREEN"</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="horizontalbox">
@@ -727,10 +726,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HORIZONTALBOX Info 10
-  LABEL <span class="s2">"TEST"</span>
-  LABEL <span class="s2">"SCREEN"</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">HORIZONTALBOX</span> <span class="no">Info</span> <span class="mi">10</span>
+  <span class="no">LABEL</span> <span class="s2">"TEST"</span>
+  <span class="no">LABEL</span> <span class="s2">"SCREEN"</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="matrixbycolumns">
@@ -768,14 +767,14 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MATRIXBYCOLUMNS 3
-  LABEL <span class="s2">"COL 1"</span>
-  LABEL <span class="s2">"COL 2"</span>
-  LABEL <span class="s2">"COL 3"</span>
-  LABEL <span class="s2">"100"</span>
-  LABEL <span class="s2">"200"</span>
-  LABEL <span class="s2">"300"</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MATRIXBYCOLUMNS</span> <span class="mi">3</span>
+  <span class="no">LABEL</span> <span class="s2">"COL 1"</span>
+  <span class="no">LABEL</span> <span class="s2">"COL 2"</span>
+  <span class="no">LABEL</span> <span class="s2">"COL 3"</span>
+  <span class="no">LABEL</span> <span class="s2">"100"</span>
+  <span class="no">LABEL</span> <span class="s2">"200"</span>
+  <span class="no">LABEL</span> <span class="s2">"300"</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="scrollwindow">
@@ -786,19 +785,19 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SCROLLWINDOW
-  VERTICAL
-    LABEL <span class="s2">"100"</span>
-    LABEL <span class="s2">"200"</span>
-    LABEL <span class="s2">"300"</span>
-    LABEL <span class="s2">"400"</span>
-    LABEL <span class="s2">"500"</span>
-    LABEL <span class="s2">"600"</span>
-    LABEL <span class="s2">"700"</span>
-    LABEL <span class="s2">"800"</span>
-    LABEL <span class="s2">"900"</span>
-  END
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SCROLLWINDOW</span>
+  <span class="no">VERTICAL</span>
+    <span class="no">LABEL</span> <span class="s2">"100"</span>
+    <span class="no">LABEL</span> <span class="s2">"200"</span>
+    <span class="no">LABEL</span> <span class="s2">"300"</span>
+    <span class="no">LABEL</span> <span class="s2">"400"</span>
+    <span class="no">LABEL</span> <span class="s2">"500"</span>
+    <span class="no">LABEL</span> <span class="s2">"600"</span>
+    <span class="no">LABEL</span> <span class="s2">"700"</span>
+    <span class="no">LABEL</span> <span class="s2">"800"</span>
+    <span class="no">LABEL</span> <span class="s2">"900"</span>
+  <span class="k">END</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="tabbook">
@@ -831,16 +830,16 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TABBOOK
-  TABITEM <span class="s2">"Tab 1"</span>
-    LABEL <span class="s2">"100"</span>
-    LABEL <span class="s2">"200"</span>
-  END
-  TABITEM <span class="s2">"Tab 2"</span>
-    LABEL <span class="s2">"300"</span>
-    LABEL <span class="s2">"400"</span>
-  END
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TABBOOK</span>
+  <span class="no">TABITEM</span> <span class="s2">"Tab 1"</span>
+    <span class="no">LABEL</span> <span class="s2">"100"</span>
+    <span class="no">LABEL</span> <span class="s2">"200"</span>
+  <span class="k">END</span>
+  <span class="no">TABITEM</span> <span class="s2">"Tab 2"</span>
+    <span class="no">LABEL</span> <span class="s2">"300"</span>
+    <span class="no">LABEL</span> <span class="s2">"400"</span>
+  <span class="k">END</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h2 id="decoration-widgets">
@@ -873,7 +872,7 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABEL <span class="s2">"Note: This is only a warning"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABEL</span> <span class="s2">"Note: This is only a warning"</span>
 </code></pre></div></div>
 
 <h3 id="horizontalline">
@@ -906,7 +905,7 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SECTIONHEADER Mechanisms
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SECTIONHEADER</span> <span class="no">Mechanisms</span>
 </code></pre></div></div>
 
 <h3 id="title">
@@ -934,16 +933,16 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TITLE <span class="s2">"Title"</span>
-HORIZONTALLINE
-SECTIONHEADER <span class="s2">"Section Header"</span>
-LABEL <span class="s2">"Label"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TITLE</span> <span class="s2">"Title"</span>
+<span class="no">HORIZONTALLINE</span>
+<span class="no">SECTIONHEADER</span> <span class="s2">"Section Header"</span>
+<span class="no">LABEL</span> <span class="s2">"Label"</span>
 </code></pre></div></div>
 
 <h3 id="spacer">
 <a class="anchor" href="#spacer" aria-hidden="true"><span class="octicon octicon-link"></span></a>SPACER</h3>
 
-<p>The SPACER widget inserts a spacer into a layout. This can be used to separate or align other widgets. For more information about how the widget size policy works please see the <a href="http://doc.qt.io/qt-4.8/qsizepolicy.html#Policy-enum">QSizePolicy::Policy</a>.</p>
+<p>The SPACER widget inserts a spacer into a layout. This can be used to separate or align other widgets.</p>
 
 <table>
   <thead>
@@ -964,27 +963,17 @@ LABEL <span class="s2">"Label"</span>
       <td>The height of the spacer in pixels.</td>
       <td>Yes</td>
     </tr>
-    <tr>
-      <td>Horizontal Policy</td>
-      <td>The horizontal size policy of the spacer. Can be FIXED, MINIMUM, MAXIMUM, PREFERRED, EXPANDING, MINIMUMEXPANDING, or IGNORED. Defaults to MINIMUM.</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>Vertical Policy</td>
-      <td>The vertical size policy of the spacer. Can be FIXED, MINIMUM, MAXIMUM, PREFERRED, EXPANDING, MINIMUMEXPANDING, or IGNORED. Defaults to MINIMUM.</td>
-      <td>No</td>
-    </tr>
   </tbody>
 </table>
 
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERTICAL 3 FALSE
-  LABEL <span class="s2">"Spacer below"</span>
-  SPACER 0 100 MINIMUM EXPANDING
-  LABEL <span class="s2">"Spacer above"</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VERTICAL</span> <span class="mi">3</span> <span class="no">FALSE</span>
+  <span class="no">LABEL</span> <span class="s2">"Spacer below"</span>
+  <span class="no">SPACER</span> <span class="mi">0</span> <span class="mi">100</span>
+  <span class="no">LABEL</span> <span class="s2">"Spacer above"</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h2 id="telemetry-widgets">
@@ -1052,8 +1041,8 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ARRAY INST HEALTH_STATUS ARY 250 50 <span class="s2">"0x%x"</span> 6 FORMATTED
-ARRAY INST HEALTH_STATUS ARY2 200 60 nil 4 WITH_UNITS
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ARRAY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">ARY</span> <span class="mi">250</span> <span class="mi">50</span> <span class="s2">"0x%x"</span> <span class="mi">6</span> <span class="no">FORMATTED</span>
+<span class="no">ARRAY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">ARY2</span> <span class="mi">200</span> <span class="mi">60</span> <span class="kp">nil</span> <span class="mi">4</span> <span class="no">WITH_UNITS</span>
 </code></pre></div></div>
 
 <h3 id="block">
@@ -1126,81 +1115,34 @@ ARRAY INST HEALTH_STATUS ARY2 200 60 nil 4 WITH_UNITS
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BLOCK INST IMAGE IMAGE 400 130 <span class="s2">"%02X"</span> 4 4 <span class="s2">"0x%08X:"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BLOCK</span> <span class="no">INST</span> <span class="no">IMAGE</span> <span class="no">IMAGE</span> <span class="mi">400</span> <span class="mi">130</span> <span class="s2">"%02X"</span> <span class="mi">4</span> <span class="mi">4</span> <span class="s2">"0x%08X:"</span>
 </code></pre></div></div>
 
-<h3 id="formatfontvalue">
-<a class="anchor" href="#formatfontvalue" aria-hidden="true"><span class="octicon octicon-link"></span></a>FORMATFONTVALUE</h3>
+<!--
+### FORMATFONTVALUE
 
-<p>The FORMATFONTVALUE widget displays a box with a value printed inside that is formatted by the specified string rather than by a format string given in the telemetry definition files. Additionally, this widget can use a specified font. The white portion of the box darkens to gray while the value remains stagnant, then brightens to white each time the value changes. Additionally the value is colored based on the items limits state (Red for example if it is out of limits).</p>
+The FORMATFONTVALUE widget displays a box with a value printed inside that is formatted by the specified string rather than by a format string given in the telemetry definition files. Additionally, this widget can use a specified font. The white portion of the box darkens to gray while the value remains stagnant, then brightens to white each time the value changes. Additionally the value is colored based on the items limits state (Red for example if it is out of limits).
 
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>The target name portion of the telemetry mnemonic</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>The packet name portion of the telemetry mnemonic</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>The item name portion of the telemetry mnemonic</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>Format String</td>
-      <td>Printf style format string to apply to the telemetry item</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>Value Type</td>
-      <td>The type of the value to display: RAW, CONVERTED, FORMATTED, or WITH_UNITS (default = CONVERTED)</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>Number of Characters</td>
-      <td>The number of characters wide to make the value box (default = 12)</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>Font Name</td>
-      <td>The font to use. (default = arial)</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>Font Size</td>
-      <td>The font size. (default = 100)</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>Font Weight</td>
-      <td>The font weight. See <a href="http://doc.qt.io/qt-4.8/qfont.html#Weight-enum">QFont::Weight</a> for more information. (default = Qt::Font::Normal)</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>Font Italics</td>
-      <td>Whether to display the font in italics. (default = false)</td>
-      <td>No</td>
-    </tr>
-  </tbody>
-</table>
+| Parameter            | Description                                                                                                                             | Required |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Target Name          | The target name portion of the telemetry mnemonic                                                                                       | Yes      |
+| Packet Name          | The packet name portion of the telemetry mnemonic                                                                                       | Yes      |
+| Item Name            | The item name portion of the telemetry mnemonic                                                                                         | Yes      |
+| Format String        | Printf style format string to apply to the telemetry item                                                                               | Yes      |
+| Value Type           | The type of the value to display: RAW, CONVERTED, FORMATTED, or WITH_UNITS (default = CONVERTED)                                        | No       |
+| Number of Characters | The number of characters wide to make the value box (default = 12)                                                                      | No       |
+| Font Name            | The font to use. (default = arial)                                                                                                      | No       |
+| Font Size            | The font size. (default = 100)                                                                                                          | No       |
+| Font Weight          | The font weight. See [QFont::Weight](http://doc.qt.io/qt-4.8/qfont.html#Weight-enum) for more information. (default = Qt::Font::Normal) | No       |
+| Font Italics         | Whether to display the font in italics. (default = false)                                                                               | No       |
 
-<p>Example Usage:</p>
+Example Usage:
 
-<!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold <span class="nb">true</span>
-</code></pre></div></div>
+-- prettier-ignore --
+```ruby
+FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold true
+```
+-->
 
 <h3 id="formatvalue">
 <a class="anchor" href="#formatvalue" aria-hidden="true"><span class="octicon octicon-link"></span></a>FORMATVALUE</h3>
@@ -1252,7 +1194,7 @@ ARRAY INST HEALTH_STATUS ARY2 200 60 nil 4 WITH_UNITS
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FORMATVALUE INST LATEST TIMESEC %012u CONVERTED 12
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">FORMATVALUE</span> <span class="no">INST</span> <span class="no">LATEST</span> <span class="no">TIMESEC</span> <span class="o">%</span><span class="mo">012</span><span class="n">u</span> <span class="no">CONVERTED</span> <span class="mi">12</span>
 </code></pre></div></div>
 
 <h3 id="labelformatvalue">
@@ -1305,7 +1247,7 @@ ARRAY INST HEALTH_STATUS ARY2 200 60 nil 4 WITH_UNITS
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELFORMATVALUE INST LATEST TIMESEC %012u CONVERTED 12
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELFORMATVALUE</span> <span class="no">INST</span> <span class="no">LATEST</span> <span class="no">TIMESEC</span> <span class="o">%</span><span class="mo">012</span><span class="n">u</span> <span class="no">CONVERTED</span> <span class="mi">12</span>
 </code></pre></div></div>
 
 <h3 id="labelprogressbar">
@@ -1358,8 +1300,8 @@ ARRAY INST HEALTH_STATUS ARY2 200 60 nil 4 WITH_UNITS
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELPROGRESSBAR INST ADCS POSPROGRESS 2 200 RAW
-LABELPROGRESSBAR INST ADCS POSPROGRESS
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELPROGRESSBAR</span> <span class="no">INST</span> <span class="no">ADCS</span> <span class="no">POSPROGRESS</span> <span class="mi">2</span> <span class="mi">200</span> <span class="no">RAW</span>
+<span class="no">LABELPROGRESSBAR</span> <span class="no">INST</span> <span class="no">ADCS</span> <span class="no">POSPROGRESS</span>
 </code></pre></div></div>
 
 <h3 id="labeltrendlimitsbar">
@@ -1422,8 +1364,8 @@ LABELPROGRESSBAR INST ADCS POSPROGRESS
 <p>Example Usage</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELTRENDLIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 5 20 200 50
-LABELTRENDLIMITSBAR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELTRENDLIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">5</span> <span class="mi">20</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">LABELTRENDLIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="labelvalue">
@@ -1476,8 +1418,8 @@ LABELTRENDLIMITSBAR INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUE INST LATEST TIMESEC CONVERTED 18 center
-LABELVALUE INST LATEST COLLECT_TYPE
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">LATEST</span> <span class="no">TIMESEC</span> <span class="no">CONVERTED</span> <span class="mi">18</span> <span class="n">center</span>
+<span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">LATEST</span> <span class="no">COLLECT_TYPE</span>
 </code></pre></div></div>
 
 <h3 id="labelvaluedesc">
@@ -1530,8 +1472,8 @@ LABELVALUE INST LATEST COLLECT_TYPE
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUEDESC INST LATEST TIMESEC <span class="s2">"Time in seconds"</span> CONVERTED 18
-LABELVALUEDESC INST LATEST COLLECT_TYPE
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUEDESC</span> <span class="no">INST</span> <span class="no">LATEST</span> <span class="no">TIMESEC</span> <span class="s2">"Time in seconds"</span> <span class="no">CONVERTED</span> <span class="mi">18</span>
+<span class="no">LABELVALUEDESC</span> <span class="no">INST</span> <span class="no">LATEST</span> <span class="no">COLLECT_TYPE</span>
 </code></pre></div></div>
 
 <h3 id="labelvaluelimitsbar">
@@ -1579,8 +1521,8 @@ LABELVALUEDESC INST LATEST COLLECT_TYPE
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 18
-LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUELIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">18</span>
+<span class="no">LABELVALUELIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="labelvaluelimitscolumn">
@@ -1628,8 +1570,8 @@ LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1 CONVERTED 18
-LABELVALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUELIMITSCOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">18</span>
+<span class="no">LABELVALUELIMITSCOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="labelvaluerangebar">
@@ -1697,8 +1639,8 @@ LABELVALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUERANGEBAR INST HEALTH_STATUS TEMP1 0 50 CONVERTED 18 200 50
-LABELVALUERANGEBAR INST HEALTH_STATUS TEMP1 0 50
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUERANGEBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">50</span> <span class="no">CONVERTED</span> <span class="mi">18</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">LABELVALUERANGEBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">50</span>
 </code></pre></div></div>
 
 <h3 id="labelvaluerangecolumn">
@@ -1766,8 +1708,8 @@ LABELVALUERANGEBAR INST HEALTH_STATUS TEMP1 0 50
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 50 CONVERTED 18 50 200
-LABELVALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 50
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUERANGECOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">50</span> <span class="no">CONVERTED</span> <span class="mi">18</span> <span class="mi">50</span> <span class="mi">200</span>
+<span class="no">LABELVALUERANGECOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">50</span>
 </code></pre></div></div>
 
 <h3 id="limitsbar">
@@ -1820,8 +1762,8 @@ LABELVALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 50
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 200 50
-LIMITSBAR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">LIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="limitscolumn">
@@ -1874,8 +1816,8 @@ LIMITSBAR INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITSCOLUMN INST HEALTH_STATUS TEMP1 CONVERTED 50 200
-LIMITSCOLUMN INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LIMITSCOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">50</span> <span class="mi">200</span>
+<span class="no">LIMITSCOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="limitscolor">
@@ -1928,8 +1870,8 @@ LIMITSCOLUMN INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITSCOLOR INST HEALTH_STATUS TEMP1 CONVERTED 20 TRUE
-LIMITSCOLOR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LIMITSCOLOR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">20</span> <span class="no">TRUE</span>
+<span class="no">LIMITSCOLOR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="valuelimitsbar">
@@ -1977,8 +1919,8 @@ LIMITSCOLOR INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VALUELIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 18
-VALUELIMITSBAR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VALUELIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">18</span>
+<span class="no">VALUELIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="valuelimitscolumn">
@@ -2026,8 +1968,8 @@ VALUELIMITSBAR INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1 CONVERTED 18
-VALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VALUELIMITSCOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">18</span>
+<span class="no">VALUELIMITSCOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="valuerangebar">
@@ -2095,8 +2037,8 @@ VALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VALUERANGEBAR INST HEALTH_STATUS TEMP1 0 100 CONVERTED 18 200 50
-VALUERANGEBAR INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VALUERANGEBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">100</span> <span class="no">CONVERTED</span> <span class="mi">18</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">VALUERANGEBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="o">-</span><span class="mi">1000</span> <span class="mi">1000</span>
 </code></pre></div></div>
 
 <h3 id="valuerangecolumn">
@@ -2164,8 +2106,8 @@ VALUERANGEBAR INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 100 CONVERTED 18 50 200
-VALUERANGECOLUMN INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VALUERANGECOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">100</span> <span class="no">CONVERTED</span> <span class="mi">18</span> <span class="mi">50</span> <span class="mi">200</span>
+<span class="no">VALUERANGECOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="o">-</span><span class="mi">1000</span> <span class="mi">1000</span>
 </code></pre></div></div>
 
 <h3 id="linegraph">
@@ -2223,8 +2165,8 @@ VALUERANGECOLUMN INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LINEGRAPH INST HEALTH_STATUS TEMP1
-LINEGRAPH INST HEALTH_STATUS TEMP1 10 400 100 RAW
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LINEGRAPH</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+<span class="no">LINEGRAPH</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">10</span> <span class="mi">400</span> <span class="mi">100</span> <span class="no">RAW</span>
 </code></pre></div></div>
 
 <h3 id="progressbar">
@@ -2277,8 +2219,8 @@ LINEGRAPH INST HEALTH_STATUS TEMP1 10 400 100 RAW
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PROGRESSBAR INST ADCS POSPROGRESS 0.5 200
-PROGRESSBAR INST ADCS POSPROGRESS
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">PROGRESSBAR</span> <span class="no">INST</span> <span class="no">ADCS</span> <span class="no">POSPROGRESS</span> <span class="mf">0.5</span> <span class="mi">200</span>
+<span class="no">PROGRESSBAR</span> <span class="no">INST</span> <span class="no">ADCS</span> <span class="no">POSPROGRESS</span>
 </code></pre></div></div>
 
 <h3 id="rangebar">
@@ -2341,8 +2283,8 @@ PROGRESSBAR INST ADCS POSPROGRESS
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RANGEBAR INST HEALTH_STATUS TEMP1 0 100 CONVERTED 200 50
-RANGEBAR INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RANGEBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">100</span> <span class="no">CONVERTED</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">RANGEBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="o">-</span><span class="mi">1000</span> <span class="mi">1000</span>
 </code></pre></div></div>
 
 <h3 id="rangecolumn">
@@ -2405,8 +2347,8 @@ RANGEBAR INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RANGECOLUMN INST HEALTH_STATUS TEMP1 0 100 CONVERTED 50 200
-RANGECOLUMN INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RANGECOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">0</span> <span class="mi">100</span> <span class="no">CONVERTED</span> <span class="mi">50</span> <span class="mi">200</span>
+<span class="no">RANGECOLUMN</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="o">-</span><span class="mi">1000</span> <span class="mi">1000</span>
 </code></pre></div></div>
 
 <h3 id="textbox">
@@ -2459,8 +2401,8 @@ RANGECOLUMN INST HEALTH_STATUS TEMP1 <span class="nt">-1000</span> 1000
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TEXTBOX INST HEALTH_STATUS TIMEFORMATTED 150 50
-TEXTBOX INST HEALTH_STATUS TIMEFORMATTED
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TEXTBOX</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TIMEFORMATTED</span> <span class="mi">150</span> <span class="mi">50</span>
+<span class="no">TEXTBOX</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TIMEFORMATTED</span>
 </code></pre></div></div>
 
 <h3 id="timegraph">
@@ -2528,8 +2470,8 @@ TEXTBOX INST HEALTH_STATUS TIMEFORMATTED
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TIMEGRAPH INST HEALTH_STATUS TEMP1
-TIMEGRAPH INST HEALTH_STATUS TEMP1 10 400 100 <span class="nb">false </span>TIMESECONDS CONVERTED
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TIMEGRAPH</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+<span class="no">TIMEGRAPH</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">10</span> <span class="mi">400</span> <span class="mi">100</span> <span class="kp">false</span> <span class="no">TIMESECONDS</span> <span class="no">CONVERTED</span>
 </code></pre></div></div>
 
 <h3 id="trendbar">
@@ -2587,8 +2529,8 @@ TIMEGRAPH INST HEALTH_STATUS TEMP1 10 400 100 <span class="nb">false </span>TIME
 <p>Example Usage</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRENDBAR INST HEALTH_STATUS TEMP1 CONVERTED 20 200 50
-TRENDBAR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TRENDBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">20</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">TRENDBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="trendlimitsbar">
@@ -2651,8 +2593,8 @@ TRENDBAR INST HEALTH_STATUS TEMP1
 <p>Example Usage</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRENDLIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 20 20 200 50
-TRENDLIMITSBAR INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TRENDLIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">20</span> <span class="mi">20</span> <span class="mi">200</span> <span class="mi">50</span>
+<span class="no">TRENDLIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h3 id="value">
@@ -2700,8 +2642,8 @@ TRENDLIMITSBAR INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VALUE INST HEALTH_STATUS TEMP1 CONVERTED 18
-VALUE INST HEALTH_STATUS TEMP1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">VALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="no">CONVERTED</span> <span class="mi">18</span>
+<span class="no">VALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
 </code></pre></div></div>
 
 <h2 id="interactive-widgets">
@@ -2741,7 +2683,7 @@ VALUE INST HEALTH_STATUS TEMP1
 <p>Example Usage to execute a command:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BUTTON <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION 5")'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION 5")'</span>
 </code></pre></div></div>
 
 <h3 id="checkbutton">
@@ -2774,8 +2716,8 @@ VALUE INST HEALTH_STATUS TEMP1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NAMED_WIDGET CHECK CHECKBUTTON <span class="s1">'Ignore Hazardous Checks'</span>
-BUTTON <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget("CHECK").checked() ? api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">CHECK</span> <span class="no">CHECKBUTTON</span> <span class="s1">'Ignore Hazardous Checks'</span>
+<span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget("CHECK").checked() ? api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'</span>
 </code></pre></div></div>
 
 <h3 id="combobox">
@@ -2808,8 +2750,8 @@ BUTTON <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget(
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BUTTON <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE '</span>+screen.get_named_widget<span class="o">(</span><span class="s2">"COLLECT_TYPE"</span><span class="o">)</span>.text<span class="o">()</span>+<span class="s1">', DURATION 10.0")'</span>
-NAMED_WIDGET COLLECT_TYPE COMBOBOX NORMAL SPECIAL
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE '</span><span class="o">+</span><span class="n">screen</span><span class="p">.</span><span class="nf">get_named_widget</span><span class="p">(</span><span class="s2">"COLLECT_TYPE"</span><span class="p">).</span><span class="nf">text</span><span class="p">()</span><span class="o">+</span><span class="s1">', DURATION 10.0")'</span>
+<span class="no">NAMED_WIDGET</span> <span class="no">COLLECT_TYPE</span> <span class="no">COMBOBOX</span> <span class="no">NORMAL</span> <span class="no">SPECIAL</span>
 </code></pre></div></div>
 
 <h3 id="radiobutton">
@@ -2842,9 +2784,9 @@ NAMED_WIDGET COLLECT_TYPE COMBOBOX NORMAL SPECIAL
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NAMED_WIDGET ABORT RADIOBUTTON <span class="s1">'Abort'</span>
-NAMED_WIDGET CLEAR RADIOBUTTON <span class="s1">'Clear'</span>
-BUTTON <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">ABORT</span> <span class="no">RADIOBUTTON</span> <span class="s1">'Abort'</span>
+<span class="no">NAMED_WIDGET</span> <span class="no">CLEAR</span> <span class="no">RADIOBUTTON</span> <span class="s1">'Clear'</span>
+<span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'</span>
 </code></pre></div></div>
 
 <h3 id="textfield">
@@ -2877,8 +2819,8 @@ BUTTON <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget(
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NAMED_WIDGET DURATION TEXTFIELD 12 <span class="s2">"10.0"</span>
-BUTTON <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION '</span>+screen.get_named_widget<span class="o">(</span><span class="s2">"DURATION"</span><span class="o">)</span>.text<span class="o">()</span>+<span class="s1">'")'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">DURATION</span> <span class="no">TEXTFIELD</span> <span class="mi">12</span> <span class="s2">"10.0"</span>
+<span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION '</span><span class="o">+</span><span class="n">screen</span><span class="p">.</span><span class="nf">get_named_widget</span><span class="p">(</span><span class="s2">"DURATION"</span><span class="p">).</span><span class="nf">text</span><span class="p">()</span><span class="o">+</span><span class="s1">'")'</span>
 </code></pre></div></div>
 
 <h2 id="canvas-widgets">
@@ -2960,10 +2902,10 @@ BUTTON <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST C
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVAS 100 100
-  CANVASLABEL 5 34 <span class="s2">"Label1"</span> 24 red
-  CANVASLABEL 5 70 <span class="s2">"Label2"</span> 18 blue
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">100</span> <span class="mi">100</span>
+  <span class="no">CANVASLABEL</span> <span class="mi">5</span> <span class="mi">34</span> <span class="s2">"Label1"</span> <span class="mi">24</span> <span class="n">red</span>
+  <span class="no">CANVASLABEL</span> <span class="mi">5</span> <span class="mi">70</span> <span class="s2">"Label2"</span> <span class="mi">18</span> <span class="n">blue</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="canvaslabelvalue">
@@ -3036,10 +2978,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVAS 200 100
-  CANVASLABELVALUE INST HEALTH_STATUS TEMP1 5 34 12 red <span class="nb">true </span>5
-  CANVASLABELVALUE INST HEALTH_STATUS TEMP2 5 70 10 blue <span class="nb">false </span>0 WITH_UNITS
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">200</span> <span class="mi">100</span>
+  <span class="no">CANVASLABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="mi">5</span> <span class="mi">34</span> <span class="mi">12</span> <span class="n">red</span> <span class="kp">true</span> <span class="mi">5</span>
+  <span class="no">CANVASLABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP2</span> <span class="mi">5</span> <span class="mi">70</span> <span class="mi">10</span> <span class="n">blue</span> <span class="kp">false</span> <span class="mi">0</span> <span class="no">WITH_UNITS</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="canvasimage">
@@ -3087,10 +3029,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  CANVAS 300 300
-  CANVASIMAGE <span class="s2">"satellite.gif"</span> 0 0
-  CANVASIMAGE <span class="s2">"https://images.pexels.com/photos/256152/pexels-photo-256152.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=640&amp;w=426"</span> 0 250 250 150
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="no">CANVAS</span> <span class="mi">300</span> <span class="mi">300</span>
+  <span class="no">CANVASIMAGE</span> <span class="s2">"satellite.gif"</span> <span class="mi">0</span> <span class="mi">0</span>
+  <span class="no">CANVASIMAGE</span> <span class="s2">"https://images.pexels.com/photos/256152/pexels-photo-256152.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=640&amp;w=426"</span> <span class="mi">0</span> <span class="mi">250</span> <span class="mi">250</span> <span class="mi">150</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="canvasimagevalue">
@@ -3148,10 +3090,10 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVAS 150 200
-  CANVASLABELVALUE INST HEALTH_STATUS GROUND1STATUS 0 12 12 black <span class="nb">false
-  </span>CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS <span class="s2">"ground"</span> 0 20 <span class="c"># Uses groundon.gif and groundoff.gif</span>
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">150</span> <span class="mi">200</span>
+  <span class="no">CANVASLABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="mi">0</span> <span class="mi">12</span> <span class="mi">12</span> <span class="n">black</span> <span class="kp">false</span>
+  <span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="s2">"ground"</span> <span class="mi">0</span> <span class="mi">20</span> <span class="c1"># Uses groundon.gif and groundoff.gif</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="canvasline">
@@ -3209,11 +3151,11 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVAS 100 50
-  CANVASLINE 5 5 95 5
-  CANVASLINE 5 5 5 45 green 2 CONNECTOR
-  CANVASLINE 95 5 95 45 blue 3 CONNECTOR
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">100</span> <span class="mi">50</span>
+  <span class="no">CANVASLINE</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">95</span> <span class="mi">5</span>
+  <span class="no">CANVASLINE</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">45</span> <span class="n">green</span> <span class="mi">2</span> <span class="no">CONNECTOR</span>
+  <span class="no">CANVASLINE</span> <span class="mi">95</span> <span class="mi">5</span> <span class="mi">95</span> <span class="mi">45</span> <span class="n">blue</span> <span class="mi">3</span> <span class="no">CONNECTOR</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="canvaslinevalue">
@@ -3296,11 +3238,11 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVAS 120 50
-  CANVASLABELVALUE INST HEALTH_STATUS GROUND1STATUS 0 12 12 black <span class="nb">false
-  </span>CANVASLINEVALUE INST HEALTH_STATUS GROUND1STATUS 5 25 115 25
-  CANVASLINEVALUE INST HEALTH_STATUS GROUND1STATUS 5 45 115 45 purple red 3 CONNECTOR
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">120</span> <span class="mi">50</span>
+  <span class="no">CANVASLABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="mi">0</span> <span class="mi">12</span> <span class="mi">12</span> <span class="n">black</span> <span class="kp">false</span>
+  <span class="no">CANVASLINEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="mi">5</span> <span class="mi">25</span> <span class="mi">115</span> <span class="mi">25</span>
+  <span class="no">CANVASLINEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="mi">5</span> <span class="mi">45</span> <span class="mi">115</span> <span class="mi">45</span> <span class="n">purple</span> <span class="n">red</span> <span class="mi">3</span> <span class="no">CONNECTOR</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <h3 id="canvasdot">
@@ -3343,15 +3285,15 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVAS 201 201
-  CANVASLINE 0 0 200 0
-  CANVASLINE 200 0 200 200
-  CANVASLINE 200 200 0 200
-  CANVASLINE 0 200 0 0
-  CANVASLINE 99 1 99 199 white
-  CANVASLINE 1 99 199 99 white
-  CANVASDOT <span class="s1">'api.tlm_variable("GIMBAL AXIS_STATUS_X POSITION", :RAW) + 100'</span> <span class="s1">'api.tlm_variable("GIMBAL AXIS_STATUS_Y POSITION", :RAW) + 100'</span> red
-END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">201</span> <span class="mi">201</span>
+  <span class="no">CANVASLINE</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">200</span> <span class="mi">0</span>
+  <span class="no">CANVASLINE</span> <span class="mi">200</span> <span class="mi">0</span> <span class="mi">200</span> <span class="mi">200</span>
+  <span class="no">CANVASLINE</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mi">0</span> <span class="mi">200</span>
+  <span class="no">CANVASLINE</span> <span class="mi">0</span> <span class="mi">200</span> <span class="mi">0</span> <span class="mi">0</span>
+  <span class="no">CANVASLINE</span> <span class="mi">99</span> <span class="mi">1</span> <span class="mi">99</span> <span class="mi">199</span> <span class="n">white</span>
+  <span class="no">CANVASLINE</span> <span class="mi">1</span> <span class="mi">99</span> <span class="mi">199</span> <span class="mi">99</span> <span class="n">white</span>
+  <span class="no">CANVASDOT</span> <span class="s1">'api.tlm_variable("GIMBAL AXIS_STATUS_X POSITION", :RAW) + 100'</span> <span class="s1">'api.tlm_variable("GIMBAL AXIS_STATUS_Y POSITION", :RAW) + 100'</span> <span class="n">red</span>
+<span class="k">END</span>
 </code></pre></div></div>
 
 <p><img src="https://cloud.githubusercontent.com/assets/5217851/11122513/d29af8c0-8918-11e5-9138-17011956911a.jpg" alt="720311333_78794"></p>
@@ -3420,8 +3362,8 @@ END
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SETTING BACKCOLOR red
-SETTING BACKCOLOR 162 181 205
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="n">red</span>
+<span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="mi">162</span> <span class="mi">181</span> <span class="mi">205</span>
 </code></pre></div></div>
 
 <h3 id="textcolor">
@@ -3476,8 +3418,8 @@ SETTING BACKCOLOR 162 181 205
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SETTING TEXTCOLOR red
-SETTING TEXTCOLOR 162 181 205
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">TEXTCOLOR</span> <span class="n">red</span>
+<span class="no">SETTING</span> <span class="no">TEXTCOLOR</span> <span class="mi">162</span> <span class="mi">181</span> <span class="mi">205</span>
 </code></pre></div></div>
 
 <h3 id="width">
@@ -3505,7 +3447,7 @@ SETTING TEXTCOLOR 162 181 205
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SETTING WIDTH 100
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">WIDTH</span> <span class="mi">100</span>
 </code></pre></div></div>
 
 <h3 id="height">
@@ -3533,7 +3475,7 @@ SETTING TEXTCOLOR 162 181 205
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SETTING HEIGHT 100
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">HEIGHT</span> <span class="mi">100</span>
 </code></pre></div></div>
 
 <h2 id="widget-specific-settings">
@@ -3595,11 +3537,11 @@ SETTING TEXTCOLOR 162 181 205
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HORIZONTALBOX
-  LABEL <span class="s2">"Label 1"</span>
-  LABEL <span class="s2">"Label 2"</span>
-END
-SETTING BORDERCOLOR red
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">HORIZONTALBOX</span>
+  <span class="no">LABEL</span> <span class="s2">"Label 1"</span>
+  <span class="no">LABEL</span> <span class="s2">"Label 2"</span>
+<span class="k">END</span>
+<span class="no">SETTING</span> <span class="no">BORDERCOLOR</span> <span class="n">red</span>
 </code></pre></div></div>
 
 <h3 id="colorblind">
@@ -3627,8 +3569,8 @@ SETTING BORDERCOLOR red
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
-SETTING COLORBLIND TRUE
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUELIMITSBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+<span class="no">SETTING</span> <span class="no">COLORBLIND</span> <span class="no">TRUE</span>
 </code></pre></div></div>
 
 <h3 id="enable_aging">
@@ -3656,8 +3598,8 @@ SETTING COLORBLIND TRUE
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUE INST HEALTH_STATUS COLLECTS
-SETTING ENABLE_AGING FALSE
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">COLLECTS</span>
+<span class="no">SETTING</span> <span class="no">ENABLE_AGING</span> <span class="no">FALSE</span>
 </code></pre></div></div>
 
 <h3 id="gray_rate--grey_rate">
@@ -3685,8 +3627,8 @@ SETTING ENABLE_AGING FALSE
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUE INST HEALTH_STATUS COLLECTS
-SETTING GRAY_RATE 5
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">COLLECTS</span>
+<span class="no">SETTING</span> <span class="no">GRAY_RATE</span> <span class="mi">5</span>
 </code></pre></div></div>
 
 <h3 id="gray_tolerance--grey_tolerance">
@@ -3714,8 +3656,8 @@ SETTING GRAY_RATE 5
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUE INST HEALTH_STATUS COLLECTS
-SETTING GRAY_TOLERANCE 1
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">COLLECTS</span>
+<span class="no">SETTING</span> <span class="no">GRAY_TOLERANCE</span> <span class="mi">1</span>
 </code></pre></div></div>
 
 <h3 id="min_gray--min_grey">
@@ -3743,9 +3685,9 @@ SETTING GRAY_TOLERANCE 1
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LABELVALUE INST HEALTH_STATUS TEMP1
-SETTING GRAY_TOLERANCE 1000 <span class="c"># Prevent the widget from refreshing by choosing a high tolerance</span>
-SETTING MIN_GRAY 0 <span class="c"># Set the minimum gray to black</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+<span class="no">SETTING</span> <span class="no">GRAY_TOLERANCE</span> <span class="mi">1000</span> <span class="c1"># Prevent the widget from refreshing by choosing a high tolerance</span>
+<span class="no">SETTING</span> <span class="no">MIN_GRAY</span> <span class="mi">0</span> <span class="c1"># Set the minimum gray to black</span>
 </code></pre></div></div>
 
 <h3 id="trend_seconds">
@@ -3773,8 +3715,8 @@ SETTING MIN_GRAY 0 <span class="c"># Set the minimum gray to black</span>
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRENDBAR INST HEALTH_STATUS TEMP1
-SETTING TREND_SECONDS 10
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TRENDBAR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+<span class="no">SETTING</span> <span class="no">TREND_SECONDS</span> <span class="mi">10</span>
 </code></pre></div></div>
 
 <h3 id="value_eq">
@@ -3802,8 +3744,8 @@ SETTING TREND_SECONDS 10
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS <span class="s2">"ground"</span> 400 100
-SETTING VALUE_EQ 0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_EQ</span> <span class="mi">0</span>
 </code></pre></div></div>
 
 <h3 id="value_gt">
@@ -3831,8 +3773,8 @@ SETTING VALUE_EQ 0
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 <span class="s2">"ground"</span> 400 100
-SETTING VALUE_GT 10.0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_GT</span> <span class="mf">10.0</span>
 </code></pre></div></div>
 
 <h3 id="value_gteq">
@@ -3860,8 +3802,8 @@ SETTING VALUE_GT 10.0
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 <span class="s2">"ground"</span> 400 100
-SETTING VALUE_GTEQ 10.0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_GTEQ</span> <span class="mf">10.0</span>
 </code></pre></div></div>
 
 <h3 id="value_lt">
@@ -3889,8 +3831,8 @@ SETTING VALUE_GTEQ 10.0
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 <span class="s2">"ground"</span> 400 100
-SETTING VALUE_LT 10.0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_LT</span> <span class="mf">10.0</span>
 </code></pre></div></div>
 
 <h3 id="value_lteq">
@@ -3919,8 +3861,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 <span class="s2">"ground"</span> 400 100
-SETTING VALUE_LTEQ 10.0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_LTEQ</span> <span class="mf">10.0</span>
 </code></pre></div></div>
 
 <h3 id="tlm_and">
@@ -3968,9 +3910,9 @@ SETTING VALUE_LTEQ 10.0
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 <span class="s2">"ground"</span> 400 100
-SETTING VALUE_LTEQ 10.0
-SETTING TLM_AND INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_LTEQ</span> <span class="mf">10.0</span>
+<span class="no">SETTING</span> <span class="no">TLM_AND</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP2</span> <span class="no">VALUE_GT</span> <span class="mf">20.0</span>
 </code></pre></div></div>
 
 <h3 id="tlm_or">
@@ -4018,9 +3960,9 @@ SETTING TLM_AND INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 <span class="s2">"ground"</span> 400 100
-SETTING VALUE_LTEQ 10.0
-SETTING TLM_OR INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span> <span class="s2">"ground"</span> <span class="mi">400</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">VALUE_LTEQ</span> <span class="mf">10.0</span>
+<span class="no">SETTING</span> <span class="no">TLM_OR</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP2</span> <span class="no">VALUE_GT</span> <span class="mf">20.0</span>
 </code></pre></div></div>
 
       </article>

@@ -120,8 +120,8 @@
   <li>
     <p>Start by downloading the latest working version of COSMOS from Github</p>
 
-    <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cd ~
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
 git clone https://github.com/openc3/cosmos.git
 </code></pre></div>    </div>
   </li>
@@ -130,15 +130,15 @@ git clone https://github.com/openc3/cosmos.git
 
     <p>If you are feeling brave, you can run the one large installer script that installs everything in one step:</p>
 
-    <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cd cosmos/examples/hostinstall/centos7
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos/examples/hostinstall/centos7
 ./openc3_install.sh
 </code></pre></div>    </div>
 
     <p>Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:</p>
 
-    <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cd cosmos/examples/hostinstall/centos7
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos/examples/hostinstall/centos7
 ./openc3_install_packages.sh
 ./openc3_install_ruby.sh
 ./openc3_install_redis.sh

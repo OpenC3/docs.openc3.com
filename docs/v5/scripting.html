@@ -300,10 +300,8 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#debugging">Debugging</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#insert_return">insert_return</a></li>
 <li class="toc-entry toc-h3"><a href="#step_mode">step_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#run_mode">run_mode</a></li>
-<li class="toc-entry toc-h3"><a href="#show_backtrace">show_backtrace</a></li>
 <li class="toc-entry toc-h3"><a href="#disconnect_script">disconnect_script</a></li>
 </ul>
 </li>
@@ -936,7 +934,7 @@
     <tr>
       <td>show_backtrace</td>
       <td>Script Runner</td>
-      <td>Unimplemented</td>
+      <td>Deprecated, backtrace always shown</td>
     </tr>
     <tr>
       <td>shutdown_cmd_tlm</td>
@@ -4981,37 +4979,6 @@ Consider breaking code like this into a seperate file and using either require/l
 
 <p>These methods allow the user to debug scripts with ScriptRunner.</p>
 
-<h3 id="insert_return">
-<a class="anchor" href="#insert_return" aria-hidden="true"><span class="octicon octicon-link"></span></a>insert_return</h3>
-
-<p>Inserts a ruby return statement into the currently executing context. This can be used to break out of methods early from the ScriptRunner Debug prompt.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">insert_return</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">return</span> <span class="n">value</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>return value</td>
-      <td>One or more values that are returned from the method</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">insert_return</span><span class="p">()</span>
-<span class="n">insert_return</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</code></pre></div></div>
-
 <h3 id="step_mode">
 <a class="anchor" href="#step_mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>step_mode</h3>
 
@@ -5030,18 +4997,6 @@ Consider breaking code like this into a seperate file and using either require/l
 <p>Syntax / Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">run_mode</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h3 id="show_backtrace">
-<a class="anchor" href="#show_backtrace" aria-hidden="true"><span class="octicon octicon-link"></span></a>show_backtrace</h3>
-
-<p>Makes ScriptRunner print out a backtrace when an error occurs. Also prints out a backtrace for the most recent error.</p>
-
-<p>Syntax / Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show_backtrace</span> <span class="c1"># Shows the backtrace for the latest error</span>
-<span class="n">show_backtrace</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span> <span class="c1"># Enables showing backtrace for every error</span>
-<span class="n">show_backtrace</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span> <span class="c1"># Disables showing backtrace for every error</span>
 </code></pre></div></div>
 
 <h3 id="disconnect_script">

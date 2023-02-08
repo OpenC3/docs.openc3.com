@@ -100,7 +100,7 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#cypress">Cypress</a>
+<li class="toc-entry toc-h2"><a href="#playwright">Playwright</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#prerequesits">Prerequesits</a></li>
 <li class="toc-entry toc-h3"><a href="#playwright-testing">Playwright Testing</a></li>
@@ -110,8 +110,8 @@
 </ul></div>
         
         <h1>Testing COSMOS</h1>
-        <h2 id="cypress">
-<a class="anchor" href="#cypress" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cypress</h2>
+        <h2 id="playwright">
+<a class="anchor" href="#playwright" aria-hidden="true"><span class="octicon octicon-link"></span></a>Playwright</h2>
 
 <h3 id="prerequesits">
 <a class="anchor" href="#prerequesits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequesits</h3>
@@ -155,10 +155,10 @@
     <p>Open COSMOS in your browser. At the login screen, set the password to “password”.</p>
   </li>
   <li>
-    <p>Run tests (Note add the –headed option to visually watch tests)</p>
+    <p>Run tests (Note the –headed option visually displays tests, leave it off to run in the background)</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos-playwright % yarn playwright <span class="nb">test</span> <span class="nt">--project</span><span class="o">=</span>chromium
+<div class="highlight"><pre class="highlight"><code>cosmos-playwright % yarn playwright <span class="nb">test</span> <span class="nt">--project</span><span class="o">=</span>chromium <span class="nt">--headed</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -189,7 +189,8 @@
     <p>Navigate to <strong>cosmos/openc3</strong> folder. Run the command:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos/openc3 % bundle <span class="nb">exec </span>rspec
+<div class="highlight"><pre class="highlight"><code>cosmos/openc3 % rake build
+cosmos/openc3 % bundle <span class="nb">exec </span>rspec
 </code></pre></div>    </div>
   </li>
 </ol>

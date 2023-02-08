@@ -110,30 +110,15 @@
 <li class="toc-entry toc-h1"><a href="#telemetry-keywords">Telemetry Keywords</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#telemetry">TELEMETRY</a></li>
-<li class="toc-entry toc-h2"><a href="#select_telemetry">SELECT_TELEMETRY</a></li>
-<li class="toc-entry toc-h2"><a href="#limits_group">LIMITS_GROUP</a></li>
-<li class="toc-entry toc-h2"><a href="#limits_group_item">LIMITS_GROUP_ITEM</a></li>
 <li class="toc-entry toc-h2"><a href="#telemetry-modifiers">TELEMETRY Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#item">ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#append_item">APPEND_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#id_item">ID_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#append_id_item">APPEND_ID_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#array_item">ARRAY_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#append_array_item">APPEND_ARRAY_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#select_item">SELECT_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#delete_item">DELETE_ITEM</a></li>
-<li class="toc-entry toc-h3"><a href="#meta">META</a></li>
-<li class="toc-entry toc-h3"><a href="#processor">PROCESSOR</a></li>
-<li class="toc-entry toc-h3"><a href="#allow_short">ALLOW_SHORT</a></li>
-<li class="toc-entry toc-h3"><a href="#hidden">HIDDEN</a></li>
-<li class="toc-entry toc-h3"><a href="#accessor">ACCESSOR</a></li>
 <li class="toc-entry toc-h3"><a href="#item-modifiers">ITEM Modifiers</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#format_string">FORMAT_STRING</a></li>
 <li class="toc-entry toc-h4"><a href="#units">UNITS</a></li>
 <li class="toc-entry toc-h4"><a href="#description">DESCRIPTION</a></li>
-<li class="toc-entry toc-h4"><a href="#meta-1">META</a></li>
+<li class="toc-entry toc-h4"><a href="#meta">META</a></li>
 <li class="toc-entry toc-h4"><a href="#overlap">OVERLAP</a></li>
 <li class="toc-entry toc-h4"><a href="#key">KEY</a></li>
 <li class="toc-entry toc-h4"><a href="#state">STATE</a></li>
@@ -146,8 +131,23 @@
 <li class="toc-entry toc-h4"><a href="#limits_response">LIMITS_RESPONSE</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#append_item">APPEND_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#id_item">ID_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#append_id_item">APPEND_ID_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#array_item">ARRAY_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#append_array_item">APPEND_ARRAY_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#select_item">SELECT_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#delete_item">DELETE_ITEM</a></li>
+<li class="toc-entry toc-h3"><a href="#meta-1">META</a></li>
+<li class="toc-entry toc-h3"><a href="#processor">PROCESSOR</a></li>
+<li class="toc-entry toc-h3"><a href="#allow_short">ALLOW_SHORT</a></li>
+<li class="toc-entry toc-h3"><a href="#hidden">HIDDEN</a></li>
+<li class="toc-entry toc-h3"><a href="#accessor">ACCESSOR</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#select_telemetry">SELECT_TELEMETRY</a></li>
+<li class="toc-entry toc-h2"><a href="#limits_group">LIMITS_GROUP</a></li>
+<li class="toc-entry toc-h2"><a href="#limits_group_item">LIMITS_GROUP_ITEM</a></li>
 <li class="toc-entry toc-h2"><a href="#example-file">Example File</a></li>
 </ul>
 </li>
@@ -176,7 +176,7 @@
 
 <p>COSMOS has a concept of a derived item which is a telemetry item that doesn’t actually exist in the binary data. Derived items are typically computed based on other telemetry items. COSMOS derived items are very similar to real items except they use the special DERIVED data type. Here is how a derived item might look in a telemetry definition.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ITEM</span> <span class="no">TEMP_AVERAGE</span> <span class="mi">0</span> <span class="mi">0</span> <span class="no">DERIVED</span> <span class="s2">"Average of TEMP1, TEMP2, TEMP3, TEMP4"</span>
 </code></pre></div></div>
 
 <p>Note the bit offset and bit size of 0 and the data type of DERIVED. For this reason DERIVED items should be declared using ITEM rather than APPEND_ITEM. They can be defined anywhere in the packet definition but are typically placed at the end. The ITEM definition must be followed by a CONVERSION keyword, e.g. <a href="/docs/v5/telemetry#read_conversion">READ_CONVERSION</a>, to generate the value.</p>
@@ -224,101 +224,8 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">TELEMETRY SYSTEM LIMITS_CHANGE BIG_ENDIAN "OpenC3 limits change"</code></pre></figure>
-
-<h2 id="select_telemetry">
-<a class="anchor" href="#select_telemetry" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_TELEMETRY</h2>
-<p><strong>Selects an existing telemetry packet for editing</strong></p>
-
-<p>Typically used in a separate configuration file from where the original telemetry is defined to override or add to the existing telemetry definition</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target this telemetry packet is associated with</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Command Name</td>
-      <td>Name of the telemetry packet to select</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SELECT_TELEMETRY SYSTEM LIMITS_CHANGE</code></pre></figure>
-
-<h2 id="limits_group">
-<a class="anchor" href="#limits_group" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIMITS_GROUP</h2>
-<p><strong>Defines a group of related limits Items</strong></p>
-
-<p>Limits groups contain telemetry items that can be enabled and disabled together. It can be used to group related limits as a subsystem that can be enabled or disabled as that particular subsystem is powered (for example). To enable a group call the enable_limits_group(“NAME”) method in Script Runner. To disable a group call the disable_limits_group(“NAME”) in Script Runner. Items can belong to multiple groups but the last enabled or disabled group “wins”. For example, if an item belongs to GROUP1 and GROUP2 and you first enable GROUP1 and then disable GROUP2 the item will be disabled. If you then enable GROUP1 again it will be enabled.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Group Name</td>
-      <td>Name of the limits group</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="limits_group_item">
-<a class="anchor" href="#limits_group_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIMITS_GROUP_ITEM</h2>
-<p><strong>Adds the specified telemetry item to the last defined LIMITS_GROUP</strong></p>
-
-<p>Limits group information is typically kept in a separate configuration file in the config/TARGET/cmd_tlm folder named limits_groups.txt. If you want to configure multiple target items in a particular group you should put this information in the config/SYSTEM/cmd_tlm/limits_groups.txt file. The SYSTEM target is processed last and contains information that crosses target boundaries.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Target Name</td>
-      <td>Name of the target</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Packet Name</td>
-      <td>Name of the packet</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Name</td>
-      <td>Name of the telemetry item to add to the group</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">LIMITS_GROUP SUBSYSTEM
-  LIMITS_GROUP_ITEM INST HEALTH_STATUS TEMP1
-  LIMITS_GROUP_ITEM INST HEALTH_STATUS TEMP2
-  LIMITS_GROUP_ITEM INST HEALTH_STATUS TEMP3
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">SYSTEM</span> <span class="no">LIMITS_CHANGE</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"OpenC3 limits change"</span>
+</code></pre></div></div>
 
 <h2 id="telemetry-modifiers">
 <a class="anchor" href="#telemetry-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>TELEMETRY Modifiers</h2>
@@ -373,425 +280,9 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ITEM PKTID 112 16 UINT "Packet ID"
-ITEM DATA 0 0 DERIVED "Derived data"
-</code></pre></figure>
-
-<h3 id="append_item">
-<a class="anchor" href="#append_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ITEM</h3>
-<p><strong>Defines a telemetry item in the current telemetry packet</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the telemety item. Must be unique within the packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this telemetry item. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this telemetry item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this telemetry item which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ITEM PKTID 16 UINT "Packet ID"</code></pre></figure>
-
-<h3 id="id_item">
-<a class="anchor" href="#id_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>ID_ITEM</h3>
-<p><strong>Defines a telemetry item in the current telemetry packet. Note, packets defined without one or more ID_ITEMs are “catch-all” packets which will match all incoming data. Normally this is the job of the UNKNOWN packet.</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the telemety item. Must be unique within the packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Offset</td>
-      <td>Bit offset into the telemetry packet of the Most Significant Bit of this item. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived item.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this telemetry item. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this telemetry item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>ID Value</td>
-      <td>The value of this telemetry item that uniquely identifies this telemetry packet</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this telemetry item which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ID_ITEM PKTID 112 16 UINT 1 "Packet ID which must be 1"</code></pre></figure>
-
-<h3 id="append_id_item">
-<a class="anchor" href="#append_id_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ID_ITEM</h3>
-<p><strong>Defines a telemetry item in the current telemetry packet</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the telemety item. Must be unique within the packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this telemetry item. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this telemetry item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>ID Value</td>
-      <td>The value of this telemetry item that uniquely identifies this telemetry packet</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this telemetry item which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ID_ITEM PKTID 16 UINT 1 "Packet ID which must be 1"</code></pre></figure>
-
-<h3 id="array_item">
-<a class="anchor" href="#array_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>ARRAY_ITEM</h3>
-<p><strong>Defines a telemetry item in the current telemetry packet that is an array</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the telemety item. Must be unique within the packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Offset</td>
-      <td>Bit offset into the telemetry packet of the Most Significant Bit of this item. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived item.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Bit Size</td>
-      <td>Bit size of each array item</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Data Type</td>
-      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Array Bit Size</td>
-      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ARRAY_ITEM ARRAY 64 32 FLOAT 320 "Array of 10 floats"</code></pre></figure>
-
-<h3 id="append_array_item">
-<a class="anchor" href="#append_array_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ARRAY_ITEM</h3>
-<p><strong>Defines a telemetry item in the current telemetry packet that is an array</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the telemety item. Must be unique within the packet.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Bit Size</td>
-      <td>Bit size of each array item</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Item Data Type</td>
-      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
-</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Array Bit Size</td>
-      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ARRAY_ITEM ARRAY 32 FLOAT 320 "Array of 10 floats"</code></pre></figure>
-
-<h3 id="select_item">
-<a class="anchor" href="#select_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_ITEM</h3>
-<p><strong>Selects an existing telemetry item for editing</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Item</td>
-      <td>Name of the item to select for modification</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SELECT_TELEMETRY SYSTEM LIMITS_CHANGE
-  SELECT_ITEM ITEM
-</code></pre></figure>
-
-<h3 id="delete_item">
-<a class="anchor" href="#delete_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>DELETE_ITEM</h3>
-<div class="right">(Since 4.4.1)</div>
-<p><strong>Delete an existing telemetry item from the packet definition</strong></p>
-
-<p>Deleting an item from the packet definition does not remove the defined space for that item. Thus unless you redefine a new item, there will be a “hole” in the packet where the data is not accessible. You can use SELECT_TELEMETRY and then ITEM to define a new item.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Item</td>
-      <td>Name of the item to delete</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SELECT_TELEMETRY SYSTEM LIMITS_CHANGE
-  DELETE_ITEM ITEM
-</code></pre></figure>
-
-<h3 id="meta">
-<a class="anchor" href="#meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h3>
-<p><strong>Stores metadata for the current telemetry packet</strong></p>
-
-<p>Meta data is user specific data that can be used by custom tools for various purposes. One example is to store additional information needed to generate source code header files.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Meta Name</td>
-      <td>Name of the metadata to store</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Meta Values</td>
-      <td>One or more values to be stored for this Meta Name</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">META FSW_TYPE "struct tlm_packet"</code></pre></figure>
-
-<h3 id="processor">
-<a class="anchor" href="#processor" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROCESSOR</h3>
-<p><strong>Defines a processor class that executes code every time a packet is received</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Processor Name</td>
-      <td>The name of the processor</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Processor Class Filename</td>
-      <td>Name of the Ruby file which implements the processor. This file should be in the config/TARGET/lib directory so it can be found by OpenC3.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Processor Specific Options</td>
-      <td>Variable length number of options that will be passed to the class constructor.</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">PROCESSOR TEMP1HIGH watermark_processor.rb TEMP1</code></pre></figure>
-
-<h3 id="allow_short">
-<a class="anchor" href="#allow_short" aria-hidden="true"><span class="octicon octicon-link"></span></a>ALLOW_SHORT</h3>
-<p><strong>Process telemetry packets which are less than their defined length</strong></p>
-
-<p>Allows the telemetry packet to be received with a data portion that is smaller than the defined size without warnings. Any extra space in the packet will be filled in with zeros by OpenC3.</p>
-
-<h3 id="hidden">
-<a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h3>
-<p><strong>Hides this telemetry packet from all the OpenC3 tools</strong></p>
-
-<p>This packet will not appear in Packet Viewer, Telemetry Grapher and Handbook Creator. It also hides this telemetry from appearing in the Script Runner popup helper when writing scripts. The telemetry still exists in the system and can received and checked by scripts.</p>
-
-<h3 id="accessor">
-<a class="anchor" href="#accessor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ACCESSOR</h3>
-<div class="right">(Since 5.0.10)</div>
-<p><strong>Defines the class used to read and write raw values from the packet</strong></p>
-
-<p>Defines the class that is used too read raw values from the packet. Defaults to BinaryAccessor. Provided accessors also include JsonAccessor, CborAccessor, HtmlAccessor, and XmlAccessor.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Accessor Class Name</td>
-      <td>The name of the accessor class</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ITEM</span> <span class="no">PKTID</span> <span class="mi">112</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Packet ID"</span>
+<span class="no">ITEM</span> <span class="no">DATA</span> <span class="mi">0</span> <span class="mi">0</span> <span class="no">DERIVED</span> <span class="s2">"Derived data"</span>
+</code></pre></div></div>
 
 <h3 id="item-modifiers">
 <a class="anchor" href="#item-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>ITEM Modifiers</h3>
@@ -819,7 +310,8 @@ ITEM DATA 0 0 DERIVED "Derived data"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">FORMAT_STRING "0x%0X"</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+</code></pre></div></div>
 
 <h4 id="units">
 <a class="anchor" href="#units" aria-hidden="true"><span class="octicon octicon-link"></span></a>UNITS</h4>
@@ -848,9 +340,9 @@ ITEM DATA 0 0 DERIVED "Derived data"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">UNITS Celsius C
-UNITS Kilometers KM
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">UNITS</span> <span class="no">Celsius</span> <span class="no">C</span>
+<span class="no">UNITS</span> <span class="no">Kilometers</span> <span class="no">KM</span>
+</code></pre></div></div>
 
 <h4 id="description">
 <a class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>DESCRIPTION</h4>
@@ -873,8 +365,8 @@ UNITS Kilometers KM
   </tbody>
 </table>
 
-<h4 id="meta-1">
-<a class="anchor" href="#meta-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h4>
+<h4 id="meta">
+<a class="anchor" href="#meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h4>
 <p><strong>Stores custom user metadata</strong></p>
 
 <p>Meta data is user specific data that can be used by custom tools for various purposes. One example is to store additional information needed to generate source code header files.</p>
@@ -902,7 +394,8 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">META TEST "This parameter is for test purposes only"</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">META</span> <span class="no">TEST</span> <span class="s2">"This parameter is for test purposes only"</span>
+</code></pre></div></div>
 
 <h4 id="overlap">
 <a class="anchor" href="#overlap" aria-hidden="true"><span class="octicon octicon-link"></span></a>OVERLAP</h4>
@@ -936,7 +429,8 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">KEY $.book.title</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">KEY</span> <span class="vg">$.</span><span class="n">book</span><span class="p">.</span><span class="nf">title</span>
+</code></pre></div></div>
 
 <h4 id="state">
 <a class="anchor" href="#state" aria-hidden="true"><span class="octicon octicon-link"></span></a>STATE</h4>
@@ -973,15 +467,15 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ITEM ENABLE 32 UINT "Enable setting"
-  STATE FALSE 0
-  STATE TRUE 1
-  STATE ERROR ANY # Match all other values to ERROR
-APPEND_ITEM STRING 1024 STRING "String"
-  STATE "NOOP" "NOOP" GREEN
-  STATE "ARM LASER" "ARM LASER" YELLOW
-  STATE "FIRE LASER" "FIRE LASER" RED
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ITEM</span> <span class="no">ENABLE</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="s2">"Enable setting"</span>
+  <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+  <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+  <span class="no">STATE</span> <span class="no">ERROR</span> <span class="no">ANY</span> <span class="c1"># Match all other values to ERROR</span>
+<span class="no">APPEND_ITEM</span> <span class="no">STRING</span> <span class="mi">1024</span> <span class="no">STRING</span> <span class="s2">"String"</span>
+  <span class="no">STATE</span> <span class="s2">"NOOP"</span> <span class="s2">"NOOP"</span> <span class="no">GREEN</span>
+  <span class="no">STATE</span> <span class="s2">"ARM LASER"</span> <span class="s2">"ARM LASER"</span> <span class="no">YELLOW</span>
+  <span class="no">STATE</span> <span class="s2">"FIRE LASER"</span> <span class="s2">"FIRE LASER"</span> <span class="no">RED</span>
+</code></pre></div></div>
 
 <h4 id="read_conversion">
 <a class="anchor" href="#read_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>READ_CONVERSION</h4>
@@ -1012,23 +506,23 @@ APPEND_ITEM STRING 1024 STRING "String"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">READ_CONVERSION the_great_conversion.rb 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">READ_CONVERSION</span> <span class="n">the_great_conversion</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">1000</span>
 
-Defined in the_great_conversion.rb:
+<span class="no">Defined</span> <span class="k">in</span> <span class="n">the_great_conversion</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span>
 
-require 'openc3/conversions/conversion'
-module OpenC3
-  class TheGreatConversion &lt; Conversion
-    def initialize(multiplier)
-      super()
-      @multiplier = multiplier.to_f
-    end
-    def call(value, packet, buffer)
-      return value * multiplier
-    end
-  end
-end
-</code></pre></figure>
+<span class="nb">require</span> <span class="s1">'openc3/conversions/conversion'</span>
+<span class="k">module</span> <span class="nn">OpenC3</span>
+  <span class="k">class</span> <span class="nc">TheGreatConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">multiplier</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">()</span>
+      <span class="vi">@multiplier</span> <span class="o">=</span> <span class="n">multiplier</span><span class="p">.</span><span class="nf">to_f</span>
+    <span class="k">end</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h4 id="poly_read_conversion">
 <a class="anchor" href="#poly_read_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>POLY_READ_CONVERSION</h4>
@@ -1059,7 +553,8 @@ end
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">POLY_READ_CONVERSION 10 0.5 0.25</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">POLY_READ_CONVERSION</span> <span class="mi">10</span> <span class="mf">0.5</span> <span class="mf">0.25</span>
+</code></pre></div></div>
 
 <h4 id="seg_poly_read_conversion">
 <a class="anchor" href="#seg_poly_read_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>SEG_POLY_READ_CONVERSION</h4>
@@ -1095,10 +590,10 @@ end
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SEG_POLY_READ_CONVERSION 0 10 0.5 0.25 # Apply the conversion to all values &lt; 50
-SEG_POLY_READ_CONVERSION 50 11 0.5 0.275 # Apply the conversion to all values &gt;= 50 and &lt; 100
-SEG_POLY_READ_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &gt;= 100
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SEG_POLY_READ_CONVERSION</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mf">0.5</span> <span class="mf">0.25</span> <span class="c1"># Apply the conversion to all values &lt; 50</span>
+<span class="no">SEG_POLY_READ_CONVERSION</span> <span class="mi">50</span> <span class="mi">11</span> <span class="mf">0.5</span> <span class="mf">0.275</span> <span class="c1"># Apply the conversion to all values &gt;= 50 and &lt; 100</span>
+<span class="no">SEG_POLY_READ_CONVERSION</span> <span class="mi">100</span> <span class="mi">12</span> <span class="mf">0.5</span> <span class="mf">0.3</span> <span class="c1"># Apply the conversion to all values &gt;= 100</span>
+</code></pre></div></div>
 
 <h4 id="generic_read_conversion_start">
 <a class="anchor" href="#generic_read_conversion_start" aria-hidden="true"><span class="octicon octicon-link"></span></a>GENERIC_READ_CONVERSION_START</h4>
@@ -1132,11 +627,11 @@ SEG_POLY_READ_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &gt
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_ITEM ITEM1 32 UINT
-  GENERIC_READ_CONVERSION_START
-    value * 1.5  # Convert the value by a scale factor
-  GENERIC_READ_CONVERSION_END
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ITEM</span> <span class="no">ITEM1</span> <span class="mi">32</span> <span class="no">UINT</span>
+  <span class="no">GENERIC_READ_CONVERSION_START</span>
+    <span class="n">value</span> <span class="o">*</span> <span class="mf">1.5</span>  <span class="c1"># Convert the value by a scale factor</span>
+  <span class="no">GENERIC_READ_CONVERSION_END</span>
+</code></pre></div></div>
 
 <h4 id="generic_read_conversion_end">
 <a class="anchor" href="#generic_read_conversion_end" aria-hidden="true"><span class="octicon octicon-link"></span></a>GENERIC_READ_CONVERSION_END</h4>
@@ -1207,9 +702,9 @@ SEG_POLY_READ_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &gt
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">LIMITS DEFAULT 3 ENABLED -80.0 -70.0 60.0 80.0 -20.0 20.0
-LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LIMITS</span> <span class="no">DEFAULT</span> <span class="mi">3</span> <span class="no">ENABLED</span> <span class="o">-</span><span class="mf">80.0</span> <span class="o">-</span><span class="mf">70.0</span> <span class="mf">60.0</span> <span class="mf">80.0</span> <span class="o">-</span><span class="mf">20.0</span> <span class="mf">20.0</span>
+<span class="no">LIMITS</span> <span class="no">TVAC</span> <span class="mi">3</span> <span class="no">ENABLED</span> <span class="o">-</span><span class="mf">80.0</span> <span class="o">-</span><span class="mf">30.0</span> <span class="mf">30.0</span> <span class="mf">80.0</span>
+</code></pre></div></div>
 
 <h4 id="limits_response">
 <a class="anchor" href="#limits_response" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIMITS_RESPONSE</h4>
@@ -1238,7 +733,526 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">LIMITS_RESPONSE example_limits_response.rb 10</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LIMITS_RESPONSE</span> <span class="n">example_limits_response</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<h3 id="append_item">
+<a class="anchor" href="#append_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ITEM</h3>
+<p><strong>Defines a telemetry item in the current telemetry packet</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the telemety item. Must be unique within the packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this telemetry item. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this telemetry item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this telemetry item which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ITEM</span> <span class="no">PKTID</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Packet ID"</span>
+</code></pre></div></div>
+
+<h3 id="id_item">
+<a class="anchor" href="#id_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>ID_ITEM</h3>
+<p><strong>Defines a telemetry item in the current telemetry packet. Note, packets defined without one or more ID_ITEMs are “catch-all” packets which will match all incoming data. Normally this is the job of the UNKNOWN packet.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the telemety item. Must be unique within the packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Offset</td>
+      <td>Bit offset into the telemetry packet of the Most Significant Bit of this item. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived item.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this telemetry item. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this telemetry item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>ID Value</td>
+      <td>The value of this telemetry item that uniquely identifies this telemetry packet</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this telemetry item which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ID_ITEM</span> <span class="no">PKTID</span> <span class="mi">112</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="s2">"Packet ID which must be 1"</span>
+</code></pre></div></div>
+
+<h3 id="append_id_item">
+<a class="anchor" href="#append_id_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ID_ITEM</h3>
+<p><strong>Defines a telemetry item in the current telemetry packet</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the telemety item. Must be unique within the packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this telemetry item. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this telemetry item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>ID Value</td>
+      <td>The value of this telemetry item that uniquely identifies this telemetry packet</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this telemetry item which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the item is to be interpreted in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ID_ITEM</span> <span class="no">PKTID</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="s2">"Packet ID which must be 1"</span>
+</code></pre></div></div>
+
+<h3 id="array_item">
+<a class="anchor" href="#array_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>ARRAY_ITEM</h3>
+<p><strong>Defines a telemetry item in the current telemetry packet that is an array</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the telemety item. Must be unique within the packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Offset</td>
+      <td>Bit offset into the telemetry packet of the Most Significant Bit of this item. May be negative to indicate on offset from the end of the packet. Always use a bit offset of 0 for derived item.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Bit Size</td>
+      <td>Bit size of each array item</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Data Type</td>
+      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Array Bit Size</td>
+      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ARRAY_ITEM</span> <span class="no">ARRAY</span> <span class="mi">64</span> <span class="mi">32</span> <span class="no">FLOAT</span> <span class="mi">320</span> <span class="s2">"Array of 10 floats"</span>
+</code></pre></div></div>
+
+<h3 id="append_array_item">
+<a class="anchor" href="#append_array_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_ARRAY_ITEM</h3>
+<p><strong>Defines a telemetry item in the current telemetry packet that is an array</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the telemety item. Must be unique within the packet.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Bit Size</td>
+      <td>Bit size of each array item</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Data Type</td>
+      <td>Data Type of each array item<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, STRING, BLOCK, DERIVED</span>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Array Bit Size</td>
+      <td>Total Bit Size of the Array. Zero or Negative values may be used to indicate the array fills the packet up to the offset from the end of the packet specified by this value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ARRAY_ITEM</span> <span class="no">ARRAY</span> <span class="mi">32</span> <span class="no">FLOAT</span> <span class="mi">320</span> <span class="s2">"Array of 10 floats"</span>
+</code></pre></div></div>
+
+<h3 id="select_item">
+<a class="anchor" href="#select_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_ITEM</h3>
+<p><strong>Selects an existing telemetry item for editing</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Item</td>
+      <td>Name of the item to select for modification</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_TELEMETRY</span> <span class="no">SYSTEM</span> <span class="no">LIMITS_CHANGE</span>
+  <span class="no">SELECT_ITEM</span> <span class="no">ITEM</span>
+</code></pre></div></div>
+
+<h3 id="delete_item">
+<a class="anchor" href="#delete_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>DELETE_ITEM</h3>
+<div class="right">(Since 4.4.1)</div>
+<p><strong>Delete an existing telemetry item from the packet definition</strong></p>
+
+<p>Deleting an item from the packet definition does not remove the defined space for that item. Thus unless you redefine a new item, there will be a “hole” in the packet where the data is not accessible. You can use SELECT_TELEMETRY and then ITEM to define a new item.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Item</td>
+      <td>Name of the item to delete</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_TELEMETRY</span> <span class="no">SYSTEM</span> <span class="no">LIMITS_CHANGE</span>
+  <span class="no">DELETE_ITEM</span> <span class="no">ITEM</span>
+</code></pre></div></div>
+
+<h3 id="meta-1">
+<a class="anchor" href="#meta-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>META</h3>
+<p><strong>Stores metadata for the current telemetry packet</strong></p>
+
+<p>Meta data is user specific data that can be used by custom tools for various purposes. One example is to store additional information needed to generate source code header files.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Meta Name</td>
+      <td>Name of the metadata to store</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Meta Values</td>
+      <td>One or more values to be stored for this Meta Name</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">META</span> <span class="no">FSW_TYPE</span> <span class="s2">"struct tlm_packet"</span>
+</code></pre></div></div>
+
+<h3 id="processor">
+<a class="anchor" href="#processor" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROCESSOR</h3>
+<p><strong>Defines a processor class that executes code every time a packet is received</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Processor Name</td>
+      <td>The name of the processor</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Processor Class Filename</td>
+      <td>Name of the Ruby file which implements the processor. This file should be in the config/TARGET/lib directory so it can be found by OpenC3.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Processor Specific Options</td>
+      <td>Variable length number of options that will be passed to the class constructor.</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">PROCESSOR</span> <span class="no">TEMP1HIGH</span> <span class="n">watermark_processor</span><span class="p">.</span><span class="nf">rb</span> <span class="no">TEMP1</span>
+</code></pre></div></div>
+
+<h3 id="allow_short">
+<a class="anchor" href="#allow_short" aria-hidden="true"><span class="octicon octicon-link"></span></a>ALLOW_SHORT</h3>
+<p><strong>Process telemetry packets which are less than their defined length</strong></p>
+
+<p>Allows the telemetry packet to be received with a data portion that is smaller than the defined size without warnings. Any extra space in the packet will be filled in with zeros by OpenC3.</p>
+
+<h3 id="hidden">
+<a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h3>
+<p><strong>Hides this telemetry packet from all the OpenC3 tools</strong></p>
+
+<p>This packet will not appear in Packet Viewer, Telemetry Grapher and Handbook Creator. It also hides this telemetry from appearing in the Script Runner popup helper when writing scripts. The telemetry still exists in the system and can received and checked by scripts.</p>
+
+<h3 id="accessor">
+<a class="anchor" href="#accessor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ACCESSOR</h3>
+<div class="right">(Since 5.0.10)</div>
+<p><strong>Defines the class used to read and write raw values from the packet</strong></p>
+
+<p>Defines the class that is used too read raw values from the packet. Defaults to BinaryAccessor. Provided accessors also include JsonAccessor, CborAccessor, HtmlAccessor, and XmlAccessor.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Accessor Class Name</td>
+      <td>The name of the accessor class</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="select_telemetry">
+<a class="anchor" href="#select_telemetry" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_TELEMETRY</h2>
+<p><strong>Selects an existing telemetry packet for editing</strong></p>
+
+<p>Typically used in a separate configuration file from where the original telemetry is defined to override or add to the existing telemetry definition</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Name of the target this telemetry packet is associated with</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Command Name</td>
+      <td>Name of the telemetry packet to select</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_TELEMETRY</span> <span class="no">SYSTEM</span> <span class="no">LIMITS_CHANGE</span>
+</code></pre></div></div>
+
+<h2 id="limits_group">
+<a class="anchor" href="#limits_group" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIMITS_GROUP</h2>
+<p><strong>Defines a group of related limits Items</strong></p>
+
+<p>Limits groups contain telemetry items that can be enabled and disabled together. It can be used to group related limits as a subsystem that can be enabled or disabled as that particular subsystem is powered (for example). To enable a group call the enable_limits_group(“NAME”) method in Script Runner. To disable a group call the disable_limits_group(“NAME”) in Script Runner. Items can belong to multiple groups but the last enabled or disabled group “wins”. For example, if an item belongs to GROUP1 and GROUP2 and you first enable GROUP1 and then disable GROUP2 the item will be disabled. If you then enable GROUP1 again it will be enabled.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Group Name</td>
+      <td>Name of the limits group</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="limits_group_item">
+<a class="anchor" href="#limits_group_item" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIMITS_GROUP_ITEM</h2>
+<p><strong>Adds the specified telemetry item to the last defined LIMITS_GROUP</strong></p>
+
+<p>Limits group information is typically kept in a separate configuration file in the config/TARGET/cmd_tlm folder named limits_groups.txt. If you want to configure multiple target items in a particular group you should put this information in the config/SYSTEM/cmd_tlm/limits_groups.txt file. The SYSTEM target is processed last and contains information that crosses target boundaries.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Name of the target</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Packet Name</td>
+      <td>Name of the packet</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Item Name</td>
+      <td>Name of the telemetry item to add to the group</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LIMITS_GROUP</span> <span class="no">SUBSYSTEM</span>
+  <span class="no">LIMITS_GROUP_ITEM</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP1</span>
+  <span class="no">LIMITS_GROUP_ITEM</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP2</span>
+  <span class="no">LIMITS_GROUP_ITEM</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">TEMP3</span>
+</code></pre></div></div>
 
 <h2 id="example-file">
 <a class="anchor" href="#example-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example File</h2>
@@ -1246,42 +1260,42 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
 <p><strong>Example File: TARGET/cmd_tlm/tlm.txt</strong></p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY TARGET HS BIG_ENDIAN <span class="s2">"Health and Status for My Target"</span>
-  ITEM CCSDSVER 0 3 UINT <span class="s2">"CCSDS PACKET VERSION NUMBER (SEE CCSDS 133.0-B-1)"</span>
-  ITEM CCSDSTYPE 3 1 UINT <span class="s2">"CCSDS PACKET TYPE (COMMAND OR TELEMETRY)"</span>
-    STATE TLM 0
-    STATE CMD 1
-  ITEM CCSDSSHF 4 1 UINT <span class="s2">"CCSDS SECONDARY HEADER FLAG"</span>
-    STATE FALSE 0
-    STATE TRUE 1
-  ID_ITEM CCSDSAPID 5 11 UINT 102 <span class="s2">"CCSDS APPLICATION PROCESS ID"</span>
-  ITEM CCSDSSEQFLAGS 16 2 UINT <span class="s2">"CCSDS SEQUENCE FLAGS"</span>
-    STATE FIRST 0
-    STATE CONT 1
-    STATE LAST 2
-    STATE NOGROUP 3
-  ITEM CCSDSSEQCNT 18 14 UINT <span class="s2">"CCSDS PACKET SEQUENCE COUNT"</span>
-  ITEM CCSDSLENGTH 32 16 UINT <span class="s2">"CCSDS PACKET DATA LENGTH"</span>
-  ITEM CCSDSDAY 48 16 UINT <span class="s2">"DAYS SINCE EPOCH (JANUARY 1ST, 1958, MIDNIGHT)"</span>
-  ITEM CCSDSMSOD 64 32 UINT <span class="s2">"MILLISECONDS OF DAY (0 - 86399999)"</span>
-  ITEM CCSDSUSOMS 96 16 UINT <span class="s2">"MICROSECONDS OF MILLISECOND (0-999)"</span>
-  ITEM ANGLEDEG 112 16 INT <span class="s2">"Instrument Angle in Degrees"</span>
-    POLY_READ_CONVERSION 0 57.295
-  ITEM MODE 128 8 UINT <span class="s2">"Instrument Mode"</span>
-    STATE NORMAL 0 GREEN
-    STATE DIAG 1 YELLOW
-  MACRO_APPEND_START 1 5
-    APPEND_ITEM SETTING 16 UINT <span class="s2">"SETTING #x"</span>
-  MACRO_APPEND_END
-  ITEM TIMESECONDS 0 0 DERIVED <span class="s2">"DERIVED TIME SINCE EPOCH IN SECONDS"</span>
-    GENERIC_READ_CONVERSION_START FLOAT 32
-      <span class="o">((</span>packet.read<span class="o">(</span><span class="s1">'ccsdsday'</span><span class="o">)</span> <span class="se">\*</span> 86400.0<span class="o">)</span> + <span class="o">(</span>packet.read<span class="o">(</span><span class="s1">'ccsdsmsod'</span><span class="o">)</span> / 1000.0<span class="o">)</span> + <span class="o">(</span>packet.read<span class="o">(</span><span class="s1">'ccsdsusoms'</span><span class="o">)</span> / 1000000.0<span class="o">)</span>  <span class="o">)</span>
-    GENERIC_READ_CONVERSION_END
-  ITEM TIMEFORMATTED 0 0 DERIVED <span class="s2">"DERIVED TIME SINCE EPOCH AS A FORMATTED STRING"</span>
-    GENERIC_READ_CONVERSION_START STRING 216
-      <span class="nb">time</span> <span class="o">=</span> Time.ccsds2mdy<span class="o">(</span>packet.read<span class="o">(</span><span class="s1">'ccsdsday'</span><span class="o">)</span>, packet.read<span class="o">(</span><span class="s1">'ccsdsmsod'</span><span class="o">)</span>, packet.read<span class="o">(</span><span class="s1">'ccsdsusoms'</span><span class="o">))</span>
-      sprintf<span class="o">(</span><span class="s1">'%04u/%02u/%02u %02u:%02u:%02u.%06u'</span>, <span class="nb">time</span><span class="o">[</span>0], <span class="nb">time</span><span class="o">[</span>1], <span class="nb">time</span><span class="o">[</span>2], <span class="nb">time</span><span class="o">[</span>3], <span class="nb">time</span><span class="o">[</span>4], <span class="nb">time</span><span class="o">[</span>5], <span class="nb">time</span><span class="o">[</span>6]<span class="o">)</span>
-    GENERIC_READ_CONVERSION_END
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">TARGET</span> <span class="no">HS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Health and Status for My Target"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSVER</span> <span class="mi">0</span> <span class="mi">3</span> <span class="no">UINT</span> <span class="s2">"CCSDS PACKET VERSION NUMBER (SEE CCSDS 133.0-B-1)"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSTYPE</span> <span class="mi">3</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="s2">"CCSDS PACKET TYPE (COMMAND OR TELEMETRY)"</span>
+    <span class="no">STATE</span> <span class="no">TLM</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">CMD</span> <span class="mi">1</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSSHF</span> <span class="mi">4</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="s2">"CCSDS SECONDARY HEADER FLAG"</span>
+    <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+  <span class="no">ID_ITEM</span> <span class="no">CCSDSAPID</span> <span class="mi">5</span> <span class="mi">11</span> <span class="no">UINT</span> <span class="mi">102</span> <span class="s2">"CCSDS APPLICATION PROCESS ID"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSSEQFLAGS</span> <span class="mi">16</span> <span class="mi">2</span> <span class="no">UINT</span> <span class="s2">"CCSDS SEQUENCE FLAGS"</span>
+    <span class="no">STATE</span> <span class="no">FIRST</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">CONT</span> <span class="mi">1</span>
+    <span class="no">STATE</span> <span class="no">LAST</span> <span class="mi">2</span>
+    <span class="no">STATE</span> <span class="no">NOGROUP</span> <span class="mi">3</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSSEQCNT</span> <span class="mi">18</span> <span class="mi">14</span> <span class="no">UINT</span> <span class="s2">"CCSDS PACKET SEQUENCE COUNT"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSLENGTH</span> <span class="mi">32</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"CCSDS PACKET DATA LENGTH"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSDAY</span> <span class="mi">48</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"DAYS SINCE EPOCH (JANUARY 1ST, 1958, MIDNIGHT)"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSMSOD</span> <span class="mi">64</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="s2">"MILLISECONDS OF DAY (0 - 86399999)"</span>
+  <span class="no">ITEM</span> <span class="no">CCSDSUSOMS</span> <span class="mi">96</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"MICROSECONDS OF MILLISECOND (0-999)"</span>
+  <span class="no">ITEM</span> <span class="no">ANGLEDEG</span> <span class="mi">112</span> <span class="mi">16</span> <span class="no">INT</span> <span class="s2">"Instrument Angle in Degrees"</span>
+    <span class="no">POLY_READ_CONVERSION</span> <span class="mi">0</span> <span class="mf">57.295</span>
+  <span class="no">ITEM</span> <span class="no">MODE</span> <span class="mi">128</span> <span class="mi">8</span> <span class="no">UINT</span> <span class="s2">"Instrument Mode"</span>
+    <span class="no">STATE</span> <span class="no">NORMAL</span> <span class="mi">0</span> <span class="no">GREEN</span>
+    <span class="no">STATE</span> <span class="no">DIAG</span> <span class="mi">1</span> <span class="no">YELLOW</span>
+  <span class="no">MACRO_APPEND_START</span> <span class="mi">1</span> <span class="mi">5</span>
+    <span class="no">APPEND_ITEM</span> <span class="no">SETTING</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"SETTING #x"</span>
+  <span class="no">MACRO_APPEND_END</span>
+  <span class="no">ITEM</span> <span class="no">TIMESECONDS</span> <span class="mi">0</span> <span class="mi">0</span> <span class="no">DERIVED</span> <span class="s2">"DERIVED TIME SINCE EPOCH IN SECONDS"</span>
+    <span class="no">GENERIC_READ_CONVERSION_START</span> <span class="no">FLOAT</span> <span class="mi">32</span>
+      <span class="p">((</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsday'</span><span class="p">)</span> <span class="o">*</span> <span class="mf">86400.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsmsod'</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsusoms'</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000000.0</span><span class="p">)</span>  <span class="p">)</span>
+    <span class="no">GENERIC_READ_CONVERSION_END</span>
+  <span class="no">ITEM</span> <span class="no">TIMEFORMATTED</span> <span class="mi">0</span> <span class="mi">0</span> <span class="no">DERIVED</span> <span class="s2">"DERIVED TIME SINCE EPOCH AS A FORMATTED STRING"</span>
+    <span class="no">GENERIC_READ_CONVERSION_START</span> <span class="no">STRING</span> <span class="mi">216</span>
+      <span class="n">time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">ccsds2mdy</span><span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsday'</span><span class="p">),</span> <span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsmsod'</span><span class="p">),</span> <span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsusoms'</span><span class="p">))</span>
+      <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%04u/%02u/%02u %02u:%02u:%02u.%06u'</span><span class="p">,</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+    <span class="no">GENERIC_READ_CONVERSION_END</span>
 </code></pre></div></div>
 
       </article>

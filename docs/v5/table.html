@@ -105,12 +105,9 @@
 <ul>
 <li class="toc-entry toc-h2"><a href="#tablefile">TABLEFILE</a></li>
 <li class="toc-entry toc-h2"><a href="#table">TABLE</a></li>
-<li class="toc-entry toc-h2"><a href="#select_table">SELECT_TABLE</a></li>
-<li class="toc-entry toc-h2"><a href="#default">DEFAULT</a></li>
 <li class="toc-entry toc-h2"><a href="#table-modifiers">TABLE Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#parameter">PARAMETER</a></li>
-<li class="toc-entry toc-h3"><a href="#append_parameter">APPEND_PARAMETER</a></li>
 <li class="toc-entry toc-h3"><a href="#parameter-modifiers">PARAMETER Modifiers</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#format_string">FORMAT_STRING</a></li>
@@ -142,8 +139,11 @@
 <li class="toc-entry toc-h4"><a href="#uneditable">UNEDITABLE</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#append_parameter">APPEND_PARAMETER</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#select_table">SELECT_TABLE</a></li>
+<li class="toc-entry toc-h2"><a href="#default">DEFAULT</a></li>
 <li class="toc-entry toc-h2"><a href="#example-file">Example File</a></li>
 </ul>
 </li>
@@ -246,50 +246,6 @@
   </tbody>
 </table>
 
-<h2 id="select_table">
-<a class="anchor" href="#select_table" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_TABLE</h2>
-<p><strong>Select an existing table for editing, typically done to override an existing definition</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Table</td>
-      <td>The name of the existin table</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="default">
-<a class="anchor" href="#default" aria-hidden="true"><span class="octicon octicon-link"></span></a>DEFAULT</h2>
-<p><strong>Specify default values for a SINGLE row in a multi-column table</strong></p>
-
-<p>If you have multiple rows you need a DEFAULT line for each row. If all your rows are identical consider using ERB as shown in the OpenC3 demo.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Default values</td>
-      <td>A STATE value or data value corresponding to the data type</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
 <h2 id="table-modifiers">
 <a class="anchor" href="#table-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>TABLE Modifiers</h2>
 <p>The following keywords must follow a TABLE keyword.</p>
@@ -315,94 +271,6 @@
     <tr>
       <td>Bit Offset</td>
       <td>Bit offset into the table of the Most Significant Bit of this parameter. May be negative to indicate on offset from the end of the table. Always use a bit offset of 0 for derived parameters.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Data Type</td>
-      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
-</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Minimum Value</td>
-      <td>Minimum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Maximum Value</td>
-      <td>Maximum allowed value for this parameter</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Default Value</td>
-      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Default Value</td>
-      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td>Description for this parameter which must be enclosed with quotes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <td>Endianness</td>
-      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
-</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="append_parameter">
-<a class="anchor" href="#append_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_PARAMETER</h3>
-<p><strong>Defines a parameter in the current table</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Name of the parameter. Must be unique within the table.</td>
       <td>True</td>
     </tr>
     <tr>
@@ -501,7 +369,8 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">FORMAT_STRING "0x%0X"</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+</code></pre></div></div>
 
 <h4 id="units">
 <a class="anchor" href="#units" aria-hidden="true"><span class="octicon octicon-link"></span></a>UNITS</h4>
@@ -530,9 +399,9 @@
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">UNITS Celsius C
-UNITS Kilometers KM
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">UNITS</span> <span class="no">Celsius</span> <span class="no">C</span>
+<span class="no">UNITS</span> <span class="no">Kilometers</span> <span class="no">KM</span>
+</code></pre></div></div>
 
 <h4 id="description">
 <a class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>DESCRIPTION</h4>
@@ -584,7 +453,8 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">META TEST "This parameter is for test purposes only"</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">META</span> <span class="no">TEST</span> <span class="s2">"This parameter is for test purposes only"</span>
+</code></pre></div></div>
 
 <h4 id="overlap">
 <a class="anchor" href="#overlap" aria-hidden="true"><span class="octicon octicon-link"></span></a>OVERLAP</h4>
@@ -618,7 +488,8 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">KEY $.book.title</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">KEY</span> <span class="vg">$.</span><span class="n">book</span><span class="p">.</span><span class="nf">title</span>
+</code></pre></div></div>
 
 <h4 id="required">
 <a class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRED</h4>
@@ -729,14 +600,14 @@ UNITS Kilometers KM
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_PARAMETER ENABLE 32 UINT 0 1 0 "Enable setting"
-  STATE FALSE 0
-  STATE TRUE 1
-APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
-  STATE "NOOP" "NOOP" DISABLE_MESSAGES
-  STATE "ARM LASER" "ARM LASER" HAZARDOUS "Arming the laser is an eye safety hazard"
-  STATE "FIRE LASER" "FIRE LASER" HAZARDOUS "WARNING! Laser will be fired!"
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_PARAMETER</span> <span class="no">ENABLE</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="s2">"Enable setting"</span>
+  <span class="no">STATE</span> <span class="no">FALSE</span> <span class="mi">0</span>
+  <span class="no">STATE</span> <span class="no">TRUE</span> <span class="mi">1</span>
+<span class="no">APPEND_PARAMETER</span> <span class="no">STRING</span> <span class="mi">1024</span> <span class="no">STRING</span> <span class="s2">"NOOP"</span> <span class="s2">"String parameter"</span>
+  <span class="no">STATE</span> <span class="s2">"NOOP"</span> <span class="s2">"NOOP"</span> <span class="no">DISABLE_MESSAGES</span>
+  <span class="no">STATE</span> <span class="s2">"ARM LASER"</span> <span class="s2">"ARM LASER"</span> <span class="no">HAZARDOUS</span> <span class="s2">"Arming the laser is an eye safety hazard"</span>
+  <span class="no">STATE</span> <span class="s2">"FIRE LASER"</span> <span class="s2">"FIRE LASER"</span> <span class="no">HAZARDOUS</span> <span class="s2">"WARNING! Laser will be fired!"</span>
+</code></pre></div></div>
 
 <h4 id="write_conversion">
 <a class="anchor" href="#write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>WRITE_CONVERSION</h4>
@@ -769,23 +640,23 @@ APPEND_PARAMETER STRING 1024 STRING "NOOP" "String parameter"
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">WRITE_CONVERSION the_great_conversion.rb 1000
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">WRITE_CONVERSION</span> <span class="n">the_great_conversion</span><span class="p">.</span><span class="nf">rb</span> <span class="mi">1000</span>
 
-Defined in the_great_conversion.rb:
+<span class="no">Defined</span> <span class="k">in</span> <span class="n">the_great_conversion</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span>
 
-require 'openc3/conversions/conversion'
-module OpenC3
-  class TheGreatConversion &lt; Conversion
-    def initialize(multiplier)
-      super()
-      @multiplier = multiplier.to_f
-    end
-    def call(value, packet, buffer)
-      return value * multiplier
-    end
-  end
-end
-</code></pre></figure>
+<span class="nb">require</span> <span class="s1">'openc3/conversions/conversion'</span>
+<span class="k">module</span> <span class="nn">OpenC3</span>
+  <span class="k">class</span> <span class="nc">TheGreatConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">multiplier</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">()</span>
+      <span class="vi">@multiplier</span> <span class="o">=</span> <span class="n">multiplier</span><span class="p">.</span><span class="nf">to_f</span>
+    <span class="k">end</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">multiplier</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h4 id="poly_write_conversion">
 <a class="anchor" href="#poly_write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>POLY_WRITE_CONVERSION</h4>
@@ -816,7 +687,8 @@ end
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">POLY_WRITE_CONVERSION 10 0.5 0.25</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">POLY_WRITE_CONVERSION</span> <span class="mi">10</span> <span class="mf">0.5</span> <span class="mf">0.25</span>
+</code></pre></div></div>
 
 <h4 id="seg_poly_write_conversion">
 <a class="anchor" href="#seg_poly_write_conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>SEG_POLY_WRITE_CONVERSION</h4>
@@ -852,10 +724,10 @@ end
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">SEG_POLY_WRITE_CONVERSION 0 10 0.5 0.25 # Apply the conversion to all values &lt; 50
-SEG_POLY_WRITE_CONVERSION 50 11 0.5 0.275 # Apply the conversion to all values &gt;= 50 and &lt; 100
-SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &gt;= 100
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SEG_POLY_WRITE_CONVERSION</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mf">0.5</span> <span class="mf">0.25</span> <span class="c1"># Apply the conversion to all values &lt; 50</span>
+<span class="no">SEG_POLY_WRITE_CONVERSION</span> <span class="mi">50</span> <span class="mi">11</span> <span class="mf">0.5</span> <span class="mf">0.275</span> <span class="c1"># Apply the conversion to all values &gt;= 50 and &lt; 100</span>
+<span class="no">SEG_POLY_WRITE_CONVERSION</span> <span class="mi">100</span> <span class="mi">12</span> <span class="mf">0.5</span> <span class="mf">0.3</span> <span class="c1"># Apply the conversion to all values &gt;= 100</span>
+</code></pre></div></div>
 
 <h4 id="generic_write_conversion_start">
 <a class="anchor" href="#generic_write_conversion_start" aria-hidden="true"><span class="octicon octicon-link"></span></a>GENERIC_WRITE_CONVERSION_START</h4>
@@ -868,11 +740,11 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 <div class="note warning"><p>Generic conversions are not a good long term solution. Consider creating a conversion class and using WRITE_CONVERSION instead. WRITE_CONVERSION is easier to debug and higher performance.</p></div>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">APPEND_PARAMETER ITEM1 32 UINT 0 0xFFFFFFFF 0
-  GENERIC_WRITE_CONVERSION_START
-    (value * 1.5).to_i # Convert the value by a scale factor
-  GENERIC_WRITE_CONVERSION_END
-</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_PARAMETER</span> <span class="no">ITEM1</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0xFFFFFFFF</span> <span class="mi">0</span>
+  <span class="no">GENERIC_WRITE_CONVERSION_START</span>
+    <span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">).</span><span class="nf">to_i</span> <span class="c1"># Convert the value by a scale factor</span>
+  <span class="no">GENERIC_WRITE_CONVERSION_END</span>
+</code></pre></div></div>
 
 <h4 id="generic_write_conversion_end">
 <a class="anchor" href="#generic_write_conversion_end" aria-hidden="true"><span class="octicon octicon-link"></span></a>GENERIC_WRITE_CONVERSION_END</h4>
@@ -903,7 +775,8 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 </table>
 
 <p>Example Usage:</p>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">OVERFLOW TRUNCATE</code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">OVERFLOW</span> <span class="no">TRUNCATE</span>
+</code></pre></div></div>
 
 <h4 id="hidden">
 <a class="anchor" href="#hidden" aria-hidden="true"><span class="octicon octicon-link"></span></a>HIDDEN</h4>
@@ -917,40 +790,172 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 
 <p>Uneditable parameters are useful for control fields which the user may be interested in but should not be able to edit.</p>
 
+<h3 id="append_parameter">
+<a class="anchor" href="#append_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>APPEND_PARAMETER</h3>
+<p><strong>Defines a parameter in the current table</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Name of the parameter. Must be unique within the table.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Bit Size</td>
+      <td>Bit size of this parameter. Zero or Negative values may be used to indicate that a string fills the packet up to the offset from the end of the packet specified by this value. If Bit Offset is 0 and Bit Size is 0 then this is a derived parameter and the Data Type must be set to ‘DERIVED’.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Data Type</td>
+      <td>Data Type of this parameter<br><br>Valid Values: <span class="values">INT, UINT, FLOAT, DERIVED, STRING, BLOCK</span>
+</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is INT, UINT, FLOAT, DERIVED the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Minimum Value</td>
+      <td>Minimum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Maximum Value</td>
+      <td>Maximum allowed value for this parameter</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Default Value</td>
+      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format. See guide on <a href="https://openc3.com/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>.<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When Data Type is STRING, BLOCK the remaining parameters are:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Default Value</td>
+      <td>Default value for this parameter. You must provide a default but if you mark the parameter REQUIRED then scripts will be forced to specify a value.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description for this parameter which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <span class="values">BIG_ENDIAN, LITTLE_ENDIAN</span>
+</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="select_table">
+<a class="anchor" href="#select_table" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_TABLE</h2>
+<p><strong>Select an existing table for editing, typically done to override an existing definition</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Table</td>
+      <td>The name of the existin table</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="default">
+<a class="anchor" href="#default" aria-hidden="true"><span class="octicon octicon-link"></span></a>DEFAULT</h2>
+<p><strong>Specify default values for a SINGLE row in a multi-column table</strong></p>
+
+<p>If you have multiple rows you need a DEFAULT line for each row. If all your rows are identical consider using ERB as shown in the OpenC3 demo.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Default values</td>
+      <td>A STATE value or data value corresponding to the data type</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="example-file">
 <a class="anchor" href="#example-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example File</h2>
 
 <p><strong>Example File: TARGET/tables/config/MCConfigurationTable_def.txt</strong></p>
 
 <!-- prettier-ignore -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TABLE <span class="s2">"MC_Configuration"</span> BIG_ENDIAN KEY_VALUE <span class="s2">"Memory Control Configuration Table"</span>
-  APPEND_PARAMETER <span class="s2">"Scrub_Region_1_Start_Addr"</span> 32 UINT 0 0x03FFFFFB 0
-    FORMAT_STRING <span class="s2">"0x%0X"</span>
-  APPEND_PARAMETER <span class="s2">"Scrub_Region_1_End_Addr"</span> 32 UINT 0 0x03FFFFFF 0x03FFFFFF
-    FORMAT_STRING <span class="s2">"0x%0X"</span>
-  APPEND_PARAMETER <span class="s2">"Scrub_Region_2_Start_Addr"</span> 32 UINT 0 0x03FFFFB 0
-    FORMAT_STRING <span class="s2">"0x%0X"</span>
-  APPEND_PARAMETER <span class="s2">"Scrub_Region_2_End_Addr"</span> 32 UINT 0 0x03FFFFF 0x03FFFFF
-    FORMAT_STRING <span class="s2">"0x%0X"</span>
-  APPEND_PARAMETER <span class="s2">"Dump_Packet_Throttle_(sec)"</span> 32 UINT 0 0x0FFFFFFFF 2 <span class="s2">"Number of seconds to wait between dumping large packets"</span>
-  APPEND_PARAMETER <span class="s2">"Memory_Scrubbing"</span> 8 UINT 0 1 1
-    STATE DISABLE 0
-    STATE ENABLE 1
-  APPEND_PARAMETER <span class="s2">"SIOC_Memory_Config"</span> 8 UINT 1 3 3
-  APPEND_PARAMETER <span class="s2">"Uneditable_Text"</span> 32 UINT MIN MAX 0xDEADBEEF <span class="s2">"Uneditable field"</span>
-    FORMAT_STRING <span class="s2">"0x%0X"</span>
-    UNEDITABLE
-  APPEND_PARAMETER <span class="s2">"Uneditable_State"</span> 16 UINT MIN MAX 0 <span class="s2">"Uneditable field"</span>
-    STATE DISABLE 0
-    STATE ENABLE 1
-    UNEDITABLE
-  APPEND_PARAMETER <span class="s2">"Uneditable_Check"</span> 16 UINT MIN MAX 1 <span class="s2">"Uneditable field"</span>
-    STATE UNCHECKED 0
-    STATE CHECKED 1
-    UNEDITABLE
-  APPEND_PARAMETER <span class="s2">"Binary"</span> 32 STRING 0xDEADBEEF <span class="s2">"Binary string"</span>
-  APPEND_PARAMETER <span class="s2">"Pad"</span> 16 UINT 0 0 0
-    HIDDEN
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TABLE</span> <span class="s2">"MC_Configuration"</span> <span class="no">BIG_ENDIAN</span> <span class="no">KEY_VALUE</span> <span class="s2">"Memory Control Configuration Table"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Scrub_Region_1_Start_Addr"</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0x03FFFFFB</span> <span class="mi">0</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Scrub_Region_1_End_Addr"</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0x03FFFFFF</span> <span class="mh">0x03FFFFFF</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Scrub_Region_2_Start_Addr"</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0x03FFFFB</span> <span class="mi">0</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Scrub_Region_2_End_Addr"</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0x03FFFFF</span> <span class="mh">0x03FFFFF</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Dump_Packet_Throttle_(sec)"</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mh">0x0FFFFFFFF</span> <span class="mi">2</span> <span class="s2">"Number of seconds to wait between dumping large packets"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Memory_Scrubbing"</span> <span class="mi">8</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span>
+    <span class="no">STATE</span> <span class="no">DISABLE</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">ENABLE</span> <span class="mi">1</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"SIOC_Memory_Config"</span> <span class="mi">8</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">3</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Uneditable_Text"</span> <span class="mi">32</span> <span class="no">UINT</span> <span class="no">MIN</span> <span class="no">MAX</span> <span class="mh">0xDEADBEEF</span> <span class="s2">"Uneditable field"</span>
+    <span class="no">FORMAT_STRING</span> <span class="s2">"0x%0X"</span>
+    <span class="no">UNEDITABLE</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Uneditable_State"</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="no">MIN</span> <span class="no">MAX</span> <span class="mi">0</span> <span class="s2">"Uneditable field"</span>
+    <span class="no">STATE</span> <span class="no">DISABLE</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">ENABLE</span> <span class="mi">1</span>
+    <span class="no">UNEDITABLE</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Uneditable_Check"</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="no">MIN</span> <span class="no">MAX</span> <span class="mi">1</span> <span class="s2">"Uneditable field"</span>
+    <span class="no">STATE</span> <span class="no">UNCHECKED</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">CHECKED</span> <span class="mi">1</span>
+    <span class="no">UNEDITABLE</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Binary"</span> <span class="mi">32</span> <span class="no">STRING</span> <span class="mh">0xDEADBEEF</span> <span class="s2">"Binary string"</span>
+  <span class="no">APPEND_PARAMETER</span> <span class="s2">"Pad"</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+    <span class="no">HIDDEN</span>
 </code></pre></div></div>
 
       </article>
