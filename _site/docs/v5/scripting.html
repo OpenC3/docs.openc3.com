@@ -251,13 +251,16 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#interfaces">Interfaces</a>
 <ul>
+<li class="toc-entry toc-h3"><a href="#get_interface-since-500">get_interface (since 5.0.0)</a></li>
+<li class="toc-entry toc-h3"><a href="#get_interface_names">get_interface_names</a></li>
 <li class="toc-entry toc-h3"><a href="#connect_interface">connect_interface</a></li>
 <li class="toc-entry toc-h3"><a href="#disconnect_interface">disconnect_interface</a></li>
-<li class="toc-entry toc-h3"><a href="#get_interface_names">get_interface_names</a></li>
-<li class="toc-entry toc-h3"><a href="#get_interface-since-500">get_interface (since 5.0.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#start_raw_logging_interface">start_raw_logging_interface</a></li>
 <li class="toc-entry toc-h3"><a href="#stop_raw_logging_interface">stop_raw_logging_interface</a></li>
 <li class="toc-entry toc-h3"><a href="#get_all_interface_info">get_all_interface_info</a></li>
+<li class="toc-entry toc-h3"><a href="#map_target_to_interface">map_target_to_interface</a></li>
+<li class="toc-entry toc-h3"><a href="#interface_cmd">interface_cmd</a></li>
+<li class="toc-entry toc-h3"><a href="#interface_protocol_cmd">interface_protocol_cmd</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#routers">Routers</a>
@@ -4123,6 +4126,66 @@
 
 <p>These methods allow the user to manipulate COSMOS interfaces.</p>
 
+<h3 id="get_interface-since-500">
+<a class="anchor" href="#get_interface-since-500" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_interface (since 5.0.0)</h3>
+
+<p>Returns an interface status including the as built interface and its current status (cmd/tlm counters, etc).</p>
+
+<p>Syntax:
+<code class="language-plaintext highlighter-rouge">get_interface("&lt;Interface Name&gt;")</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Interface Name</td>
+      <td>Name of the interface.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface</span> <span class="o">=</span> <span class="n">get_interface</span><span class="p">(</span><span class="s2">"INST_INT"</span><span class="p">)</span>
+<span class="n">pp</span> <span class="n">interface</span>
+<span class="c1">#{"name"=&gt;"INST_INT",</span>
+<span class="c1"># "config_params"=&gt;["interface.rb"],</span>
+<span class="c1"># "target_names"=&gt;["INST"],</span>
+<span class="c1"># "connect_on_startup"=&gt;true,</span>
+<span class="c1"># "auto_reconnect"=&gt;true,</span>
+<span class="c1"># "reconnect_delay"=&gt;5.0,</span>
+<span class="c1"># "disable_disconnect"=&gt;false,</span>
+<span class="c1"># "options"=&gt;[],</span>
+<span class="c1"># "protocols"=&gt;[],</span>
+<span class="c1"># "log"=&gt;true,</span>
+<span class="c1"># "log_raw"=&gt;false,</span>
+<span class="c1"># "plugin"=&gt;nil,</span>
+<span class="c1"># "updated_at"=&gt;1613076213535979900,</span>
+<span class="c1"># "state"=&gt;"CONNECTED",</span>
+<span class="c1"># "clients"=&gt;0,</span>
+<span class="c1"># "txsize"=&gt;0,</span>
+<span class="c1"># "rxsize"=&gt;0,</span>
+<span class="c1"># "txbytes"=&gt;0,</span>
+<span class="c1"># "rxbytes"=&gt;0,</span>
+<span class="c1"># "txcnt"=&gt;0,</span>
+<span class="c1"># "rxcnt"=&gt;0}</span>
+</code></pre></div></div>
+
+<h3 id="get_interface_names">
+<a class="anchor" href="#get_interface_names" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_interface_names</h3>
+
+<p>Returns a list of the interfaces in the system in an array.</p>
+
+<p>Syntax / Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_names</span> <span class="o">=</span> <span class="n">get_interface_names</span><span class="p">()</span>
+</code></pre></div></div>
+
 <h3 id="connect_interface">
 <a class="anchor" href="#connect_interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>connect_interface</h3>
 
@@ -4186,66 +4249,6 @@
 <p>Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">disconnect_interface</span><span class="p">(</span><span class="s2">"INT1"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="get_interface_names">
-<a class="anchor" href="#get_interface_names" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_interface_names</h3>
-
-<p>Returns a list of the interfaces in the system in an array.</p>
-
-<p>Syntax / Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_names</span> <span class="o">=</span> <span class="n">get_interface_names</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h3 id="get_interface-since-500">
-<a class="anchor" href="#get_interface-since-500" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_interface (since 5.0.0)</h3>
-
-<p>Returns an interface status including the as built interface and its current status (cmd/tlm counters, etc).</p>
-
-<p>Syntax:
-<code class="language-plaintext highlighter-rouge">get_interface("&lt;Interface Name&gt;")</code></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Interface Name</td>
-      <td>Name of the interface.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface</span> <span class="o">=</span> <span class="n">get_interface</span><span class="p">(</span><span class="s2">"INST_INT"</span><span class="p">)</span>
-<span class="n">pp</span> <span class="n">interface</span>
-<span class="c1">#{"name"=&gt;"INST_INT",</span>
-<span class="c1"># "config_params"=&gt;["interface.rb"],</span>
-<span class="c1"># "target_names"=&gt;["INST"],</span>
-<span class="c1"># "connect_on_startup"=&gt;true,</span>
-<span class="c1"># "auto_reconnect"=&gt;true,</span>
-<span class="c1"># "reconnect_delay"=&gt;5.0,</span>
-<span class="c1"># "disable_disconnect"=&gt;false,</span>
-<span class="c1"># "options"=&gt;[],</span>
-<span class="c1"># "protocols"=&gt;[],</span>
-<span class="c1"># "log"=&gt;true,</span>
-<span class="c1"># "log_raw"=&gt;false,</span>
-<span class="c1"># "plugin"=&gt;nil,</span>
-<span class="c1"># "updated_at"=&gt;1613076213535979900,</span>
-<span class="c1"># "state"=&gt;"CONNECTED",</span>
-<span class="c1"># "clients"=&gt;0,</span>
-<span class="c1"># "txsize"=&gt;0,</span>
-<span class="c1"># "rxsize"=&gt;0,</span>
-<span class="c1"># "txbytes"=&gt;0,</span>
-<span class="c1"># "rxbytes"=&gt;0,</span>
-<span class="c1"># "txcnt"=&gt;0,</span>
-<span class="c1"># "rxcnt"=&gt;0}</span>
 </code></pre></div></div>
 
 <h3 id="start_raw_logging_interface">
@@ -4321,6 +4324,132 @@
   <span class="nb">puts</span> <span class="s2">"Transmit queue size: </span><span class="si">#{</span><span class="n">tx_q_size</span><span class="si">}</span><span class="s2">, Receive queue size: </span><span class="si">#{</span><span class="n">rx_q_size</span><span class="si">}</span><span class="s2">, Bytes transmitted: </span><span class="si">#{</span><span class="n">tx_bytes</span><span class="si">}</span><span class="s2">, Bytes received: </span><span class="si">#{</span><span class="n">rx_bytes</span><span class="si">}</span><span class="s2">"</span>
   <span class="nb">puts</span> <span class="s2">"Cmd count: </span><span class="si">#{</span><span class="n">cmd_count</span><span class="si">}</span><span class="s2">, Tlm count: </span><span class="si">#{</span><span class="n">tlm_count</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="map_target_to_interface">
+<a class="anchor" href="#map_target_to_interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>map_target_to_interface</h3>
+
+<p>Map a target to an interface allowing target commands and telemetry to be processed by that interface.</p>
+
+<p>Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">map_target_to_interface</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Interface Name&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Name of the target</td>
+    </tr>
+    <tr>
+      <td>Interface Name</td>
+      <td>Name of the interface</td>
+    </tr>
+    <tr>
+      <td>cmd_only:</td>
+      <td>Whether to map target commands only to the interface (default: false)</td>
+    </tr>
+    <tr>
+      <td>tlm_only:</td>
+      <td>Whether to map target telemetry only to the interface (default: false)</td>
+    </tr>
+    <tr>
+      <td>unmap_old:</td>
+      <td>Whether remove the target from all existing interfaces (default: true)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">map_target_to_interface</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"INST_INT"</span><span class="p">,</span> <span class="ss">unmap_old: </span><span class="kp">false</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="interface_cmd">
+<a class="anchor" href="#interface_cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>interface_cmd</h3>
+
+<p>Send a command directly to an interface. This has no effect in the standard COSMOS interfaces but can be implemented by a custom interface to change behavior.</p>
+
+<p>Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_cmd</span><span class="p">(</span><span class="s2">"&lt;Interface Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Parameters&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Interface Name</td>
+      <td>Name of the interface</td>
+    </tr>
+    <tr>
+      <td>Command Name</td>
+      <td>Name of the command to send</td>
+    </tr>
+    <tr>
+      <td>Command Parameters</td>
+      <td>Any parameters to send with the command</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="interface_protocol_cmd">
+<a class="anchor" href="#interface_protocol_cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>interface_protocol_cmd</h3>
+
+<p>Send a command directly to an interface protocol. This has no effect in the standard COSMOS protocols but can be implemented by a custom protocol to change behavior.</p>
+
+<p>Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_protocol_cmd</span><span class="p">(</span><span class="s2">"&lt;Interface Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Parameters&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Interface Name</td>
+      <td>Name of the interface</td>
+    </tr>
+    <tr>
+      <td>Command Name</td>
+      <td>Name of the command to send</td>
+    </tr>
+    <tr>
+      <td>Command Parameters</td>
+      <td>Any parameters to send with the command</td>
+    </tr>
+    <tr>
+      <td>read_write:</td>
+      <td>Whether command gets send to read or write protocols. Must be one of :READ, :WRITE, or :READ_WRITE. (default: :READ_WRITE)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_protocol_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="routers">
