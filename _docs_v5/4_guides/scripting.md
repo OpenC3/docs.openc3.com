@@ -2264,6 +2264,55 @@ end
 
 These methods allow the user to manipulate COSMOS interfaces.
 
+### get_interface (since 5.0.0)
+
+Returns an interface status including the as built interface and its current status (cmd/tlm counters, etc).
+
+Syntax:
+`get_interface("<Interface Name>")`
+
+| Parameter      | Description            |
+| -------------- | ---------------------- |
+| Interface Name | Name of the interface. |
+
+Example:
+
+```ruby
+interface = get_interface("INST_INT")
+pp interface
+#{"name"=>"INST_INT",
+# "config_params"=>["interface.rb"],
+# "target_names"=>["INST"],
+# "connect_on_startup"=>true,
+# "auto_reconnect"=>true,
+# "reconnect_delay"=>5.0,
+# "disable_disconnect"=>false,
+# "options"=>[],
+# "protocols"=>[],
+# "log"=>true,
+# "log_raw"=>false,
+# "plugin"=>nil,
+# "updated_at"=>1613076213535979900,
+# "state"=>"CONNECTED",
+# "clients"=>0,
+# "txsize"=>0,
+# "rxsize"=>0,
+# "txbytes"=>0,
+# "rxbytes"=>0,
+# "txcnt"=>0,
+# "rxcnt"=>0}
+```
+
+### get_interface_names
+
+Returns a list of the interfaces in the system in an array.
+
+Syntax / Example:
+
+```ruby
+interface_names = get_interface_names()
+```
+
 ### connect_interface
 
 Connects to targets associated with a COSMOS interface.
@@ -2304,55 +2353,6 @@ Example:
 
 ```ruby
 disconnect_interface("INT1")
-```
-
-### get_interface_names
-
-Returns a list of the interfaces in the system in an array.
-
-Syntax / Example:
-
-```ruby
-interface_names = get_interface_names()
-```
-
-### get_interface (since 5.0.0)
-
-Returns an interface status including the as built interface and its current status (cmd/tlm counters, etc).
-
-Syntax:
-`get_interface("<Interface Name>")`
-
-| Parameter      | Description            |
-| -------------- | ---------------------- |
-| Interface Name | Name of the interface. |
-
-Example:
-
-```ruby
-interface = get_interface("INST_INT")
-pp interface
-#{"name"=>"INST_INT",
-# "config_params"=>["interface.rb"],
-# "target_names"=>["INST"],
-# "connect_on_startup"=>true,
-# "auto_reconnect"=>true,
-# "reconnect_delay"=>5.0,
-# "disable_disconnect"=>false,
-# "options"=>[],
-# "protocols"=>[],
-# "log"=>true,
-# "log_raw"=>false,
-# "plugin"=>nil,
-# "updated_at"=>1613076213535979900,
-# "state"=>"CONNECTED",
-# "clients"=>0,
-# "txsize"=>0,
-# "rxsize"=>0,
-# "txbytes"=>0,
-# "rxbytes"=>0,
-# "txcnt"=>0,
-# "rxcnt"=>0}
 ```
 
 ### start_raw_logging_interface
@@ -2408,6 +2408,75 @@ interface_info.each do |interface_name, connection_state, num_clients, tx_q_size
   puts "Transmit queue size: #{tx_q_size}, Receive queue size: #{rx_q_size}, Bytes transmitted: #{tx_bytes}, Bytes received: #{rx_bytes}"
   puts "Cmd count: #{cmd_count}, Tlm count: #{tlm_count}"
 end
+```
+
+### map_target_to_interface
+
+Map a target to an interface allowing target commands and telemetry to be processed by that interface.
+
+Syntax:
+
+```ruby
+map_target_to_interface("<Target Name>", "<Interface Name>")
+```
+
+| Parameter      | Description                                                            |
+| -------------- | ---------------------------------------------------------------------- |
+| Target Name    | Name of the target                                                     |
+| Interface Name | Name of the interface                                                  |
+| cmd_only:      | Whether to map target commands only to the interface (default: false)  |
+| tlm_only:      | Whether to map target telemetry only to the interface (default: false) |
+| unmap_old:     | Whether remove the target from all existing interfaces (default: true) |
+
+Example:
+
+```ruby
+map_target_to_interface("INST", "INST_INT", unmap_old: false)
+```
+
+### interface_cmd
+
+Send a command directly to an interface. This has no effect in the standard COSMOS interfaces but can be implemented by a custom interface to change behavior.
+
+Syntax:
+
+```ruby
+interface_cmd("<Interface Name>", "<Command Name>", "<Command Parameters>")
+```
+
+| Parameter          | Description                             |
+| ------------------ | --------------------------------------- |
+| Interface Name     | Name of the interface                   |
+| Command Name       | Name of the command to send             |
+| Command Parameters | Any parameters to send with the command |
+
+Example:
+
+```ruby
+interface_cmd("INST", "DISABLE_CRC")
+```
+
+### interface_protocol_cmd
+
+Send a command directly to an interface protocol. This has no effect in the standard COSMOS protocols but can be implemented by a custom protocol to change behavior.
+
+Syntax:
+
+```ruby
+interface_protocol_cmd("<Interface Name>", "<Command Name>", "<Command Parameters>")
+```
+
+| Parameter          | Description                                                                                                                |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Interface Name     | Name of the interface                                                                                                      |
+| Command Name       | Name of the command to send                                                                                                |
+| Command Parameters | Any parameters to send with the command                                                                                    |
+| read_write:        | Whether command gets send to read or write protocols. Must be one of :READ, :WRITE, or :READ_WRITE. (default: :READ_WRITE) |
+
+Example:
+
+```ruby
+interface_protocol_cmd("INST", "DISABLE_CRC")
 ```
 
 ## Routers
