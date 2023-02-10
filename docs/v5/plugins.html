@@ -123,8 +123,6 @@
 <li class="toc-entry toc-h3"><a href="#dont_reconnect">DONT_RECONNECT</a></li>
 <li class="toc-entry toc-h3"><a href="#reconnect_delay">RECONNECT_DELAY</a></li>
 <li class="toc-entry toc-h3"><a href="#disable_disconnect">DISABLE_DISCONNECT</a></li>
-<li class="toc-entry toc-h3"><a href="#log">LOG</a></li>
-<li class="toc-entry toc-h3"><a href="#log_stored">LOG_STORED</a></li>
 <li class="toc-entry toc-h3"><a href="#dont_log">DONT_LOG</a></li>
 <li class="toc-entry toc-h3"><a href="#log_raw">LOG_RAW</a></li>
 <li class="toc-entry toc-h3"><a href="#protocol">PROTOCOL</a></li>
@@ -480,56 +478,6 @@ This file follows the standard COSMOS configuration file format of keywords foll
 <p><strong>Disable the Disconnect button on the Interfaces tab in the Server</strong></p>
 
 <p>Use this keyword to prevent the user from disconnecting from the interface. This is typically used in a ‘production’ environment where you would not want the user to inadvertantly disconnect from a target.</p>
-
-<h3 id="log">
-<a class="anchor" href="#log" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG</h3>
-<p><strong>Enable logging on the interface by the specified log writer</strong></p>
-
-<p>LOG is only required if you want a log writer other than the default to log commands and telemetry on this interface</p>
-
-<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Log writer name as defined by PACKET_LOG_WRITER</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="log_stored">
-<a class="anchor" href="#log_stored" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_STORED</h3>
-<p><strong>Enable logging of stored telemetry on the interface by the specified log writer</strong></p>
-
-<p>LOG_STORED allows you to specify a different log writer for stored telemetry (telemetry which has the ‘stored’ flag set in the packet). By default the stored telemetry is intermingled in the normal log file.</p>
-
-<div class="note warning"><p>Choosing a custom log writer can prevent OpenC3 from reading back your log files</p></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Required</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Name</td>
-      <td>Log writer name as defined by PACKET_LOG_WRITER</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
 
 <h3 id="dont_log">
 <a class="anchor" href="#dont_log" aria-hidden="true"><span class="octicon octicon-link"></span></a>DONT_LOG</h3>
