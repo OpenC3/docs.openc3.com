@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Table Configuration
+title: Tables
 toc: true
 ---
 

@@ -9,6 +9,7 @@
 
 - title: Configuration
   docs:
+    - format
     - plugins
     - target
     - command
@@ -16,6 +17,7 @@
     - interfaces
     - protocols
     - table
+    - telemetry_screens
     - ssl_tls
 
 - title: Tool User Manuals
@@ -45,7 +47,6 @@
     - raspberrypi
     - scripting
     - scripting_best_practices
-    - telemetry_screens
 
 - title: Development
   docs:

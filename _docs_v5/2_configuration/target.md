@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Target Configuration
+title: Targets
 toc: true
 ---
 

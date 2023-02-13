@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Command Configuration
+title: Commands
 toc: true
 ---
 
