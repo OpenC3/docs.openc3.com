@@ -119,7 +119,7 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
 
 <p>A subscription describes a set of data that you want the API to stream to you. Creating a subscription looks like this:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">subscription</span> <span class="o">=</span> <span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">subscription</span> <span class="o">=</span> <span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
   <span class="p">{</span>
     <span class="na">channel</span><span class="p">:</span> <span class="dl">"</span><span class="s2">StreamingChannel</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DEFAULT</span><span class="dl">"</span><span class="p">,</span>
@@ -154,8 +154,8 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
   <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__TLM__INST__ADCS__Q1__RAW</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">],</span>
   <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__CMD__INST__COLLECT__DURATION__WITH_UNITS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">],</span>
 <span class="p">];</span>
-<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nf">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nf">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">scope</span><span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">openc3Scope</span><span class="p">,</span>
     <span class="na">token</span><span class="p">:</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">openc3Token</span><span class="p">,</span>
     <span class="na">items</span><span class="p">:</span> <span class="nx">items</span><span class="p">,</span>
@@ -173,8 +173,8 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
   <span class="p">[</span><span class="dl">"</span><span class="s2">RAW__TLM__INST__ADCS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">],</span>
   <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__TLM__INST__HEALTH_STATUS__FORMATTED</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">],</span>
 <span class="p">];</span>
-<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nf">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nf">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">scope</span><span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">openc3Scope</span><span class="p">,</span>
     <span class="na">token</span><span class="p">:</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">openc3Token</span><span class="p">,</span>
     <span class="na">packets</span><span class="p">:</span> <span class="nx">packets</span><span class="p">,</span>
@@ -386,6 +386,32 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+  <li class="">
+    <a href="/docs/v5/format">File Format</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
   <li class="">
@@ -422,8 +448,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
   <li class="">
-    <a href="/docs/v5/target">Target Configuration</a>
+    <a href="/docs/v5/target">Targets</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -445,95 +473,7 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
     
       
   <li class="">
-    <a href="/docs/v5/command">Command Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/telemetry">Telemetry Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/interfaces">Interface Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/protocols">Protocol Configuration</a>
+    <a href="/docs/v5/command">Commands</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -564,14 +504,152 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/table">Table Configuration</a>
+    <a href="/docs/v5/telemetry">Telemetry</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/interfaces">Interfaces</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/protocols">Protocols</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Tables</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/telemetry-screens">Screens</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
     
       
     
@@ -614,6 +692,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -706,6 +788,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/limits-monitor">Limits Monitor</a>
   </li>
@@ -750,6 +836,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
@@ -758,6 +848,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -864,6 +958,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
@@ -872,6 +970,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -990,6 +1092,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
@@ -998,6 +1104,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1088,6 +1198,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/data-viewer">Data Viewer</a>
   </li>
@@ -1128,6 +1242,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
   </li>
@@ -1136,6 +1254,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1240,6 +1362,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/handbooks">Handbooks</a>
   </li>
@@ -1248,6 +1374,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1360,6 +1490,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
@@ -1368,6 +1502,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1498,6 +1636,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
   </li>
@@ -1506,6 +1648,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1644,6 +1790,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
@@ -1652,6 +1802,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1798,6 +1952,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
   </li>
@@ -1806,6 +1964,10 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1960,92 +2122,12 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2064,6 +2146,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
     
       
     
@@ -2236,6 +2320,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -2244,6 +2330,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
     
       
     
@@ -2424,6 +2512,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2432,6 +2522,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
     
       
     
@@ -2612,6 +2704,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2620,6 +2714,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
     
       
     
@@ -2720,6 +2816,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
     
       
     
@@ -2914,6 +3012,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -2922,6 +3022,8 @@ start_time and end_time are standard COSMOS 64-bit integer timestamps in nanosec
   
     
     
+    
+      
     
       
     

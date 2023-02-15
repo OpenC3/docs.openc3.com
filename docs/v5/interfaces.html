@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Interface Configuration</title>
+  <title>Interfaces</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.2">
@@ -113,7 +113,7 @@
 <li class="toc-entry toc-h2"><a href="#protocols">Protocols</a></li>
 </ul></div>
         
-        <h1>Interface Configuration</h1>
+        <h1>Interfaces</h1>
         <p>Interfaces are the connection to the external embedded systems called targets. Interfaces are defined by the top level <a href="/docs/v5/plugins#interface-1">INTERFACE</a> keyword in the plugin.txt file.</p>
 
 <p>Interface classes provide the code that COSMOS uses to receive real-time telemetry from targets and to send commands to targets. The interface that a target uses could be anything (TCP/IP, serial, GPIB, Firewire, etc.), therefore it is important that this is a customizable portion of any reusable Command and Telemetry System. Fortunately the most common form of interfaces are over TCP/IP sockets, and COSMOS provides interface solutions for these. This guide will discuss how to use these interface classes, and how to create your own. Note that in most cases you can extend interfaces with <a href="/docs/v5/protocols">Protocols</a> rather than implementing a new interface.</p>
@@ -685,6 +685,32 @@
       
     
       
+  <li class="">
+    <a href="/docs/v5/format">File Format</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
   <li class="">
@@ -721,8 +747,10 @@
       
     
       
+    
+      
   <li class="">
-    <a href="/docs/v5/target">Target Configuration</a>
+    <a href="/docs/v5/target">Targets</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -744,13 +772,15 @@
     
       
   <li class="">
-    <a href="/docs/v5/command">Command Configuration</a>
+    <a href="/docs/v5/command">Commands</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
     
       
     
@@ -780,13 +810,15 @@
     
       
   <li class="">
-    <a href="/docs/v5/telemetry">Telemetry Configuration</a>
+    <a href="/docs/v5/telemetry">Telemetry</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
     
       
     
@@ -804,43 +836,13 @@
     
       
   <li class="current">
-    <a href="/docs/v5/interfaces">Interface Configuration</a>
+    <a href="/docs/v5/interfaces">Interfaces</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/protocols">Protocol Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
     
       
     
@@ -864,13 +866,89 @@
     
       
   <li class="">
-    <a href="/docs/v5/table">Table Configuration</a>
+    <a href="/docs/v5/protocols">Protocols</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Tables</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/telemetry-screens">Screens</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
     
       
     
@@ -913,6 +991,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1005,6 +1087,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/limits-monitor">Limits Monitor</a>
   </li>
@@ -1049,6 +1135,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
@@ -1057,6 +1147,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1163,6 +1257,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
@@ -1171,6 +1269,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1289,6 +1391,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
@@ -1297,6 +1403,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1387,6 +1497,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/data-viewer">Data Viewer</a>
   </li>
@@ -1427,6 +1541,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
   </li>
@@ -1435,6 +1553,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1539,6 +1661,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/handbooks">Handbooks</a>
   </li>
@@ -1547,6 +1673,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1659,6 +1789,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
@@ -1667,6 +1801,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1797,6 +1935,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
   </li>
@@ -1805,6 +1947,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1943,6 +2089,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
@@ -1951,6 +2101,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -2097,6 +2251,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
   </li>
@@ -2105,6 +2263,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -2259,92 +2421,12 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2363,6 +2445,8 @@
   
     
     
+    
+      
     
       
     
@@ -2535,6 +2619,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -2543,6 +2629,8 @@
   
     
     
+    
+      
     
       
     
@@ -2723,6 +2811,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2731,6 +2821,8 @@
   
     
     
+    
+      
     
       
     
@@ -2911,6 +3003,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2919,6 +3013,8 @@
   
     
     
+    
+      
     
       
     
@@ -3019,6 +3115,8 @@
   
     
     
+    
+      
     
       
     
@@ -3213,6 +3311,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -3221,6 +3321,8 @@
   
     
     
+    
+      
     
       
     

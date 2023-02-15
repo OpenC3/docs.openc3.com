@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Logging</title>
+  <title>File Format</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.2">
@@ -100,59 +100,159 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h3"><a href="#decom_logs--raw_logs">decom_logs &amp; raw_logs</a></li>
-<li class="toc-entry toc-h3"><a href="#text_logs">text_logs</a>
+<li class="toc-entry toc-h2"><a href="#keyword--parameters">Keyword / Parameters</a></li>
+<li class="toc-entry toc-h2"><a href="#erb">ERB</a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#openc3_log_messages">openc3_log_messages</a></li>
-<li class="toc-entry toc-h4"><a href="#openc3_notifications">openc3_notifications</a></li>
+<li class="toc-entry toc-h3"><a href="#render">render</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#tool_logs">tool_logs</a></li>
+<li class="toc-entry toc-h2"><a href="#line-continuation">Line Continuation</a></li>
+<li class="toc-entry toc-h2"><a href="#string-concatenation">String Concatenation</a></li>
 </ul></div>
         
-        <h1>Logging</h1>
-        <p>The COSMOS <a href="/docs/v5/bucket-explorer">Bucket Explorer</a> tool provides a way to browse the COSMOS bucket storage backend whether you are running locally or in a cloud environment. Browse to http://localhost:2900/tools/bucketexplorer and you should see the list of buckets at the top:</p>
+        <h1>File Format</h1>
+        <p>COSMOS configuration files are just text files. They can (and should) be checked into your configuration management system and thus can be easily diffed throughout their history. They support ERB syntax, partials, and various line continuations which make them extremely flexible.</p>
 
-<p><img src="/img/v5/bucket_explorer/bucket_explorer.png" alt="Bucket Explorer"></p>
+<h2 id="keyword--parameters">
+<a class="anchor" href="#keyword--parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keyword / Parameters</h2>
 
-<p>Note the config and logs buckets are organized by scopes of which there initially is just one: DEFAULT. Clicking the DEFAULT folder in the logs bucket shows the decom_logs, raw_logs, reduced_xxx_logs, text_logs and tool_logs.</p>
+<p>Each line of a COSMOS configuration file contains a single keyword followed by parameters. For example:</p>
 
-<h3 id="decom_logs--raw_logs">
-<a class="anchor" href="#decom_logs--raw_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>decom_logs &amp; raw_logs</h3>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">TARGET</span> <span class="no">COLLECT</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Collect command"</span>
+</code></pre></div></div>
 
-<p>The decom_logs and raw_logs folders contain the decommutated and raw command and telemetry data. Both are further broken down by target, packet, then date. For example, browsing into the DEFAULT/raw_logs/tlm/INST2/ directory:</p>
+<p>The keyword is <code class="language-plaintext highlighter-rouge">COMMAND</code> and the parameters are <code class="language-plaintext highlighter-rouge">TARGET</code>, <code class="language-plaintext highlighter-rouge">COLLECT</code>, <code class="language-plaintext highlighter-rouge">BIG_ENDIAN</code>, and <code class="language-plaintext highlighter-rouge">"Collect command"</code>. Keywords are parsed by COSMOS and parameters are checked for validity. Parameters can be required or optional although required parameters always come first. Some parameters have a limited set of valid values. For example, the <code class="language-plaintext highlighter-rouge">COMMAND</code> keyword above has the following documentation:</p>
 
-<p><img src="/img/v5/guides/logging/raw_tlm_logs.png" alt="raw_tlm_logs"></p>
+<table>
+  <thead>
+    <tr>
+      <th>PARAMETER</th>
+      <th>DESCRIPTION</th>
+      <th>REQUIRED</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target</td>
+      <td>Name of the target this command is associated with</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Command</td>
+      <td>Name of this command. Also referred to as its mnemonic. Must be unique to commands to this target. Ideally will be as short and clear as possible.</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Endianness</td>
+      <td>Indicates if the data in this command is to be sent in Big Endian or Little Endian format<br><br>Valid Values: <code class="language-plaintext highlighter-rouge">BIG_ENDIAN, LITTLE_ENDIAN</code>
+</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>Description of this command which must be enclosed with quotes</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>Note the presence of both gzipped .bin files and .idx files. The .bin files contain the raw binary data while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the <a href="/docs/v5/log-structure">Log Structure</a> developer documentation.</p>
+<p>The Target and Command parameters can be any string and are required. The Endianness parameter is required and must be <code class="language-plaintext highlighter-rouge">BIG_ENDIAN</code> or <code class="language-plaintext highlighter-rouge">LITTLE_ENDIAN</code>. Other values will cause an error when parsed. The Description parameter must be enclosed in quotes and is optional. All the COSMOS configuration files document their keyword and parameters in this fashion. In addition, Example Usage is provided similar to the example given above.</p>
 
-<p>The default settings for the Logging microservice is to start a new log file every 10 minutes or 50MB, which ever comes first. In the case of the low data rate demo, the 10 minute mark is hit first.</p>
+<h2 id="erb">
+<a class="anchor" href="#erb" aria-hidden="true"><span class="octicon octicon-link"></span></a>ERB</h2>
 
-<p>To change the logging settings add the various CYCLE_TIME <a href="/docs/v5/plugins#target-modifiers">Target Modifiers</a> under the declared <a href="/docs/v5/plugins#target-1">TARGET</a> name in your plugin.txt.</p>
+<p>ERB stands for Embedded Ruby. <a href="https://github.com/ruby/erb">ERB</a> is a templating system for Ruby which allows you to use Ruby logic and variables to generate text files. There are two basic forms of ERB:</p>
 
-<h3 id="text_logs">
-<a class="anchor" href="#text_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>text_logs</h3>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%</span> <span class="no">Ruby</span> <span class="n">code</span> <span class="o">--</span> <span class="n">no</span> <span class="n">output</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%=</span> <span class="no">Ruby</span> <span class="n">expression</span> <span class="o">--</span> <span class="n">insert</span> <span class="n">result</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
 
-<p>The text_logs folder contains openc3_log_messages and openc3_notifications.</p>
+<p>In a COSMOS <a href="/docs/v5/telemetry">Telemetry</a> configuration file we could write the following:</p>
 
-<h4 id="openc3_log_messages">
-<a class="anchor" href="#openc3_log_messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>openc3_log_messages</h4>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  APPEND_ITEM VALUE<span class="cp">&lt;%=</span> <span class="n">i</span> <span class="cp">%&gt;</span> 16 UINT "Value <span class="cp">&lt;%=</span> <span class="n">i</span> <span class="cp">%&gt;</span> setting"
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
 
-<p>The cosmos_log_messages folder contains text files which are again sorted by date and timestamped. These log messages come from the various microservices including the server and the target microservices. Thus these logs contain all the commands sent (in plain text) and telemetry checked.</p>
+<p>The first line is Ruby code which iterates from 1 up to and including 5 and places the value in the variable i. The code inside the block will be output to the file every time the iteration runs. The APPEND_ITEM line uses the value of i and directly outputs it to the file by using the <code class="language-plaintext highlighter-rouge">&lt;%=</code> syntax. The result of the parsing will look like the following:</p>
 
-<h4 id="openc3_notifications">
-<a class="anchor" href="#openc3_notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>openc3_notifications</h4>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">APPEND_ITEM</span> <span class="no">VALUE1</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Value 1 setting"</span>
+<span class="no">APPEND_ITEM</span> <span class="no">VALUE2</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Value 2 setting"</span>
+<span class="no">APPEND_ITEM</span> <span class="no">VALUE3</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Value 3 setting"</span>
+<span class="no">APPEND_ITEM</span> <span class="no">VALUE4</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Value 4 setting"</span>
+<span class="no">APPEND_ITEM</span> <span class="no">VALUE5</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"Value 5 setting"</span>
+</code></pre></div></div>
 
-<p>The openc3_notifications folder contains all the notifications which are accessible from the Bell icon in the status bar.</p>
+<p>COSMOS uses ERB syntax extensively in a Plugin’s <a href="http://localhost:4000/docs/v5/plugins#plugintxt-configuration-file">plugin.txt</a> configuration file.</p>
 
-<p><img src="/img/v5/guides/logging/notifications.png" alt="notifications"></p>
+<h3 id="render">
+<a class="anchor" href="#render" aria-hidden="true"><span class="octicon octicon-link"></span></a>render</h3>
 
-<h3 id="tool_logs">
-<a class="anchor" href="#tool_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool_logs</h3>
+<p>COSMOS provides a method used inside ERB called <code class="language-plaintext highlighter-rouge">render</code> which renders a configuration file into another configuration file. For example:</p>
 
-<p>The tool_logs directory contains logs from the various COSMOS tools. Note that if you have not yet run any tools you may not see this directory as it is created on demand. Tool sub-directories are also created on demand. For example, after running a script in Script Runner a new ‘sr’ subdirectory appears which contains the script runner log resulting from running the script. In some cases logs in this directory may also be directly available from the tool itself. In the Script Runner case, the Log Messages pane below the script holds the output messages from the last script. Clicking the Download link allows you to download these messages as a file.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Health and status"</span>
+  <span class="o">&lt;</span><span class="sx">%= render "_ccsds_apid.txt", locals: {apid: 1} %&gt;
+  APPEND_ITEM COLLECTS     16 UINT   "Number of collects"
+  ...
+</span></code></pre></div></div>
 
-<p><img src="/img/v5/guides/logging/log_messages.png" alt="log_messages"></p>
+<p>The render method takes a parameter which is the name of the configuration file to inject into the top level file. This file is required to start with underscore to avoid being processed as a regular configuration file. This file is called a partial since it’s part of a larger file. For example, _ccsds_apid.txt is defined as follows:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="no">APPEND_ID_ITEM</span> <span class="no">CCSDSAPID</span> <span class="mi">11</span> <span class="no">UINT</span> <span class="o">&lt;</span><span class="sx">%= apid %&gt; "CCSDS application process id"
+</span></code></pre></div></div>
+
+<p>This would result in output as follows:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Health and status"</span>
+  <span class="no">APPEND_ID_ITEM</span> <span class="no">CCSDSAPID</span> <span class="mi">11</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="s2">"CCSDS application process id"</span>
+  <span class="no">APPEND_ITEM</span> <span class="no">COLLECTS</span>     <span class="mi">16</span> <span class="no">UINT</span>   <span class="s2">"Number of collects"</span>
+  <span class="o">...</span>
+</code></pre></div></div>
+
+<p>Note the variable <code class="language-plaintext highlighter-rouge">apid</code> was set to 1 using the <code class="language-plaintext highlighter-rouge">locals:</code> syntax. This is a very powerful way to add common headers and footer to every packet definition. See the INST target’s cmd_tlm definitions in the <a href="https://github.com/OpenC3/cosmos/tree/main/openc3-cosmos-init/plugins/packages/openc3-cosmos-demo/targets/INST/cmd_tlm">Demo</a> for a more comprehensive example.</p>
+
+<h2 id="line-continuation">
+<a class="anchor" href="#line-continuation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Line Continuation</h2>
+
+<p>COSMOS supports a line continuation character in configuration files. For a simple line continuation use the ampersand character: <code class="language-plaintext highlighter-rouge">&amp;</code>. For example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="o">&amp;</span>
+  <span class="s2">"Health and status"</span>
+</code></pre></div></div>
+
+<p>This will strip the ampersand character and merge the two lines to result in:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Health and status"</span>
+</code></pre></div></div>
+
+<p>Spaces around the second line are stripped so indentation does not matter.</p>
+
+<h2 id="string-concatenation">
+<a class="anchor" href="#string-concatenation" aria-hidden="true"><span class="octicon octicon-link"></span></a>String Concatenation</h2>
+
+<p>COSMOS supports two different string concatenation characters in configuration files. To concatenate strings with a newline use the plus character: <code class="language-plaintext highlighter-rouge">+</code>. For example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Health and status"</span> <span class="o">+</span>
+  <span class="s2">"Additional description"</span>
+</code></pre></div></div>
+
+<p>The strings will be merged with a newline to result in:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Health and status</span><span class="se">\n</span><span class="s2">Additional description"</span>
+</code></pre></div></div>
+
+<p>To concatenate strings without a newline use the backslash character: <code class="language-plaintext highlighter-rouge">\</code>. For example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s1">'Health and status'</span> <span class="p">\</span>
+  <span class="s1">'Additional description'</span>
+</code></pre></div></div>
+
+<p>The strings will be merged without a newline to result in:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">TELEMETRY</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">BIG_ENDIAN</span> <span class="s1">'Health and statusAdditional description'</span>
+</code></pre></div></div>
+
+<p>The string continuation characters work with both single or double quoted strings but note that both lines MUST use the same syntax. You can not concatenate a single quoted string with a double quoted string or vice versa. Also note the indentation of the second line does not matter as whitespace is stripped.</p>
 
       </article>
     </div>
@@ -317,7 +417,7 @@
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/format">File Format</a>
   </li>
   <!-- prettier-ignore -->
@@ -1725,7 +1825,7 @@
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
   <!-- prettier-ignore -->
