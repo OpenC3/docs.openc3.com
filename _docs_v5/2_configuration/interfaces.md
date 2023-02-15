@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Interface Configuration
+title: Interfaces
 toc: true
 ---
 

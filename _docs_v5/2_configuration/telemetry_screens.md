@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Telemetry Screens
+title: Screens
 toc: true
 ---
 
@@ -128,7 +128,7 @@ END
 
 ### NAMED_WIDGET
 
-The NAMED_WIDGET keyword is used to give a name to a widget that allows it to be accessed from other widgets using the get_named_widget method of screen. Note that get_named_widget returns the widget itself and thus must be operated on using methods native to that widget.
+The NAMED_WIDGET keyword is used to give a name to a widget that allows it to be accessed from other widgets using the getNamedWidget method of screen. Note that getNamedWidget returns the widget itself and thus must be operated on using methods native to that widget.
 
 | Parameter         | Description                                                                                | Required |
 | ----------------- | ------------------------------------------------------------------------------------------ | -------- |
@@ -141,7 +141,7 @@ Example Usage:
 <!-- prettier-ignore -->
 ```ruby
 NAMED_WIDGET DURATION TEXTFIELD
-BUTTON "Push" "screen.get_named_widget('DURATION').text()"
+BUTTON "Push" "screen.getNamedWidget('DURATION').text()"
 ```
 
 ### WIDGETNAME
@@ -177,7 +177,7 @@ VERTICAL
       LABEL "  Duration: "
       NAMED_WIDGET DURATION TEXTFIELD 12 "10.0"
     END
-    BUTTON 'Start Collect' "api.cmd('INST COLLECT with TYPE '+screen.get_named_widget('COLLECT_TYPE').text()+', DURATION '+screen.get_named_widget('DURATION').text())"
+    BUTTON 'Start Collect' "api.cmd('INST COLLECT with TYPE '+screen.getNamedWidget('COLLECT_TYPE').text()+', DURATION '+screen.getNamedWidget('DURATION').text())"
   END
   SETTING BACKCOLOR 163 185 163
   VERTICALBOX
@@ -187,7 +187,7 @@ VERTICAL
       RADIOBUTTON 'Clear'
     END
     NAMED_WIDGET CHECK CHECKBUTTON 'Ignore Hazardous Checks' # No option is by default UNCHECKED
-    BUTTON 'Send' "screen.get_named_widget('GROUP').selected() === 0 ? api.cmd('INST ABORT') : (screen.get_named_widget('CHECK').checked() ? api.cmd_no_hazardous_check('INST CLEAR') : api.cmd('INST CLEAR'))"
+    BUTTON 'Send' "screen.getNamedWidget('GROUP').selected() === 0 ? api.cmd('INST ABORT') : (screen.getNamedWidget('CHECK').checked() ? api.cmd_no_hazardous_check('INST CLEAR') : api.cmd('INST CLEAR'))"
   END
   SETTING BACKCOLOR 163 185 163
 END
@@ -1077,7 +1077,19 @@ Interactive widgets are used to gather input from the user. Unlike all other wid
 
 The BUTTON widget displays a rectangular button that is clickable by the mouse. Upon clicking, the button executes the Javascript code assigned. Buttons can be used to send commands and perform other tasks.
 
-If you want your button to use values from other widgets, define them as named widgets and read their values using the `screen.get_named_widget("WIDGET_NAME").text()` method. See the example in CHECKBUTTON.
+If you want your button to use values from other widgets, define them as named widgets and read their values using the `screen.getNamedWidget("WIDGET_NAME").text()` method. See the example in [CHECKBUTTON]({{site.baseurl}}/docs/v5/telemetry-screens#checkbutton).
+
+Button code can get rather complex so remember to use [string concatenation]({{site.baseurl}}/docs/v5/format#string-concatenation) to make things more readable. If you use `+` newlines are inserted automatically during string concatenation. If you use `\` you'll need to separate lines with a single semicolon `;`. COSMOS uses double semicolon `;;` to indicate lines should be evaluated separately. Note that all OpenC3 commands (using api.cmd) must be separated by `;;`.
+
+You can send commands with buttons using api.cmd(). The cmd() syntax looks exactly like the standard COSMOS Ruby scripting syntax. You can also request and use telemetry in screens using Javascript Promises, for example:
+
+```javascript
+api.tlm('INST PARAMS VALUE3', 'RAW').then(dur => api.cmd('INST COLLECT with TYPE NORMAL, DURATION '+dur))"
+```
+
+The api.tlm() function returns a Promise which is resolved with then() at which point we send the command with the telemetry value we received.
+
+Scripts can be launched from a BUTTON using the `runScript` method.
 
 | Parameter      | Description                                           | Required |
 | -------------- | ----------------------------------------------------- | -------- |
@@ -1089,6 +1101,7 @@ Example Usage to execute a command:
 <!-- prettier-ignore -->
 ```ruby
 BUTTON 'Start Collect' 'api.cmd("INST COLLECT with TYPE NORMAL, DURATION 5")'
+BUTTON 'Run Script' 'runScript("INST/procedures/script.rb")'
 ```
 
 ### CHECKBUTTON
@@ -1105,7 +1118,8 @@ Example Usage:
 <!-- prettier-ignore -->
 ```ruby
 NAMED_WIDGET CHECK CHECKBUTTON 'Ignore Hazardous Checks'
-BUTTON 'Send' 'screen.get_named_widget("CHECK").checked() ? api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'
+BUTTON 'Send' 'screen.getNamedWidget("CHECK").checked() ? ' \
+  'api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'
 ```
 
 ### COMBOBOX
@@ -1121,7 +1135,8 @@ Example Usage:
 
 <!-- prettier-ignore -->
 ```ruby
-BUTTON 'Start Collect' 'api.cmd("INST COLLECT with TYPE '+screen.get_named_widget("COLLECT_TYPE").text()+', DURATION 10.0")'
+BUTTON 'Start Collect' 'var type = screen.getNamedWidget("COLLECT_TYPE").text();' +
+  'api.cmd("INST COLLECT with TYPE "+type+", DURATION 10.0")'
 NAMED_WIDGET COLLECT_TYPE COMBOBOX NORMAL SPECIAL
 ```
 
@@ -1140,7 +1155,7 @@ Example Usage:
 ```ruby
 NAMED_WIDGET ABORT RADIOBUTTON 'Abort'
 NAMED_WIDGET CLEAR RADIOBUTTON 'Clear'
-BUTTON 'Send' 'screen.get_named_widget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'
+BUTTON 'Send' 'screen.getNamedWidget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'
 ```
 
 ### TEXTFIELD
@@ -1157,7 +1172,8 @@ Example Usage:
 <!-- prettier-ignore -->
 ```ruby
 NAMED_WIDGET DURATION TEXTFIELD 12 "10.0"
-BUTTON 'Start Collect' 'api.cmd("INST COLLECT with TYPE NORMAL, DURATION '+screen.get_named_widget("DURATION").text()+'")'
+BUTTON 'Start Collect' 'var dur = screen.getNamedWidget("DURATION").text();' +
+       'api.cmd("INST COLLECT with TYPE NORMAL, DURATION "+dur+"")'
 ```
 
 ## Canvas Widgets

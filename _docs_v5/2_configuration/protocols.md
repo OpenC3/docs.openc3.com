@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Protocol Configuration
+title: Protocols
 toc: true
 ---
 

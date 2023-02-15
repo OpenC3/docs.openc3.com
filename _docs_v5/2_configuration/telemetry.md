@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Telemetry Configuration
+title: Telemetry
 toc: true
 ---
 
