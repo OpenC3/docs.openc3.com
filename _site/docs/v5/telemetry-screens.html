@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Telemetry Screens</title>
+  <title>Screens</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.2">
@@ -219,7 +219,7 @@
 </li>
 </ul></div>
         
-        <h1>Telemetry Screens</h1>
+        <h1>Screens</h1>
         <p>This document provides the information necessary to generate and use COSMOS Telemetry Screens, which are displayed by the COSMOS Telemetry Viewer application.</p>
 
 <div style="clear:both;"></div>
@@ -475,7 +475,7 @@
 <h3 id="named_widget">
 <a class="anchor" href="#named_widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>NAMED_WIDGET</h3>
 
-<p>The NAMED_WIDGET keyword is used to give a name to a widget that allows it to be accessed from other widgets using the get_named_widget method of screen. Note that get_named_widget returns the widget itself and thus must be operated on using methods native to that widget.</p>
+<p>The NAMED_WIDGET keyword is used to give a name to a widget that allows it to be accessed from other widgets using the getNamedWidget method of screen. Note that getNamedWidget returns the widget itself and thus must be operated on using methods native to that widget.</p>
 
 <table>
   <thead>
@@ -508,7 +508,7 @@
 
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">DURATION</span> <span class="no">TEXTFIELD</span>
-<span class="no">BUTTON</span> <span class="s2">"Push"</span> <span class="s2">"screen.get_named_widget('DURATION').text()"</span>
+<span class="no">BUTTON</span> <span class="s2">"Push"</span> <span class="s2">"screen.getNamedWidget('DURATION').text()"</span>
 </code></pre></div></div>
 
 <h3 id="widgetname">
@@ -562,7 +562,7 @@
       <span class="no">LABEL</span> <span class="s2">"  Duration: "</span>
       <span class="no">NAMED_WIDGET</span> <span class="no">DURATION</span> <span class="no">TEXTFIELD</span> <span class="mi">12</span> <span class="s2">"10.0"</span>
     <span class="k">END</span>
-    <span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s2">"api.cmd('INST COLLECT with TYPE '+screen.get_named_widget('COLLECT_TYPE').text()+', DURATION '+screen.get_named_widget('DURATION').text())"</span>
+    <span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s2">"api.cmd('INST COLLECT with TYPE '+screen.getNamedWidget('COLLECT_TYPE').text()+', DURATION '+screen.getNamedWidget('DURATION').text())"</span>
   <span class="k">END</span>
   <span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="mi">163</span> <span class="mi">185</span> <span class="mi">163</span>
   <span class="no">VERTICALBOX</span>
@@ -572,7 +572,7 @@
       <span class="no">RADIOBUTTON</span> <span class="s1">'Clear'</span>
     <span class="k">END</span>
     <span class="no">NAMED_WIDGET</span> <span class="no">CHECK</span> <span class="no">CHECKBUTTON</span> <span class="s1">'Ignore Hazardous Checks'</span> <span class="c1"># No option is by default UNCHECKED</span>
-    <span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s2">"screen.get_named_widget('GROUP').selected() === 0 ? api.cmd('INST ABORT') : (screen.get_named_widget('CHECK').checked() ? api.cmd_no_hazardous_check('INST CLEAR') : api.cmd('INST CLEAR'))"</span>
+    <span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s2">"screen.getNamedWidget('GROUP').selected() === 0 ? api.cmd('INST ABORT') : (screen.getNamedWidget('CHECK').checked() ? api.cmd_no_hazardous_check('INST CLEAR') : api.cmd('INST CLEAR'))"</span>
   <span class="k">END</span>
   <span class="no">SETTING</span> <span class="no">BACKCOLOR</span> <span class="mi">163</span> <span class="mi">185</span> <span class="mi">163</span>
 <span class="k">END</span>
@@ -2656,7 +2656,18 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 
 <p>The BUTTON widget displays a rectangular button that is clickable by the mouse. Upon clicking, the button executes the Javascript code assigned. Buttons can be used to send commands and perform other tasks.</p>
 
-<p>If you want your button to use values from other widgets, define them as named widgets and read their values using the <code class="language-plaintext highlighter-rouge">screen.get_named_widget("WIDGET_NAME").text()</code> method. See the example in CHECKBUTTON.</p>
+<p>If you want your button to use values from other widgets, define them as named widgets and read their values using the <code class="language-plaintext highlighter-rouge">screen.getNamedWidget("WIDGET_NAME").text()</code> method. See the example in <a href="/docs/v5/telemetry-screens#checkbutton">CHECKBUTTON</a>.</p>
+
+<p>Button code can get rather complex so remember to use <a href="/docs/v5/format#string-concatenation">string concatenation</a> to make things more readable. If you use <code class="language-plaintext highlighter-rouge">+</code> newlines are inserted automatically during string concatenation. If you use <code class="language-plaintext highlighter-rouge">\</code> you’ll need to separate lines with a single semicolon <code class="language-plaintext highlighter-rouge">;</code>. COSMOS uses double semicolon <code class="language-plaintext highlighter-rouge">;;</code> to indicate lines should be evaluated separately. Note that all OpenC3 commands (using api.cmd) must be separated by <code class="language-plaintext highlighter-rouge">;;</code>.</p>
+
+<p>You can send commands with buttons using api.cmd(). The cmd() syntax looks exactly like the standard COSMOS Ruby scripting syntax. You can also request and use telemetry in screens using Javascript Promises, for example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">api</span><span class="p">.</span><span class="nf">tlm</span><span class="p">(</span><span class="dl">'</span><span class="s1">INST PARAMS VALUE3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">RAW</span><span class="dl">'</span><span class="p">).</span><span class="nf">then</span><span class="p">(</span><span class="nx">dur</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">cmd</span><span class="p">(</span><span class="dl">'</span><span class="s1">INST COLLECT with TYPE NORMAL, DURATION </span><span class="dl">'</span><span class="o">+</span><span class="nx">dur</span><span class="p">))</span><span class="dl">"</span><span class="s2">
+</span></code></pre></div></div>
+
+<p>The api.tlm() function returns a Promise which is resolved with then() at which point we send the command with the telemetry value we received.</p>
+
+<p>Scripts can be launched from a BUTTON using the <code class="language-plaintext highlighter-rouge">runScript</code> method.</p>
 
 <table>
   <thead>
@@ -2684,6 +2695,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION 5")'</span>
+<span class="no">BUTTON</span> <span class="s1">'Run Script'</span> <span class="s1">'runScript("INST/procedures/script.rb")'</span>
 </code></pre></div></div>
 
 <h3 id="checkbutton">
@@ -2717,7 +2729,8 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">CHECK</span> <span class="no">CHECKBUTTON</span> <span class="s1">'Ignore Hazardous Checks'</span>
-<span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget("CHECK").checked() ? api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'</span>
+<span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s1">'screen.getNamedWidget("CHECK").checked() ? '</span> <span class="p">\</span>
+  <span class="s1">'api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'</span>
 </code></pre></div></div>
 
 <h3 id="combobox">
@@ -2750,7 +2763,8 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 <p>Example Usage:</p>
 
 <!-- prettier-ignore -->
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE '</span><span class="o">+</span><span class="n">screen</span><span class="p">.</span><span class="nf">get_named_widget</span><span class="p">(</span><span class="s2">"COLLECT_TYPE"</span><span class="p">).</span><span class="nf">text</span><span class="p">()</span><span class="o">+</span><span class="s1">', DURATION 10.0")'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'var type = screen.getNamedWidget("COLLECT_TYPE").text();'</span> <span class="o">+</span>
+  <span class="s1">'api.cmd("INST COLLECT with TYPE "+type+", DURATION 10.0")'</span>
 <span class="no">NAMED_WIDGET</span> <span class="no">COLLECT_TYPE</span> <span class="no">COMBOBOX</span> <span class="no">NORMAL</span> <span class="no">SPECIAL</span>
 </code></pre></div></div>
 
@@ -2786,7 +2800,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">ABORT</span> <span class="no">RADIOBUTTON</span> <span class="s1">'Abort'</span>
 <span class="no">NAMED_WIDGET</span> <span class="no">CLEAR</span> <span class="no">RADIOBUTTON</span> <span class="s1">'Clear'</span>
-<span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s1">'screen.get_named_widget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'</span>
+<span class="no">BUTTON</span> <span class="s1">'Send'</span> <span class="s1">'screen.getNamedWidget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'</span>
 </code></pre></div></div>
 
 <h3 id="textfield">
@@ -2820,7 +2834,8 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">NAMED_WIDGET</span> <span class="no">DURATION</span> <span class="no">TEXTFIELD</span> <span class="mi">12</span> <span class="s2">"10.0"</span>
-<span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION '</span><span class="o">+</span><span class="n">screen</span><span class="p">.</span><span class="nf">get_named_widget</span><span class="p">(</span><span class="s2">"DURATION"</span><span class="p">).</span><span class="nf">text</span><span class="p">()</span><span class="o">+</span><span class="s1">'")'</span>
+<span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'var dur = screen.getNamedWidget("DURATION").text();'</span> <span class="o">+</span>
+       <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION "+dur+"")'</span>
 </code></pre></div></div>
 
 <h2 id="canvas-widgets">
@@ -4128,6 +4143,32 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+  <li class="">
+    <a href="/docs/v5/format">File Format</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
   <li class="">
@@ -4164,8 +4205,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
   <li class="">
-    <a href="/docs/v5/target">Target Configuration</a>
+    <a href="/docs/v5/target">Targets</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -4187,95 +4230,7 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
     
       
   <li class="">
-    <a href="/docs/v5/command">Command Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/telemetry">Telemetry Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/interfaces">Interface Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v5/protocols">Protocol Configuration</a>
+    <a href="/docs/v5/command">Commands</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -4306,14 +4261,152 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v5/table">Table Configuration</a>
+    <a href="/docs/v5/telemetry">Telemetry</a>
   </li>
   <!-- prettier-ignore -->
   
   
     
     
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/interfaces">Interfaces</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/protocols">Protocols</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/table">Tables</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="current">
+    <a href="/docs/v5/telemetry-screens">Screens</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
     
       
     
@@ -4356,6 +4449,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -4448,6 +4545,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/limits-monitor">Limits Monitor</a>
   </li>
@@ -4492,6 +4593,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
@@ -4500,6 +4605,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -4606,6 +4715,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
@@ -4614,6 +4727,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -4732,6 +4849,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
@@ -4740,6 +4861,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -4830,6 +4955,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/data-viewer">Data Viewer</a>
   </li>
@@ -4870,6 +4999,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/bucket-explorer">Bucket Explorer</a>
   </li>
@@ -4878,6 +5011,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -4982,6 +5119,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/handbooks">Handbooks</a>
   </li>
@@ -4990,6 +5131,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -5102,6 +5247,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
@@ -5110,6 +5259,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -5240,6 +5393,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/little-endian-bitfields">Little Endian Bitfields</a>
   </li>
@@ -5248,6 +5405,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -5386,6 +5547,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
@@ -5394,6 +5559,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -5540,6 +5709,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
   </li>
@@ -5548,6 +5721,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
+    
+      
     
       
     
@@ -5702,92 +5879,12 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="current">
-    <a href="/docs/v5/telemetry-screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -5806,6 +5903,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
     
       
     
@@ -5978,6 +6077,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -5986,6 +6087,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
     
       
     
@@ -6166,6 +6269,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -6174,6 +6279,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
     
       
     
@@ -6354,6 +6461,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -6362,6 +6471,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
     
       
     
@@ -6462,6 +6573,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
     
       
     
@@ -6656,6 +6769,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -6664,6 +6779,8 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.</p>
   
     
     
+    
+      
     
       
     
