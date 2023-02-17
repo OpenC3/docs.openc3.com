@@ -197,6 +197,8 @@
 <li class="toc-entry toc-h3"><a href="#textcolor">TEXTCOLOR</a></li>
 <li class="toc-entry toc-h3"><a href="#width">WIDTH</a></li>
 <li class="toc-entry toc-h3"><a href="#height">HEIGHT</a></li>
+<li class="toc-entry toc-h3"><a href="#margin">MARGIN</a></li>
+<li class="toc-entry toc-h3"><a href="#padding">PADDING</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#widget-specific-settings">Widget-Specific Settings</a>
@@ -391,7 +393,7 @@
 <h3 id="setting">
 <a class="anchor" href="#setting" aria-hidden="true"><span class="octicon octicon-link"></span></a>SETTING</h3>
 
-<p>The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it. COSMOS supports the following settings: TEXTALIGN, PADDING, MARGIN, BACKCOLOR, TEXTCOLOR, BORDERCOLOR, WIDTH, HEIGHT, and RAW. When specifying a color, the value can be given as a common string, e.g. ‘red’, or by RGB values, e.g. 255 0 0. If the setting is a length the units are required, e.g. 200px. If the setting is RAW the value should be the raw stylesheet key and value, e.g. font-size 10px.</p>
+<p>The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it. COSMOS supports the following settings: TEXTALIGN, PADDING, MARGIN, BACKCOLOR, TEXTCOLOR, BORDERCOLOR, WIDTH, HEIGHT, and RAW. When specifying a color, the value can be given as a common string, e.g. ‘red’, or by RGB values, e.g. 255 0 0. The PADDING, MARGIN, WIDTH or HEIGHT settings support <a href="https://www.w3schools.com/cssref/css_units.php">css units</a> with the default (no units) of px (pixels). If the setting is RAW the value should be the raw stylesheet key and value, e.g. font-size 10px.</p>
 
 <table>
   <thead>
@@ -3440,7 +3442,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 <h3 id="width">
 <a class="anchor" href="#width" aria-hidden="true"><span class="octicon octicon-link"></span></a>WIDTH</h3>
 
-<p>The WIDTH setting forces the height of a widget to a certain size.</p>
+<p>The WIDTH setting forces the width of a widget to a certain size. It supports <a href="https://www.w3schools.com/cssref/css_units.php">css units</a> with the default (no units) of px (pixels).</p>
 
 <table>
   <thead>
@@ -3453,7 +3455,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
   <tbody>
     <tr>
       <td>Width</td>
-      <td>Desired with in pixels</td>
+      <td>Desired width</td>
       <td>Yes</td>
     </tr>
   </tbody>
@@ -3463,12 +3465,15 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">WIDTH</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">WIDTH</span> <span class="mi">100</span><span class="n">px</span>
+<span class="no">SETTING</span> <span class="no">WIDTH</span> <span class="mi">50</span><span class="o">%</span>
+<span class="no">SETTING</span> <span class="no">WIDTH</span> <span class="mi">5</span><span class="n">em</span>
 </code></pre></div></div>
 
 <h3 id="height">
 <a class="anchor" href="#height" aria-hidden="true"><span class="octicon octicon-link"></span></a>HEIGHT</h3>
 
-<p>The HEIGHT setting forces the height of a widget to a certain size.</p>
+<p>The HEIGHT setting forces the height of a widget to a certain size. It supports <a href="https://www.w3schools.com/cssref/css_units.php">css units</a> with the default (no units) of px (pixels).</p>
 
 <table>
   <thead>
@@ -3481,7 +3486,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
   <tbody>
     <tr>
       <td>Height</td>
-      <td>Desired height in pixels</td>
+      <td>Desired height</td>
       <td>Yes</td>
     </tr>
   </tbody>
@@ -3491,6 +3496,71 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">HEIGHT</span> <span class="mi">100</span>
+<span class="no">SETTING</span> <span class="no">HEIGHT</span> <span class="mi">100</span><span class="n">px</span>
+<span class="no">SETTING</span> <span class="no">HEIGHT</span> <span class="mi">50</span><span class="o">%</span>
+<span class="no">SETTING</span> <span class="no">HEIGHT</span> <span class="mi">5</span><span class="n">em</span>
+</code></pre></div></div>
+
+<h3 id="margin">
+<a class="anchor" href="#margin" aria-hidden="true"><span class="octicon octicon-link"></span></a>MARGIN</h3>
+
+<p>The MARGIN setting adds css margin of a certain size. It supports <a href="https://www.w3schools.com/cssref/css_units.php">css units</a> with the default (no units) of px (pixels).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Size</td>
+      <td>Desired margin</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+
+<!-- prettier-ignore -->
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">MARGIN</span> <span class="mi">5</span>
+<span class="no">SETTING</span> <span class="no">MARGIN</span> <span class="mi">5</span><span class="n">px</span>
+<span class="no">SETTING</span> <span class="no">MARGIN</span> <span class="mi">5</span><span class="o">%</span>
+<span class="no">SETTING</span> <span class="no">MARGIN</span> <span class="mi">1</span><span class="n">em</span>
+</code></pre></div></div>
+
+<h3 id="padding">
+<a class="anchor" href="#padding" aria-hidden="true"><span class="octicon octicon-link"></span></a>PADDING</h3>
+
+<p>The PADDING setting add css padding of a certain size. It supports <a href="https://www.w3schools.com/cssref/css_units.php">css units</a> with the default (no units) of px (pixels).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Size</td>
+      <td>Desired padding</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+
+<!-- prettier-ignore -->
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SETTING</span> <span class="no">PADDING</span> <span class="mi">5</span>
+<span class="no">SETTING</span> <span class="no">PADDING</span> <span class="mi">5</span><span class="n">px</span>
+<span class="no">SETTING</span> <span class="no">PADDING</span> <span class="mi">5</span><span class="o">%</span>
+<span class="no">SETTING</span> <span class="no">PADDING</span> <span class="mi">1</span><span class="n">em</span>
 </code></pre></div></div>
 
 <h2 id="widget-specific-settings">
