@@ -1427,9 +1427,9 @@ SETTING TEXTCOLOR 162 181 205
 
 The WIDTH setting forces the width of a widget to a certain size. It supports [css units](https://www.w3schools.com/cssref/css_units.php) with the default (no units) of px (pixels).
 
-| Parameter | Description  | Required |
-| --------- | ------------ | -------- |
-| Width     | Desired with | Yes      |
+| Parameter | Description   | Required |
+| --------- | ------------- | -------- |
+| Width     | Desired width | Yes      |
 
 Example Usage:
 
