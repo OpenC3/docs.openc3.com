@@ -82,7 +82,7 @@ GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white # Set all text color t
 
 ### SETTING
 
-The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it. COSMOS supports the following settings: TEXTALIGN, PADDING, MARGIN, BACKCOLOR, TEXTCOLOR, BORDERCOLOR, WIDTH, HEIGHT, and RAW. When specifying a color, the value can be given as a common string, e.g. 'red', or by RGB values, e.g. 255 0 0. If the setting is a length the units are required, e.g. 200px. If the setting is RAW the value should be the raw stylesheet key and value, e.g. font-size 10px.
+The SETTING keyword is used to apply a widget setting to the widget that was specified immediately before it. COSMOS supports the following settings: TEXTALIGN, PADDING, MARGIN, BACKCOLOR, TEXTCOLOR, BORDERCOLOR, WIDTH, HEIGHT, and RAW. When specifying a color, the value can be given as a common string, e.g. 'red', or by RGB values, e.g. 255 0 0. The PADDING, MARGIN, WIDTH or HEIGHT settings support [css units](https://www.w3schools.com/cssref/css_units.php) with the default (no units) of px (pixels). If the setting is RAW the value should be the raw stylesheet key and value, e.g. font-size 10px.
 
 | Parameter        | Description                  | Required |
 | ---------------- | ---------------------------- | -------- |
@@ -1425,32 +1425,74 @@ SETTING TEXTCOLOR 162 181 205
 
 ### WIDTH
 
-The WIDTH setting forces the height of a widget to a certain size.
+The WIDTH setting forces the width of a widget to a certain size. It supports [css units](https://www.w3schools.com/cssref/css_units.php) with the default (no units) of px (pixels).
 
-| Parameter | Description            | Required |
-| --------- | ---------------------- | -------- |
-| Width     | Desired with in pixels | Yes      |
+| Parameter | Description  | Required |
+| --------- | ------------ | -------- |
+| Width     | Desired with | Yes      |
 
 Example Usage:
 
 <!-- prettier-ignore -->
 ```ruby
 SETTING WIDTH 100
+SETTING WIDTH 100px
+SETTING WIDTH 50%
+SETTING WIDTH 5em
 ```
 
 ### HEIGHT
 
-The HEIGHT setting forces the height of a widget to a certain size.
+The HEIGHT setting forces the height of a widget to a certain size. It supports [css units](https://www.w3schools.com/cssref/css_units.php) with the default (no units) of px (pixels).
 
-| Parameter | Description              | Required |
-| --------- | ------------------------ | -------- |
-| Height    | Desired height in pixels | Yes      |
+| Parameter | Description    | Required |
+| --------- | -------------- | -------- |
+| Height    | Desired height | Yes      |
 
 Example Usage:
 
 <!-- prettier-ignore -->
 ```ruby
 SETTING HEIGHT 100
+SETTING HEIGHT 100px
+SETTING HEIGHT 50%
+SETTING HEIGHT 5em
+```
+
+### MARGIN
+
+The MARGIN setting adds css margin of a certain size. It supports [css units](https://www.w3schools.com/cssref/css_units.php) with the default (no units) of px (pixels).
+
+| Parameter | Description    | Required |
+| --------- | -------------- | -------- |
+| Size      | Desired margin | Yes      |
+
+Example Usage:
+
+<!-- prettier-ignore -->
+```ruby
+SETTING MARGIN 5
+SETTING MARGIN 5px
+SETTING MARGIN 5%
+SETTING MARGIN 1em
+```
+
+### PADDING
+
+The PADDING setting add css padding of a certain size. It supports [css units](https://www.w3schools.com/cssref/css_units.php) with the default (no units) of px (pixels).
+
+| Parameter | Description     | Required |
+| --------- | --------------- | -------- |
+| Size      | Desired padding | Yes      |
+
+Example Usage:
+
+<!-- prettier-ignore -->
+```ruby
+SETTING PADDING 5
+SETTING PADDING 5px
+SETTING PADDING 5%
+SETTING PADDING 1em
 ```
 
 ## Widget-Specific Settings
