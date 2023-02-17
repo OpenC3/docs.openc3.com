@@ -1242,7 +1242,7 @@ END
 
 ### CANVASIMAGE
 
-The CANVASIMAGE widget displays a GIF image on the canvas.
+The CANVASIMAGE widget displays a GIF image on the canvas. Image files must be located in the target's public directory.
 
 | Parameter  | Description                                                                                 | Required |
 | ---------- | ------------------------------------------------------------------------------------------- | -------- |
@@ -1264,7 +1264,7 @@ END
 
 ### CANVASIMAGEVALUE
 
-The CANVASIMAGEVALUE widget displays a GIF image on the canvas that changes with a telemetry value.
+The CANVASIMAGEVALUE widget displays a GIF image on the canvas that changes with a telemetry value. Image files must be located in the target's public directory.
 
 | Parameter       | Description                                                                                                                                                                  | Required |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
