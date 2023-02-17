@@ -274,7 +274,7 @@
     </tr>
     <tr>
       <td>targets/TARGETNAME/data</td>
-      <td>Use this folder to store any general data that is needed by the target. For example, any image files would be stored here.</td>
+      <td>Use this folder to store any general data that is needed by the target excluding CANVAS image files.</td>
     </tr>
     <tr>
       <td>targets/TARGETNAME/lib</td>
@@ -283,6 +283,10 @@
     <tr>
       <td>targets/TARGETNAME/procedures</td>
       <td>This folder contains target specific procedures and helper methods which exercise functionality of the target. These procedures should be kept simple and only use the command and telemetry definitions associated with this target. See the Scripting Guide for more information.</td>
+    </tr>
+    <tr>
+      <td>targets/TARGETNAME/public</td>
+      <td>Put image files here for use in Telemetry Viewer Canvas Image widgets such as <a href="/docs/v5/telemetry-screens#canvasimage">CANVASIMAGE</a> and <a href="/docs/v5/telemetry-screens#canvasimagevalue">CANVASIMAGEVALUE</a>.</td>
     </tr>
     <tr>
       <td>targets/TARGETNAME/screens</td>
