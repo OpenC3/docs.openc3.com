@@ -11,12 +11,12 @@ COSMOS can process from inside of containers.
 ## Bridges are Meant to be Dumb
 
 The purpose of bridges is to get bytes into COSMOS. Processing should be done in COSMOS itself, including details such as
-packet deliniation.
+packet delineation.
 
 ## Bridges are Generally Just an Interface and Router
 
 Bridges are generally made up of a COSMOS Interface class that pull data from a host connected device, and a Router that forwards that data to
-COSMOS over TCP/IP. In most cases, data can be safely sent to COSMOS using the BURST protocol, and let the COSMOS side use the correct packet deliniation
+COSMOS over TCP/IP. In most cases, data can be safely sent to COSMOS using the BURST protocol, and let the COSMOS side use the correct packet delineation
 protocol like LENGTH.
 
 ## Host Requirements for Running Bridges

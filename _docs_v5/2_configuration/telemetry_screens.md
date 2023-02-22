@@ -1242,15 +1242,15 @@ END
 
 ### CANVASIMAGE
 
-The CANVASIMAGE widget displays a GIF image on the canvas. Image files must be located in the target's public directory.
+The CANVASIMAGE widget displays a GIF image on the canvas. Image files must be located in the plugin's targets/TARGET/public directory.
 
-| Parameter  | Description                                                                                 | Required |
-| ---------- | ------------------------------------------------------------------------------------------- | -------- |
-| Image Name | Name of a image file which must be located in the TARGET/screens directory or URL to image. | Yes      |
-| X          | Left X position to draw the image                                                           | Yes      |
-| Y          | Top Y position to draw the image                                                            | Yes      |
-| Width      | Width of the image                                                                          | No       |
-| Height     | Height of the image                                                                         | No       |
+| Parameter  | Description                                                                                                 | Required |
+| ---------- | ----------------------------------------------------------------------------------------------------------- | -------- |
+| Image Name | Name of a image file which must be located in the plugin's targets/TARGET/public directory or URL to image. | Yes      |
+| X          | Left X position to draw the image                                                                           | Yes      |
+| Y          | Top Y position to draw the image                                                                            | Yes      |
+| Width      | Width of the image                                                                                          | No       |
+| Height     | Height of the image                                                                                         | No       |
 
 Example Usage:
 
@@ -1264,17 +1264,18 @@ END
 
 ### CANVASIMAGEVALUE
 
-The CANVASIMAGEVALUE widget displays a GIF image on the canvas that changes with a telemetry value. Image files must be located in the target's public directory.
+The CANVASIMAGEVALUE widget displays an image on the canvas that changes with a telemetry value. Image files must be located in the plugin's targets/TARGET/public directory. Use SETTING IMAGE to indicate what image should be displayed based on telemetry values. The value used in SETTING must match the Value Type given.
 
-| Parameter       | Description                                                                                                                                                                  | Required |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Target Name     | Target name portion of the telemetry mnemonic                                                                                                                                | Yes      |
-| Packet Name     | Packet name portion of the telemetry mnemonic                                                                                                                                | Yes      |
-| Item Name       | Item name portion of the telemetry mnemonic                                                                                                                                  | Yes      |
-| Filename Prefix | The prefix part of the filename of the gif images (in the TARGET/screens directory). The actual filenames will be this value plus the word "on" or the word "off" and ".gif" | Yes      |
-| X               | X position of the upper-left corner of the image on the canvas                                                                                                               | Yes      |
-| Y               | Y position of the upper-left corner of the image on the canvas                                                                                                               | Yes      |
-| Value Type      | Type of the value to display: RAW, CONVERTED, FORMATTED, or WITH_UNITS (default = RAW)                                                                                       | No       |
+| Parameter     | Description                                                                                                | Required |
+| ------------- | ---------------------------------------------------------------------------------------------------------- | -------- |
+| Target Name   | Target name portion of the telemetry mnemonic                                                              | Yes      |
+| Packet Name   | Packet name portion of the telemetry mnemonic                                                              | Yes      |
+| Item Name     | Item name portion of the telemetry mnemonic                                                                | Yes      |
+| Value Type    | The type of the value to display. Must be RAW, CONVERTED, FORMATTED or WITH_UNITS.                         | Yes      |
+| Default Image | The default image to display. Image files must be located in the plugin's targets/TARGET/public directory. | Yes      |
+| X             | X position of the upper-left corner of the image on the canvas                                             | Yes      |
+| Y             | Y position of the upper-left corner of the image on the canvas                                             | Yes      |
+| Value Type    | Type of the value to display: RAW, CONVERTED, FORMATTED, or WITH_UNITS (default = RAW)                     | No       |
 
 Example Usage:
 
@@ -1282,7 +1283,15 @@ Example Usage:
 ```ruby
 CANVAS 150 200
   CANVASLABELVALUE INST HEALTH_STATUS GROUND1STATUS 0 12 12 black false
-  CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS "ground" 0 20 # Uses groundon.gif and groundoff.gif
+  CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS "ground" 0 20
+  CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS CONVERTED "ground_error.png" 400 100 180 180
+    SETTING IMAGE CONNECTED "ground_on.png" 400 100
+    SETTING IMAGE UNAVAILABLE "ground_off.png" 400 100
+  CANVASIMAGEVALUE INST HEALTH_STATUS GROUND2STATUS RAW "ground_error.png" 400 350 180 180
+    SETTING IMAGE 1 "ground_on.png" 400 350
+    SETTING IMAGE 0 "ground_off.png" 400 350
+    # This is an example of using a range of values with a particular image
+    SETTING IMAGE 2..10 "ground_error.png" 400 350
 END
 ```
 
