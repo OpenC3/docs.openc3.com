@@ -125,6 +125,12 @@ protocol like LENGTH.</p>
       <li>gem install openc3</li>
     </ul>
   </li>
+  <li>Make sure the Ruby gem executable path is in your PATH environment variable
+    <ul>
+      <li>You can find this path by running <code class="language-plaintext highlighter-rouge">gem environment</code> and looking for EXECUTABLE DIRECTORY</li>
+    </ul>
+  </li>
+  <li>If successful, you should be able to run <code class="language-plaintext highlighter-rouge">openc3cli</code> from a terminal</li>
 </ul>
 
 <h2 id="bridge-configuration-bridgetxt">Bridge Configuration: bridge.txt</h2>
@@ -195,9 +201,11 @@ this server using the host.docker.internal hostname and the configured port (295
 
 <h2 id="example-bridge-gems">Example Bridge Gems</h2>
 
-<p>Serial Port: <a href="https://github.com/OpenC3/openc3-cosmos-bridge-serial">openc3-cosmos-bridge-serial</a>
-HIDAPI: <a href="https://github.com/OpenC3/openc3-cosmos-bridge-hidapi">openc3-cosmos-bridge-hidapi</a>
-PS5 Dual Sense Controller: <a href="https://github.com/OpenC3/openc3-cosmos-bridge-dualsense">openc3-cosmos-bridge-dualsense</a></p>
+<ul>
+  <li>Serial Port: <a href="https://github.com/OpenC3/openc3-cosmos-bridge-serial">openc3-cosmos-bridge-serial</a></li>
+  <li>HIDAPI: <a href="https://github.com/OpenC3/openc3-cosmos-bridge-hidapi">openc3-cosmos-bridge-hidapi</a></li>
+  <li>PS5 Dual Sense Controller: <a href="https://github.com/OpenC3/openc3-cosmos-bridge-dualsense">openc3-cosmos-bridge-dualsense</a></li>
+</ul>
 
 <h2 id="note-on-serial-ports">Note on Serial Ports</h2>
 
