@@ -128,12 +128,12 @@ swap=0
       </li>
     </ul>
   </li>
-  <li>Modifying Docker connection timeouts (very rarely needed):
-    <ul>
-      <li>Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a COSMOS configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\Users\&lt;username&gt;\AppData\Roaming\Docker\settings.json. Modify the value <code class="language-plaintext highlighter-rouge">vpnKitMaxPortIdleTime</code> to change the timeout. <strong>Note:</strong> 0 means no timeout (idle connections not dropped)</li>
-    </ul>
-  </li>
 </ul>
+
+<div class="note warning">
+  <h5>Important: Modify Docker Connection Timeouts</h5>
+  <p style="margin-bottom:20px;">Docker by default will break idle (no data) connections after a period of 5 minutes. This "feature" will eventually cause you problems if you don't adjust the Docker settings. This may manifest as idle connections dropping or simplying failing to resume after data should have started flowing again. Find the file at C:\\Users\\\&lt;username\&gt;\\AppData\\Roaming\\Docker\\settings.json on Windows or ~/Library/Group Containers/group.com.docker/settings.json on MacOS. Modify the value `vpnKitMaxPortIdleTime` to change the timeout (recommend setting to 0). **Note:** 0 means no timeout (idle connections not dropped)</p>
+</div>
 
 <p><strong>Note:</strong> As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.</p>
 
@@ -1502,6 +1502,78 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
     
       
   <li class="">
+    <a href="/docs/v5/bridges">Bridges</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
     <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
@@ -1509,6 +1581,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -1581,6 +1655,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -1723,6 +1799,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/local-mode">Local Mode</a>
   </li>
@@ -1731,6 +1809,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -1881,6 +1961,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
@@ -1889,6 +1971,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -2047,6 +2131,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting">Scripting Guide</a>
   </li>
@@ -2055,6 +2141,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -2241,6 +2329,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/roadmap">Roadmap</a>
   </li>
@@ -2329,6 +2419,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -2337,6 +2429,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -2521,6 +2615,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -2529,6 +2625,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -2713,6 +2811,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -2721,6 +2821,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -2823,6 +2925,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     
@@ -3021,6 +3125,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -3029,6 +3135,8 @@ Usage: ./openc3.sh [cli, cliroot, start, stop, cleanup, run, util]
   
     
     
+    
+      
     
       
     

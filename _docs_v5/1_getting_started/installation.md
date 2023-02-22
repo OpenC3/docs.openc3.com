@@ -24,8 +24,10 @@ Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compos
         memory=16GB
         swap=0
 
-- Modifying Docker connection timeouts (very rarely needed):
-  - Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a COSMOS configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\\Users\\\<username\>\\AppData\\Roaming\\Docker\\settings.json. Modify the value `vpnKitMaxPortIdleTime` to change the timeout. **Note:** 0 means no timeout (idle connections not dropped)
+<div class="note warning">
+  <h5>Important: Modify Docker Connection Timeouts</h5>
+  <p style="margin-bottom:20px;">Docker by default will break idle (no data) connections after a period of 5 minutes. This "feature" will eventually cause you problems if you don't adjust the Docker settings. This may manifest as idle connections dropping or simplying failing to resume after data should have started flowing again. Find the file at C:\\Users\\\<username\>\\AppData\\Roaming\\Docker\\settings.json on Windows or ~/Library/Group Containers/group.com.docker/settings.json on MacOS. Modify the value `vpnKitMaxPortIdleTime` to change the timeout (recommend setting to 0). **Note:** 0 means no timeout (idle connections not dropped)</p>
+</div>
 
 **Note:** As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
 

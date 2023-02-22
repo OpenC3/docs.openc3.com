@@ -274,7 +274,7 @@
     </tr>
     <tr>
       <td>targets/TARGETNAME/data</td>
-      <td>Use this folder to store any general data that is needed by the target. For example, any image files would be stored here.</td>
+      <td>Use this folder to store any general data that is needed by the target excluding CANVAS image files.</td>
     </tr>
     <tr>
       <td>targets/TARGETNAME/lib</td>
@@ -283,6 +283,10 @@
     <tr>
       <td>targets/TARGETNAME/procedures</td>
       <td>This folder contains target specific procedures and helper methods which exercise functionality of the target. These procedures should be kept simple and only use the command and telemetry definitions associated with this target. See the Scripting Guide for more information.</td>
+    </tr>
+    <tr>
+      <td>targets/TARGETNAME/public</td>
+      <td>Put image files here for use in Telemetry Viewer Canvas Image widgets such as <a href="/docs/v5/telemetry-screens#canvasimage">CANVASIMAGE</a> and <a href="/docs/v5/telemetry-screens#canvasimagevalue">CANVASIMAGEVALUE</a>.</td>
     </tr>
     <tr>
       <td>targets/TARGETNAME/screens</td>
@@ -2911,6 +2915,78 @@ This file follows the standard COSMOS configuration file format of keywords foll
     
       
   <li class="">
+    <a href="/docs/v5/bridges">Bridges</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
     <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
@@ -2918,6 +2994,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -2990,6 +3068,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3132,6 +3212,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/local-mode">Local Mode</a>
   </li>
@@ -3140,6 +3222,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3290,6 +3374,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
@@ -3298,6 +3384,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3456,6 +3544,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting">Scripting Guide</a>
   </li>
@@ -3464,6 +3554,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3650,6 +3742,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/roadmap">Roadmap</a>
   </li>
@@ -3738,6 +3832,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/development">Developing COSMOS</a>
   </li>
@@ -3746,6 +3842,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -3930,6 +4028,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/json-api">JSON API</a>
   </li>
@@ -3938,6 +4038,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -4122,6 +4224,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
@@ -4130,6 +4234,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -4232,6 +4338,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     
@@ -4430,6 +4538,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/philosophy">Philosophy</a>
   </li>
@@ -4438,6 +4548,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   
     
     
+    
+      
     
       
     

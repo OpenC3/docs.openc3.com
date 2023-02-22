@@ -38,6 +38,7 @@
 
 - title: Guides
   docs:
+    - bridges
     - cfs
     - custom_widgets
     - little_endian_bitfields
