@@ -3004,7 +3004,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 <h3 id="canvasimage">
 <a class="anchor" href="#canvasimage" aria-hidden="true"><span class="octicon octicon-link"></span></a>CANVASIMAGE</h3>
 
-<p>The CANVASIMAGE widget displays a GIF image on the canvas. Image files must be located in the target’s public directory.</p>
+<p>The CANVASIMAGE widget displays a GIF image on the canvas. Image files must be located in the plugin’s targets/TARGET/public directory.</p>
 
 <table>
   <thead>
@@ -3017,7 +3017,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
   <tbody>
     <tr>
       <td>Image Name</td>
-      <td>Name of a image file which must be located in the TARGET/screens directory or URL to image.</td>
+      <td>Name of a image file which must be located in the plugin’s targets/TARGET/public directory or URL to image.</td>
       <td>Yes</td>
     </tr>
     <tr>
@@ -3055,7 +3055,7 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 <h3 id="canvasimagevalue">
 <a class="anchor" href="#canvasimagevalue" aria-hidden="true"><span class="octicon octicon-link"></span></a>CANVASIMAGEVALUE</h3>
 
-<p>The CANVASIMAGEVALUE widget displays a GIF image on the canvas that changes with a telemetry value. Image files must be located in the target’s public directory.</p>
+<p>The CANVASIMAGEVALUE widget displays an image on the canvas that changes with a telemetry value. Image files must be located in the plugin’s targets/TARGET/public directory. Use SETTING IMAGE to indicate what image should be displayed based on telemetry values. The value used in SETTING must match the Value Type given.</p>
 
 <table>
   <thead>
@@ -3082,8 +3082,13 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
       <td>Yes</td>
     </tr>
     <tr>
-      <td>Filename Prefix</td>
-      <td>The prefix part of the filename of the gif images (in the TARGET/screens directory). The actual filenames will be this value plus the word “on” or the word “off” and “.gif”</td>
+      <td>Value Type</td>
+      <td>The type of the value to display. Must be RAW, CONVERTED, FORMATTED or WITH_UNITS.</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Default Image</td>
+      <td>The default image to display. Image files must be located in the plugin’s targets/TARGET/public directory.</td>
       <td>Yes</td>
     </tr>
     <tr>
@@ -3109,7 +3114,15 @@ FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold t
 <!-- prettier-ignore -->
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CANVAS</span> <span class="mi">150</span> <span class="mi">200</span>
   <span class="no">CANVASLABELVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="mi">0</span> <span class="mi">12</span> <span class="mi">12</span> <span class="n">black</span> <span class="kp">false</span>
-  <span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="s2">"ground"</span> <span class="mi">0</span> <span class="mi">20</span> <span class="c1"># Uses groundon.gif and groundoff.gif</span>
+  <span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="s2">"ground"</span> <span class="mi">0</span> <span class="mi">20</span>
+  <span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND1STATUS</span> <span class="no">CONVERTED</span> <span class="s2">"ground_error.png"</span> <span class="mi">400</span> <span class="mi">100</span> <span class="mi">180</span> <span class="mi">180</span>
+    <span class="no">SETTING</span> <span class="no">IMAGE</span> <span class="no">CONNECTED</span> <span class="s2">"ground_on.png"</span> <span class="mi">400</span> <span class="mi">100</span>
+    <span class="no">SETTING</span> <span class="no">IMAGE</span> <span class="no">UNAVAILABLE</span> <span class="s2">"ground_off.png"</span> <span class="mi">400</span> <span class="mi">100</span>
+  <span class="no">CANVASIMAGEVALUE</span> <span class="no">INST</span> <span class="no">HEALTH_STATUS</span> <span class="no">GROUND2STATUS</span> <span class="no">RAW</span> <span class="s2">"ground_error.png"</span> <span class="mi">400</span> <span class="mi">350</span> <span class="mi">180</span> <span class="mi">180</span>
+    <span class="no">SETTING</span> <span class="no">IMAGE</span> <span class="mi">1</span> <span class="s2">"ground_on.png"</span> <span class="mi">400</span> <span class="mi">350</span>
+    <span class="no">SETTING</span> <span class="no">IMAGE</span> <span class="mi">0</span> <span class="s2">"ground_off.png"</span> <span class="mi">400</span> <span class="mi">350</span>
+    <span class="c1"># This is an example of using a range of values with a particular image</span>
+    <span class="no">SETTING</span> <span class="no">IMAGE</span> <span class="mi">2</span><span class="o">..</span><span class="mi">10</span> <span class="s2">"ground_error.png"</span> <span class="mi">400</span> <span class="mi">350</span>
 <span class="k">END</span>
 </code></pre></div></div>
 
