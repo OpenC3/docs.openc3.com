@@ -24,6 +24,9 @@ protocol like LENGTH.
 - Requires a host Ruby installation (Ruby 3)
 - Install the OpenC3 gem
   - gem install openc3
+- Make sure the Ruby gem executable path is in your PATH environment variable
+  - You can find this path by running `gem environment` and looking for EXECUTABLE DIRECTORY
+- If successful, you should be able to run `openc3cli` from a terminal
 
 ## Bridge Configuration: bridge.txt
 
@@ -94,9 +97,9 @@ Runs a bridge using the bridge.txt provided in a bridge gem. Variables can also 
 
 ## Example Bridge Gems
 
-Serial Port: [openc3-cosmos-bridge-serial](https://github.com/OpenC3/openc3-cosmos-bridge-serial)
-HIDAPI: [openc3-cosmos-bridge-hidapi](https://github.com/OpenC3/openc3-cosmos-bridge-hidapi)
-PS5 Dual Sense Controller: [openc3-cosmos-bridge-dualsense](https://github.com/OpenC3/openc3-cosmos-bridge-dualsense)
+- Serial Port: [openc3-cosmos-bridge-serial](https://github.com/OpenC3/openc3-cosmos-bridge-serial)
+- HIDAPI: [openc3-cosmos-bridge-hidapi](https://github.com/OpenC3/openc3-cosmos-bridge-hidapi)
+- PS5 Dual Sense Controller: [openc3-cosmos-bridge-dualsense](https://github.com/OpenC3/openc3-cosmos-bridge-dualsense)
 
 ## Note on Serial Ports
 
