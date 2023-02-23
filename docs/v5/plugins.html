@@ -113,6 +113,7 @@
 <li class="toc-entry toc-h2"><a href="#plugin-directory-structure">Plugin Directory Structure</a></li>
 <li class="toc-entry toc-h2"><a href="#plugintxt-configuration-file">plugin.txt Configuration File</a></li>
 <li class="toc-entry toc-h2"><a href="#variable">VARIABLE</a></li>
+<li class="toc-entry toc-h2"><a href="#needs_dependencies">NEEDS_DEPENDENCIES</a></li>
 <li class="toc-entry toc-h2"><a href="#interface-1">INTERFACE</a></li>
 <li class="toc-entry toc-h2"><a href="#interface-modifiers">INTERFACE Modifiers</a>
 <ul>
@@ -348,6 +349,12 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<h2 id="needs_dependencies">
+<a class="anchor" href="#needs_dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>NEEDS_DEPENDENCIES</h2>
+<p><strong>Indicates the plugin needs dependencies and sets the GEM_HOME environment variable</strong></p>
+
+<p>If the plugin has a top level lib folder or lists runtime dependencies in the gemspec, NEEDS_DEPENDENCIES is effectively already set. Note that in Enterprise Edition, having NEEDS_DEPENDENCIES adds the NFS volume mount to the Kuberentes pod.</p>
 
 <h2 id="interface-1">
 <a class="anchor" href="#interface-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>INTERFACE</h2>
