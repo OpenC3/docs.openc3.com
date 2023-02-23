@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/02/23/openc3-cosmos-5-5-0-released/">OpenC3 COSMOS 5.5.0 Released</option>
+      
       <option value="/news/2023/02/04/openc3-cosmos-5-4-2-released/">OpenC3 COSMOS 5.4.2 Released</option>
       
       <option value="/news/2023/02/02/openc3-cosmos-5-4-1-released/">OpenC3 COSMOS 5.4.1 Released</option>
@@ -129,6 +131,145 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2023/02/23/openc3-cosmos-5-5-0-released/">
+      OpenC3 COSMOS 5.5.0 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      23 Feb 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-550---modern-production-ready-command-and-control">OpenC3 COSMOS 5.5.0 - Modern, Production Ready, Command and Control</h1>
+
+<p>Welcome to OpenC3 COSMOS 5.5.0!</p>
+
+<h2 id="full-support-for-bridges-with-examples">Full Support for Bridges with Examples</h2>
+
+<p>Bridges are an easy method to give COSMOS access to hardware that doesn’t natively speak Ethernet. This release adds full support for bridges and new bridge gems that make them even easier to use. See the docs here: <a href="https://openc3.com/docs/v5/bridges">Bridges Documentation</a></p>
+
+<h2 id="dynamic-route-support-in-traefik">Dynamic Route Support In Traefik</h2>
+
+<p>Want to create a plugin that adds a new API to COSMOS and exposes it at a route in Traefik? Now you can. This implemented using the new ROUTE_PREFIX modifier to MICROSERVICE in plugin.txt. See: <a href="https://openc3.com/docs/v5/plugins#route_prefix">ROUTE_PREFIX</a></p>
+
+<h2 id="bucket-explorer-upload-and-delete-files-and-support-for-custom-buckets">Bucket Explorer Upload and Delete Files and Support for Custom Buckets</h2>
+
+<p>Bucket Explorer can now upload new files, and delete files from buckets. Also you can add additional buckets to manage by defining environment variables like OPENC3_NAME_BUCKET.</p>
+
+<h2 id="ruby-websocket-client-api">Ruby Websocket Client API</h2>
+
+<p>Add a Ruby based client code to access all of our Websocket interfaces. Most importantly the Streaming API can now be accessed directly from Ruby. See: <a href="https://github.com/OpenC3/cosmos/blob/main/openc3/lib/openc3/script/web_socket_api.rb">web_socket_api.rb</a></p>
+
+<h2 id="command-line-generators-for-more-cosmos-features">Command Line Generators for More COSMOS Features</h2>
+
+<p>We’ve expanded our generator code to create scaffolds for more COSMOS features. We now have generators for plugins, targets, microservices, conversions, and limits_responses. See <code class="language-plaintext highlighter-rouge">openc3cli generate</code></p>
+
+<h2 id="improved-tlmgrapher-performance-and-support-for-reduced-data">Improved TlmGrapher Performance and Support for Reduced Data</h2>
+
+<p>TlmGrapher is now much more performant with high rate data. You can also now easily graph reduced minute, hour, and day data!</p>
+
+<h2 id="new-needs_dependencies-keyword-for-plugintxt">New NEEDS_DEPENDENCIES keyword for plugin.txt</h2>
+
+<p>If your plugin needs access to custom installed gems, but you don’t explicitly add them as dependencies in .gemspec (which you probably should…), you can now force access to the /gems volume mount by adding NEEDS_DEPENDENCIES to plugin.txt.</p>
+
+<h2 id="new-writerejecterror-support-for-interfaces-and-protocols">New WriteRejectError Support for Interfaces and Protocols</h2>
+
+<p>Want to add a custom protocol the rejects commands but doesn’t cause the whole interface to disconnect and then reconnect? Now you can by raising a WriteRejectError exception from your custom Protocol or Interface.</p>
+
+<h2 id="cleaned-up-environment-variable-support-for-scripts">Cleaned Up Environment Variable Support for Scripts</h2>
+
+<p>Script Environment variables were a little confusing before, but now we’ve clarified and improved how they work. You can set global environment variables that are available to all scripts, and you can set individual environment variables for individual script runs.</p>
+
+<h2 id="environment-variable-support-for-not-installing-default-tools">Environment Variable Support For Not Installing Default Tools</h2>
+
+<p>We also added some new environment variables to prevent the installation of some of standard tools. You can use these if you have customized one of the tools or simply don’t need one of our default tools.</p>
+
+<h2 id="important-bug-fixes">Important Bug Fixes</h2>
+
+<ol>
+  <li>Fixed a bug causing poor performance as soon as you had more than 1000 files in Minio</li>
+  <li>Fixed an issue where the first script run wouldn’t show up in Completed Scripts</li>
+  <li>Telemetry items are now case-insensitive in TlmViewer Screens</li>
+  <li>Several bug fixes in DataExtractor for large queries</li>
+  <li>Starting using Ruby resolv-replace to remove DNS errors in Alpine</li>
+</ol>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>Add additional buckets to .env file by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/459">#459</a></li>
+  <li>Fix various regex issues by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/462">#462</a></li>
+  <li>add resolv-replace to help with alpine dns by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/463">#463</a></li>
+  <li>Implement upload and delete file by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/466">#466</a></li>
+  <li>Improve Script running/completed scripts by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/469">#469</a></li>
+  <li>Add IRB to cli options by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/470">#470</a></li>
+  <li>Upgrade public js/css automatically by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/472">#472</a></li>
+  <li>Add env vars to toggle default tool installation by @wiatrp in <a href="https://github.com/OpenC3/cosmos/pull/473">#473</a></li>
+  <li>Support dynamic routes in Traefik for microservices by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/471">#471</a></li>
+  <li>Data extractor updates by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/476">#476</a></li>
+  <li>Graph reduced by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/480">#480</a></li>
+  <li>Apply global and then script env vars by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/482">#482</a></li>
+  <li>Calendar creation of timelines and events by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/483">#483</a></li>
+  <li>Default various SETTINGS to px by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/484">#484</a></li>
+  <li>Plugin install check existing name by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/487">#487</a></li>
+  <li>Fix data extractor column logic by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/488">#488</a></li>
+  <li>Websocket interface by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/486">#486</a></li>
+  <li>Support rejecting commands from interface / protocols without disconnecting interface by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/490">#490</a></li>
+  <li>Bump alpine, traefik and break up package_audit by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/492">#492</a></li>
+  <li>Fix TlmGrapher route url parsing by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/498">#498</a></li>
+  <li>Fix warnings and code scan by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/499">#499</a></li>
+  <li>Add optional flag to return object metadata by @wiatrp in <a href="https://github.com/OpenC3/cosmos/pull/505">#505</a></li>
+  <li>Bridge updates for bridgegem system by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/504">#504</a></li>
+  <li>Enforce upper case in cmd/tlm api by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/503">#503</a></li>
+  <li>Add NEEDS_DEPENDENCIES keyword for plugins by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/495">#495</a></li>
+  <li>TlmGrapher improvements by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/508">#508</a></li>
+  <li>Implement generators by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/502">#502</a></li>
+  <li>Target file improvements by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/509">#509</a></li>
+  <li>Init all defined buckets on startup by @wiatrp in <a href="https://github.com/OpenC3/cosmos/pull/511">#511</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.4.2...v5.5.0">Changelog</a></p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2023/02/04/openc3-cosmos-5-4-2-released/">
@@ -1440,6 +1581,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/02/23/openc3-cosmos-5-5-0-released/">Version 5.5.0</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2023/02/04/openc3-cosmos-5-4-2-released/">Version 5.4.2</a>
       </li>
       
@@ -1455,14 +1600,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2023/01/05/openc3-cosmos-5-3-0-released/">Version 5.3.0</a>
       </li>
       
-      <li class="">
-        <a href="/news/2022/12/13/openc3-cosmos-5-2-0-released/">Version 5.2.0</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                                
+                                  
     </ul>
   </aside>
 </div>
