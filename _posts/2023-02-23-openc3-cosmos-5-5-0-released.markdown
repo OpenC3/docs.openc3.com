@@ -17,7 +17,7 @@ Bridges are an easy method to give COSMOS access to hardware that doesn't native
 
 ## Dynamic Route Support In Traefik
 
-Want to create a plugin that adds a new API to COSMOS and exposes it at a route in Traefik? Now you can. This implemented using the new ROUTE_PREFIX modifier to MICROSERVICE in plugin.txt. See: [ROUTE_PREFIX](https://openc3.com/docs/v5/plugins#route_prefix)
+Want to create a plugin that adds a new API to COSMOS and exposes it at a route in Traefik? Now you can. This is implemented using the new ROUTE_PREFIX modifier to MICROSERVICE in plugin.txt. See: [ROUTE_PREFIX](https://openc3.com/docs/v5/plugins#route_prefix)
 
 ## Bucket Explorer Upload and Delete Files and Support for Custom Buckets
 
@@ -49,7 +49,7 @@ Script Environment variables were a little confusing before, but now we've clari
 
 ## Environment Variable Support For Not Installing Default Tools
 
-We also added some new environment variables to prevent the installation of some of standard tools. You can use these if you have customized one of the tools or simply don't need one of our default tools.
+We also added some new environment variables to prevent the installation of the standard tools. You can use these if you have customized one of the tools or simply don't need one of our default tools.
 
 ## Important Bug Fixes
 
