@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Thu, 23 Feb 2023 23:55:17 +0000</pubDate>
-    <lastBuildDate>Thu, 23 Feb 2023 23:55:17 +0000</lastBuildDate>
+    <pubDate>Sun, 26 Feb 2023 00:34:08 +0000</pubDate>
+    <lastBuildDate>Sun, 26 Feb 2023 00:34:08 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -45,7 +45,7 @@
 
 &lt;h2 id=&quot;dynamic-route-support-in-traefik&quot;&gt;Dynamic Route Support In Traefik&lt;/h2&gt;
 
-&lt;p&gt;Want to create a plugin that adds a new API to COSMOS and exposes it at a route in Traefik? Now you can. This implemented using the new ROUTE_PREFIX modifier to MICROSERVICE in plugin.txt. See: &lt;a href=&quot;https://openc3.com/docs/v5/plugins#route_prefix&quot;&gt;ROUTE_PREFIX&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Want to create a plugin that adds a new API to COSMOS and exposes it at a route in Traefik? Now you can. This is implemented using the new ROUTE_PREFIX modifier to MICROSERVICE in plugin.txt. See: &lt;a href=&quot;https://openc3.com/docs/v5/plugins#route_prefix&quot;&gt;ROUTE_PREFIX&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;bucket-explorer-upload-and-delete-files-and-support-for-custom-buckets&quot;&gt;Bucket Explorer Upload and Delete Files and Support for Custom Buckets&lt;/h2&gt;
 
@@ -77,7 +77,7 @@
 
 &lt;h2 id=&quot;environment-variable-support-for-not-installing-default-tools&quot;&gt;Environment Variable Support For Not Installing Default Tools&lt;/h2&gt;
 
-&lt;p&gt;We also added some new environment variables to prevent the installation of some of standard tools. You can use these if you have customized one of the tools or simply don’t need one of our default tools.&lt;/p&gt;
+&lt;p&gt;We also added some new environment variables to prevent the installation of the standard tools. You can use these if you have customized one of the tools or simply don’t need one of our default tools.&lt;/p&gt;
 
 &lt;h2 id=&quot;important-bug-fixes&quot;&gt;Important Bug Fixes&lt;/h2&gt;
 
