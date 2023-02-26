@@ -56,6 +56,8 @@ module Jekyll
       super
       @yaml_file = text
       @modifiers = {}
+      @collection = {}
+      @settings = {}
       @level = 2
     end
 
@@ -113,6 +115,30 @@ module Jekyll
             page << "The following keywords must follow a #{keyword} keyword.\n"
             build_page(data['modifiers'], page)
           end
+        end
+        if data['collection']
+          bump_level = false
+          unless @collection.values.include?(data['collection'].keys)
+            if bump_level == false
+              bump_level = true
+              @level += 1
+            end
+            @collection[keyword] = data['collection'].keys
+            build_page(data['collection'], page)
+          end
+        end
+        if data['settings']
+          bump_level = false
+          # unless @settings.values.include?(data['settings'].keys)
+            if bump_level == false
+              bump_level = true
+              @level += 1
+            end
+            # @settings[keyword] = data['settings'].keys
+            # page << "\n#{'#' * (@level - 1)} #{keyword} Settings\n"
+            page << "The following settings apply to #{keyword}. They are applied using the SETTING keyword."
+            build_page(data['settings'], page)
+          # end
         end
         @level = saved_level
       end
