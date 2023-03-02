@@ -123,6 +123,23 @@ In the unrolled version above, the COSMOS “Start script at selected line” fe
 
 ## Script Organization
 
+All scripts must be part of a [Plugin](({{site.baseurl}}/docs/v5/plugins). You can create a simple plugin called SCRIPTS or PROCEDURES that only contains lib and procedures directories to store scripts. If COSMOS detects a plugin without defined cmd/tlm it will not spawn microservices for telemetry processing.
+
+### Organizing Your Scripts into a Plugin
+
+As your scripts become large with many methods, it makes sense to break them up into multiple files within a plugin. Here is a recommended organization for your plugin's scripts/procedures.
+
+| Folder | Description |
+| targets/TARGET_NAME/lib | Place script files containing reusable target specific methods here |
+| targets/TARGET_NAME/procedures | Place simple procedures that are centered around one specific target here |
+
+In your main procedure you will usually bring in the other files with instrumentation using load_utility.
+
+```ruby
+load_utility('TARGET/lib/my_other_script.rb')
+load_utility('TARGET/procedures/my_other_script.rb')
+```
+
 ### Organize Scripts into Methods
 
 Put each activity into a distinct method. Putting your scripts into methods makes organization easy and gives a great high-level overview of what the overall script does (assuming you name the methods well). There are no bonus points for vague, short method names. Make your method names long and clear.
@@ -142,6 +159,8 @@ end
 ### Using Classes vs Unscoped Methods
 
 Classes in object-oriented programing allow you to organize a set of related methods and some associated state. The most important aspect is that the methods work on some shared state. For example, if you have code that moves a gimbal around, and need to keep track of the number of moves, or steps, performed across methods, then that is a wonderful place to use a class. If you just need a helper method to do something that happens multiple times in a script without copy and pasting, it probably does not need to be in a class.
+
+NOTE: The convention in COSMOS is to have a TARGET/lib/target.rb file which is named after the TARGET name and contains a class called Target. This discussion refers to scripts in the TARGET/procedures directory.
 
 ```ruby
 class Gimbal
@@ -166,22 +185,6 @@ gimbal.move(100)
 gimbal.move(200)
 puts "Moved gimbal #{gimbal.steps}"
 perform_common_math(gimbal.steps, other_value)
-```
-
-### Organizing Your Scripts into Separate Files
-
-As your scripts become large with many methods, it makes sense to break them up into multiple files. Here is a recommended organization for your projects scripts/procedures.
-
-| Folder | Description |
-| config/targets/TARGET_NAME/lib | Place script files containing reusable target specific methods here |
-| config/targets/TARGET_NAME/procedures | Place simple procedures that are centered around one specific target here |
-| lib | Place script files containing reusable methods that span multiple targets here |
-| procedures | Place high-level procedures that span targets here |
-
-In your main procedure you will usually bring in the other files with instrumentation using load_utility.
-
-```ruby
-load_utility('my_other_script')
 ```
 
 ### Instrumented vs Uninstrumented Lines (require vs load)
