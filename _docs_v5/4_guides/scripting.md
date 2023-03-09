@@ -66,7 +66,7 @@ clear_collects('INST')
 clear_collects('INST2')
 ```
 
-This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening. Read [Require vs Load]({{site.baseurl}}/news/2017/11/13/require_vs_load/) for much more detail.
+This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening.
 
 Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.
 
