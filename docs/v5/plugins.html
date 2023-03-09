@@ -352,6 +352,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h2 id="needs_dependencies">
 <a class="anchor" href="#needs_dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>NEEDS_DEPENDENCIES</h2>
+<div class="right">(Since 5.5.0)</div>
 <p><strong>Indicates the plugin needs dependencies and sets the GEM_HOME environment variable</strong></p>
 
 <p>If the plugin has a top level lib folder or lists runtime dependencies in the gemspec, NEEDS_DEPENDENCIES is effectively already set. Note that in Enterprise Edition, having NEEDS_DEPENDENCIES adds the NFS volume mount to the Kuberentes pod.</p>
@@ -414,6 +415,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="map_cmd_target">
 <a class="anchor" href="#map_cmd_target" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_CMD_TARGET</h3>
+<div class="right">(Since 5.2.0)</div>
 <p><strong>Maps a target name to an interface for commands only</strong></p>
 
 <table>
@@ -435,6 +437,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="map_tlm_target">
 <a class="anchor" href="#map_tlm_target" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_TLM_TARGET</h3>
+<div class="right">(Since 5.2.0)</div>
 <p><strong>Maps a target name to an interface for telemetry only</strong></p>
 
 <table>
@@ -553,7 +556,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
   <tbody>
     <tr>
       <td>Name</td>
-      <td>The option to set. OpenC3 defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0) and AUTO_SYSTEM_META which will automatically send SYSTEM META when the interface connects (default false).</td>
+      <td>The option to set. OpenC3 defines several options on the core provided interfaces. The SerialInterface defines FLOW_CONTROL which can be NONE (default) or RTSCTS and DATA_BITS which changes the data bits of the serial interface. The TcpipServerInterface defines LISTEN_ADDRESS which is the IP address to accept connections on (default 0.0.0.0).</td>
       <td>True</td>
     </tr>
     <tr>
@@ -566,6 +569,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="secret">
 <a class="anchor" href="#secret" aria-hidden="true"><span class="octicon octicon-link"></span></a>SECRET</h3>
+<div class="right">(Since 5.3.0)</div>
 <p><strong>Define a secret needed by this interface</strong></p>
 
 <p>Defines a secret for this interface and optionally assigns its value to an option</p>
@@ -674,6 +678,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="cmd_buffer_depth">
 <a class="anchor" href="#cmd_buffer_depth" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD_BUFFER_DEPTH</h3>
+<div class="right">(Since 5.2.0)</div>
 <p><strong>Number of commands to buffer to ensure logged in order</strong></p>
 
 <table>
@@ -821,6 +826,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="tlm_buffer_depth">
 <a class="anchor" href="#tlm_buffer_depth" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLM_BUFFER_DEPTH</h3>
+<div class="right">(Since 5.2.0)</div>
 <p><strong>Number of telemetry packets to buffer to ensure logged in order</strong></p>
 
 <table>
@@ -1094,6 +1100,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="target_microservice">
 <a class="anchor" href="#target_microservice" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET_MICROSERVICE</h3>
+<div class="right">(Since 5.2.0)</div>
 <p><strong>Breaks a target microservice out into its own process.</strong></p>
 
 <p>Can be used to give more resources to processing that is falling behind. If defined multiple times for the same type, will create multiple processes. Each process can be given specific packets to process with the PACKET keyword.</p>
@@ -1117,6 +1124,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="packet">
 <a class="anchor" href="#packet" aria-hidden="true"><span class="octicon octicon-link"></span></a>PACKET</h3>
+<div class="right">(Since 5.2.0)</div>
 <p><strong>Packet Name to allocate to the current TARGET_MICROSERVICE.</strong></p>
 
 <table>
@@ -1224,6 +1232,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="port">
 <a class="anchor" href="#port" aria-hidden="true"><span class="octicon octicon-link"></span></a>PORT</h3>
+<div class="right">(Since 5.0.10)</div>
 <p><strong>Open port for the microservice</strong></p>
 
 <p>Kubernetes needs a Service to be applied to open a port so this is required for Kubernetes support</p>
@@ -1372,6 +1381,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="secret-1">
 <a class="anchor" href="#secret-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>SECRET</h3>
+<div class="right">(Since 5.3.0)</div>
 <p><strong>Define a secret needed by this microservice</strong></p>
 
 <p>Defines a secret for this microservice</p>
@@ -1410,6 +1420,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="route_prefix">
 <a class="anchor" href="#route_prefix" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTE_PREFIX</h3>
+<div class="right">(Since 5.5.0)</div>
 <p><strong>Prefix of route</strong></p>
 
 <p>Prefix of route to the microservice to expose externally with Traefik</p>
@@ -1611,6 +1622,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="position">
 <a class="anchor" href="#position" aria-hidden="true"><span class="octicon octicon-link"></span></a>POSITION</h3>
+<div class="right">(Since 5.0.8)</div>
 <p><strong>Position of the tool in the nav bar</strong></p>
 
 <p>Position of the tool as an integer starting at 1. Tools without a position are appended to the end as they are installed.</p>

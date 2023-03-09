@@ -1153,6 +1153,8 @@
 <a class="anchor" href="#select_parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_PARAMETER</h3>
 <p><strong>Selects an existing command parameter for editing</strong></p>
 
+<p>Must be used in conjunction with SELECT_COMMAND to first select the packet. Typically used to override generated values or make specific changes to commands that only affect a particular instance of a target used multiple times.</p>
+
 <table>
   <thead>
     <tr>
@@ -1173,6 +1175,8 @@
 <p>Example Usage:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_COMMAND</span> <span class="no">INST</span> <span class="no">COLLECT</span>
   <span class="no">SELECT_PARAMETER</span> <span class="no">DURATION</span>
+    <span class="c1"># Add units</span>
+    <span class="no">UNITS</span> <span class="no">Seconds</span> <span class="no">S</span>
 </code></pre></div></div>
 
 <h3 id="delete_parameter">
@@ -1351,7 +1355,7 @@
 <a class="anchor" href="#select_command" aria-hidden="true"><span class="octicon octicon-link"></span></a>SELECT_COMMAND</h2>
 <p><strong>Selects an existing command packet for editing</strong></p>
 
-<p>Typically used in a separate configuration file from where the original command is defined to override or add to the existing command definition</p>
+<p>Typically used in a separate configuration file from where the original command is defined to override or add to the existing command definition. Must be used in conjunction with SELECT_PARAMETER to change an individual parameter.</p>
 
 <table>
   <thead>
@@ -1377,6 +1381,9 @@
 
 <p>Example Usage:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT_COMMAND</span> <span class="no">INST</span> <span class="no">COLLECT</span>
+  <span class="no">SELECT_PARAMETER</span> <span class="no">DURATION</span>
+    <span class="c1"># Add units</span>
+    <span class="no">UNITS</span> <span class="no">Seconds</span> <span class="no">S</span>
 </code></pre></div></div>
 
 <h2 id="example-file">
