@@ -58,7 +58,19 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
   <p>The cli runs as the default COSMOS container user which is the recommended practice. If you're having issues running as that user you can run as the root user (effectively `docker run --user=root` ) by running `cliroot` instead of `cli` in any of the examples.</p>
 </div>
 
-1. The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:
+1. Starting with [COSMOS v5.5.0](https://openc3.com/news/2023/02/23/openc3-cosmos-5-5-0-released/), the plugin generator creates just the plugin framework (previously it would also create a target). From within the newly created plugin directory, we generate a target.
+
+   ```batch
+   C:\openc3-project> cd openc3-cosmos-bob
+   openc3-cosmos-bob> openc3.bat cli generate target BOB
+   ```
+
+<div class="note info">
+  <h5>Generators</h5>
+  <p>There are a number of generators available. Run `openc3.bat cli generate` to see all the avilable options.</p>
+</div>
+
+1. The target generator creates a single target named BOB. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the target generator created for us. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:
 
    ```ruby
    COMMAND BOB EXAMPLE BIG_ENDIAN "Packet description"
