@@ -18,7 +18,7 @@ This document provides the information necessary to generate and use COSMOS Tele
 
 ## Telemetry Screen Definition Files
 
-Telemetry screen definition files define the the contents of telemetry screens. They take the general form of a SCREEN keyword followed by a series of widget keywords that define the telemetry screen. Screen definition files specific to a particular target go in that target's screens directory. For example: TARGET/screens/version.txt. Screen definition files must be lowercase. Screen definition files that combine telemetry from multiple targets typically go in the SYSTEM target's screens folder. For example: SYSTEM/screens/overall.txt.
+Telemetry screen definition files define the the contents of telemetry screens. They take the general form of a SCREEN keyword followed by a series of widget keywords that define the telemetry screen. Screen definition files specific to a particular target go in that target's screens directory. For example: TARGET/screens/version.txt. Screen definition files must be lowercase.
 
 ## New Widgets
 

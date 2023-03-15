@@ -42,10 +42,10 @@ COSMOS 5 includes a migration tool for converting an existing COSMOS 4 configura
    This creates a new COSMOS 5 plugin called openc3-cosmos-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.
 
    ```batch
-   C:\COSMOS> C:\cosmos-project\openc3.bat cli migrate demo-part INST SYSTEM
+   C:\COSMOS> C:\cosmos-project\openc3.bat cli migrate demo-part INST
    ```
 
-   This would create a new COSMOS 5 plugin called openc3-cosmos-demo-part with a target named DEMO_PART containing the existing lib and procedures files as well as the INST and SYSTEM targets (but no others).
+   This would create a new COSMOS 5 plugin called openc3-cosmos-demo-part with a target named DEMO_PART containing the existing lib and procedures files as well as the INST target (but no others).
 
 1. Open the new COSMOS 5 plugin and ensure the [plugin.txt]({{site.baseurl}}/docs/v5/plugins#plugintxt-configuration-file) file is correctly configured. The migration tool doesn't create VARIABLEs or MICROSERVICEs or handle target substitution so those features will have to added manually.
 

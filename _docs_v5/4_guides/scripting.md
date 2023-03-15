@@ -37,14 +37,8 @@ The Ruby programming language provides a script writer a lot of power. But with 
 The following is an example of good style:
 
 ```ruby
-######################################
-# Title block which describes the test
-# Author: John Doe
-# Date: 7/27/2007
-######################################
-
-load 'upload_utility.rb' # library we do NOT want to show executing
-load_utility 'helper_utility' # library we do want to show executing
+load 'TARGET/lib/upload_utility.rb' # library we do NOT want to show executing
+load_utility 'TARGET/lib/helper_utility.rb' # library we do want to show executing
 
 # Declare constants
 OUR_TARGETS = ['INST','INST2']
@@ -72,7 +66,7 @@ clear_collects('INST')
 clear_collects('INST2')
 ```
 
-This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening. Read [Require vs Load]({{site.baseurl}}/news/2017/11/13/require_vs_load/) for much more detail.
+This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening.
 
 Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.
 
@@ -152,7 +146,7 @@ end
 # My Test Procedure: run_instrument.rb
 # Author: Larry
 
-load_utility("program_utilities.rb")
+load_utility("TARGET/lib/program_utilities.rb")
 
 turn_on_power()
 goto_run_mode()
@@ -2660,17 +2654,17 @@ Reads in a script file that contains useful subroutines for use in your test pro
 Syntax:
 
 ```ruby
-load_utility("<Utility Filename>")
+load_utility("TARGET/lib/<Utility Filename>")
 ```
 
-| Parameter        | Description                                                                                                                                                                                |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Utility Filename | Name of the script file containing subroutines. These files are normally in the procedures folder but may be anywhere in the Ruby search path. Additionally, absolute paths are supported. |
+| Parameter        | Description                                                                                                                                                 |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Utility Filename | Name of the script file containing subroutines including the .rb extension. You need to include the full target name and path such as TARGET/lib/utility.rb |
 
 Example:
 
 ```ruby
-load_utility("mode_changes.rb")
+load_utility("TARGET/lib/mode_changes.rb")
 ```
 
 ## Opening, Closing & Creating Telemetry Screens

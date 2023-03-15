@@ -113,9 +113,9 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#script-organization">Script Organization</a>
 <ul>
+<li class="toc-entry toc-h3"><a href="#organizing-your-scripts-into-a-plugin">Organizing Your Scripts into a Plugin</a></li>
 <li class="toc-entry toc-h3"><a href="#organize-scripts-into-methods">Organize Scripts into Methods</a></li>
 <li class="toc-entry toc-h3"><a href="#using-classes-vs-unscoped-methods">Using Classes vs Unscoped Methods</a></li>
-<li class="toc-entry toc-h3"><a href="#organizing-your-scripts-into-separate-files">Organizing Your Scripts into Separate Files</a></li>
 <li class="toc-entry toc-h3"><a href="#instrumented-vs-uninstrumented-lines-require-vs-load">Instrumented vs Uninstrumented Lines (require vs load)</a>
 <ul>
 <li class="toc-entry toc-h5"><a href="#when-running-uninstrumented-code">When Running Uninstrumented Code</a></li>
@@ -287,6 +287,36 @@
 <h2 id="script-organization">
 <a class="anchor" href="#script-organization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Organization</h2>
 
+<p>All scripts must be part of a [Plugin]((/docs/v5/plugins). You can create a simple plugin called SCRIPTS or PROCEDURES that only contains lib and procedures directories to store scripts. If COSMOS detects a plugin without defined cmd/tlm it will not spawn microservices for telemetry processing.</p>
+
+<h3 id="organizing-your-scripts-into-a-plugin">
+<a class="anchor" href="#organizing-your-scripts-into-a-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Organizing Your Scripts into a Plugin</h3>
+
+<p>As your scripts become large with many methods, it makes sense to break them up into multiple files within a plugin. Here is a recommended organization for your plugin’s scripts/procedures.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Folder</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>targets/TARGET_NAME/lib</td>
+      <td>Place script files containing reusable target specific methods here</td>
+    </tr>
+    <tr>
+      <td>targets/TARGET_NAME/procedures</td>
+      <td>Place simple procedures that are centered around one specific target here</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In your main procedure you will usually bring in the other files with instrumentation using load_utility.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_utility</span><span class="p">(</span><span class="s1">'TARGET/lib/my_other_script.rb'</span><span class="p">)</span>
+<span class="n">load_utility</span><span class="p">(</span><span class="s1">'TARGET/procedures/my_other_script.rb'</span><span class="p">)</span>
+</code></pre></div></div>
+
 <h3 id="organize-scripts-into-methods">
 <a class="anchor" href="#organize-scripts-into-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Organize Scripts into Methods</h3>
 
@@ -307,6 +337,8 @@
 <a class="anchor" href="#using-classes-vs-unscoped-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Classes vs Unscoped Methods</h3>
 
 <p>Classes in object-oriented programing allow you to organize a set of related methods and some associated state. The most important aspect is that the methods work on some shared state. For example, if you have code that moves a gimbal around, and need to keep track of the number of moves, or steps, performed across methods, then that is a wonderful place to use a class. If you just need a helper method to do something that happens multiple times in a script without copy and pasting, it probably does not need to be in a class.</p>
+
+<p>NOTE: The convention in COSMOS is to have a TARGET/lib/target.rb file which is named after the TARGET name and contains a class called Target. This discussion refers to scripts in the TARGET/procedures directory.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Gimbal</span>
   <span class="nb">attr_accessor</span> <span class="ss">:gimbal_steps</span>
@@ -330,41 +362,6 @@
 <span class="n">gimbal</span><span class="p">.</span><span class="nf">move</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
 <span class="nb">puts</span> <span class="s2">"Moved gimbal </span><span class="si">#{</span><span class="n">gimbal</span><span class="p">.</span><span class="nf">steps</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">perform_common_math</span><span class="p">(</span><span class="n">gimbal</span><span class="p">.</span><span class="nf">steps</span><span class="p">,</span> <span class="n">other_value</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="organizing-your-scripts-into-separate-files">
-<a class="anchor" href="#organizing-your-scripts-into-separate-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Organizing Your Scripts into Separate Files</h3>
-
-<p>As your scripts become large with many methods, it makes sense to break them up into multiple files. Here is a recommended organization for your projects scripts/procedures.</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Folder</td>
-      <td>Description</td>
-    </tr>
-    <tr>
-      <td>config/targets/TARGET_NAME/lib</td>
-      <td>Place script files containing reusable target specific methods here</td>
-    </tr>
-    <tr>
-      <td>config/targets/TARGET_NAME/procedures</td>
-      <td>Place simple procedures that are centered around one specific target here</td>
-    </tr>
-    <tr>
-      <td>lib</td>
-      <td>Place script files containing reusable methods that span multiple targets here</td>
-    </tr>
-    <tr>
-      <td>procedures</td>
-      <td>Place high-level procedures that span targets here</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>In your main procedure you will usually bring in the other files with instrumentation using load_utility.</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_utility</span><span class="p">(</span><span class="s1">'my_other_script'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="instrumented-vs-uninstrumented-lines-require-vs-load">

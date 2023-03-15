@@ -358,14 +358,8 @@
 
 <p>The following is an example of good style:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">######################################</span>
-<span class="c1"># Title block which describes the test</span>
-<span class="c1"># Author: John Doe</span>
-<span class="c1"># Date: 7/27/2007</span>
-<span class="c1">######################################</span>
-
-<span class="nb">load</span> <span class="s1">'upload_utility.rb'</span> <span class="c1"># library we do NOT want to show executing</span>
-<span class="n">load_utility</span> <span class="s1">'helper_utility'</span> <span class="c1"># library we do want to show executing</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">load</span> <span class="s1">'TARGET/lib/upload_utility.rb'</span> <span class="c1"># library we do NOT want to show executing</span>
+<span class="n">load_utility</span> <span class="s1">'TARGET/lib/helper_utility.rb'</span> <span class="c1"># library we do want to show executing</span>
 
 <span class="c1"># Declare constants</span>
 <span class="no">OUR_TARGETS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">,</span><span class="s1">'INST2'</span><span class="p">]</span>
@@ -393,7 +387,7 @@
 <span class="n">clear_collects</span><span class="p">(</span><span class="s1">'INST2'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>This example shows several features of COSMOS scripting in action. Notice the difference between ‘load’ and ‘load_utility’. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. ‘load_utility’ will visually execute the code line by line to show the user what is happening. Read <a href="/news/2017/11/13/require_vs_load/">Require vs Load</a> for much more detail.</p>
+<p>This example shows several features of COSMOS scripting in action. Notice the difference between ‘load’ and ‘load_utility’. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. ‘load_utility’ will visually execute the code line by line to show the user what is happening.</p>
 
 <p>Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.</p>
 
@@ -496,7 +490,7 @@
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># My Test Procedure: run_instrument.rb</span>
 <span class="c1"># Author: Larry</span>
 
-<span class="n">load_utility</span><span class="p">(</span><span class="s2">"program_utilities.rb"</span><span class="p">)</span>
+<span class="n">load_utility</span><span class="p">(</span><span class="s2">"TARGET/lib/program_utilities.rb"</span><span class="p">)</span>
 
 <span class="n">turn_on_power</span><span class="p">()</span>
 <span class="n">goto_run_mode</span><span class="p">()</span>
@@ -4699,7 +4693,7 @@
 
 <p>Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_utility</span><span class="p">(</span><span class="s2">"&lt;Utility Filename&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_utility</span><span class="p">(</span><span class="s2">"TARGET/lib/&lt;Utility Filename&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -4712,14 +4706,14 @@
   <tbody>
     <tr>
       <td>Utility Filename</td>
-      <td>Name of the script file containing subroutines. These files are normally in the procedures folder but may be anywhere in the Ruby search path. Additionally, absolute paths are supported.</td>
+      <td>Name of the script file containing subroutines including the .rb extension. You need to include the full target name and path such as TARGET/lib/utility.rb</td>
     </tr>
   </tbody>
 </table>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_utility</span><span class="p">(</span><span class="s2">"mode_changes.rb"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_utility</span><span class="p">(</span><span class="s2">"TARGET/lib/mode_changes.rb"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="opening-closing--creating-telemetry-screens">

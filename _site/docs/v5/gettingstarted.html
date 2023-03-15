@@ -173,7 +173,22 @@
 
 <ol>
   <li>
-    <p>The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:</p>
+    <p>Starting with <a href="https://openc3.com/news/2023/02/23/openc3-cosmos-5-5-0-released/">COSMOS v5.5.0</a>, the plugin generator creates just the plugin framework (previously it would also create a target). From within the newly created plugin directory, we generate a target.</p>
+
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">C</span>:\openc3<span class="na">-project</span><span class="o">&gt;</span> <span class="nb">cd</span> <span class="kd">openc3</span><span class="na">-cosmos-bob
+</span><span class="kd">openc3</span><span class="na">-cosmos-bob</span><span class="o">&gt;</span> <span class="kd">openc3</span>.bat <span class="kd">cli</span> <span class="kd">generate</span> <span class="kd">target</span> <span class="kd">BOB</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<div class="note info">
+  <h5>Generators</h5>
+  <p>There are a number of generators available. Run `openc3.bat cli generate` to see all the avilable options.</p>
+</div>
+
+<ol>
+  <li>
+    <p>The target generator creates a single target named BOB. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the target generator created for us. Open the openc3-cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:</p>
 
     <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">BOB</span> <span class="no">EXAMPLE</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Packet description"</span>
   <span class="c1"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
