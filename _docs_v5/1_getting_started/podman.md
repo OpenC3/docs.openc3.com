@@ -23,8 +23,7 @@ Podman is an alternative container technology to Docker that is actively promote
 
    ```bash
    sudo yum update
-   sudo yum groupinstall "Development Tools"
-   sudo yum install podman-docker netavark
+   sudo yum install git podman-docker netavark
    curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o docker-compose
    sudo mv docker-compose /usr/local/bin/docker-compose
    sudo chmod +x /usr/local/bin/docker-compose
@@ -86,16 +85,15 @@ Podman is an alternative container technology to Docker that is actively promote
 
    Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)
 
-1. Edit compose.yaml
+1. Edit cosmos/compose.yaml
 
 Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: "${OPENC3_USER_ID}:${OPENC3_GROUP_ID}" lines.
+You may also want to update the traefik configuration to allow access from the internet.
 
 1. Run COSMOS
 
    ```bash
    cd cosmos
-   ./openc3.sh start
-   or to use our released containers
    ./openc3.sh run
    ```
 
