@@ -121,8 +121,7 @@
     <p>Note: This downloads and installs docker-compose from the latest 2.x release on Github. If your operating system has a docker-compose package, it will be easier to install using that instead. RHEL8 does not have a docker-compose package.</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum update
-<span class="nb">sudo </span>yum groupinstall <span class="s2">"Development Tools"</span>
-<span class="nb">sudo </span>yum <span class="nb">install </span>podman-docker netavark
+<span class="nb">sudo </span>yum <span class="nb">install </span>git podman-docker netavark
 curl <span class="nt">-SL</span> https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 <span class="nt">-o</span> docker-compose
 <span class="nb">sudo mv </span>docker-compose /usr/local/bin/docker-compose
 <span class="nb">sudo chmod</span> +x /usr/local/bin/docker-compose
@@ -185,19 +184,18 @@ vi <span class="nv">$HOME</span>/.config/containers/registries.conf
     <p>Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)</p>
   </li>
   <li>
-    <p>Edit compose.yaml</p>
+    <p>Edit cosmos/compose.yaml</p>
   </li>
 </ol>
 
-<p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.</p>
+<p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.
+You may also want to update the traefik configuration to allow access from the internet.</p>
 
 <ol>
   <li>
     <p>Run COSMOS</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos
-./openc3.sh start
-or to use our released containers
 ./openc3.sh run
 </code></pre></div>    </div>
   </li>

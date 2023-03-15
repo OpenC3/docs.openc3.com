@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Wed, 15 Mar 2023 16:34:02 +0000</pubDate>
-    <lastBuildDate>Wed, 15 Mar 2023 16:34:02 +0000</lastBuildDate>
+    <pubDate>Wed, 15 Mar 2023 16:59:18 +0000</pubDate>
+    <lastBuildDate>Wed, 15 Mar 2023 16:59:18 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
