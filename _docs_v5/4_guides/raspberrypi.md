@@ -66,12 +66,11 @@ Let's get started!
    newgrp docker
    sudo apt-get install libffi-dev libssl-dev python3-dev python3 python3-pip -y
    sudo pip3 install docker-compose
-   git clone https://github.com/OpenC3/cosmos.git
+   git clone https://github.com/OpenC3/cosmos-project.git cosmos
    cd cosmos
-   ./openc3.sh start
+   # Edit compose.yaml and remove 127.0.0.1 from the ports section of the openc3-traefik service
+   ./openc3.sh run
 ```
-
-Note: It takes awhile to build COSMOS on a Pi (about an hour). Be patient, and in the future we'll have precompiled containers that will make first launch way faster.
 
 1. After about 2 minutes, open a web browswer on your computer, and goto: http://cosmos.local:2900
 
