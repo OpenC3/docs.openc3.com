@@ -3183,7 +3183,9 @@ telemetry in screens using Javascript Promises.</p>
 <p>The api.tlm() function returns a Promise which is resolved with then()
 at which point we send the command with the telemetry value we received.</p>
 
-<p>Scripts can be launched from a BUTTON using the <code class="language-plaintext highlighter-rouge">runScript()</code> method.</p>
+<p>Scripts can be launched from a BUTTON using the <code class="language-plaintext highlighter-rouge">runScript()</code> method. <code class="language-plaintext highlighter-rouge">runScript()</code> takes three parameters,
+the name of the script, whether to open the script in the foreground of Script Runner (default = true), and a hash of
+environment variables. For example: <code class="language-plaintext highlighter-rouge">runScript('INST/procedures/script.rb', false, {'VAR': 'VALUE'})</code></p>
 
 <table>
   <thead>
@@ -3209,7 +3211,14 @@ at which point we send the command with the telemetry value we received.</p>
 
 <p>Example Usage:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BUTTON</span> <span class="s1">'Start Collect'</span> <span class="s1">'api.cmd("INST COLLECT with TYPE NORMAL, DURATION 5")'</span>
-<span class="no">BUTTON</span> <span class="s1">'Run Script'</span> <span class="s1">'runScript("INST/procedures/script.rb")'</span>
+<span class="no">BUTTON</span> <span class="s1">'Run Checks'</span> <span class="s1">'runScript("INST/procedures/checks.rb")'</span>
+<span class="c1"># More complex example with background checkbox and env vars</span>
+<span class="no">NAMED_WIDGET</span> <span class="no">SCRIPTNAME</span> <span class="no">COMBOBOX</span> <span class="n">collect</span><span class="p">.</span><span class="nf">rb</span> <span class="n">checks</span><span class="p">.</span><span class="nf">rb</span>
+<span class="no">NAMED_WIDGET</span> <span class="no">BG</span> <span class="no">CHECKBUTTON</span> <span class="s1">'Background'</span>
+<span class="no">BUTTON</span> <span class="s1">'Run Script'</span> <span class="s2">"var script=screen.getNamedWidget('SCRIPTNAME').text();"</span> <span class="p">\</span>
+  <span class="c1"># Set an environment variable to be used by the script as ENV['TYPE']</span>
+  <span class="s2">"var env = {}; env['TYPE'] = 'TEST';"</span> <span class="p">\</span>
+  <span class="s2">"runScript('INST/procedures/'+script, !screen.getNamedWidget('BG').checked(), env)"</span>
 </code></pre></div></div>
 
 <h3 id="checkbutton">
