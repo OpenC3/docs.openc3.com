@@ -126,6 +126,7 @@
 <li class="toc-entry toc-h3"><a href="#disable_disconnect">DISABLE_DISCONNECT</a></li>
 <li class="toc-entry toc-h3"><a href="#dont_log">DONT_LOG</a></li>
 <li class="toc-entry toc-h3"><a href="#log_raw">LOG_RAW</a></li>
+<li class="toc-entry toc-h3"><a href="#log_stream">LOG_STREAM</a></li>
 <li class="toc-entry toc-h3"><a href="#protocol">PROTOCOL</a></li>
 <li class="toc-entry toc-h3"><a href="#option">OPTION</a></li>
 <li class="toc-entry toc-h3"><a href="#secret">SECRET</a></li>
@@ -500,9 +501,46 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="log_raw">
 <a class="anchor" href="#log_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_RAW</h3>
+<p><strong>Deprecated, use LOG_STREAM</strong></p>
+
+<h3 id="log_stream">
+<a class="anchor" href="#log_stream" aria-hidden="true"><span class="octicon octicon-link"></span></a>LOG_STREAM</h3>
+<div class="right">(Since 5.5.2)</div>
 <p><strong>Log all data on the interface exactly as it is sent and received</strong></p>
 
-<p>LOG_RAW does not add any OpenC3 headers and thus can not be read by OpenC3 tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
+<p>LOG_STREAM does not add any OpenC3 headers and thus can not be read by OpenC3 tools. It is primarily useful for low level debugging of an interface. You will have to manually parse these logs yourself using a hex editor or other application.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cycle Time</td>
+      <td>Amount of time to wait before cycling the log file. Default is 10 min. If nil refer to Cycle Hour and Cycle Minute.</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Cycle Size</td>
+      <td>Amount of data to write before cycling the log file. Default is 50MB.</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Cycle Hour</td>
+      <td>The time at which to cycle the log. Combined with Cycle Minute to cycle the log daily at the specified time. If nil, the log will be cycled hourly at the specified Cycle Minute. Only applies if Cycle Time is nil.</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <td>Cycle Minute</td>
+      <td>See Cycle Hour.</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="protocol">
 <a class="anchor" href="#protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROTOCOL</h3>
