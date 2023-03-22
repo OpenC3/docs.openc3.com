@@ -1,7 +1,7 @@
 ---
 layout: news_item
 title: "OpenC3 COSMOS 5.5.2 Released"
-date: 2023-05-16 6:00:00 -0700
+date: 2023-03-16 6:00:00 -0700
 author: ryanmelt
 version: 5.5.2
 categories: [release]
@@ -11,20 +11,20 @@ categories: [release]
 
 Welcome to OpenC3 COSMOS 5.5.2!
 
-# Enhanced Local Mode
+## Enhanced Local Mode
 
 Local mode now captures tools configurations and global settings. These values are loaded into the system during init.
 Note that these files are written to the local volume as they are changed, but are only synced back to the server on a run of the init container.
 
-# Docker Compose V2
+## Docker Compose V2
 
 We've updated our scripts to use "docker compose" instead of "docker-compose" by default. On linux it will fall back to "docker-compose" if "docker compose" is not available.
 
-# TlmGrapher Show Limits
+## TlmGrapher Show Limits
 
 TlmGrapher can now include horizontal lines indicating the values of limits for a specific item on graphs.
 
-# Multiselect Combobox for Scripts
+## Multiselect Combobox for Scripts
 
 The combo_box() script method can now support multiselect returning an array of selections.
 
@@ -32,7 +32,7 @@ The combo_box() script method can now support multiselect returning an array of 
 answer = combo_box("This is a multi-select combo box", 'one', 'two', 'three', multiple: true)
 ```
 
-# Improved Screen Editing Autocomplete
+## Improved Screen Editing Autocomplete
 
 Fixed some issues with autocomplete in the built-in screen editor.
 
