@@ -105,6 +105,11 @@
 <li class="toc-entry toc-h3"><a href="#id-items">ID Items</a></li>
 <li class="toc-entry toc-h3"><a href="#variable-sized-items">Variable Sized Items</a></li>
 <li class="toc-entry toc-h3"><a href="#derived-items">Derived Items</a></li>
+<li class="toc-entry toc-h3"><a href="#received-time-and-packet-time">Received Time and Packet Time</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#example">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#telemetry-keywords">Telemetry Keywords</a>
@@ -180,6 +185,28 @@
 </code></pre></div></div>
 
 <p>Note the bit offset and bit size of 0 and the data type of DERIVED. For this reason DERIVED items should be declared using ITEM rather than APPEND_ITEM. They can be defined anywhere in the packet definition but are typically placed at the end. The ITEM definition must be followed by a CONVERSION keyword, e.g. <a href="/docs/v5/telemetry#read_conversion">READ_CONVERSION</a>, to generate the value.</p>
+
+<h3 id="received-time-and-packet-time">
+<a class="anchor" href="#received-time-and-packet-time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Received Time and Packet Time</h3>
+
+<p>COSMOS automatically creates several telemetry items on every packet: PACKET_TIMESECONDS, PACKET_TIMEFORMATTED, RECEIVED_COUNT, RECEIVED_TIMEFORMATTED, and RECEIVED_TIMESECONDS.</p>
+
+<p>RECEIVED_TIME is the time that COSMOS receives the packet. This is set by the interface which is connected to the target and is receiving the raw data. Once a packet has been created out of the raw data the time is set.</p>
+
+<p>PACKET_TIME defaults to RECEIVED_TIME, but can be set as a derived item with a time object in the telemetry configuration file. This helps support stored telemetry packets so that they can be more reasonably handled by other COSMOS tools such as Telemetry Grapher and Data Extractor. You can set the ‘stored’ flag in your interface and the current value table is unaffected.</p>
+
+<p>The _TIMEFORMATTED items returns the date and time in a YYYY/MM/DD HH:MM:SS.sss format and the _TIMESECONDS returns the Unix seconds of the time.</p>
+
+<h4 id="example">
+<a class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<p>COSMOS provides a Unix time conversion class which returns a Ruby time object based on the number of seconds and (optionally) microseconds since the Unix epoch. Note: This returns a Ruby Time object and not a float or string!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ITEM PACKET_TIME 0 0 DERIVED "Ruby time based on TIMESEC and TIMEUS"
+    READ_CONVERSION unix_time_conversion.rb TIMESEC TIMEUS
+</code></pre></div></div>
+
+<p>Definining PACKET_TIME allows the PACKET_TIMESECONDS and PACKET_TIMEFORMATTED to be calculated against an internal Packet time rather than the time COSMOS receives the packet.</p>
 
 <div style="clear:both;"></div>
 
