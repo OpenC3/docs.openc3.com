@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/03/16/openc3-cosmos-5-5-2-released/">OpenC3 COSMOS 5.5.2 Released</option>
+      
       <option value="/news/2023/02/26/openc3-cosmos-5-5-1-released/">OpenC3 COSMOS 5.5.1 Released</option>
       
       <option value="/news/2023/02/23/openc3-cosmos-5-5-0-released/">OpenC3 COSMOS 5.5.0 Released</option>
@@ -133,6 +135,102 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2023/03/16/openc3-cosmos-5-5-2-released/">
+      OpenC3 COSMOS 5.5.2 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      16 Mar 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-552---modern-production-ready-command-and-control">OpenC3 COSMOS 5.5.2 - Modern, Production Ready, Command and Control</h1>
+
+<p>Welcome to OpenC3 COSMOS 5.5.2!</p>
+
+<h2 id="enhanced-local-mode">Enhanced Local Mode</h2>
+
+<p>Local mode now captures tools configurations and global settings. These values are loaded into the system during init.
+Note that these files are written to the local volume as they are changed, but are only synced back to the server on a run of the init container.</p>
+
+<h2 id="docker-compose-v2">Docker Compose V2</h2>
+
+<p>We’ve updated our scripts to use “docker compose” instead of “docker-compose” by default. On linux it will fall back to “docker-compose” if “docker compose” is not available.</p>
+
+<h2 id="tlmgrapher-show-limits">TlmGrapher Show Limits</h2>
+
+<p>TlmGrapher can now include horizontal lines indicating the values of limits for a specific item on graphs.</p>
+
+<h2 id="multiselect-combobox-for-scripts">Multiselect Combobox for Scripts</h2>
+
+<p>The combo_box() script method can now support multiselect returning an array of selections.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>answer = combo_box("This is a multi-select combo box", 'one', 'two', 'three', multiple: true)
+</code></pre></div></div>
+
+<h2 id="improved-screen-editing-autocomplete">Improved Screen Editing Autocomplete</h2>
+
+<p>Fixed some issues with autocomplete in the built-in screen editor.</p>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+
+<ul>
+  <li>Render errors on plugin install by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/527">#527</a></li>
+  <li>Allow multiselect by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/526">#526</a></li>
+  <li>Change include_head to metadata by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/535">#535</a></li>
+  <li>Save and load local tool config by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/530">#530</a></li>
+  <li>Bump @sideway/formula from 3.0.0 to 3.0.1 in /openc3-cosmos-init/plugins by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/541">#541</a></li>
+  <li>Changes to support external keycloak for enterprise by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/543">#543</a></li>
+  <li>Bump webpack from 5.75.0 to 5.76.0 in /openc3-cosmos-init/plugins by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/544">#544</a></li>
+  <li>Bump webpack from 5.75.0 to 5.76.0 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/548">#548</a></li>
+  <li>Change docker-compose to docker compose by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/537">#537</a></li>
+  <li>Fix screen keywords, add choice selections, add SETTING by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/545">#545</a></li>
+  <li>Fix HTTPClient SSL and realm reference by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/549">#549</a></li>
+  <li>Allow user to graph limits by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/542">#542</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.5.1...v5.5.2">Changelog</a></p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2023/02/26/openc3-cosmos-5-5-1-released/">
@@ -1670,6 +1768,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/03/16/openc3-cosmos-5-5-2-released/">Version 5.5.2</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2023/02/26/openc3-cosmos-5-5-1-released/">Version 5.5.1</a>
       </li>
       
@@ -1685,14 +1787,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2023/02/02/openc3-cosmos-5-4-1-released/">Version 5.4.1</a>
       </li>
       
-      <li class="">
-        <a href="/news/2023/02/01/openc3-cosmos-5-4-0-released/">Version 5.4.0</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                                    
+                                      
     </ul>
   </aside>
 </div>

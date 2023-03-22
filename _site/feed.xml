@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Thu, 16 Mar 2023 12:28:25 +0000</pubDate>
-    <lastBuildDate>Thu, 16 Mar 2023 12:28:25 +0000</lastBuildDate>
+    <pubDate>Wed, 22 Mar 2023 20:23:08 +0000</pubDate>
+    <lastBuildDate>Wed, 22 Mar 2023 20:23:08 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -24,6 +24,89 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>OpenC3 COSMOS 5.5.2 Released</title>
+      <link>https://openc3.com/news/2023/03/16/openc3-cosmos-5-5-2-released/</link>
+      <pubDate>Thu, 16 Mar 2023 13:00:00 +0000</pubDate>
+      <dc:creator>ryanmelt</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">https://openc3.com/news/2023/03/16/openc3-cosmos-5-5-2-released/</guid>
+      <description>&lt;h1 id=&quot;openc3-cosmos-552---modern-production-ready-command-and-control&quot;&gt;OpenC3 COSMOS 5.5.2 - Modern, Production Ready, Command and Control&lt;/h1&gt;
+
+&lt;p&gt;Welcome to OpenC3 COSMOS 5.5.2!&lt;/p&gt;
+
+&lt;h2 id=&quot;enhanced-local-mode&quot;&gt;Enhanced Local Mode&lt;/h2&gt;
+
+&lt;p&gt;Local mode now captures tools configurations and global settings. These values are loaded into the system during init.
+Note that these files are written to the local volume as they are changed, but are only synced back to the server on a run of the init container.&lt;/p&gt;
+
+&lt;h2 id=&quot;docker-compose-v2&quot;&gt;Docker Compose V2&lt;/h2&gt;
+
+&lt;p&gt;We’ve updated our scripts to use “docker compose” instead of “docker-compose” by default. On linux it will fall back to “docker-compose” if “docker compose” is not available.&lt;/p&gt;
+
+&lt;h2 id=&quot;tlmgrapher-show-limits&quot;&gt;TlmGrapher Show Limits&lt;/h2&gt;
+
+&lt;p&gt;TlmGrapher can now include horizontal lines indicating the values of limits for a specific item on graphs.&lt;/p&gt;
+
+&lt;h2 id=&quot;multiselect-combobox-for-scripts&quot;&gt;Multiselect Combobox for Scripts&lt;/h2&gt;
+
+&lt;p&gt;The combo_box() script method can now support multiselect returning an array of selections.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;answer = combo_box(&quot;This is a multi-select combo box&quot;, &apos;one&apos;, &apos;two&apos;, &apos;three&apos;, multiple: true)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;improved-screen-editing-autocomplete&quot;&gt;Improved Screen Editing Autocomplete&lt;/h2&gt;
+
+&lt;p&gt;Fixed some issues with autocomplete in the built-in screen editor.&lt;/p&gt;
+
+&lt;h2 id=&quot;all-pull-requests-in-this-release&quot;&gt;All Pull Requests in this Release&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Render errors on plugin install by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/527&quot;&gt;#527&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Allow multiselect by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/526&quot;&gt;#526&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Change include_head to metadata by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/535&quot;&gt;#535&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Save and load local tool config by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/530&quot;&gt;#530&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump @sideway/formula from 3.0.0 to 3.0.1 in /openc3-cosmos-init/plugins by @dependabot in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/541&quot;&gt;#541&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Changes to support external keycloak for enterprise by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/543&quot;&gt;#543&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump webpack from 5.75.0 to 5.76.0 in /openc3-cosmos-init/plugins by @dependabot in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/544&quot;&gt;#544&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump webpack from 5.75.0 to 5.76.0 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/548&quot;&gt;#548&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Change docker-compose to docker compose by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/537&quot;&gt;#537&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix screen keywords, add choice selections, add SETTING by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/545&quot;&gt;#545&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix HTTPClient SSL and realm reference by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/549&quot;&gt;#549&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Allow user to graph limits by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/542&quot;&gt;#542&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+&lt;/p&gt;
+
+&lt;p&gt;To Run:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;git clone https://github.com/openc3/cosmos-project.git cosmos-myproject&lt;/li&gt;
+  &lt;li&gt;cd cosmos-myproject&lt;/li&gt;
+  &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
+  &lt;li&gt;Run Windows: openc3.bat run&lt;/li&gt;
+  &lt;li&gt;Connect a web browser to &lt;a href=&quot;http://localhost:2900/&quot;&gt;http://localhost:2900/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Have fun running OpenC3 COSMOS!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please see our documentation at https://openc3.com&lt;/p&gt;
+
+&lt;p&gt;Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to &lt;a href=&quot;mailto:support@openc3.com&quot;&gt;support@openc3.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.5.1...v5.5.2&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>OpenC3 COSMOS 5.5.1 Released</title>
