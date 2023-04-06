@@ -20,11 +20,13 @@ Authorization: <token/password>
 
 ## JSON-RPC 2.0
 
-The COSMOS API implements a relaxed version of the [JSON-RPC 2.0 Specification](http://www.jsonrpc.org/specification). Requests with an "id" of NULL are not supported. Numbers can contain special non-string literal's such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.
+The COSMOS API implements a relaxed version of the [JSON-RPC 2.0 Specification](http://www.jsonrpc.org/specification). Requests with an "id" of NULL are not supported. Numbers can contain special non-string literal's such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported. The COSMOS scope must be specified in a `"keword_params"` object.
 
 ## Socket Connections
 
 The COSMOS Command and Telemetry Server listens for connections to the COSMOS API on an HTTP server (default port of 7777).
+
+COSMOS listens for HTTP API requests at the default 2900 port at the `/openc3-api/api` endpoint.
 
 ## Supported Methods
 
@@ -63,10 +65,10 @@ The second is two or three parameters with the first parameter being a string de
 Example Usage:
 
 ```bash
---> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"], "id": 1}
+--> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"], "id": 1, "keyword_params":{"scope":"DEFAULT"}}
 <-- {"jsonrpc": "2.0", "result": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
 
---> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
+--> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1, "keyword_params":{"scope":"DEFAULT"}}
 <-- {"jsonrpc": "2.0", "result": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
 ```
 
@@ -95,10 +97,10 @@ The second is three parameters with the first parameter being a string denoting 
 Example Usage:
 
 ```bash
---> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST HEALTH_STATUS TEMP1"], "id": 2}
+--> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST HEALTH_STATUS TEMP1"], "id": 2, "keyword_params":{"scope":"DEFAULT"}}
 <-- {"jsonrpc": "2.0", "result": 94.9438, "id": 2}
 
---> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST", "HEALTH_STATUS", "TEMP1"], "id": 2}
+--> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST", "HEALTH_STATUS", "TEMP1"], "id": 2, "keyword_params":{"scope":"DEFAULT"}}
 <-- {"jsonrpc": "2.0", "result": 94.9438, "id": 2}
 ```
 
@@ -106,20 +108,15 @@ Example Usage:
 
 If developing an interface for the JSON API from another language, the best way to debug is to send the same messages from the supported Ruby interface first, like the following. By enabling the debug mode, you can see the exact request and response sent from the Ruby Implementation.
 
-1. Launch CmdTlmServer
-2. From a command line, launch ScriptRunner: ruby ScriptRunner
-3. Run a script like the following:
+1. Launch COSMOS
+2. Open Command Sender
+3. Open browser developer tools (right-click->Inspect in Chrome)
+4. Click "Network" tab (may need to add it with `+` button)
+5. Send a command with the GUI
+6. View the request in the developer tool. Click the "Payload" sub-tab to view the JSON
 
-```ruby
-JsonDRb.debug = true
-cmd("INST ARYCMD with ARRAY [1, 2, 3]")
-```
-
-4. The following will be printed to the terminal where you launched ScriptRunner:
+You can also try sending these raw commands from the terminal with a program like `curl`:
 
 ```bash
-Request:
-{"jsonrpc":"2.0","method":"cmd","params":["INST ARYCMD with ARRAY [1, 2, 3]"],"id":0}
-Response:
-{"jsonrpc":"2.0","id":0,"result":["INST","ARYCMD",{"ARRAY":[1,2,3]}]}
+curl -d '{"jsonrpc": "2.0", "method": "tlm", "params": ["INST HEALTH_STATUS TEMP1"], "id": 2, "keyword_params":{"type":"WITH_UNITS","scope":"DEFAULT"}}' http://localhost:2900/openc3-api/api  -H "Authorization: password"
 ```
