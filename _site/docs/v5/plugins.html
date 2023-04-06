@@ -414,6 +414,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">DATA_INT</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span>
+  <span class="no">MAP_TARGET</span> <span class="no">DATA</span>
+</code></pre></div></div>
+
 <h3 id="map_cmd_target">
 <a class="anchor" href="#map_cmd_target" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_CMD_TARGET</h3>
 <div class="right">(Since 5.2.0)</div>
@@ -436,6 +441,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">CMD_INT</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span>
+  <span class="no">MAP_CMD_TARGET</span> <span class="no">DATA</span> <span class="c1"># Only DATA commands go on the CMD_INT interface</span>
+</code></pre></div></div>
+
 <h3 id="map_tlm_target">
 <a class="anchor" href="#map_tlm_target" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAP_TLM_TARGET</h3>
 <div class="right">(Since 5.2.0)</div>
@@ -457,6 +467,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">TLM_INT</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span>
+  <span class="no">MAP_TLM_TARGET</span> <span class="no">DATA</span> <span class="c1"># Only DATA telemetry received on TLM_INT interface</span>
+</code></pre></div></div>
 
 <h3 id="dont_connect">
 <a class="anchor" href="#dont_connect" aria-hidden="true"><span class="octicon octicon-link"></span></a>DONT_CONNECT</h3>
@@ -542,6 +557,12 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">EXAMPLE</span> <span class="n">example_interface</span><span class="p">.</span><span class="nf">rb</span>
+  <span class="c1"># Override the default log time of 600</span>
+  <span class="no">LOG_STREAM</span> <span class="mi">60</span>
+</code></pre></div></div>
+
 <h3 id="protocol">
 <a class="anchor" href="#protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>PROTOCOL</h3>
 <div class="right">(Since 4.0.0)</div>
@@ -577,6 +598,16 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">DATA_INT</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="kp">nil</span>
+  <span class="no">MAP_TARGET</span> <span class="no">DATA</span>
+  <span class="c1"># Rather than defining the LENGTH protocol on the INTERFACE line we define it here</span>
+  <span class="no">PROTOCOL</span> <span class="no">READ</span> <span class="no">LengthProtocol</span> <span class="mi">0</span> <span class="mi">16</span> <span class="mi">0</span> <span class="mi">1</span> <span class="no">BIG_ENDIAN</span> <span class="mi">4</span> <span class="mh">0xBA5EBA11</span>
+<span class="no">INTERFACE</span> <span class="no">DATA_INT</span> <span class="n">tcpip_client_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="n">host</span><span class="p">.</span><span class="nf">docker</span><span class="p">.</span><span class="nf">internal</span> <span class="mi">8080</span> <span class="mi">8081</span> <span class="mf">10.0</span> <span class="kp">nil</span> <span class="no">BURST</span>
+  <span class="no">MAP_TARGET</span> <span class="no">DATA</span>
+  <span class="no">PROTOCOL</span> <span class="no">READ</span> <span class="no">IgnorePacketProtocol</span> <span class="no">INST</span> <span class="no">IMAGE</span> <span class="c1"># Drop all INST IMAGE packets</span>
+</code></pre></div></div>
+
 <h3 id="option">
 <a class="anchor" href="#option" aria-hidden="true"><span class="octicon octicon-link"></span></a>OPTION</h3>
 <p><strong>Set a parameter on an interface</strong></p>
@@ -605,6 +636,12 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">INTERFACE</span> <span class="no">SERIAL_INT</span> <span class="n">serial_interface</span><span class="p">.</span><span class="nf">rb</span> <span class="no">COM1</span> <span class="no">COM1</span> <span class="mi">115200</span> <span class="no">NONE</span> <span class="mi">1</span> <span class="mf">10.0</span> <span class="kp">nil</span>
+  <span class="no">OPTION</span> <span class="no">FLOW_CONTROL</span> <span class="no">RTSCTS</span>
+  <span class="no">OPTION</span> <span class="no">DATA_BITS</span> <span class="mi">8</span>
+</code></pre></div></div>
+
 <h3 id="secret">
 <a class="anchor" href="#secret" aria-hidden="true"><span class="octicon octicon-link"></span></a>SECRET</h3>
 <div class="right">(Since 5.3.0)</div>
@@ -632,7 +669,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
       <td>True</td>
     </tr>
     <tr>
-      <td>Environment Variable of File Path</td>
+      <td>Environment Variable or File Path</td>
       <td>Environment variable name or file path to store secret</td>
       <td>True</td>
     </tr>
@@ -648,6 +685,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SECRET</span> <span class="no">ENV</span> <span class="no">USERNAME</span> <span class="no">ENV_USERNAME</span> <span class="no">USERNAME</span>
+<span class="no">SECRET</span> <span class="no">FILE</span> <span class="no">KEY</span> <span class="s2">"/tmp/DATA/cert"</span> <span class="no">KEY</span>
+</code></pre></div></div>
 
 <h2 id="router-1">
 <a class="anchor" href="#router-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTER</h2>
@@ -1212,7 +1254,7 @@ This file follows the standard COSMOS configuration file format of keywords foll
 </table>
 
 <p>Example Usage:</p>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">example</span><span class="o">-</span><span class="n">microservice</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
 </code></pre></div></div>
 
 <h2 id="microservice-modifiers">
@@ -1245,6 +1287,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
+  <span class="no">ENV</span> <span class="no">COMPANY</span> <span class="no">OpenC3</span>
+</code></pre></div></div>
+
 <h3 id="work_dir">
 <a class="anchor" href="#work_dir" aria-hidden="true"><span class="octicon octicon-link"></span></a>WORK_DIR</h3>
 <p><strong>Set the working directory</strong></p>
@@ -1267,6 +1314,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
+  <span class="no">WORK_DIR</span> <span class="o">.</span>
+</code></pre></div></div>
 
 <h3 id="port">
 <a class="anchor" href="#port" aria-hidden="true"><span class="octicon octicon-link"></span></a>PORT</h3>
@@ -1297,6 +1349,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
+  <span class="no">PORT</span> <span class="mi">7272</span>
+</code></pre></div></div>
+
 <h3 id="topic">
 <a class="anchor" href="#topic" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOPIC</h3>
 <p><strong>Associate a Redis topic</strong></p>
@@ -1319,6 +1376,14 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
+  <span class="c1"># Manually assigning topics is an advanced topic and requires</span>
+  <span class="c1"># intimate knowledge of the internal COSMOS data structures.</span>
+  <span class="no">TOPIC</span> <span class="no">DEFAULT__openc3_log_messages</span>
+  <span class="no">TOPIC</span> <span class="no">DEFAULT__TELEMETRY__EXAMPLE__STATUS</span>
+</code></pre></div></div>
 
 <h3 id="target_name">
 <a class="anchor" href="#target_name" aria-hidden="true"><span class="octicon octicon-link"></span></a>TARGET_NAME</h3>
@@ -1343,6 +1408,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
+  <span class="no">TARGET_NAME</span> <span class="no">EXAMPLE</span>
+</code></pre></div></div>
+
 <h3 id="cmd">
 <a class="anchor" href="#cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD</h3>
 <p><strong>Command line to execute to run the microservice.</strong></p>
@@ -1365,6 +1435,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">EXAMPLE</span> <span class="n">openc3</span><span class="o">-</span><span class="n">example</span>
+  <span class="no">CMD</span> <span class="n">ruby</span> <span class="n">example_target</span><span class="p">.</span><span class="nf">rb</span>
+</code></pre></div></div>
 
 <h3 id="option-1">
 <a class="anchor" href="#option-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>OPTION</h3>
@@ -1396,9 +1471,9 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <h3 id="container">
 <a class="anchor" href="#container" aria-hidden="true"><span class="octicon octicon-link"></span></a>CONTAINER</h3>
-<p><strong>Docker Container.</strong></p>
+<p><strong>Docker Container</strong></p>
 
-<p>Container to execute and run the microservice in.</p>
+<p>Container to execute and run the microservice in. Only used in COSMOS Enterprise Edition.</p>
 
 <table>
   <thead>
@@ -1456,6 +1531,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SECRET</span> <span class="no">ENV</span> <span class="no">USERNAME</span> <span class="no">ENV_USERNAME</span>
+<span class="no">SECRET</span> <span class="no">FILE</span> <span class="no">KEY</span> <span class="s2">"/tmp/DATA/cert"</span>
+</code></pre></div></div>
+
 <h3 id="route_prefix">
 <a class="anchor" href="#route_prefix" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTE_PREFIX</h3>
 <div class="right">(Since 5.5.0)</div>
@@ -1479,6 +1559,11 @@ This file follows the standard COSMOS configuration file format of keywords foll
     </tr>
   </tbody>
 </table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">MICROSERVICE</span> <span class="no">CFDP</span> <span class="no">CFDP</span>
+  <span class="no">ROUTE_PREFIX</span> <span class="sr">/cfdp
+</span></code></pre></div></div>
 
 <h2 id="tool-1">
 <a class="anchor" href="#tool-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>TOOL</h2>
