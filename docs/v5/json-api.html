@@ -116,11 +116,13 @@
 
 <h2 id="json-rpc-20">JSON-RPC 2.0</h2>
 
-<p>The COSMOS API implements a relaxed version of the <a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a>. Requests with an “id” of NULL are not supported. Numbers can contain special non-string literal’s such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.</p>
+<p>The COSMOS API implements a relaxed version of the <a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a>. Requests with an “id” of NULL are not supported. Numbers can contain special non-string literal’s such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported. The COSMOS scope must be specified in a <code class="language-plaintext highlighter-rouge">"keword_params"</code> object.</p>
 
 <h2 id="socket-connections">Socket Connections</h2>
 
 <p>The COSMOS Command and Telemetry Server listens for connections to the COSMOS API on an HTTP server (default port of 7777).</p>
+
+<p>COSMOS listens for HTTP API requests at the default 2900 port at the <code class="language-plaintext highlighter-rouge">/openc3-api/api</code> endpoint.</p>
 
 <h2 id="supported-methods">Supported Methods</h2>
 
@@ -194,10 +196,10 @@
 
 <p>Example Usage:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"</span><span class="o">]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"</span><span class="o">]</span>, <span class="s2">"id"</span>: 1, <span class="s2">"keyword_params"</span>:<span class="o">{</span><span class="s2">"scope"</span>:<span class="s2">"DEFAULT"</span><span class="o">}}</span>
 &lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
 
-<span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
+<span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1, <span class="s2">"keyword_params"</span>:<span class="o">{</span><span class="s2">"scope"</span>:<span class="s2">"DEFAULT"</span><span class="o">}}</span>
 &lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
 </code></pre></div></div>
 
@@ -259,10 +261,10 @@
 
 <p>Example Usage:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST HEALTH_STATUS TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2<span class="o">}</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST HEALTH_STATUS TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2, <span class="s2">"keyword_params"</span>:<span class="o">{</span><span class="s2">"scope"</span>:<span class="s2">"DEFAULT"</span><span class="o">}}</span>
 &lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: 94.9438, <span class="s2">"id"</span>: 2<span class="o">}</span>
 
-<span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"HEALTH_STATUS"</span>, <span class="s2">"TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2<span class="o">}</span>
+<span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"HEALTH_STATUS"</span>, <span class="s2">"TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2, <span class="s2">"keyword_params"</span>:<span class="o">{</span><span class="s2">"scope"</span>:<span class="s2">"DEFAULT"</span><span class="o">}}</span>
 &lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: 94.9438, <span class="s2">"id"</span>: 2<span class="o">}</span>
 </code></pre></div></div>
 
@@ -271,23 +273,17 @@
 <p>If developing an interface for the JSON API from another language, the best way to debug is to send the same messages from the supported Ruby interface first, like the following. By enabling the debug mode, you can see the exact request and response sent from the Ruby Implementation.</p>
 
 <ol>
-  <li>Launch CmdTlmServer</li>
-  <li>From a command line, launch ScriptRunner: ruby ScriptRunner</li>
-  <li>Run a script like the following:</li>
+  <li>Launch COSMOS</li>
+  <li>Open Command Sender</li>
+  <li>Open browser developer tools (right-click-&gt;Inspect in Chrome)</li>
+  <li>Click “Network” tab (may need to add it with <code class="language-plaintext highlighter-rouge">+</code> button)</li>
+  <li>Send a command with the GUI</li>
+  <li>View the request in the developer tool. Click the “Payload” sub-tab to view the JSON</li>
 </ol>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">JsonDRb</span><span class="p">.</span><span class="nf">debug</span> <span class="o">=</span> <span class="kp">true</span>
-<span class="n">cmd</span><span class="p">(</span><span class="s2">"INST ARYCMD with ARRAY [1, 2, 3]"</span><span class="p">)</span>
-</code></pre></div></div>
+<p>You can also try sending these raw commands from the terminal with a program like <code class="language-plaintext highlighter-rouge">curl</code>:</p>
 
-<ol>
-  <li>The following will be printed to the terminal where you launched ScriptRunner:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request:
-<span class="o">{</span><span class="s2">"jsonrpc"</span>:<span class="s2">"2.0"</span>,<span class="s2">"method"</span>:<span class="s2">"cmd"</span>,<span class="s2">"params"</span>:[<span class="s2">"INST ARYCMD with ARRAY [1, 2, 3]"</span><span class="o">]</span>,<span class="s2">"id"</span>:0<span class="o">}</span>
-Response:
-<span class="o">{</span><span class="s2">"jsonrpc"</span>:<span class="s2">"2.0"</span>,<span class="s2">"id"</span>:0,<span class="s2">"result"</span>:[<span class="s2">"INST"</span>,<span class="s2">"ARYCMD"</span>,<span class="o">{</span><span class="s2">"ARRAY"</span>:[1,2,3]<span class="o">}]}</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-d</span> <span class="s1">'{"jsonrpc": "2.0", "method": "tlm", "params": ["INST HEALTH_STATUS TEMP1"], "id": 2, "keyword_params":{"type":"WITH_UNITS","scope":"DEFAULT"}}'</span> http://localhost:2900/openc3-api/api  <span class="nt">-H</span> <span class="s2">"Authorization: password"</span>
 </code></pre></div></div>
 
       </article>
