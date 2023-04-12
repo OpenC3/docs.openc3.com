@@ -98,6 +98,7 @@ Runs a bridge using the bridge.txt provided in a bridge gem. Variables can also 
 ## Example Bridge Gems
 
 - Serial Port: [openc3-cosmos-bridge-serial](https://github.com/OpenC3/openc3-cosmos-bridge-serial)
+- Host: [openc3-cosmos-bridge-host](https://github.com/OpenC3/openc3-cosmos-bridge-host)
 - HIDAPI: [openc3-cosmos-bridge-hidapi](https://github.com/OpenC3/openc3-cosmos-bridge-hidapi)
 - PS5 Dual Sense Controller: [openc3-cosmos-bridge-dualsense](https://github.com/OpenC3/openc3-cosmos-bridge-dualsense)
 

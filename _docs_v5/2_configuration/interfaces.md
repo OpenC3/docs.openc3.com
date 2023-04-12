@@ -174,10 +174,10 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 808
 
 COSMOS also defines the following helper protocols:
 
-| Name                                                         | Description                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------------- |
-| [CRC]({{site.baseurl}}/docs/v5/protocols#crc-protocol)       | Adds CRCs to outgoing packets and verifies CRCs on incoming packets |
-| [Ignore]({{site.baseurl}}/docs/v5/protocols#ignore-protocol) | Ignores the specified packet by dropping it                         |
+| Name                                                                | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [CRC]({{site.baseurl}}/docs/v5/protocols#crc-protocol)              | Adds CRCs to outgoing packets and verifies CRCs on incoming packets |
+| [Ignore]({{site.baseurl}}/docs/v5/protocols#ignore-packet-protocol) | Ignores the specified packet by dropping it                         |
 
 These protocols are declared after the INTERFACE:
 
