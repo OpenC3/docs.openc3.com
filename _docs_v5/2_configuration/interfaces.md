@@ -46,7 +46,7 @@ The TCPIP client interface connects to a TCPIP socket to send commands and recei
 | Host               | Machine name to connect to                                                                              | Yes      |
 | Write Port         | Port to write commands to (can be the same as read port). Pass nil to make the interface read only.     | Yes      |
 | Read Port          | Port to read telemetry from (can be the same as write port). Pass nil to make the interface write only. | Yes      |
-| Write Timeout      | Number of seconds to wait before aborting the write. Pass 'nil' to block on write.                      | Yes      |
+| Write Timeout      | Number of seconds to wait before aborting the write                                                     | Yes      |
 | Read Timeout       | Number of seconds to wait before aborting the read. Pass 'nil' to block on read.                        | Yes      |
 | Protocol Type      | See Protocols.                                                                                          | No       |
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                                             | No       |
@@ -69,14 +69,14 @@ See [INTERFACE]({{site.baseurl}}/docs/v5/plugins#interface) for a description of
 
 The TCPIP server interface creates a TCPIP server which listens for incoming connections and dynamically creates sockets which communicate with the target. This interface is used for targets which open a socket and try to connect to a server.
 
-| Parameter          | Description                                                                        | Required |
-| ------------------ | ---------------------------------------------------------------------------------- | -------- |
-| Write Port         | Port to write commands to (can be the same as read port)                           | Yes      |
-| Read Port          | Port to read telemetry from (can be the same as write port)                        | Yes      |
-| Write Timeout      | Number of seconds to wait before aborting the write. Pass 'nil' to block on write. | Yes      |
-| Read Timeout       | Number of seconds to wait before aborting the read. Pass 'nil' to block on read.   | Yes      |
-| Protocol Type      | See Protocols.                                                                     | No       |
-| Protocol Arguments | See Protocols for the arguments each stream protocol takes.                        | No       |
+| Parameter          | Description                                                                      | Required |
+| ------------------ | -------------------------------------------------------------------------------- | -------- |
+| Write Port         | Port to write commands to (can be the same as read port)                         | Yes      |
+| Read Port          | Port to read telemetry from (can be the same as write port)                      | Yes      |
+| Write Timeout      | Number of seconds to wait before aborting the write                              | Yes      |
+| Read Timeout       | Number of seconds to wait before aborting the read. Pass 'nil' to block on read. | Yes      |
+| Protocol Type      | See Protocols.                                                                   | No       |
+| Protocol Arguments | See Protocols for the arguments each stream protocol takes.                      | No       |
 
 plugin.txt Examples:
 
@@ -104,7 +104,7 @@ The UDP interface uses UDP packets to send and receive telemetry from the target
 | Write Source Port | Port on the local machine to send commands from                                                                    | No       | nil (socket is not bound to an outgoing port) |
 | Interface Address | If the remote machine supports multicast the interface address is used to configure the outgoing multicast address | No       | nil (not used)                                |
 | TTL               | Time to Live. The number of intermediate routers allowed before dropping the packet.                               | No       | 128 (Windows)                                 |
-| Write Timeout     | Number of seconds to wait before aborting the write                                                                | No       | nil (block on write)                          |
+| Write Timeout     | Number of seconds to wait before aborting the write                                                                | No       | 10.0                                          |
 | Read Timeout      | Number of seconds to wait before aborting the read                                                                 | No       | nil (block on read)                           |
 
 plugin.txt Example:
@@ -126,7 +126,7 @@ The serial interface connects to a target over a serial port. COSMOS provides dr
 | Baud Rate          | Baud rate to read and write                                                                   | Yes      |
 | Parity             | Serial port parity. Must be 'NONE', 'EVEN', or 'ODD'.                                         | Yes      |
 | Stop Bits          | Number of stop bits, e.g. 1.                                                                  | Yes      |
-| Write Timeout      | Number of seconds to wait before aborting the write. Pass 'nil' to block on write.            | Yes      |
+| Write Timeout      | Number of seconds to wait before aborting the write                                           | Yes      |
 | Read Timeout       | Number of seconds to wait before aborting the read. Pass 'nil' to block on read.              | Yes      |
 | Protocol Type      | See Protocols.                                                                                | No       |
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                                   | No       |

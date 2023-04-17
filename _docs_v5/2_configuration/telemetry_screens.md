@@ -36,7 +36,7 @@ Example File: <TARGET>/myscreen.txt
 ```ruby
 SCREEN AUTO AUTO 0.5
 VERTICAL
-  TITLE "<%= @target_name %> Commanding Examples"
+  TITLE "<%= target_name %> Commanding Examples"
   LABELVALUE INST HEALTH_STATUS COLLECTS
   LABELVALUE INST HEALTH_STATUS COLLECT_TYPE
   LABELVALUE INST HEALTH_STATUS DURATION
