@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/04/16/openc3-cosmos-5-6-0-released/">OpenC3 COSMOS 5.6.0 Released</option>
+      
       <option value="/news/2023/03/16/openc3-cosmos-5-5-2-released/">OpenC3 COSMOS 5.5.2 Released</option>
       
       <option value="/news/2023/02/26/openc3-cosmos-5-5-1-released/">OpenC3 COSMOS 5.5.1 Released</option>
@@ -135,6 +137,159 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2023/04/16/openc3-cosmos-5-6-0-released/">
+      OpenC3 COSMOS 5.6.0 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      16 Apr 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-560---modern-production-ready-command-and-control">OpenC3 COSMOS 5.6.0 - Modern, Production Ready, Command and Control</h1>
+
+<p>Welcome to OpenC3 COSMOS 5.6.0!</p>
+
+<p>This release brings some great new features, and also includes some important bug fixes.  Everyone is encouraged to upgrade.</p>
+
+<h1 id="important-migration-note">Important Migration Note</h1>
+
+<p>TlmViewer widgets had to be updated to support opening screens from ScriptRunner which caused a breaking change for any plugins containing a custom widget.   Plugins with a custom widget will need to update their package.json file to use @openc3/tool-common version 5.6.0 (or later), and be rebuilt/reinstalled.</p>
+
+<h1 id="open-telemetry-screens-in-script-runner">Open Telemetry Screens in Script Runner</h1>
+
+<p>You can now open telemetry screens in ScriptRunner! Either existing screens or using the local_screen feature you can define a unique screen right from your script.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>display_screen("INST", "ADCS")
+wait(3)
+clear_screen("INST", "ADCS")
+wait(3)
+display_screen("INST", "IMAGE")
+wait(3)
+clear_all_screens()
+wait(3)
+definition = '
+SCREEN AUTO AUTO 1.0
+
+VERTICALBOX "Test Screen"
+  LABELVALUE INST HEALTH_STATUS TEMP1
+  LABELVALUE INST HEALTH_STATUS RECEIVED_TIMEFORMATTED WITH_UNITS 30
+END
+'
+local_screen("TEST", definition)
+</code></pre></div></div>
+
+<h1 id="widget-generator">Widget Generator</h1>
+<p>Our plugin generators now support custom widgets.   Run with: <code class="language-plaintext highlighter-rouge">openc3.sh cli generate widget MyWidget</code></p>
+
+<h1 id="diff-plugintxt-on-plugin-upgrades">Diff plugin.txt on Plugin Upgrades</h1>
+<p>Now if you upgrade a plugin and the plugin.txt file was changed, you will be presented with a diff interface that shows the changes and allows you to pick which lines you want to keep.</p>
+
+<h1 id="install-plugins-and-gems-from-the-command-line">Install Plugins and Gems from the command line</h1>
+<p>The openc3cli command has been updated to support loading plugins and gems from your host machine.   You can use like follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install openc3
+openc3cli load /path/to/myplugin.gem
+openc3cli unload myplugin.gem__12345667
+openc3cli geminstall my.gem
+openc3cli gemuninstall my.gem
+</code></pre></div></div>
+
+<h1 id="log_message-parameter-added-to-cmd-apis">log_message parameter added to cmd() apis</h1>
+<p>cmd() can now take an optional keyword argument called log_message that allows you to optionally not have a command be printed into the log messages.   This is useful if you are frequently sending a command or at a high rate, and don’t want to spam the log messages.  Note: All commands are always logged to our packet logs.</p>
+
+<h1 id="tlmgrapher-show-limits-updated">TlmGrapher Show Limits Updated</h1>
+<p>TlmGrapher Show Limits has been updated to color in the background for each section of limits.  This makes the limits ranges much easier to see.</p>
+
+<h1 id="crc8-code">CRC8 Code</h1>
+<p>We now ship code to perform CRC8 calculations, on top of our existing CRC16, CRC32, and CRC64 functionality.</p>
+
+<h1 id="important-bug-fixes">Important Bug Fixes</h1>
+<ol>
+  <li>get_cmd_value and get_cmd_time now work correctly</li>
+  <li>The details dialog now works correctly with DERIVED items</li>
+  <li>Script instrumentation now handles more complicated cases with lots of newlines</li>
+  <li>Fixed run_script and the other script apis from Ruby</li>
+  <li>TableManager now properly formats binary fields</li>
+  <li>connect_interface now works correctly when given parameters</li>
+  <li>inject_tlm now handles packets with a PACKET_TIME</li>
+  <li>Fix target_index in packet log files</li>
+</ol>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+<ul>
+  <li>float screens by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/550">#550</a></li>
+  <li>Fix get_cmd_value and get_cmd_time by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/551">#551</a></li>
+  <li>local screens and screen values by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/552">#552</a></li>
+  <li>LOG_STREAM instead of LOG_RAW by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/540">#540</a></li>
+  <li>crc8 by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/563">#563</a></li>
+  <li>Add docker network to scripts by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/562">#562</a></li>
+  <li>Generate widgets by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/557">#557</a></li>
+  <li>Derived details by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/575">#575</a></li>
+  <li>Improve instrumentation by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/568">#568</a></li>
+  <li>Validate built gem by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/577">#577</a></li>
+  <li>CmdSender history monospace, Script Report, doc updates by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/574">#574</a></li>
+  <li>Fix run_script by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/591">#591</a></li>
+  <li>Add target folder to load path by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/610">#610</a></li>
+  <li>Color the limits zones in TlmGrapher by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/599">#599</a></li>
+  <li>Use VWidget to format TableItem by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/601">#601</a></li>
+  <li>Fix connect_interface with params by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/604">#604</a></li>
+  <li>Move limits set to LimitsMonitor and fix limitsbar by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/606">#606</a></li>
+  <li>Remove DONT_LOG and log from interface_model by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/605">#605</a></li>
+  <li>Cleanup logger as debug rather than info by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/611">#611</a></li>
+  <li>Force write_timeout to value and update docs by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/603">#603</a></li>
+  <li>Don’t compress txt files by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/602">#602</a></li>
+  <li>Add log_message parameter to cmd() by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/612">#612</a></li>
+  <li>Diff plugin.txt on upgrade by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/607">#607</a></li>
+  <li>Ace edit json dialog and redis by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/608">#608</a></li>
+  <li>Dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/613">#613</a></li>
+  <li>inject_tlm performed by microservices by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/614">#614</a></li>
+  <li>Command line plugin and gem install/uninstall outside cluster by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/615">#615</a></li>
+  <li>fix target_index in packet log writer by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/617">#617</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.5.2...v5.6.0">Changelog</a></p>
+
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2023/03/16/openc3-cosmos-5-5-2-released/">
@@ -1768,6 +1923,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/04/16/openc3-cosmos-5-6-0-released/">Version 5.6.0</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2023/03/16/openc3-cosmos-5-5-2-released/">Version 5.5.2</a>
       </li>
       
@@ -1783,14 +1942,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2023/02/04/openc3-cosmos-5-4-2-released/">Version 5.4.2</a>
       </li>
       
-      <li class="">
-        <a href="/news/2023/02/02/openc3-cosmos-5-4-1-released/">Version 5.4.1</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                                      
+                                        
     </ul>
   </aside>
 </div>
