@@ -17,6 +17,8 @@ Podman is an alternative container technology to Docker that is actively promote
   <p style="margin-bottom:20px;">At least on AWS EC2, Podman does not seem to work with the RHEL 9 image as of March 15, 2023. All containers attempted to run with podman immediately die with exit code 127.  The following directions have only been confirmed to work with RHEL 8.6</p>
 </div>
 
+# Redhat 8.6 Instructions
+
 1. Install Prerequisite Packages
 
    Note: This downloads and installs docker-compose from the latest 2.x release on Github. If your operating system has a docker-compose package, it will be easier to install using that instead. RHEL8 does not have a docker-compose package.
@@ -98,3 +100,48 @@ You may also want to update the traefik configuration to allow access from the i
    ```
 
 1. Wait until everything is built and running and then goto http://localhost:2900 in your browser
+
+<div class="note info">
+  <h5>Podman on MacOS</h5>
+  <p style="margin-bottom:20px;">Podman can also be used on MacOS, though we still generally recommend Docker Desktop</p>
+</div>
+
+## MacOS Instructions
+
+1. Install podman
+
+   ```bash
+   brew install podman
+   ```
+
+1. Start the podman virtual machine
+
+   ```bash
+   podman machine init
+   podman machine start
+   # Note: update to your username in the next line or copy paste from what 'podman machine start' says
+   export DOCKER_HOST='unix:///Users/ryanmelt/.local/share/containers/podman/machine/qemu/podman.sock'
+   ```
+
+1. Install docker-compose
+
+   ```bash
+   brew install docker-compose # Optional if you already have Docker Desktop
+   ```
+
+1. Edit cosmos/compose.yaml
+
+Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: "${OPENC3_USER_ID}:${OPENC3_GROUP_ID}" lines.
+
+Important: on MacOS you must also remove all :z from the volume mount lines
+
+You may also want to update the traefik configuration to allow access from the internet.
+
+1. Run COSMOS
+
+   ```bash
+   cd cosmos
+   ./openc3.sh run
+   ```
+
+
