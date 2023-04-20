@@ -187,13 +187,10 @@ vi <span class="nv">$HOME</span>/.config/containers/registries.conf
   </li>
   <li>
     <p>Edit cosmos/compose.yaml</p>
-  </li>
-</ol>
 
-<p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.
+    <p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.
 You may also want to update the traefik configuration to allow access from the internet.</p>
-
-<ol>
+  </li>
   <li>
     <p>Run COSMOS</p>
 
@@ -237,16 +234,13 @@ podman machine start
   </li>
   <li>
     <p>Edit cosmos/compose.yaml</p>
+
+    <p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.</p>
+
+    <p>Important: on MacOS you must also remove all :z from the volume mount lines</p>
+
+    <p>You may also want to update the traefik configuration to allow access from the internet.</p>
   </li>
-</ol>
-
-<p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.</p>
-
-<p>Important: on MacOS you must also remove all :z from the volume mount lines</p>
-
-<p>You may also want to update the traefik configuration to allow access from the internet.</p>
-
-<ol>
   <li>
     <p>Run COSMOS</p>
 
