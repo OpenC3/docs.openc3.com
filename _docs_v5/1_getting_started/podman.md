@@ -89,8 +89,8 @@ Podman is an alternative container technology to Docker that is actively promote
 
 1. Edit cosmos/compose.yaml
 
-Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: "${OPENC3_USER_ID}:${OPENC3_GROUP_ID}" lines.
-You may also want to update the traefik configuration to allow access from the internet.
+   Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: "${OPENC3_USER_ID}:${OPENC3_GROUP_ID}" lines.
+   You may also want to update the traefik configuration to allow access from the internet.
 
 1. Run COSMOS
 
@@ -131,11 +131,11 @@ You may also want to update the traefik configuration to allow access from the i
 
 1. Edit cosmos/compose.yaml
 
-Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: "${OPENC3_USER_ID}:${OPENC3_GROUP_ID}" lines.
+   Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: "${OPENC3_USER_ID}:${OPENC3_GROUP_ID}" lines.
 
-Important: on MacOS you must also remove all :z from the volume mount lines
+   Important: on MacOS you must also remove all :z from the volume mount lines
 
-You may also want to update the traefik configuration to allow access from the internet.
+   You may also want to update the traefik configuration to allow access from the internet.
 
 1. Run COSMOS
 
