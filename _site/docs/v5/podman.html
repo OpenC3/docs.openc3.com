@@ -114,6 +114,8 @@
   <p style="margin-bottom:20px;">At least on AWS EC2, Podman does not seem to work with the RHEL 9 image as of March 15, 2023. All containers attempted to run with podman immediately die with exit code 127.  The following directions have only been confirmed to work with RHEL 8.6</p>
 </div>
 
+<h1 id="redhat-86-instructions">Redhat 8.6 Instructions</h1>
+
 <ol>
   <li>
     <p>Install Prerequisite Packages</p>
@@ -203,6 +205,57 @@ You may also want to update the traefik configuration to allow access from the i
     <p>Wait until everything is built and running and then goto http://localhost:2900 in your browser</p>
   </li>
 </ol>
+
+<div class="note info">
+  <h5>Podman on MacOS</h5>
+  <p style="margin-bottom:20px;">Podman can also be used on MacOS, though we still generally recommend Docker Desktop</p>
+</div>
+
+<h2 id="macos-instructions">MacOS Instructions</h2>
+
+<ol>
+  <li>
+    <p>Install podman</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>podman
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Start the podman virtual machine</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>podman machine init
+podman machine start
+<span class="c"># Note: update to your username in the next line or copy paste from what 'podman machine start' says</span>
+<span class="nb">export </span><span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s1">'unix:///Users/ryanmelt/.local/share/containers/podman/machine/qemu/podman.sock'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install docker-compose</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>docker-compose <span class="c"># Optional if you already have Docker Desktop</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit cosmos/compose.yaml</p>
+  </li>
+</ol>
+
+<p>Edit compose.yaml and uncomment the user: 0:0 lines and comment the user: “${OPENC3_USER_ID}:${OPENC3_GROUP_ID}” lines.</p>
+
+<p>Important: on MacOS you must also remove all :z from the volume mount lines</p>
+
+<p>You may also want to update the traefik configuration to allow access from the internet.</p>
+
+<ol>
+  <li>
+    <p>Run COSMOS</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos
+./openc3.sh run
+</code></pre></div>    </div>
+  </li>
+</ol>
+
 
       </article>
     </div>
