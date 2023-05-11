@@ -129,6 +129,12 @@
 <li class="toc-entry toc-h3"><a href="#protocol">PROTOCOL</a></li>
 <li class="toc-entry toc-h3"><a href="#option">OPTION</a></li>
 <li class="toc-entry toc-h3"><a href="#secret">SECRET</a></li>
+<li class="toc-entry toc-h3"><a href="#env">ENV</a></li>
+<li class="toc-entry toc-h3"><a href="#work_dir">WORK_DIR</a></li>
+<li class="toc-entry toc-h3"><a href="#port">PORT</a></li>
+<li class="toc-entry toc-h3"><a href="#cmd">CMD</a></li>
+<li class="toc-entry toc-h3"><a href="#container">CONTAINER</a></li>
+<li class="toc-entry toc-h3"><a href="#route_prefix">ROUTE_PREFIX</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#router-1">ROUTER</a></li>
@@ -162,16 +168,16 @@
 <li class="toc-entry toc-h2"><a href="#microservice-1">MICROSERVICE</a></li>
 <li class="toc-entry toc-h2"><a href="#microservice-modifiers">MICROSERVICE Modifiers</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#env">ENV</a></li>
-<li class="toc-entry toc-h3"><a href="#work_dir">WORK_DIR</a></li>
-<li class="toc-entry toc-h3"><a href="#port">PORT</a></li>
+<li class="toc-entry toc-h3"><a href="#env-1">ENV</a></li>
+<li class="toc-entry toc-h3"><a href="#work_dir-1">WORK_DIR</a></li>
+<li class="toc-entry toc-h3"><a href="#port-1">PORT</a></li>
 <li class="toc-entry toc-h3"><a href="#topic">TOPIC</a></li>
 <li class="toc-entry toc-h3"><a href="#target_name">TARGET_NAME</a></li>
-<li class="toc-entry toc-h3"><a href="#cmd">CMD</a></li>
+<li class="toc-entry toc-h3"><a href="#cmd-1">CMD</a></li>
 <li class="toc-entry toc-h3"><a href="#option-1">OPTION</a></li>
-<li class="toc-entry toc-h3"><a href="#container">CONTAINER</a></li>
+<li class="toc-entry toc-h3"><a href="#container-1">CONTAINER</a></li>
 <li class="toc-entry toc-h3"><a href="#secret-1">SECRET</a></li>
-<li class="toc-entry toc-h3"><a href="#route_prefix">ROUTE_PREFIX</a></li>
+<li class="toc-entry toc-h3"><a href="#route_prefix-1">ROUTE_PREFIX</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#tool-1">TOOL</a></li>
@@ -685,6 +691,178 @@ This file follows the standard COSMOS configuration file format of keywords foll
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SECRET</span> <span class="no">ENV</span> <span class="no">USERNAME</span> <span class="no">ENV_USERNAME</span> <span class="no">USERNAME</span>
 <span class="no">SECRET</span> <span class="no">FILE</span> <span class="no">KEY</span> <span class="s2">"/tmp/DATA/cert"</span> <span class="no">KEY</span>
 </code></pre></div></div>
+
+<h3 id="env">
+<a class="anchor" href="#env" aria-hidden="true"><span class="octicon octicon-link"></span></a>ENV</h3>
+<div class="right">(Since 5.7.0)</div>
+<p><strong>Sets an environment variable in the microservice.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Key</td>
+      <td>Environment variable name</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Value</td>
+      <td>Environment variable value</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ENV</span> <span class="no">COMPANY</span> <span class="no">OpenC3</span>
+</code></pre></div></div>
+
+<h3 id="work_dir">
+<a class="anchor" href="#work_dir" aria-hidden="true"><span class="octicon octicon-link"></span></a>WORK_DIR</h3>
+<div class="right">(Since 5.7.0)</div>
+<p><strong>Set the working directory</strong></p>
+
+<p>Working directory to run the microservice CMD in.  Can be a path relative to the microservice folder in the plugin, or an absolute path in the container the microservice runs in.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Directory</td>
+      <td>Working directory to run the microservice CMD in. Can be a path relative to the microservice folder in the plugin, or an absolute path in the container the microservice runs in.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">WORK_DIR</span> <span class="s1">'/openc3/lib/openc3/microservices'</span>
+</code></pre></div></div>
+
+<h3 id="port">
+<a class="anchor" href="#port" aria-hidden="true"><span class="octicon octicon-link"></span></a>PORT</h3>
+<div class="right">(Since 5.7.0)</div>
+<p><strong>Open port for the microservice</strong></p>
+
+<p>Kubernetes needs a Service to be applied to open a port so this is required for Kubernetes support</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Number</td>
+      <td>Port number</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>Port protocol. Default is TCP.</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">PORT</span> <span class="mi">7272</span>
+</code></pre></div></div>
+
+<h3 id="cmd">
+<a class="anchor" href="#cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD</h3>
+<div class="right">(Since 5.7.0)</div>
+<p><strong>Command line to execute to run the microservice.</strong></p>
+
+<p>Command line to execute to run the microservice.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Args</td>
+      <td>One or more arguments to exec to run the microservice.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">CMD</span> <span class="n">ruby</span> <span class="n">interface_microservice</span><span class="p">.</span><span class="nf">rb</span> <span class="no">DEFAULT__INTERFACE__INT1</span>
+</code></pre></div></div>
+
+<h3 id="container">
+<a class="anchor" href="#container" aria-hidden="true"><span class="octicon octicon-link"></span></a>CONTAINER</h3>
+<div class="right">(Since 5.7.0)</div>
+<p><strong>Docker Container</strong></p>
+
+<p>Container to execute and run the microservice in. Only used in COSMOS Enterprise Edition.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Args</td>
+      <td>Name of the container</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="route_prefix">
+<a class="anchor" href="#route_prefix" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTE_PREFIX</h3>
+<div class="right">(Since 5.7.0)</div>
+<p><strong>Prefix of route</strong></p>
+
+<p>Prefix of route to the microservice to expose externally with Traefik</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Route Prefix</td>
+      <td>Route prefix. Must be unique across all scopes. Something like /myprefix</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ROUTE_PREFIX</span> <span class="sr">/interface
+</span></code></pre></div></div>
 
 <h2 id="router-1">
 <a class="anchor" href="#router-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTER</h2>
@@ -1256,8 +1434,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
 <a class="anchor" href="#microservice-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>MICROSERVICE Modifiers</h2>
 <p>The following keywords must follow a MICROSERVICE keyword.</p>
 
-<h3 id="env">
-<a class="anchor" href="#env" aria-hidden="true"><span class="octicon octicon-link"></span></a>ENV</h3>
+<h3 id="env-1">
+<a class="anchor" href="#env-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ENV</h3>
 <p><strong>Sets an environment variable in the microservice.</strong></p>
 
 <table>
@@ -1287,8 +1465,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   <span class="no">ENV</span> <span class="no">COMPANY</span> <span class="no">OpenC3</span>
 </code></pre></div></div>
 
-<h3 id="work_dir">
-<a class="anchor" href="#work_dir" aria-hidden="true"><span class="octicon octicon-link"></span></a>WORK_DIR</h3>
+<h3 id="work_dir-1">
+<a class="anchor" href="#work_dir-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>WORK_DIR</h3>
 <p><strong>Set the working directory</strong></p>
 
 <p>Working directory to run the microservice CMD in.  Can be a path relative to the microservice folder in the plugin, or an absolute path in the container the microservice runs in.</p>
@@ -1315,8 +1493,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   <span class="no">WORK_DIR</span> <span class="o">.</span>
 </code></pre></div></div>
 
-<h3 id="port">
-<a class="anchor" href="#port" aria-hidden="true"><span class="octicon octicon-link"></span></a>PORT</h3>
+<h3 id="port-1">
+<a class="anchor" href="#port-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>PORT</h3>
 <div class="right">(Since 5.0.10)</div>
 <p><strong>Open port for the microservice</strong></p>
 
@@ -1408,8 +1586,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   <span class="no">TARGET_NAME</span> <span class="no">EXAMPLE</span>
 </code></pre></div></div>
 
-<h3 id="cmd">
-<a class="anchor" href="#cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD</h3>
+<h3 id="cmd-1">
+<a class="anchor" href="#cmd-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD</h3>
 <p><strong>Command line to execute to run the microservice.</strong></p>
 
 <p>Command line to execute to run the microservice.</p>
@@ -1464,8 +1642,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
   </tbody>
 </table>
 
-<h3 id="container">
-<a class="anchor" href="#container" aria-hidden="true"><span class="octicon octicon-link"></span></a>CONTAINER</h3>
+<h3 id="container-1">
+<a class="anchor" href="#container-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>CONTAINER</h3>
 <p><strong>Docker Container</strong></p>
 
 <p>Container to execute and run the microservice in. Only used in COSMOS Enterprise Edition.</p>
@@ -1531,8 +1709,8 @@ This file follows the standard COSMOS configuration file format of keywords foll
 <span class="no">SECRET</span> <span class="no">FILE</span> <span class="no">KEY</span> <span class="s2">"/tmp/DATA/cert"</span>
 </code></pre></div></div>
 
-<h3 id="route_prefix">
-<a class="anchor" href="#route_prefix" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTE_PREFIX</h3>
+<h3 id="route_prefix-1">
+<a class="anchor" href="#route_prefix-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>ROUTE_PREFIX</h3>
 <div class="right">(Since 5.5.0)</div>
 <p><strong>Prefix of route</strong></p>
 
