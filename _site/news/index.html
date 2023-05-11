@@ -96,6 +96,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2023/05/10/openc3-cosmos-5-7-0-released/">OpenC3 COSMOS 5.7.0 Released</option>
+      
       <option value="/news/2023/04/20/openc3-cosmos-5-6-1-released/">OpenC3 COSMOS 5.6.1 Released</option>
       
       <option value="/news/2023/04/16/openc3-cosmos-5-6-0-released/">OpenC3 COSMOS 5.6.0 Released</option>
@@ -139,6 +141,109 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2023/05/10/openc3-cosmos-5-7-0-released/">
+      OpenC3 COSMOS 5.7.0 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      10 May 2023
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="openc3-cosmos-570---modern-production-ready-command-and-control">OpenC3 COSMOS 5.7.0 - Modern, Production Ready, Command and Control</h1>
+
+<p>Welcome to OpenC3 COSMOS 5.7.0!</p>
+
+<h2 id="dataviewer-components">DataViewer Components</h2>
+<p>DataViewer is now customizable with custom components.  Add your own DataViewer widgets to display textual data for your targets!  See the demo plugin for examples.</p>
+
+<h2 id="slip-and-cobs-protocols">SLIP and COBS Protocols</h2>
+<p>New packet delineation protocols that have historically been used with serial interfaces.</p>
+
+<h2 id="new-download_file-script-method">New download_file script method</h2>
+<p>Allows for easily downloading files from the browser in ScriptRunner.</p>
+
+<h2 id="metadata-improvements">Metadata Improvements</h2>
+<p>Viewing, Editing, and Creating Metadata is now greatly improved</p>
+
+<h2 id="interface-modifiers">Interface Modifiers</h2>
+<p>Interfaces (and Routers) can now take most of the same configuration options as microservices to allow for customizations such as setting specific environment variables for an interface.</p>
+
+<h2 id="other-interesting-changes">Other Interesting Changes</h2>
+<ol>
+  <li>Graphs now pause when you zoom in</li>
+  <li>TableManager can now handle files with names different than the definition names</li>
+  <li>ValueWidgets in Telemetry Screens are now better justified</li>
+</ol>
+
+<h1 id="important-bug-fixes">Important Bug Fixes</h1>
+<ol>
+  <li>ScriptRunner could write over original script with a subscript due to an autosave bug while running</li>
+  <li>TlmViewer width subsettings fixed</li>
+</ol>
+
+<h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
+<ul>
+  <li>Slip protocol by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/634">#634</a></li>
+  <li>Do not set width if subsetting given by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/629">#629</a></li>
+  <li>Show completed scripts when running script not found by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/630">#630</a></li>
+  <li>COBS Protocol by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/636">#636</a></li>
+  <li>Improve COSMOS 4 migration by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/632">#632</a></li>
+  <li>Pause graph when clicking by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/631">#631</a></li>
+  <li>Table lookup matching definitions and then ask user by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/633">#633</a></li>
+  <li>Justify telemetry viewer widgets by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/635">#635</a></li>
+  <li>Limits monitor layout issues by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/640">#640</a></li>
+  <li>Add operator shutdown hook by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/643">#643</a></li>
+  <li>Disable saving while running and fix filename dropdown by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/651">#651</a></li>
+  <li>Add download_file API by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/648">#648</a></li>
+  <li>Dataviewer components by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/642">#642</a></li>
+  <li>Metadata by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/655">#655</a></li>
+  <li>Interface modifiers and other fixes by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/656">#656</a></li>
+  <li>Update javascript dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/658">#658</a></li>
+</ul>
+
+<p>Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+</p>
+
+<p>To Run:</p>
+<ul>
+  <li>git clone https://github.com/openc3/cosmos-project.git cosmos-myproject</li>
+  <li>cd cosmos-myproject</li>
+  <li>Run Linux/Mac: ./openc3.sh run</li>
+  <li>Run Windows: openc3.bat run</li>
+  <li>Connect a web browser to <a href="http://localhost:2900/">http://localhost:2900/</a></li>
+  <li>Have fun running OpenC3 COSMOS!</li>
+</ul>
+
+<p>Please see our documentation at https://openc3.com</p>
+
+<p>Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to <a href="mailto:support@openc3.com">support@openc3.com</a>.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.6.1...v5.7.0">Changelog</a></p>
+
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2023/04/20/openc3-cosmos-5-6-1-released/">
@@ -1998,6 +2103,10 @@ Have fun running OpenC3!</p>
     <ul>
       
       <li class="">
+        <a href="/news/2023/05/10/openc3-cosmos-5-7-0-released/">Version 5.7.0</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2023/04/20/openc3-cosmos-5-6-1-released/">Version 5.6.1</a>
       </li>
       
@@ -2013,14 +2122,10 @@ Have fun running OpenC3!</p>
         <a href="/news/2023/02/26/openc3-cosmos-5-5-1-released/">Version 5.5.1</a>
       </li>
       
-      <li class="">
-        <a href="/news/2023/02/23/openc3-cosmos-5-5-0-released/">Version 5.5.0</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                                          
+                                            
     </ul>
   </aside>
 </div>
