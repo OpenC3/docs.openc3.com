@@ -10,6 +10,10 @@ Calendar visualizes metadata, narrative, and timeline information in one easy to
 
 ![Calendar]({{site.baseurl}}/img/v5/calendar/calendar.png)
 
+Calendar events can also be viewed in a list format which supports pagination for listing both past and future events.
+
+![List View]({{site.baseurl}}/img/v5/calendar/list_view.png)
+
 ## Types of Events
 
 - Metadata
@@ -37,14 +41,14 @@ Adding a Timeline to COSMOS.
 - Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm COSMOS with lots of these.
 - Note you can not have overlapping activities on a single calendar.
 
-### Timeline lifecycle
+### Timeline Implementation Details
 
-When a user creates a timeline, the COSMOS operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.
+When a user creates a timeline, a new timeline microservice starts. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.
 
-The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are "created", "updated", "deleted", ect... Some actions require updating the schedule from the database to ensure the schedule and the database are always in synk.
+The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are "created", "updated", "deleted", ect... Some actions require updating the schedule from the database to ensure the schedule and the database are always in sync.
 
-The schedule thread checks every second to make sure if a task can be run. If the start time is equal or less then the last 15 seconds it will then check the previously queued jobs list in the schedule. If the activity has not been queued and is not fulfilled the activity will be queued, this adds an event to the activity but is not saved to the database. (TODO) This could be improved upon as a way to wake the thread when a change to the schedule happens or when a job needs to run.
+The schedule thread checks every second to make sure if a task can be run. If the start time is equal or less then the last 15 seconds it will then check the previously queued jobs list in the schedule. If the activity has not been queued and is not fulfilled the activity will be queued, this adds an event to the activity but is not saved to the database.
 
-The workers are plain and simple, they block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.
+The workers block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.
 
 ![Timeline Lifecycle]({{site.baseurl}}/img/v5/calendar/timeline_lifecycle.png)
