@@ -107,7 +107,7 @@
 <li class="toc-entry toc-h3"><a href="#narrative">Narrative</a></li>
 <li class="toc-entry toc-h3"><a href="#activity">Activity</a></li>
 <li class="toc-entry toc-h3"><a href="#adding-timelines">Adding Timelines</a></li>
-<li class="toc-entry toc-h3"><a href="#timeline-lifecycle">Timeline lifecycle</a></li>
+<li class="toc-entry toc-h3"><a href="#timeline-implementation-details">Timeline Implementation Details</a></li>
 </ul>
 </li>
 </ul></div>
@@ -119,6 +119,10 @@
 <p>Calendar visualizes metadata, narrative, and timeline information in one easy to understand place. Timelines allow for the simple execution of commands and scripts based on future dates and times.</p>
 
 <p><img src="/img/v5/calendar/calendar.png" alt="Calendar"></p>
+
+<p>Calendar events can also be viewed in a list format which supports pagination for listing both past and future events.</p>
+
+<p><img src="/img/v5/calendar/list_view.png" alt="List View"></p>
 
 <h2 id="types-of-events">
 <a class="anchor" href="#types-of-events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Types of Events</h2>
@@ -160,16 +164,16 @@
   <li>Note you can not have overlapping activities on a single calendar.</li>
 </ul>
 
-<h3 id="timeline-lifecycle">
-<a class="anchor" href="#timeline-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline lifecycle</h3>
+<h3 id="timeline-implementation-details">
+<a class="anchor" href="#timeline-implementation-details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline Implementation Details</h3>
 
-<p>When a user creates a timeline, the COSMOS operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.</p>
+<p>When a user creates a timeline, a new timeline microservice starts. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.</p>
 
-<p>The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are “created”, “updated”, “deleted”, ect… Some actions require updating the schedule from the database to ensure the schedule and the database are always in synk.</p>
+<p>The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are “created”, “updated”, “deleted”, ect… Some actions require updating the schedule from the database to ensure the schedule and the database are always in sync.</p>
 
-<p>The schedule thread checks every second to make sure if a task can be run. If the start time is equal or less then the last 15 seconds it will then check the previously queued jobs list in the schedule. If the activity has not been queued and is not fulfilled the activity will be queued, this adds an event to the activity but is not saved to the database. (TODO) This could be improved upon as a way to wake the thread when a change to the schedule happens or when a job needs to run.</p>
+<p>The schedule thread checks every second to make sure if a task can be run. If the start time is equal or less then the last 15 seconds it will then check the previously queued jobs list in the schedule. If the activity has not been queued and is not fulfilled the activity will be queued, this adds an event to the activity but is not saved to the database.</p>
 
-<p>The workers are plain and simple, they block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.</p>
+<p>The workers block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.</p>
 
 <p><img src="/img/v5/calendar/timeline_lifecycle.png" alt="Timeline Lifecycle"></p>
 
