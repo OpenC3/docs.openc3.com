@@ -102,6 +102,7 @@
         <div class="toc"><ul id="toc" class="section-nav">
 <li class="toc-entry toc-h2"><a href="#telemetry-definition-files">Telemetry Definition Files</a>
 <ul>
+<li class="toc-entry toc-h5"><a href="#printing-data">Printing Data</a></li>
 <li class="toc-entry toc-h3"><a href="#id-items">ID Items</a></li>
 <li class="toc-entry toc-h3"><a href="#variable-sized-items">Variable Sized Items</a></li>
 <li class="toc-entry toc-h3"><a href="#derived-items">Derived Items</a></li>
@@ -164,7 +165,13 @@
 
 <p>Telemetry definition files define the telemetry packets that can be received and processed from COSMOS targets. One large file can be used to define the telemetry packets, or multiple files can be used at the user’s discretion. Telemetry definition files are placed in the target’s cmd_tlm directory and are processed alphabetically. Therefore if you have some telemetry files that depend on others, e.g. they override or extend existing telemetry, they must be named last. The easist way to do this is to add an extension to an existing file name. For example, if you already have tlm.txt you can create tlm_override.txt for telemetry that depends on the definitions in tlm.txt. Note that due to the way the <a href="http://www.asciitable.com/">ASCII Table</a> is structured, files beginning with capital letters are processed before lower case letters.</p>
 
-<p>When defining telemetry items you can choose from the following data types: INT, UINT, FLOAT, STRING, BLOCK. These correspond to integers, unsigned integers, floating point numbers, strings and binary blocks of data. The only difference between a STRING and BLOCK is when COSMOS reads a STRING type it stops reading when it encounters a null byte (0). This shows up when displaying the value in Packet Viewer or Tlm Viewer and in the output of Data Extractor.</p>
+<p>When defining telemetry items you can choose from the following data types: INT, UINT, FLOAT, STRING, BLOCK. These correspond to integers, unsigned integers, floating point numbers, strings and binary blocks of data. Within COSMOS, the only difference between a STRING and BLOCK is when COSMOS reads a STRING type it stops reading when it encounters a null byte (0). This shows up when displaying the value in Packet Viewer or Tlm Viewer and in the output of Data Extractor. You should strive to store non-ASCII data inside BLOCK items and ASCII strings in STRING items.</p>
+
+<div class="note info">
+  <h5>
+<a class="anchor" href="#printing-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Printing Data</h5>
+  <p>Most data types can be printed in a COSMOS script simply by doing <code>puts tlm("TGT PKT ITEM")</code>. However, if the ITEM is a BLOCK data type and contains binary (non-ASCII) data then that won't work. COSMOS comes with a built-in method called <code>formatted</code> to help you view binary data. If ITEM is a BLOCK type containing binary try <code>puts tlm("TGT PKT ITEM").formatted</code> which will print the bytes out as hex.</p>
+</div>
 
 <h3 id="id-items">
 <a class="anchor" href="#id-items" aria-hidden="true"><span class="octicon octicon-link"></span></a>ID Items</h3>
@@ -1318,9 +1325,6 @@
   <span class="no">ITEM</span> <span class="no">MODE</span> <span class="mi">128</span> <span class="mi">8</span> <span class="no">UINT</span> <span class="s2">"Instrument Mode"</span>
     <span class="no">STATE</span> <span class="no">NORMAL</span> <span class="mi">0</span> <span class="no">GREEN</span>
     <span class="no">STATE</span> <span class="no">DIAG</span> <span class="mi">1</span> <span class="no">YELLOW</span>
-  <span class="no">MACRO_APPEND_START</span> <span class="mi">1</span> <span class="mi">5</span>
-    <span class="no">APPEND_ITEM</span> <span class="no">SETTING</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="s2">"SETTING #x"</span>
-  <span class="no">MACRO_APPEND_END</span>
   <span class="no">ITEM</span> <span class="no">TIMESECONDS</span> <span class="mi">0</span> <span class="mi">0</span> <span class="no">DERIVED</span> <span class="s2">"DERIVED TIME SINCE EPOCH IN SECONDS"</span>
     <span class="no">GENERIC_READ_CONVERSION_START</span> <span class="no">FLOAT</span> <span class="mi">32</span>
       <span class="p">((</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsday'</span><span class="p">)</span> <span class="o">*</span> <span class="mf">86400.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsmsod'</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'ccsdsusoms'</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000000.0</span><span class="p">)</span>  <span class="p">)</span>
