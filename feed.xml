@@ -11,8 +11,8 @@
     <title xml:lang="en">OpenC3 News</title>
     <atom:link type="application/atom+xml" href="https://openc3.com/feed.xml" rel="self"/>
     <link>https://openc3.com/</link>
-    <pubDate>Sun, 28 May 2023 20:26:03 +0000</pubDate>
-    <lastBuildDate>Sun, 28 May 2023 20:26:03 +0000</lastBuildDate>
+    <pubDate>Wed, 07 Jun 2023 23:09:50 +0000</pubDate>
+    <lastBuildDate>Wed, 07 Jun 2023 23:09:50 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.3.2</generator>
     <description>Open Source, Open Architecture - Command, Control and Communication</description>
@@ -24,6 +24,106 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>OpenC3 COSMOS 5.8.1 Released</title>
+      <link>https://openc3.com/news/2023/05/30/openc3-cosmos-5-8-1-released/</link>
+      <pubDate>Tue, 30 May 2023 13:00:00 +0000</pubDate>
+      <dc:creator>jmthomas</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">https://openc3.com/news/2023/05/30/openc3-cosmos-5-8-1-released/</guid>
+      <description>&lt;h1 id=&quot;openc3-cosmos-581---modern-production-ready-command-and-control&quot;&gt;OpenC3 COSMOS 5.8.1 - Modern, Production Ready, Command and Control&lt;/h1&gt;
+
+&lt;h2 id=&quot;alpine-3180-with-ruby-32-and-python-3113&quot;&gt;Alpine 3.18.0 with Ruby 3.2 and Python 3.11.3&lt;/h2&gt;
+
+&lt;p&gt;This releases updates the Alpine linux version to 3.18.0. With this comes an upgrade from Ruby 3.1 to Ruby 3.2. Not much changes with Ruby 3.2, but one important detail is that the deprecated &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dir.exists?&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File.exists?&lt;/code&gt; methods have been removed (use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dir.exist?&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File.exist?&lt;/code&gt; instead). Note also this is our first release that bundles the Python interpreter… more to come soon! Also, ruby’s httpclient library was replaced with Faraday, because httpclient is not being maintained.&lt;/p&gt;
+
+&lt;h2 id=&quot;greatly-improved-script-instrumentation-performance-100x&quot;&gt;Greatly improved script instrumentation performance (100x)&lt;/h2&gt;
+
+&lt;p&gt;Starting scripts including using require_utility and load_utility are now 100x faster than in COSMOS 5.6.0 where we improved the number of cases handled by instrumentation, but introduced a performance regression.&lt;/p&gt;
+
+&lt;h2 id=&quot;added-the-ability-to-browse-volumes-in-bucketexplorer&quot;&gt;Added the ability to browse volumes in BucketExplorer&lt;/h2&gt;
+
+&lt;p&gt;Just add an environment variables like OPENC3&lt;strong&gt;name&lt;/strong&gt;VOLUME set to the path of the volume. They can then be browsed and modified from BucketExplorer just like buckets!&lt;/p&gt;
+
+&lt;h2 id=&quot;new-new-bucket_load-library&quot;&gt;New new bucket_load library&lt;/h2&gt;
+
+&lt;p&gt;Allow for custom microservices to require target libraries just like ScriptRunner scripts. This modifies the Ruby require code to look in buckets for files if they aren’t found locally.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &apos;openc3/utilities/bucket_require&apos;
+$openc3_scope = &apos;DEFAULT&apos; # Required until 5.8.2 release
+require &apos;INST/procedures/utilities/collect.rb&apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;other-improvements&quot;&gt;Other Improvements&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The raw dialog is now placed higher to allow for seeing more beneath it&lt;/li&gt;
+  &lt;li&gt;Handbook creator now displays ID values&lt;/li&gt;
+  &lt;li&gt;Screen Errors during plugin installs are now warnings and not fatal&lt;/li&gt;
+  &lt;li&gt;get_limits API now supports LATEST packet name&lt;/li&gt;
+  &lt;li&gt;BufferedPacketLogWriter updated to dump allow contents to files when a new file is created.&lt;/li&gt;
+  &lt;li&gt;New build_command API (only available from Javascript so far).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;bug-fixes&quot;&gt;Bug Fixes&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Fix TlmViewer MATRIXBYCOLUMNS layout&lt;/li&gt;
+  &lt;li&gt;Fix Plugin install diffs for changes at beginning and end of file&lt;/li&gt;
+  &lt;li&gt;Changed microservices were formerly killed but not restarted properly&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;all-pull-requests-in-this-release&quot;&gt;All Pull Requests in this Release&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alpine 3.18.0 and test ruby 3.2 by &lt;a href=&quot;@jmthomas in https://github.com/OpenC3/cosmos/pull/659&quot;&gt;#659&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Warn on screen ERB error by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/677&quot;&gt;#677&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Force raw dialog to top of window by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/675&quot;&gt;#675&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Add ID Value to handbook output by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/674&quot;&gt;#674&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fix matrix layout, default 0px margin by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/673&quot;&gt;#673&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Ace diff by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/672&quot;&gt;#672&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Update BufferedPacketLogWriter to empty buffer when closing file by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/670&quot;&gt;#670&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bucket load by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/680&quot;&gt;#680&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Implement build_command by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/676&quot;&gt;#676&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Browse volumes by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/678&quot;&gt;#678&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Instrumentation performance by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/684&quot;&gt;#684&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bump dependencies by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/685&quot;&gt;#685&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;faraday has no reset_all, use close by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/686&quot;&gt;#686&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Allow LATEST in get_limits by @jmthomas in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/683&quot;&gt;#683&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Properly restart changed microservices by @ryanmelt in &lt;a href=&quot;https://github.com/OpenC3/cosmos/pull/687&quot;&gt;#687&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prerequisites:
+Docker - Running OpenC3 requires a working Docker or Podman installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+Also requires docker compose version 1.27+&lt;/p&gt;
+
+&lt;p&gt;To Run:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;git clone https://github.com/openc3/cosmos-project.git cosmos-myproject&lt;/li&gt;
+  &lt;li&gt;cd cosmos-myproject&lt;/li&gt;
+  &lt;li&gt;Run Linux/Mac: ./openc3.sh run&lt;/li&gt;
+  &lt;li&gt;Run Windows: openc3.bat run&lt;/li&gt;
+  &lt;li&gt;Connect a web browser to &lt;a href=&quot;http://localhost:2900/&quot;&gt;http://localhost:2900/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Have fun running OpenC3 COSMOS!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please see our documentation at https://openc3.com&lt;/p&gt;
+
+&lt;p&gt;Try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to &lt;a href=&quot;mailto:support@openc3.com&quot;&gt;support@openc3.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a href=&quot;https://github.com/OpenC3/cosmos/compare/v5.7.2...v5.8.1&quot;&gt;Changelog&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>OpenC3 COSMOS 5.7.2 Released</title>
