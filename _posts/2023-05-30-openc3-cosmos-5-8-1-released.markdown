@@ -11,7 +11,7 @@ categories: [release]
 
 ## Alpine 3.18.0 with Ruby 3.2 and Python 3.11.3
 
-This releases updates the Alpine linux version to 3.18.0. With this comes an upgrade from Ruby 3.1 to Ruby 3.2. Not much changes with Ruby 3.2, but one important detail is that the deprecated Dir.exists? and File.exists? methods has been removed (use Dir.exist? and File.exist? instead). Note also this is our first release that bundles the Python interpreter... more to come soon! Also, ruby's httpclient library was replaced with Faraday, because httpclient is not being maintained.
+This releases updates the Alpine linux version to 3.18.0. With this comes an upgrade from Ruby 3.1 to Ruby 3.2. Not much changes with Ruby 3.2, but one important detail is that the deprecated `Dir.exists?` and `File.exists?` methods have been removed (use `Dir.exist?` and `File.exist?` instead). Note also this is our first release that bundles the Python interpreter... more to come soon! Also, ruby's httpclient library was replaced with Faraday, because httpclient is not being maintained.
 
 ## Greatly improved script instrumentation performance (100x)
 
