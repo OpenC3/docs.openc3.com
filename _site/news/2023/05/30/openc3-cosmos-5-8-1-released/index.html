@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>OpenC3 COSMOS 5.1.0 Released</title>
+  <title>OpenC3 COSMOS 5.8.1 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.2">
@@ -146,8 +146,8 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    OpenC3 COSMOS 5.1.0 Released
-    <a href="/news/2022/11/17/openc3-cosmos-5-1-0-released/" class="permalink" title="Permalink">∞</a>
+    OpenC3 COSMOS 5.8.1 Released
+    <a href="/news/2023/05/30/openc3-cosmos-5-8-1-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
@@ -156,125 +156,74 @@
   </span>
   <div class="post-meta">
     <span class="post-date">
-      17 Nov 2022
+      30 May 2023
     </span>
-    <a href="https://github.com/ryanmelt" class="post-author">
-      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
-      ryanmelt
+    <a href="https://github.com/jmthomas" class="post-author">
+      <img src="https://github.com/jmthomas.png" class="avatar" alt="jmthomas avatar" width="24" height="24">
+      jmthomas
     </a>
   </div>
   <div class="post-content">
-    <p>OpenC3 COSMOS 5.1.0 - Modern, Production Ready, Command and Control</p>
+    <h1 id="openc3-cosmos-581---modern-production-ready-command-and-control">OpenC3 COSMOS 5.8.1 - Modern, Production Ready, Command and Control</h1>
 
-<p>Welcome to OpenC3 COSMOS 5.1.0!</p>
+<h2 id="alpine-3180-with-ruby-32-and-python-3113">Alpine 3.18.0 with Ruby 3.2 and Python 3.11.3</h2>
 
-<p>The COSMOS name is back! We have completed an agreement to formally take over development of COSMOS and are now offering commercial licensing to customers who want the additional scaling and security functionality in our COSMOS Enterprise Edition, or for our COSMOS Base Edition if the AGPLv3 license doesn’t work well for them.</p>
+<p>This releases updates the Alpine linux version to 3.18.0. With this comes an upgrade from Ruby 3.1 to Ruby 3.2. Not much changes with Ruby 3.2, but one important detail is that the deprecated <code class="language-plaintext highlighter-rouge">Dir.exists?</code> and <code class="language-plaintext highlighter-rouge">File.exists?</code> methods have been removed (use <code class="language-plaintext highlighter-rouge">Dir.exist?</code> and <code class="language-plaintext highlighter-rouge">File.exist?</code> instead). Note also this is our first release that bundles the Python interpreter… more to come soon! Also, ruby’s httpclient library was replaced with Faraday, because httpclient is not being maintained.</p>
 
-<p>5.1.0 is a major release with key new features and performance enhancements. It also marks the end of the developmental 5.0.x series, and indicates that OpenC3 COSMOS 5 is now fully production ready! Going forward all releases will follow a versioning convention where the second digit 5.X will change when breaking changes are introduced, and the third digit 5.X.Y will change for minor or non-breaking changes that should be backwards compatible.</p>
+<h2 id="greatly-improved-script-instrumentation-performance-100x">Greatly improved script instrumentation performance (100x)</h2>
 
-<p>This release is highlighted by the following major Improvements to logging, data reduction, and the streaming API:</p>
+<p>Starting scripts including using require_utility and load_utility are now 100x faster than in COSMOS 5.6.0 where we improved the number of cases handled by instrumentation, but introduced a performance regression.</p>
 
-<ul>
-  <li>4x less disk utilization.
-    <ul>
-      <li>With up to 5x less disk space required to store decommutated data, and an almost 2x reduction in the storage of raw data.</li>
-    </ul>
-  </li>
-  <li>Added a new Bucket class to allow direct bucket integrations with cloud providers without requiring Minio.
-    <ul>
-      <li>AWS will be supported in our Base Edition, and other clouds in our Enterprise Edition.</li>
-    </ul>
-  </li>
-  <li>Data reduction updated to log samples for all non-numeric items
-    <ul>
-      <li>This allows quick queries of every telemetry item in the COSMOS database</li>
-    </ul>
-  </li>
-  <li>Logging changed from “file per packet” to “file per target”
-    <ul>
-      <li>Greatly reduces the number of files generated and the number of files required to be accessed to playback all data</li>
-    </ul>
-  </li>
-  <li>Log files are now written in a buffered fashion that stores packets in guaranteed time order</li>
-  <li>Log file format changes are not backwards compatible.
-    <ul>
-      <li>Older log files will need to be migrated to the new format to be accessed by the Streaming API. Please contact support@openc3.com if you would like help migrating existing log files</li>
-    </ul>
-  </li>
-</ul>
+<h2 id="added-the-ability-to-browse-volumes-in-bucketexplorer">Added the ability to browse volumes in BucketExplorer</h2>
 
-<h2 id="other-highlighted-improvements-in-this-release">Other Highlighted Improvements In This Release</h2>
+<p>Just add an environment variables like OPENC3<strong>name</strong>VOLUME set to the path of the volume. They can then be browsed and modified from BucketExplorer just like buckets!</p>
 
-<ul>
-  <li>Telemetry value displays now turn purple to indicate stale values</li>
-  <li>Added pause button to log messages in CmdTlmServer</li>
-  <li>Removed the gems bucket in favor of the /gems shared folder</li>
-  <li>Added support for OpenTelemetry and Jaeger to help debug mission specific performance issues</li>
-  <li>Added the ability to create screens automatically for any packet with the New Screen button</li>
-  <li>The API methods connect_interface and connect_router now support reinitializing with new parameters. This can allow changing IP addresses at runtime.</li>
-  <li>Added the ability to open and close TlmViewer screens, from screens</li>
-  <li>Packet received counts now survive restarts and continue where they left off</li>
-  <li>User selectable colors for TlmGrapher items</li>
-  <li>Added a QUIET command to the demo INST targets to allow running the demo without constant limits violations</li>
-  <li>Numerous dependency updates</li>
-</ul>
+<h2 id="new-new-bucket_load-library">New new bucket_load library</h2>
 
-<h2 id="key-bug-fixes">Key Bug Fixes</h2>
+<p>Allow for custom microservices to require target libraries just like ScriptRunner scripts. This modifies the Ruby require code to look in buckets for files if they aren’t found locally.</p>
 
-<ul>
-  <li>The Limits API is now fully functional. Previously enable/disable limits and set_limits were not taking effect.</li>
-  <li>Setting TlmViewer widget widths now work correctly</li>
-  <li>Removed an issue where ScriptRunner scripts could output too much to STDOUT causing crashes</li>
-  <li>Fixed XTCE converter</li>
-  <li>Removed partially implemented Admin plugin download button</li>
-  <li>Fixed issues editing TlmViewer screens</li>
-  <li>Fixed certain cases of decom of array items</li>
-  <li>Moved blocking in get_packets to client side code to prevent long API calls</li>
-</ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'openc3/utilities/bucket_require'
+$openc3_scope = 'DEFAULT' # Required until 5.8.2 release
+require 'INST/procedures/utilities/collect.rb'
+</code></pre></div></div>
+
+<h2 id="other-improvements">Other Improvements</h2>
+
+<ol>
+  <li>The raw dialog is now placed higher to allow for seeing more beneath it</li>
+  <li>Handbook creator now displays ID values</li>
+  <li>Screen Errors during plugin installs are now warnings and not fatal</li>
+  <li>get_limits API now supports LATEST packet name</li>
+  <li>BufferedPacketLogWriter updated to dump allow contents to files when a new file is created.</li>
+  <li>New build_command API (only available from Javascript so far).</li>
+</ol>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ol>
+  <li>Fix TlmViewer MATRIXBYCOLUMNS layout</li>
+  <li>Fix Plugin install diffs for changes at beginning and end of file</li>
+  <li>Changed microservices were formerly killed but not restarted properly</li>
+</ol>
 
 <h2 id="all-pull-requests-in-this-release">All Pull Requests in this Release</h2>
 
 <ul>
-  <li>Add newlines to script runner logs by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/190">#190</a></li>
-  <li>Add params to connect_interface by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/192">#192</a></li>
-  <li>Set screen min height and width by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/193">#193</a></li>
-  <li>Stale indicator by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/195">#195</a></li>
-  <li>Reduce process output by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/199">#199</a></li>
-  <li>Implement OpenTelemetry tracing by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/194">#194</a></li>
-  <li>Set received count in interface_microservice and inject_tlm by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/197">#197</a></li>
-  <li>Create new screen based on existing packet by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/204">#204</a></li>
-  <li>Allow user editing graph colors by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/202">#202</a></li>
-  <li>Improve package_audit and bump deps by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/208">#208</a></li>
-  <li>Use redis 5 gem by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/211">#211</a></li>
-  <li>Add QUIET command to demo by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/210">#210</a></li>
-  <li>Extract S3 code to Bucket by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/217">#217</a></li>
-  <li>Fix xtce_converter by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/219">#219</a></li>
-  <li>Fix bucket ENV, io_multiplexer, deploy script by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/223">#223</a></li>
-  <li>Bump deps by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/232">#232</a></li>
-  <li>Only publish 8000 chars to ScriptRunner log by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/236">#236</a></li>
-  <li>Remove admin Download button by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/237">#237</a></li>
-  <li>Indicate max notifications reached by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/238">#238</a></li>
-  <li>Remove procedures from gemspec by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/239">#239</a></li>
-  <li>Fix for packets not received by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/240">#240</a></li>
-  <li>Update scripts by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/233">#233</a></li>
-  <li>Target logging, Streaming API cleanup, Improved Log Message Component by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/227">#227</a></li>
-  <li>Remove GEMS bucket. GemModel directly uses /gems volume instead by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/241">#241</a></li>
-  <li>Fix reduction and logging extra nulls by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/242">#242</a></li>
-  <li>Support for https and cloud storage by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/243">#243</a></li>
-  <li>Rebranding and license by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/244">#244</a></li>
-  <li>Fix edit screen and 0 values by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/250">#250</a></li>
-  <li>Add open and close methods for screen by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/251">#251</a></li>
-  <li>Fix packet decom of array data by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/247">#247</a></li>
-  <li>Fix width height issues in widgets by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/255">#255</a></li>
-  <li>Fully functioning limits api distributed to decom microservice by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/254">#254</a></li>
-  <li>Ensure graph color on initial items by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/256">#256</a></li>
-  <li>Bump loader-utils from 1.4.0 to 1.4.2 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/258">#258</a></li>
-  <li>Bump terser from 5.12.1 to 5.15.1 in /openc3-cosmos-init/plugins/openc3-tool-base by @dependabot in <a href="https://github.com/OpenC3/cosmos/pull/261">#261</a></li>
-  <li>Move get_packets blocking to client by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/257">#257</a></li>
-  <li>Add OPENC3_DEPENDENCY_REGISTRY for non openc3 containers by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/262">#262</a></li>
-  <li>Fix screens, add closeAll, fix scroll widget by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/264">#264</a></li>
-  <li>Fix router/interface build with new params by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/265">#265</a></li>
-  <li>Use buffered packet log writer for log microservice by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/263">#263</a></li>
+  <li>Alpine 3.18.0 and test ruby 3.2 by <a href="@jmthomas in https://github.com/OpenC3/cosmos/pull/659">#659</a></li>
+  <li>Warn on screen ERB error by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/677">#677</a></li>
+  <li>Force raw dialog to top of window by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/675">#675</a></li>
+  <li>Add ID Value to handbook output by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/674">#674</a></li>
+  <li>Fix matrix layout, default 0px margin by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/673">#673</a></li>
+  <li>Ace diff by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/672">#672</a></li>
+  <li>Update BufferedPacketLogWriter to empty buffer when closing file by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/670">#670</a></li>
+  <li>Bucket load by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/680">#680</a></li>
+  <li>Implement build_command by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/676">#676</a></li>
+  <li>Browse volumes by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/678">#678</a></li>
+  <li>Instrumentation performance by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/684">#684</a></li>
+  <li>Bump dependencies by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/685">#685</a></li>
+  <li>faraday has no reset_all, use close by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/686">#686</a></li>
+  <li>Allow LATEST in get_limits by @jmthomas in <a href="https://github.com/OpenC3/cosmos/pull/683">#683</a></li>
+  <li>Properly restart changed microservices by @ryanmelt in <a href="https://github.com/OpenC3/cosmos/pull/687">#687</a></li>
 </ul>
 
 <p>Prerequisites:
@@ -301,7 +250,7 @@ Also requires docker compose version 1.27+</p>
 
 <p>Thanks!</p>
 
-<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.0.11...v5.1.0">Changelog</a></p>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/OpenC3/cosmos/compare/v5.7.2...v5.8.1">Changelog</a></p>
 
   </div>
 </article>
@@ -321,7 +270,7 @@ Also requires docker compose version 1.27+</p>
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2023/05/30/openc3-cosmos-5-8-1-released/">Version 5.8.1</a>
       </li>
       
