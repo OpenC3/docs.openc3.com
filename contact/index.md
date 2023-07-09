@@ -26,7 +26,7 @@ COSMOS is brought to you by Ryan Melton and Jason Thomas.
 
 To learn more about COSMOS, please setup an [Introduction Call](https://calendly.com/openc3/openc3-introduction-call) where we can discuss your requirements and demonstrate COSMOS.
 
-If you would like to get our price sheet or marking flyer, or to setup OpenC3 training, custom OpenC3 development, or a support contract, please contact us at [support@openc3.com](mailto:support@openc3.com)
+If you would like to get our price sheet or marketing flyer, or to setup OpenC3 training, custom OpenC3 development, or a support contract, please contact us at [support@openc3.com](mailto:support@openc3.com)
 
 ### Existing Customers
 
