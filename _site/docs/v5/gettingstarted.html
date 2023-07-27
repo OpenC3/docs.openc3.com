@@ -5,7 +5,7 @@
   <title>Getting Started</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.1">
+  <meta name="generator" content="Jekyll v4.3.2">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -245,11 +245,11 @@
     <p>Now we need to tell COSMOS how to connect to our BOB target. Open the openc3-cosmos-bob/plugin.txt file:</p>
 
     <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Set VARIABLEs here to allow variation in your plugin</span>
-<span class="c1"># See http://localhost:4000/docs/v5/plugins for more information</span>
+<span class="c1"># See https://openc3.com/docs/v5/plugins for more information</span>
 <span class="no">VARIABLE</span> <span class="n">bob_target_name</span> <span class="no">BOB</span>
 
 <span class="c1"># Modify this according to your actual target connection</span>
-<span class="c1"># See http://localhost:4000/docs/v5/interfaces for more information</span>
+<span class="c1"># See https://openc3.com/docs/v5/interfaces for more information</span>
 <span class="no">TARGET</span> <span class="no">BOB</span> <span class="o">&lt;</span><span class="sx">%= bob_target_name %&gt;
 INTERFACE &lt;%=</span> <span class="n">bob_target_name</span> <span class="sx">%&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
   MAP_TARGET &lt;%= bob_target_name %&gt;</span>
