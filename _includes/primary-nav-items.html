@@ -1,19 +1,21 @@
 <ul>
   <li class="{% if page.overview %}current{% endif %}">
-    <a href="{{site.baseurl}}/">Home</a>
-  </li>
-  <li class="{% if page.url contains '/docs/v' %}current{% endif %}">
-    <span class="hide-on-mobiles"><a href="{{site.baseurl}}/docs/v5/">Documentation</a></span>
-    <span class="show-on-mobiles"><a href="{{site.baseurl}}/docs/v5/">Docs</a></span>
+    <a href="https://openc3.com">Home</a>
   </li>
   <li class="{% if page.url contains '/enterprise/' %}current{% endif %}">
-    <a href="{{site.baseurl}}/docs/enterprise/">Enterprise</a>
+    <a href="https://openc3.com/enterprise/">Enterprise</a>
+  </li>
+  <li class="{% if page.url contains '/docs/v' %}current{% endif %}">
+    <a href="{{site.baseurl}}/docs/v5/">Docs</a>
   </li>
   <li class="{% if page.url contains '/news/' %}current{% endif %}">
-    <a href="{{site.baseurl}}/news/">News</a>
+    <a href="https://openc3.com/news/">News</a>
   </li>
   <li class="{% if page.url contains '/contact/' %}current{% endif %}">
-    <a href="{{site.baseurl}}/contact/">Contact</a>
+    <a href="https://openc3.com/contact/">Contact</a>
+  </li>
+  <li class="{% if page.url contains '/about/' %}current{% endif %}">
+    <a href="https://openc3.com/about/">About</a>
   </li>
   <li>
     <a href="{{ site.openc3 }}" target="_blank">
