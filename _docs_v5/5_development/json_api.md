@@ -34,9 +34,7 @@ The list of methods supported by the COSMOS API may be found in the [api](https:
 
 ## Existing Implementations
 
-The COSMOS JSON API has been implemented in the following languages:
-
-- [Python](https://github.com/Openc3/python-openc3)
+The COSMOS JSON API has been implemented in the following languages: Ruby, Python and Javascript.
 
 ## Example Usage
 
