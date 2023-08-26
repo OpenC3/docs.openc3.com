@@ -9,7 +9,7 @@ The COSMOS architecture was created with scalability in mind. Our goal is to sup
 
 ## Memory
 
-COSMOS can run on a Raspberry Pi up to a Kubernetes cluster in the cloud. On all platforms the key performance factor is the number and complexity of the targets and their defined packets. Targets can vary from simple targets taking 100 MB of RAM to complex targets taking 400 MB. The base COSMOS containers require about 800MB of RAM. A good rule of thumb is to average about 300MB of RAM for targets. As an example data point, the COSMOS Demo has 4 targets, two complex (INST & INST2) and two relatively simple (EXAMPLE & TEMPLATED), and requires 800 MB of RAM.
+COSMOS can run on a Raspberry Pi up to a Kubernetes cluster in the cloud. On all platforms the key performance factor is the number and complexity of the targets and their defined packets. Targets can vary from simple targets taking 100 MB of RAM to complex targets taking 400 MB. The base COSMOS containers require about 800 MB of RAM. A good rule of thumb is to average about 300 MB of RAM for targets. As an example data point, the COSMOS Demo has 4 targets, two complex (INST & INST2) and two relatively simple (EXAMPLE & TEMPLATED), and requires 800 MB of RAM (on top of the 800 MB of base container RAM).
 
 - Base RAM MB Calculator = 800 + (num targets) \* 300
 
