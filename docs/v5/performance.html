@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Testing COSMOS</title>
+  <title>Performance</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.3.2">
@@ -103,103 +103,294 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#playwright">Playwright</a>
+        <h1>Performance</h1>
+        <p>The COSMOS architecture was created with scalability in mind. Our goal is to support an unlimited number of connections and use cloud technologies to scale. Only <a href="https://openc3.com/enterprise">COSMOS Enterprise Edition</a> supports Kubernetes and the various cloud platforms which allow this level of scalability. While true scalability is only achieved in COSMOS Enterprise, both Open Source and Enterprise have various levels of obserability and configuration settings which can affect performance.</p>
+
+<h1 id="cosmos-hardware-requirements">COSMOS Hardware Requirements</h1>
+
+<h2 id="memory">Memory</h2>
+
+<p>COSMOS can run on a Raspberry Pi up to a Kubernetes cluster in the cloud. On all platforms the key performance factor is the number and complexity of the targets and their defined packets. Targets can vary from simple targets taking 100 MB of RAM to complex targets taking 400 MB. The base COSMOS containers require about 800 MB of RAM. A good rule of thumb is to average about 300 MB of RAM for targets. As an example data point, the COSMOS Demo has 4 targets, two complex (INST &amp; INST2) and two relatively simple (EXAMPLE &amp; TEMPLATED), and requires 800 MB of RAM (on top of the 800 MB of base container RAM).</p>
+
 <ul>
-<li class="toc-entry toc-h3"><a href="#prerequesits">Prerequesits</a></li>
-<li class="toc-entry toc-h3"><a href="#playwright-testing">Playwright Testing</a></li>
+  <li>Base RAM MB Calculator = 800 + (num targets) * 300</li>
 </ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#unit-tests">Unit Tests</a></li>
-</ul></div>
-        
-        <h1>Testing COSMOS</h1>
-        <h2 id="playwright">
-<a class="anchor" href="#playwright" aria-hidden="true"><span class="octicon octicon-link"></span></a>Playwright</h2>
 
-<h3 id="prerequesits">
-<a class="anchor" href="#prerequesits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequesits</h3>
+<p>In addition, the Redis streams contain the last 10 min of both raw and decommutated data from all targets. Thus you must wait ~15min to truly see what the high water memory mark will be. In the COSMOS Demo the INST &amp; INST2 targets are fairly simple with four 1Hz packet of ~15 items and one 10Hz packet with 20 items. This only causes 50 MiB of redis RAM usage according to <code class="language-plaintext highlighter-rouge">docker stats</code>. Installing the COSMOS <a href="https://github.com/OpenC3/openc3-cosmos-load-sim">LoadSim</a> with 10 packets with 1000 items each at 10Hz pushed the redis memory usage to about 350 MiB.</p>
 
-<ol>
-  <li>
-    <p>Install Yarn</p>
+<h2 id="cpu">CPU</h2>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">--global</span> yarn
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Clone the COSMOS Playwright repo</p>
+<p>Another consideration is the CPU performance. In the Open Source Edition, by default COSMOS spawns off 2 microservices per target. One combines packet logging and decommutation of the data and the other performs data reduction. In COSMOS Enterprise Edition on Kubernetes, each process becomes an independent container that is deployed on the cluster allowing horizontal scaling.</p>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>git clone https://github.com/OpenC3/cosmos-playwright
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Install Playwright and dependencies</p>
+<p>The COSMOS command and telemetry API and script running API servers should have a dedicated core while targets can generally share cores. It’s hard to provide a general rule of thumb with the wide variety of architectures, clock speeds, and core counts. The best practice is to install COSMOS with the expected load and do some monitoring with <code class="language-plaintext highlighter-rouge">htop</code> to visualize the load on the various cores. Any time a single core gets overloaded (100%) this is a concern and system slowdown can occur.</p>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos-playwright % yarn <span class="nb">install</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
+<h2 id="performance-comparison">Performance Comparison</h2>
 
-<h3 id="playwright-testing">
-<a class="anchor" href="#playwright-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Playwright Testing</h3>
+<p>Performance characterization was performed in Azure on a Standard D4s v5 (4 vcpus, 16 GiB memory) chosen to allow virtualization per <a href="https://docs.docker.com/desktop/vm-vdi/#turn-on-nested-virtualization-on-microsoft-hyper-v">Docker</a>. COSMOS <a href="https://github.com/OpenC3/cosmos-enterprise/releases/tag/v5.9.1">5.9.1</a> Enterprise Edition was installed on both Windows 11 Pro <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> and Ubuntu 22. Note: Enterprise Edition was not utilizing Kubernetes, just Docker. Testing involved starting the COSMOS Demo, connecting all targets (EXAMPLE, INST, INST2, TEMPLATED), opening the following TlmViewer screens (ADCS, ARRAY, BLOCK, COMMANDING, HS, LATEST, LIMITS, OTHER, PARAMS, SIMPLE, TABS) and creating two TlmGrapher graphs consisting of INST HEALTH_STATUS TEMP[1-4] and INST ADCS POS[X,Y,Z] and INST ADCS VEL[X,Y,Z]. This was allowed to run for 1hr and results were collected using <code class="language-plaintext highlighter-rouge">htop</code>:</p>
 
-<ol>
-  <li>
-    <p>Start COSMOS</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Platform</th>
+      <th style="text-align: left">Core CPU %</th>
+      <th style="text-align: left">RAM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Windows 11 Pro</td>
+      <td style="text-align: left">12% 12% 10% 10%</td>
+      <td style="text-align: left">3.9G / 7.7G</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Headless Ubuntu 22</td>
+      <td style="text-align: left">7% 7% 8% 6%</td>
+      <td style="text-align: left">3.2G / 15.6G</td>
+    </tr>
+  </tbody>
+</table>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos % openc3.sh start
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Open COSMOS in your browser. At the login screen, set the password to “password”.</p>
-  </li>
-  <li>
-    <p>Run tests (Note the –headed option visually displays tests, leave it off to run in the background)</p>
+<ul>
+  <li>Windows was only allocated 8 GB of RAM due to the <a href="https://learn.microsoft.com/en-us/windows/wsl/wsl-config#configuration-setting-for-wslconfig">.wslconfig</a> settings.</li>
+  <li>Since Ubuntu was running headless, the screens and graphs were brought up on another machine.</li>
+</ul>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos-playwright % yarn playwright <span class="nb">test</span> <span class="nt">--project</span><span class="o">=</span>chromium <span class="nt">--headed</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><em>[Optional]</em> Fix istanbul/nyc coverage source lookups (use <code class="language-plaintext highlighter-rouge">fixwindows</code> if not on Linux).</p>
+<p><code class="language-plaintext highlighter-rouge">docker stats</code> was also run to show individual container cpu and memory usage:</p>
 
-    <p>Tests will run successfully without this step and you will get coverage statistics, but line-by-line coverage won’t work.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">NAME</th>
+      <th style="text-align: left">Windows CPU %</th>
+      <th>Ubuntu CPU %</th>
+      <th style="text-align: left">Windows MEM</th>
+      <th>Ubuntu MEM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-traefik-1</td>
+      <td style="text-align: left">4.16%</td>
+      <td>1.32%</td>
+      <td style="text-align: left">43.54MiB</td>
+      <td>51.38MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-cosmos-cmd-tlm-api-1</td>
+      <td style="text-align: left">10.16%</td>
+      <td>6.14%</td>
+      <td style="text-align: left">401.6MiB</td>
+      <td>392MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-keycloak-1</td>
+      <td style="text-align: left">0.17%</td>
+      <td>0.13%</td>
+      <td style="text-align: left">476.8MiB</td>
+      <td>476.8MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-operator-1</td>
+      <td style="text-align: left">21.27%</td>
+      <td>13.91%</td>
+      <td style="text-align: left">1.214GiB</td>
+      <td>1.207GiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-cosmos-script-runner-api-1</td>
+      <td style="text-align: left">0.01%</td>
+      <td>0.01%</td>
+      <td style="text-align: left">127.4MiB</td>
+      <td>117.1MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-metrics-1</td>
+      <td style="text-align: left">0.01%</td>
+      <td>0.00%</td>
+      <td style="text-align: left">105.2MiB</td>
+      <td>83.87MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-redis-ephemeral-1</td>
+      <td style="text-align: left">4.05%</td>
+      <td>1.89%</td>
+      <td style="text-align: left">46.22MiB</td>
+      <td>69.84MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-redis-1</td>
+      <td style="text-align: left">1.56%</td>
+      <td>0.72%</td>
+      <td style="text-align: left">12.82MiB</td>
+      <td>9.484MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-minio-1</td>
+      <td style="text-align: left">0.01%</td>
+      <td>0.00%</td>
+      <td style="text-align: left">152.9MiB</td>
+      <td>169.8MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-postgresql-1</td>
+      <td style="text-align: left">0.00%</td>
+      <td>0.39%</td>
+      <td style="text-align: left">37.33MiB</td>
+      <td>41.02MiB</td>
+    </tr>
+  </tbody>
+</table>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos-playwright % yarn fixlinux
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Generate code coverage</p>
+<ul>
+  <li>memory profiles are similar between the two platforms</li>
+  <li>redis-ephemeral isn’t using much memory on the base Demo with its small packets</li>
+</ul>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos-playwright % yarn coverage
-</code></pre></div>    </div>
-  </li>
-</ol>
+<p>At this point the COSMOS <a href="https://github.com/OpenC3/openc3-cosmos-load-sim">LoadSim</a> was installed with default settings which creates 10 packets with 1000 items each at 10Hz (110kB/s). After a 1 hr soak, htop now indicated:</p>
 
-<p>Code coverage reports can be viewed at <code class="language-plaintext highlighter-rouge">openc3-playwright/coverage/index.html</code></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Platform</th>
+      <th style="text-align: left">Core CPU %</th>
+      <th style="text-align: left">RAM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Windows 11 Pro</td>
+      <td style="text-align: left">40% 35% 39% 42%</td>
+      <td style="text-align: left">4.64G / 7.7G</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Headless Ubuntu 22</td>
+      <td style="text-align: left">17% 20% 16% 18%</td>
+      <td style="text-align: left">3.74G / 15.6G</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2 id="unit-tests">
-<a class="anchor" href="#unit-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unit Tests</h2>
+<p>The larger packets and data rate of the LoadSim target caused both platforms to dramatically increase CPU utilization but the Linux machine stays quite performant.</p>
 
-<ol>
-  <li>
-    <p>Navigate to <strong>cosmos/openc3</strong> folder. Run the command:</p>
+<p><code class="language-plaintext highlighter-rouge">docker stats</code> was also run to show individual container cpu and memory usage:</p>
 
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>cosmos/openc3 % rake build
-cosmos/openc3 % bundle <span class="nb">exec </span>rspec
-</code></pre></div>    </div>
-  </li>
-</ol>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">NAME</th>
+      <th style="text-align: left">Windows CPU %</th>
+      <th>Ubuntu CPU %</th>
+      <th style="text-align: left">Windows MEM</th>
+      <th>Ubuntu MEM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-traefik-1</td>
+      <td style="text-align: left">4.09%</td>
+      <td>0.01%</td>
+      <td style="text-align: left">44.3MiB</td>
+      <td>0.34MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-cosmos-cmd-tlm-api-1</td>
+      <td style="text-align: left">17.78%</td>
+      <td>6.18%</td>
+      <td style="text-align: left">407.9MiB</td>
+      <td>405.8MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-keycloak-1</td>
+      <td style="text-align: left">0.20%</td>
+      <td>0.12%</td>
+      <td style="text-align: left">480.2MiB</td>
+      <td>481.5MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-operator-1</td>
+      <td style="text-align: left">221.15%</td>
+      <td>66.72%</td>
+      <td style="text-align: left">1.6GiB</td>
+      <td>1.512GiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-cosmos-script-runner-api-1</td>
+      <td style="text-align: left">0.01%</td>
+      <td>0.01%</td>
+      <td style="text-align: left">136.6MiB</td>
+      <td>127.5MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-metrics-1</td>
+      <td style="text-align: left">0.01%</td>
+      <td>0.01%</td>
+      <td style="text-align: left">106.3MiB</td>
+      <td>84.87MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-redis-ephemeral-1</td>
+      <td style="text-align: left">19.63%</td>
+      <td>3.91%</td>
+      <td style="text-align: left">333.8MiB</td>
+      <td>370.8MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-redis-1</td>
+      <td style="text-align: left">7.42%</td>
+      <td>1.49%</td>
+      <td style="text-align: left">15.87MiB</td>
+      <td>11.81MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-minio-1</td>
+      <td style="text-align: left">0.10%</td>
+      <td>0.02%</td>
+      <td style="text-align: left">167.8MiB</td>
+      <td>179.2MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cosmos-enterprise-project-openc3-postgresql-1</td>
+      <td style="text-align: left">0.00%</td>
+      <td>0.00%</td>
+      <td style="text-align: left">35.4MiB</td>
+      <td>42.93MiB</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>Code coverage reports can be found at <code class="language-plaintext highlighter-rouge">cosmos/openc3/coverage/index.html</code></p>
+<ul>
+  <li>memory profiles are similar between the two platforms</li>
+  <li>redis-ephemeral is now using much more RAM as it is storing the large LoadSim packets</li>
+  <li>Windows is using much more CPU power running the operator, cmd-tlm, and redis</li>
+</ul>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p>While it is easy to run COSMOS on any Docker platform, increasing the number and complexity of the targets requires choosing the correct hardware. Sizing can be approximated but the best solution is to install representative targets and use <code class="language-plaintext highlighter-rouge">docker stats</code> and <code class="language-plaintext highlighter-rouge">htop</code> to judge the CPU and memory pressure on the given hardware.</p>
+
+<p><a href="https://openc3.com/enterprise">COSMOS Enterprise Edition</a> on Kubernetes helps to eliminate the hardware sizing issue by scaling the cluster to meet the needs of the system. Check out <a href="https://openc3.com/news/scaling">this recent talk</a> Ryan gave at GSAW showing how we scaled to over 160 satellites on a 4 node kubernetes cluster on EKS.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Full specs of the Windows Platform:</p>
+
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Windows 11 Pro
+Docker Desktop 4.22.0
+WSL version: 1.2.5.0
+Kernel version: 5.15.90.1
+WSLg version: 1.0.51
+MSRDC version: 1.2.3770
+Direct3D version: 1.608.2-61064218
+DXCore version: 10.0.25131.1002-220531-1700.rs-onecore-base2-hyp
+Windows version: 10.0.22621.2134
+</code></pre></div>      </div>
+      <p><a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       </article>
     </div>
@@ -2018,7 +2209,7 @@ cosmos/openc3 % bundle <span class="nb">exec </span>rspec
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/performance">Performance</a>
   </li>
   <!-- prettier-ignore -->
@@ -2590,7 +2781,7 @@ cosmos/openc3 % bundle <span class="nb">exec </span>rspec
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
