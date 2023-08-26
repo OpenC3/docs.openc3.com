@@ -45,6 +45,7 @@
     - local_mode
     - logging
     - monitoring
+    - performance
     - raspberrypi
     - scripting
     - scripting_best_practices
