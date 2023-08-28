@@ -9,7 +9,7 @@ The following sections describe how to get OpenC3 COSMOS installed on various op
 
 ## Installing OpenC3 COSMOS on Host Machines
 
-### PREQREQUISITES
+### PREREQUISITES
 
 Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compose](https://docs.docker.com/compose/install/).
 
