@@ -5,7 +5,7 @@
   <title>Streaming API</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.1">
+  <meta name="generator" content="Jekyll v4.3.2">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -123,7 +123,7 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
 
 <p>A subscription describes a set of data that you want the API to stream to you. Creating a subscription looks like this:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">subscription</span> <span class="o">=</span> <span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">subscription</span> <span class="o">=</span> <span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
   <span class="p">{</span>
     <span class="na">channel</span><span class="p">:</span> <span class="dl">"</span><span class="s2">StreamingChannel</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DEFAULT</span><span class="dl">"</span><span class="p">,</span>
@@ -158,8 +158,8 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
   <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__TLM__INST__ADCS__Q1__RAW</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">],</span>
   <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__CMD__INST__COLLECT__DURATION__WITH_UNITS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">],</span>
 <span class="p">];</span>
-<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nf">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nf">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">scope</span><span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">openc3Scope</span><span class="p">,</span>
     <span class="na">token</span><span class="p">:</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">openc3Token</span><span class="p">,</span>
     <span class="na">items</span><span class="p">:</span> <span class="nx">items</span><span class="p">,</span>
@@ -177,8 +177,8 @@ Connecting to this API begins by initiating an ActionCable connection.</p>
   <span class="p">[</span><span class="dl">"</span><span class="s2">RAW__TLM__INST__ADCS</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">],</span>
   <span class="p">[</span><span class="dl">"</span><span class="s2">DECOM__TLM__INST__HEALTH_STATUS__FORMATTED</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">],</span>
 <span class="p">];</span>
-<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nf">updateToken</span><span class="p">(</span><span class="nx">OpenC3Auth</span><span class="p">.</span><span class="nx">defaultMinValidity</span><span class="p">).</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nf">perform</span><span class="p">(</span><span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">scope</span><span class="p">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">openc3Scope</span><span class="p">,</span>
     <span class="na">token</span><span class="p">:</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">openc3Token</span><span class="p">,</span>
     <span class="na">packets</span><span class="p">:</span> <span class="nx">packets</span><span class="p">,</span>
