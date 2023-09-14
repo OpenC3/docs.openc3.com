@@ -5,7 +5,7 @@
   <title>Plugins</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.2">
+  <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -165,6 +165,7 @@
 <li class="toc-entry toc-h3"><a href="#log_retain_time">LOG_RETAIN_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#reduced_log_retain_time">REDUCED_LOG_RETAIN_TIME</a></li>
 <li class="toc-entry toc-h3"><a href="#cleanup_poll_time">CLEANUP_POLL_TIME</a></li>
+<li class="toc-entry toc-h3"><a href="#reducer_max_cpu_utilization">REDUCER_MAX_CPU_UTILIZATION</a></li>
 <li class="toc-entry toc-h3"><a href="#target_microservice">TARGET_MICROSERVICE</a></li>
 <li class="toc-entry toc-h3"><a href="#packet">PACKET</a></li>
 </ul>
@@ -1350,6 +1351,27 @@ This file follows the standard COSMOS configuration file format of keywords foll
     <tr>
       <td>Time</td>
       <td>Number of seconds between runs of the cleanup process (default = 900 = 15 minutes)</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="reducer_max_cpu_utilization">
+<a class="anchor" href="#reducer_max_cpu_utilization" aria-hidden="true"><span class="octicon octicon-link"></span></a>REDUCER_MAX_CPU_UTILIZATION</h3>
+<p><strong>Maximum amount of CPU utilization to apply to data reduction</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Percentage</td>
+      <td>0 to 100 percent (default = 30)</td>
       <td>True</td>
     </tr>
   </tbody>

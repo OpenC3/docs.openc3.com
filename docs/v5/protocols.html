@@ -5,7 +5,7 @@
   <title>Protocols</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.3.2">
+  <meta name="generator" content="Jekyll v4.3.1">
   <link rel="alternate" type="application/rss+xml" title="OpenC3 News" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to OpenC3's master branch" href="https://github.com/openc3/cosmos/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
@@ -750,7 +750,7 @@
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="nf">length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">if</span> <span class="vi">@allow_empty_data</span><span class="p">.</span><span class="nf">nil?</span>
-      <span class="k">if</span> <span class="vi">@interface</span> <span class="ow">and</span> <span class="vi">@interface</span><span class="p">.</span><span class="nf">read_protocols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">self</span> <span class="c1"># Last read interface in chain with auto @allow_empty_data</span>
+      <span class="k">if</span> <span class="vi">@interface</span> <span class="n">and</span> <span class="vi">@interface</span><span class="p">.</span><span class="nf">read_protocols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">self</span> <span class="c1"># Last read interface in chain with auto @allow_empty_data</span>
         <span class="k">return</span> <span class="ss">:STOP</span>
       <span class="k">end</span>
     <span class="k">elsif</span> <span class="o">!</span><span class="vi">@allow_empty_data</span> <span class="c1"># Don't @allow_empty_data means STOP</span>
