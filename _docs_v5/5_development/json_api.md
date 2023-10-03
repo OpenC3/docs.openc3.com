@@ -30,7 +30,7 @@ COSMOS listens for HTTP API requests at the default 2900 port at the `/openc3-ap
 
 ## Supported Methods
 
-The list of methods supported by the COSMOS API may be found in the [api](https://github.com/openc3/cosmos/tree/main/openc3/lib/openc3/api) source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the COSMOS scripting API methods documented in the [Scripting Guide]({{site.baseurl}}/docs/v5/scripting). This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.
+The list of methods supported by the COSMOS API may be found in the [api](https://github.com/openc3/cosmos/tree/main/openc3/lib/openc3/api) source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the COSMOS scripting API methods documented in the [Ruby Scripting Guide]({{site.baseurl}}/docs/v5/ruby-scripting). This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.
 
 ## Existing Implementations
 

@@ -46,8 +46,8 @@
     - logging
     - monitoring
     - raspberrypi
-    - scripting
-    - scripting_best_practices
+    - ruby_scripting
+    - ruby_scripting_best_practices
 
 - title: Development
   docs:

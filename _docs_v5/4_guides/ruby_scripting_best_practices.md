@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Scripting Best Practices
+title: Ruby Scripting Best Practices
 toc: true
 ---
 
@@ -483,4 +483,4 @@ end
 
 ## Further Reading
 
-Please see the [Scripting Guide]({{site.baseurl}}/docs/v5/scripting) for the full list of available scripting methods provided by COSMOS.
+Please see the [Ruby Scripting Guide]({{site.baseurl}}/docs/v5/ruby-scripting) for the full list of available scripting methods provided by COSMOS.

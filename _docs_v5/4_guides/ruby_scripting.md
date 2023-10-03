@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Scripting Guide
+title: Ruby Scripting Guide
 toc: true
 ---
 
@@ -252,17 +252,13 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 
 | Method                                | Tool                         | Status                                                |
 | ------------------------------------- | ---------------------------- | ----------------------------------------------------- |
-| check_raw                             | Script Runner                | Deprecated, use check(..., type: :RAW)                |
-| check_formatted                       | Script Runner                | Deprecated, use check(..., type: :FORMATTED)          |
-| check_with_units                      | Script Runner                | Deprecated, use check(..., type: :WITH_UNITS)         |
-| check_tolerance_raw                   | Script Runner                | Deprecated, use check_tolerance(..., type: :RAW)      |
-| clear                                 | Telemetry Viewer             | Unimplemented                                         |
-| clear_all                             | Telemetry Viewer             | Unimplemented                                         |
-| clear_disconnected_targets            | Script Runner                | Unimplemented                                         |
-| close_local_screens                   | Telemetry Viewer             | Unimplemented                                         |
-| cmd_tlm_clear_counters                | Command and Telemetry Server | Unimplemented                                         |
-| cmd_tlm_reload                        | Command and Telemetry Server | Unimplemented                                         |
-| display                               | Telemetry Viewer             | Unimplemented                                         |
+| clear                                 | Telemetry Viewer             | Deprecated, use clear_screen                          |
+| clear_all                             | Telemetry Viewer             | Deprecated, use clear_all_screens                     |
+| close_local_screens                   | Telemetry Viewer             | Deprecated, use clear_screen                          |
+| clear_disconnected_targets            | Script Runner                | Deprecated                                            |
+| cmd_tlm_clear_counters                | Command and Telemetry Server | Deprecated                                            |
+| cmd_tlm_reload                        | Command and Telemetry Server | Deprecated                                            |
+| display                               | Telemetry Viewer             | Deprecated, use display_screen                        |
 | get_all_packet_logger_info            | Command and Telemetry Server | Deprecated                                            |
 | get_all_target_info                   | Command and Telemetry Server | Deprecated, use get_target_interfaces                 |
 | get_background_tasks                  | Command and Telemetry Server | Deprecated                                            |
@@ -280,12 +276,10 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | get_packet_loggers                    | Command and Telemetry Server | Deprecated                                            |
 | get_replay_mode                       | Replay                       | Deprecated                                            |
 | get_router_info                       | Command and Telemetry Server | Deprecated, use get_router                            |
-| get_screen_definition                 | Telemetry Viewer             | Unimplemented                                         |
-| get_screen_list                       | Telemetry Viewer             | Unimplemented                                         |
 | get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated                                            |
 | get_server_message                    | Command and Telemetry Server | Deprecated                                            |
 | get_server_message_log_filename       | Command and Telemetry Server | Deprecated                                            |
-| get_server_status                     | Command and Telemetry Server | Unimplemented                                         |
+| get_server_status                     | Command and Telemetry Server | Deprecated                                            |
 | get_target_ignored_items              | Command and Telemetry Server | Deprecated, use get_target                            |
 | get_target_ignored_parameters         | Command and Telemetry Server | Deprecated, use get_target                            |
 | get_target_info                       | Command and Telemetry Server | Deprecated, use get_target                            |
@@ -294,7 +288,6 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | get_tlm_list                          | Command and Telemetry Server | Deprecated                                            |
 | get_tlm_log_filename                  | Command and Telemetry Server | Deprecated                                            |
 | interface_state                       | Command and Telemetry Server | Deprecated, use get_interface                         |
-| local_screen                          | Script Runner                | Unimplemented                                         |
 | override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm                          |
 | open_directory_dialog                 | Script Runner                | Deprecated                                            |
 | replay_move_end                       | Replay                       | Deprecated                                            |
@@ -309,12 +302,11 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | replay_step_forward                   | Replay                       | Deprecated                                            |
 | replay_stop                           | Replay                       | Deprecated                                            |
 | router_state                          | Command and Telemetry Server | Deprecated, use get_router                            |
-| run_mode                              | Script Runner                | Unimplemented                                         |
 | save_file_dialog                      | Script Runner                | Deprecated                                            |
 | set_cmd_tlm_disconnect                | Script Runner                | Deprecated, use disconnect_script                     |
 | set_disconnected_targets              | Script Runner                | Unimplemented                                         |
 | set_replay_mode                       | Replay                       | Deprecated                                            |
-| set_stdout_max_lines                  | Script Runner                | Unimplemented                                         |
+| set_stdout_max_lines                  | Script Runner                | Deprecated                                            |
 | set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm                               |
 | show_backtrace                        | Script Runner                | Deprecated, backtrace always shown                    |
 | shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                                            |
@@ -323,18 +315,14 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | start_new_scriptrunner_message_log    | Command and Telemetry Server | Deprecated                                            |
 | start_new_server_message_log          | Command and Telemetry Server | Deprecated                                            |
 | start_tlm_log                         | Command and Telemetry Server | Deprecated                                            |
-| step_mode                             | Script Runner                | Unimplemented                                         |
 | stop_background_task                  | Command and Telemetry Server | Deprecated                                            |
 | stop_cmd_log                          | Command and Telemetry Server | Deprecated                                            |
 | stop_logging                          | Command and Telemetry Server | Deprecated                                            |
 | stop_tlm_log                          | Command and Telemetry Server | Deprecated                                            |
-| subscribe_limits_events               | Command and Telemetry Server | Unimplemented                                         |
+| subscribe_limits_events               | Command and Telemetry Server | Deprecated                                            |
 | subscribe_packet_data                 | Command and Telemetry Server | Deprecated, use subscribe_packets                     |
 | subscribe_server_messages             | Command and Telemetry Server | Unimplemented                                         |
-| tlm_raw                               | Script Runner                | Deprecated, use tlm(..., type: :RAW)                  |
-| tlm_formatted                         | Script Runner                | Deprecated, use tlm(..., type: :FORMATTED)            |
-| tlm_with_units                        | Script Runner                | Deprecated, use tlm(..., type: :WITH_UNITS)           |
-| tlm_variable                          | Script Runner                | Deprecated, use tlm() and pass type:)                 |
+| tlm_variable                          | Script Runner                | Deprecated, use tlm() and pass type                   |
 | unsubscribe_limits_events             | Command and Telemetry Server | Deprecated                                            |
 | unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                                            |
 | unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                                            |
@@ -342,35 +330,6 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | wait_check_raw                        | Script Runner                | Deprecated, use wait_check(..., type: :RAW)           |
 | wait_tolerance_raw                    | Script Runner                | Deprecated, use wait_tolerance(..., type: :RAW)       |
 | wait_check_tolerance_raw              | Script Runner                | Deprecated, use wait_check_tolerance(..., type: :RAW) |
-
-The following API methods are new in COSMOS 5:
-
-| Method             | Tool                         |
-| ------------------ | ---------------------------- |
-| get_all_commands   | Command and Telemetry Server |
-| get_all_telemetry  | Command and Telemetry Server |
-| get_command        | Command and Telemetry Server |
-| get_interface      | Command and Telemetry Server |
-| get_item           | Command and Telemetry Server |
-| get_packets        | Command and Telemetry Server |
-| get_router         | Command and Telemetry Server |
-| get_setting        | Command and Telemetry Server |
-| get_settings       | Command and Telemetry Server |
-| get_target         | Command and Telemetry Server |
-| get_target_file    | Script Runner                |
-| put_target_file    | Script Runner                |
-| delete_target_file | Script Runner                |
-| get_telemetry      | Command and Telemetry Server |
-| metadata_all       | Script Runner                |
-| metadata_get       | Script Runner                |
-| metadata_set       | Script Runner                |
-| metadata_update    | Script Runner                |
-| metadata_input     | Script Runner                |
-| list_configs       | Various                      |
-| list_settings      | Command and Telemetry Server |
-| load_config        | Various                      |
-| save_setting       | Command and Telemetry Server |
-| subscribe_packets  | Command and Telemetry Server |
 
 ## Retrieving User Input
 
@@ -2675,14 +2634,14 @@ load_utility("TARGET/lib/mode_changes.rb")
 
 These methods allow the user to open, close or create unique telemetry screens from within a test procedure.
 
-### display
+### display_screen
 
 Opens a telemetry screen at the specified position.
 
 Syntax:
 
 ```ruby
-display("<Display Name>", <X Position (optional)>, <Y Position (optional)>)
+display_screen("<Display Name>", <X Position (optional)>, <Y Position (optional)>)
 ```
 
 | Parameter    | Description                                                                                      |
@@ -2697,14 +2656,14 @@ Example:
 display("INST ADCS", 100, 200)
 ```
 
-### clear
+### clear_screen
 
 Closes an open telemetry screen.
 
 Syntax:
 
 ```ruby
-clear("<Display Name>")
+clear_screen("<Display Name>")
 ```
 
 | Parameter    | Description                                                                                    |
@@ -2714,28 +2673,23 @@ clear("<Display Name>")
 Example:
 
 ```ruby
-clear("INST ADCS")
+clear_screen("INST ADCS")
 ```
 
-### clear_all
+### clear_all_screens
 
-Closes all open screens or all screens of a particular target.
+Closes all open screens.
 
 Syntax:
 
 ```ruby
-clear_all("<Target Name>")
+clear_all_screens()
 ```
-
-| Parameter   | Description                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------- |
-| Target Name | Close all screens associated with the target. If no target is passed, all screens are closed. |
 
 Example:
 
 ```ruby
-clear_all("INST") # Clear all INST screens
-clear_all() # Clear all screens
+clear_all_screens() # Clear all screens
 ```
 
 ### get_screen_list
@@ -2801,54 +2755,19 @@ local_screen("<title>", "<screen definition>", <x position>, <y position>)
 Example:
 
 ```ruby
-temp = 0 # This variable is accessed in the screen
 screen_def = '
   SCREEN AUTO AUTO 0.1 FIXED
   VERTICAL
-    TITLE "Local Variable"
+    TITLE "Local Screen"
     VERTICALBOX
-      LABELVALUE LOCAL LOCAL temp # Note LOCAL LOCAL
+      LABELVALUE INST HEALTH_STATUS TEMP1
     END
   END
 '
 # Here we pass in the screen definition as a string
-screen = local_screen("My Screen", screen_def, 100, 100)
-disable_instrumentation do
-  5000000.times do
-    temp += 1 # Increment temp to update the screen
-  end
-end
-screen.close # Close this local screen
-
-temp = 0
-# The screen definition is nil so we define the screen in the block
-local_screen("My Screen", nil, 500, 500) do
-  ' # Note the quote
-  SCREEN AUTO AUTO 0.1 FIXED
-  VERTICAL
-    TITLE "Local Variable"
-    VERTICALBOX
-      LABELVALUE LOCAL LOCAL temp # LOCAL LOCAL
-    END
-  END
-  ' # Close quote
-end
-disable_instrumentation do
-  5000000.times do
-    temp += 1 # Increment temp to update the screen
-  end
-end
-close_local_screens() # Close all open local screens
-```
-
-### close_local_screens
-
-The close_local_screens closes all temporary screens which were opened using local_screen.
-
-Syntax / Example:
-
-```ruby
-close_local_screens()
+local_screen("My Screen", screen_def, 100, 100)
+wait 3
+clear_screen("LOCAL", "My Screen")
 ```
 
 ## Script Runner Specific Functionality
@@ -2885,26 +2804,6 @@ Syntax / Example:
 curr_line_delay = get_line_delay()
 ```
 
-### get_scriptrunner_message_log_filename
-
-Returns the filename of the ScriptRunner message log.
-
-Syntax / Example:
-
-```ruby
-filename = get_scriptrunner_message_log_filename()
-```
-
-### start_new_scriptrunner_message_log
-
-Starts a new ScriptRunner message log. Note: ScriptRunner will automatically start a new log whenever a script is started. This method is only needed for starting a new log mid-script execution.
-
-Syntax / Example:
-
-```ruby
-filename = start_new_scriptrunner_message_log()
-```
-
 ### disable_instrumentation
 
 Disables instrumentation for a block of code (line highlighting and exception catching). This is especially useful for speeding up loops that are very slow if lines are instrumented.
@@ -2920,26 +2819,6 @@ disable_instrumentation do
     # Don't want this to have to highlight 1000 times
   end
 end
-```
-
-### set_stdout_max_lines
-
-This method sets the maximum amount of lines of output that a single line in Scriptrunner can generate without being truncated.
-
-Syntax:
-
-```ruby
-set_stdout_max_lines(max_lines)
-```
-
-| Parameter | Description                                                                      |
-| --------- | -------------------------------------------------------------------------------- |
-| max_lines | The maximum number of lines that will be written to the ScriptRunner log at once |
-
-Example:
-
-```ruby
-set_stdout_max_lines(2000)
 ```
 
 ## Debugging
