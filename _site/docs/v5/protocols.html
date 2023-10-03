@@ -155,6 +155,8 @@
 
 <p>COSMOS provides the following packet delineation protocols: Burst, Fixed, Length, Template, Terminated and Preidentified. Each of these protocols has the primary purpose of separating out packets from a byte stream.</p>
 
+<p>Note that all protocols take a final parameter called “Allow Empty Data”. This indicates whether the protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain. End users of a protocol will almost always simply leave off this parameter. For more information read the <a href="/docs/v5/protocols#custom-protocols">Custom Protocols</a> documentation.</p>
+
 <h3 id="burst-protocol">
 <a class="anchor" href="#burst-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Burst Protocol</h3>
 
@@ -187,12 +189,6 @@
       <td>Whether to fill in the sync pattern on outgoing packets</td>
       <td>No</td>
       <td>false</td>
-    </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
     </tr>
   </tbody>
 </table>
@@ -247,12 +243,6 @@
       <td>Whether to raise an exception for an unknown packet</td>
       <td>No</td>
       <td>false</td>
-    </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
     </tr>
   </tbody>
 </table>
@@ -326,12 +316,6 @@
       <td>No</td>
       <td>false</td>
     </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
-    </tr>
   </tbody>
 </table>
 
@@ -385,12 +369,6 @@
       <td>Whether to fill in the sync pattern on outgoing packets</td>
       <td>No</td>
       <td>false</td>
-    </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
     </tr>
   </tbody>
 </table>
@@ -482,19 +460,13 @@
       <td>No</td>
       <td>false</td>
     </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
-    </tr>
   </tbody>
 </table>
 
 <h3 id="preidentified-protocol">
 <a class="anchor" href="#preidentified-protocol" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preidentified Protocol</h3>
 
-<p>The Preidentified Protocol is used internally by the COSMOS Command and Telemetry Server only and delineates packets using a custom COSMOS header. This Protocol is configured by default on port 7779 and is created by the Command and Telemetry Server to allow tools to connect and receive the entire packet stream. The Telemetry Grapher uses this port to receive all the packets following through the Command and Telemetry Server in case any need to be graphed.</p>
+<p>The Preidentified Protocol delineates packets using a custom COSMOS header. This Protocol is created to allow tools to connect and receive the entire packet stream. It can also be used to chain COSMOS instances together although that should rarely be needed with the new web native implementation.</p>
 
 <table>
   <thead>
@@ -523,12 +495,6 @@
       <td>The Version of the preidentified protocol to support (2 or 4).3</td>
       <td>No</td>
       <td>4</td>
-    </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
     </tr>
   </tbody>
 </table>
@@ -613,12 +579,6 @@
       <td>No</td>
       <td>nil (use default value - 16-bit=false, 32-bit=true, 64-bit=true)</td>
     </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
-      <td>nil</td>
-    </tr>
   </tbody>
 </table>
 
@@ -647,12 +607,6 @@
       <td>Packet Name</td>
       <td>Packet name of the packet to ignore</td>
       <td>Yes</td>
-      <td>nil</td>
-    </tr>
-    <tr>
-      <td>Allow Empty Data</td>
-      <td>Whether this protocol will allow an empty string to be passed down to later Protocols (instead of returning :STOP). Can be true, false, or nil, where nil is interpreted as true unless the Protocol is the last Protocol of the chain.</td>
-      <td>No</td>
       <td>nil</td>
     </tr>
   </tbody>
