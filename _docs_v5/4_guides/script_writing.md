@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Ruby Scripting Best Practices
+title: Script Writing Guide
 toc: true
 ---
 
@@ -8,7 +8,114 @@ toc: true
 
 This guide aims to provide the best practices for using the scripting capabilities provided by COSMOS. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using the COSMOS Script Runner is also provided.
 
+## Concepts
+
+COSMOS supports both Ruby and Python for writing scripts. Ruby and Python are very similar scripting languages and most of this guide applies directly to both. Where examples are used, both a Ruby and Python example are given.
+
+### Ruby vs Python in COSMOS
+
+There are many similaritys and a few key differences between Ruby and Python when it comes to writing COSMOS scripts.
+
+1. There is no 80 character limit on line length. Lines can be as long as you like, but be careful to not make them too long as it makes printed reviews of scripts more difficult.
+1. Indentation white space:
+   1. Ruby: Not significant. Ruby uses the `end` keyword to determine indented code blocks with a standard of 2 spaces.
+   1. Python: Significant. Python uses indentation to determine code blocks with a standard of 4 spaces.
+1. Variables do not have to be declared ahead of time and can be reassigned later, i.e. Ruby and Python are dynamically typed.
+1. Variable interpolation:
+   1. Ruby: Variable values can be placed into strings using the `"#{variable}"` syntax.
+   1. Python: Variable values can be placed into f-strings using the `f"{variable}"` syntax.
+1. A variable declared inside of a block or loop will not exist outside of that block unless it was already declared.
+
+Both languages provides a script writer a lot of power. But with great power comes great responsibility. Remember when writing your scripts that you or someone else will come along later and need to understand them. Therefore use the following style guidelines:
+
+- Use consistent spacing for indentation and do NOT use tabs
+- Constants should be all caps with underscores
+  - `SPEED_OF_LIGHT = 299792458 # meters per s`
+- Variable names and method names should be in lowercase with underscores
+  - `last_name = "Smith"`
+  - `perform_setup_operation()`
+- Class names (when used) should be camel case and the files which contain them should match but be lowercase with underscores
+  - `class DataUploader # in 'data_uploader.rb'`
+  - `class CcsdsUtility: # in 'ccsds_utility.py'`
+- Don't add useless comments but instead describe intent
+
 <div style="clear:both;"></div>
+
+The following is an example of good Ruby style:
+
+```ruby
+load 'TARGET/lib/upload_utility.rb' # library we do NOT want to show executing
+load_utility 'TARGET/lib/helper_utility.rb' # library we do want to show executing
+
+# Declare constants
+OUR_TARGETS = ['INST','INST2']
+
+# Clear the collect counter of the passed in target name
+def clear_collects(target)
+  cmd("#{target} CLEAR")
+  wait_check("#{target} HEALTH_STATUS COLLECTS == 0", 5)
+end
+
+######################################
+# START
+######################################
+helper = HelperUtility.new
+helper.setup
+
+# Perform collects on all the targets
+OUR_TARGETS.each do |target|
+  collects = tlm("#{target} HEALTH_STATUS COLLECTS")
+  cmd("#{target} COLLECT with TYPE SPECIAL")
+  wait_check("#{target} HEALTH_STATUS COLLECTS == #{collects + 1}", 5)
+end
+
+clear_collects('INST')
+clear_collects('INST2')
+```
+
+The following is an example of good Python style:
+
+```python
+from openc3.script import *
+
+load('TARGET/lib/upload_utility.rb') # library we do NOT want to show executing
+load_utility('TARGET/lib/helper_utility.rb') # library we do want to show executing
+
+# Declare constants
+OUR_TARGETS = ['INST','INST2']
+
+# Clear the collect counter of the passed in target name
+def clear_collects(target):
+    cmd(f"{target} CLEAR")
+    wait_check(f"{target} HEALTH_STATUS COLLECTS == 0", 5)
+
+######################################
+# START
+######################################
+helper = HelperUtility()
+helper.setup()
+
+# Perform collects on all the targets
+for target in OUR_TARGETS:
+    collects = tlm(f"{target} HEALTH_STATUS COLLECTS")
+    cmd(f"{target} COLLECT with TYPE SPECIAL")
+    wait_check(f"{target} HEALTH_STATUS COLLECTS == {collects + 1}", 5)
+
+clear_collects('INST')
+clear_collects('INST2')
+```
+
+Both examples shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening.
+
+Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.
+
+Then we declare our local methods of which we have one called clear_collects. Please provide a comment at the beginning of each method describing what it does and the parameters that it takes.
+
+The 'helper_utility' is then created. Note the similarity in the class name and the file name we loaded.
+
+The collect example shows how you can iterate over the array of strings we previously created and use variables when commanding and checking telemetry. The Ruby pound bracket #{} notation and python f-string f"{} notation puts whatever the variable holds into the string. You can even execute additional code inside the brackets like we do when checking for the collect count to increment.
+
+Finally we call our 'clear_collects' method on each target by passing the target name.
 
 ## Scripting Philosophy
 
@@ -21,7 +128,9 @@ cmd("INST COLLECT with TYPE NORMAL, TEMP 10.0")
 wait_check("INST HEALTH_STATUS TYPE == 'NORMAL'", 5)
 ```
 
-or similarly with a counter that is sampled before the command:
+or similarly with a counter that is sampled before the command.
+
+Ruby:
 
 ```ruby
 count = tlm("INST HEALTH_STATUS COLLECTS")
@@ -29,11 +138,19 @@ cmd("INST COLLECT with TYPE NORMAL, TEMP 10.0")
 wait_check("INST HEALTH_STATUS COLLECTS >= #{count + 1}", 5)
 ```
 
+Python:
+
+```python
+count = tlm("INST HEALTH_STATUS COLLECTS")
+cmd("INST COLLECT with TYPE NORMAL, TEMP 10.0")
+wait_check(f"INST HEALTH_STATUS COLLECTS >= {count + 1}", 5)
+```
+
 90% of the COSMOS scripts you write should be the simple patterns shown above except that you may need to check more than one item after each command to make sure the command worked as expected.
 
 ### KISS (Keep It Simple Stupid)
 
-Ruby is a very powerful language with many ways to accomplish the same thing. Given that, always choose the method that is easiest to understand for yourself and others. While it is possible to create complex one liners or obtuse regular expressions, you'll thank yourself later by expanding complex one liners and breaking up and documenting regular expressions.
+Ruby and Python are very powerful languages with many ways to accomplish the same thing. Given that, always choose the method that is easiest to understand for yourself and others. While it is possible to create complex one liners or obtuse regular expressions, you'll thank yourself later by expanding complex one liners and breaking up and documenting regular expressions.
 
 ### Keep things DRY (Don't Repeat Yourself)
 
@@ -43,10 +160,19 @@ There are two common ways repetition presents itself: exact blocks of code to pe
 
 For example, a script that powers on a subsystem and ensures correct telemetry would become:
 
+Ruby:
+
 ```ruby
 def power_on_subsystem
   # 100 lines of cmd(), wait_check(), etc
 end
+```
+
+Python:
+
+```python
+def power_on_subsystem():
+    # 100 lines of cmd(), wait_check(), etc
 ```
 
 Ideally, the above methods would be stored in another file where it could be used by other scripts. If it is truly only useful in the one script, then it could be at the top of the file. The updated script would then look like:
@@ -63,19 +189,30 @@ power_on_subsystem()
 # etc.
 ```
 
-Blocks of code where only the only variation is the mnemonics or values checked can be replaced by methods with arguments like this:
+Blocks of code where only the only variation is the mnemonics or values checked can be replaced by methods with arguments.
+
+Ruby:
 
 ```ruby
 def test_minimum_temp(enable_cmd_name, enable_tlm, temp_tlm, expected_temp)
   cmd("TARGET #{enable_cmd_name} with ENABLE TRUE")
-  wait_check("TARGET #{enable_tlm} == 'TRUE;", 5)
+  wait_check("TARGET #{enable_tlm} == 'TRUE'", 5)
   wait_check("TARGET #{temp_tlm} >= #{expected_temp}", 50)
 end
 ```
 
+Python:
+
+```python
+def test_minimum_temp(enable_cmd_name, enable_tlm, temp_tlm, expected_temp):
+    cmd(f"TARGET {enable_cmd_name} with ENABLE TRUE")
+    wait_check(f"TARGET {enable_tlm} == 'TRUE'", 5)
+    wait_check(f"TARGET {temp_tlm} >= {expected_temp}", 50)
+```
+
 ### Use Comments Appropriately
 
-Use comments when what you are doing is unclear or there is a higher-level purpose to a set of lines. Try to avoid putting numbers or other details in a comment as they can become out of sync with the underlying code. Ruby comments start with a # pound symbol and can be anywhere on a line.
+Use comments when what you are doing is unclear or there is a higher-level purpose to a set of lines. Try to avoid putting numbers or other details in a comment as they can become out of sync with the underlying code. Ruby and Python comments start with a # pound symbol and can be anywhere on a line.
 
 ```ruby
 # This line sends an abort command - BAD COMMENT, UNNECCESSARY
@@ -88,7 +225,7 @@ cmd("INST ROTATE with ANGLE 180.0") # Rotate 180 degrees - BAD COMMENT
 
 COSMOS provides two unique ways to run scripts (also known as procedures). Script Runner provides both a script execution environment and a script editor. The script editor includes code completion for both COSMOS methods and command/telemetry item names. It is also a great environment to develop and test scripts. Script Runner provides a framework for users that are familiar with a traditional scripting model with longer style procedures, and for users that want to be able to edit their scripts in place.
 
-When opening a suite file (named with 'suite') Script Runner provides a more formal, but also more powerful, environment for running scripts. Suite files breaks scripts down into suites, groups, and scripts (individual methods). Suites are the highest-level concept and would typically cover a large procedure such as a thermal vacuum test, or a large operations scenario such as performing on orbit checkout. Groups capture a related set of scripts such as all the scripts regarding a specific mechanism. A Group might be a collection of scripts all related to a subsystem, or a specific series of tests such as an RF checkout. Scripts capture individual activities that can either pass or fail. Script Runner allows for running an entire suite, one or more groups, or one or more scripts easily. It also automatically produces reports indentifing test timing, pass / fail counts, etc.
+When opening a suite file (named with 'suite') Script Runner provides a more formal, but also more powerful, environment for running scripts. Suite files breaks scripts down into suites, groups, and scripts (individual methods). Suites are the highest-level concept and would typically cover a large procedure such as a thermal vacuum test, or a large operations scenario such as performing on orbit checkout. Groups capture a related set of scripts such as all the scripts regarding a specific mechanism. A Group might be a collection of scripts all related to a subsystem, or a specific series of tests such as an RF checkout. Scripts capture individual activities that can either pass or fail. Script Runner allows for running an entire suite, one or more groups, or one or more scripts easily. It also automatically produces reports containing timing, pass / fail counts, etc.
 
 The correct environment for the job is up to individual users, and many programs will use both script formats to complete their goals.
 
@@ -96,12 +233,19 @@ The correct environment for the job is up to individual users, and many programs
 
 Loops are powerful constructs that allow you to perform the same operations multiple times without having to rewrite the same code over and over (See the DRY Concept). However, they can make restarting a COSMOS script at the point of a failure difficult or impossible. If there is a low probability of something failing, then loops are an excellent choice. If a script is running a loop over a list of telemetry points, it may be a better choice to “unroll” the loop by making the loop body into a method, and then calling that method directly for each iteration of a loop that would have occurred.
 
-For example:
+Ruby:
 
 ```ruby
 10.times do |temperature_number|
   check_temperature(temperature_number + 1)
 end
+```
+
+Python:
+
+```python
+for temperature_number in range(1, 11):
+    check_temperature(temperature_number)
 ```
 
 If the above script was stopped after temperature number 3, there would be no way to restart the loop at temperature number 4. A better solution for small loop counts is to unroll the loop.
@@ -123,7 +267,7 @@ In the unrolled version above, the COSMOS “Start script at selected line” fe
 
 ## Script Organization
 
-All scripts must be part of a [Plugin](({{site.baseurl}}/docs/v5/plugins). You can create a simple plugin called SCRIPTS or PROCEDURES that only contains lib and procedures directories to store scripts. If COSMOS detects a plugin without defined cmd/tlm it will not spawn microservices for telemetry processing.
+All scripts must be part of a [Plugin]({{site.baseurl}}/docs/v5/plugins). You can create a simple plugin called SCRIPTS or PROCEDURES that only contains lib and procedures directories to store scripts. If COSMOS detects a plugin without defined cmd/tlm it will not spawn microservices for telemetry processing.
 
 ### Organizing Your Scripts into a Plugin
 
@@ -136,13 +280,17 @@ As your scripts become large with many methods, it makes sense to break them up 
 In your main procedure you will usually bring in the other files with instrumentation using load_utility.
 
 ```ruby
+# Ruby:
 load_utility('TARGET/lib/my_other_script.rb')
-load_utility('TARGET/procedures/my_other_script.rb')
+# Python:
+load_utility('TARGET/procedures/my_other_script.py')
 ```
 
 ### Organize Scripts into Methods
 
 Put each activity into a distinct method. Putting your scripts into methods makes organization easy and gives a great high-level overview of what the overall script does (assuming you name the methods well). There are no bonus points for vague, short method names. Make your method names long and clear.
+
+Ruby:
 
 ```ruby
 def test_1_heater_zone_control
@@ -156,35 +304,80 @@ def script_1_heater_zone_control
 end
 ```
 
+Python:
+
+```python
+def test_1_heater_zone_control():
+    print("Verifies requirements 304, 306, and 310")
+    # Test code here
+
+def script_1_heater_zone_control():
+    print("Verifies requirements 304, 306, and 310")
+    # Test code here
+```
+
 ### Using Classes vs Unscoped Methods
 
 Classes in object-oriented programing allow you to organize a set of related methods and some associated state. The most important aspect is that the methods work on some shared state. For example, if you have code that moves a gimbal around, and need to keep track of the number of moves, or steps, performed across methods, then that is a wonderful place to use a class. If you just need a helper method to do something that happens multiple times in a script without copy and pasting, it probably does not need to be in a class.
 
-NOTE: The convention in COSMOS is to have a TARGET/lib/target.rb file which is named after the TARGET name and contains a class called Target. This discussion refers to scripts in the TARGET/procedures directory.
+NOTE: The convention in COSMOS is to have a TARGET/lib/target.\[rb/py\] file which is named after the TARGET name and contains a class called Target. This discussion refers to scripts in the TARGET/procedures directory.
+
+Ruby:
 
 ```ruby
 class Gimbal
   attr_accessor :gimbal_steps
+  def initialize()
+    @gimbal_steps = 0
+  end
   def move(steps_to_move)
     # Move the gimbal
     @gimbal_steps += steps_to_move
   end
   def home_gimbal
     # Home the gimbal
-    @gimbal_steps += steps_moved
+    @gimbal_steps = 0
   end
 end
 
 def perform_common_math(x, y)
-   # Do the math and return result
+  x + y
 end
 
 gimbal = Gimbal.new
-gimbal.home
+gimbal.home_gimbal
 gimbal.move(100)
 gimbal.move(200)
-puts "Moved gimbal #{gimbal.steps}"
-perform_common_math(gimbal.steps, other_value)
+puts "Moved gimbal #{gimbal.gimbal_steps}"
+result = perform_common_math(gimbal.gimbal_steps, 10)
+puts "Math:#{result}"
+```
+
+Python:
+
+```python
+class Gimbal:
+    def __init__(self):
+        self.gimbal_steps = 0
+
+    def move(self, steps_to_move):
+        # Move the gimbal
+        self.gimbal_steps += steps_to_move
+
+    def home_gimbal(self):
+        # Home the gimbal
+        self.gimbal_steps = 0
+
+def perform_common_math(x, y):
+    return x + y
+
+gimbal = Gimbal()
+gimbal.home_gimbal()
+gimbal.move(100)
+gimbal.move(200)
+print(f"Moved gimbal {gimbal.gimbal_steps}")
+result = perform_common_math(gimbal.gimbal_steps, 10)
+print(f"Math:{result}")
 ```
 
 ### Instrumented vs Uninstrumented Lines (require vs load)
@@ -193,17 +386,34 @@ COSMOS scripts are normally “instrumented”. This means that each line has so
 
 load_utility (and the deprecated require_utility), bring in instrumented code from other files. When COSMOS runs the code in the other file, Script Runner will dive into the other file and show each line highlighted as it executes. This should be the default way to bring in other files, as it allows continuing if something fails, and provides better visibility to operators.
 
-However, sometimes you don't want to display code executing from other files. Externally developed ruby libraries generally do not like to be instrumented, and code that contains large loops or that just takes a long time to execute when highlighting lines, will be much faster if included in a method that does not instrument lines. Ruby provides two ways to bring in uninstrumented code. The first is the “load” keyword. Load will bring in the code from another file and will bring in any changes to the file if it is updated on the next call to load. “require” is like load but is optimized to only bring in the code from another file once. Therefore, if you use require and then change the file it requires, you must restart Script Runner to re-require the file and bring in the changes. In general, load is recommended over require for COSMOS scripting. One gotcha with load is that it requires the full filename including extension, while the require keyword does not.
+However, sometimes you don't want to display code executing from other files. Externally developed libraries generally do not like to be instrumented, and code that contains large loops or that just takes a long time to execute when highlighting lines, will be much faster if included in a method that does not instrument lines. Ruby provides two ways to bring in uninstrumented code. The first is the “load” keyword. Load will bring in the code from another file and will bring in any changes to the file if it is updated on the next call to load. “require” is like load but is optimized to only bring in the code from another file once. Therefore, if you use require and then change the file it requires, you must restart Script Runner to re-require the file and bring in the changes. In general, load is recommended over require for COSMOS scripting. One gotcha with load is that it requires the full filename including extension, while the require keyword does not.
+
+In Python, libraries are included using the import syntax. Any code imported using import is not instrumented. Only the code imported using require_utility is instrumented.
 
 Finally, COSMOS scripting has a special syntax for disabling instrumentation in the middle of an instrumented script, with the disable_instrumentation method. This allows you to disable instrumentation for large loops and other activities that are too slow when running instrumented.
 
+Ruby:
+
 ```ruby
+temp = 0
 disable_instrumentation do
   # Make sure nothing in here will raise exceptions!
   5000000.times do
     temp += 1
   end
 end
+puts temp
+```
+
+Python:
+
+```python
+temp = 0
+with disable_instrumentation():
+    # Make sure nothing in here will raise exceptions!
+    for x in range(0,5000000):
+        temp += 1
+print(temp)
 ```
 
 <div class="note warning">
@@ -261,6 +471,8 @@ The Ruby Syntax Check tool is found under the Script Menu. This tool uses the ru
 
 COSMOS provides several different methods to gather manual user input in scripts. When using user input methods that allow for arbitrary values (like ask() and ask_string()), it is very important to validate the value given in your script before moving on. When asking for text input, it is extra important to handle different casing possibilities and to ensure that invalid input will either re-prompt the user or take a safe path.
 
+Ruby:
+
 ```ruby
 answer = ask_string("Do you want to continue (y/n)?")
 if answer != 'y' and answer != 'Y'
@@ -273,6 +485,18 @@ while temp < 10.0 or temp > 50.0
 end
 ```
 
+Python:
+
+```python
+answer = ask_string("Do you want to continue (y/n)?")
+if answer != 'y' and answer != 'Y':
+    raise RuntimeError(f"User entered: {answer}")
+
+temp = 0.0
+while temp < 10.0 or temp > 50.0:
+    temp = ask("Enter the desired temperature between 10.0 and 50.0")
+```
+
 When possible, always use one of the other user input methods that has a constrained list of choices for your users (message_box, vertical_message_box, combo_box).
 
 Note that all these user input methods provide the user the option to “Cancel”. When cancel is clicked, the script is paused but remains at the user input line. When hitting “Go” to the continue, the user will be re-prompted to enter the value.
@@ -280,6 +504,8 @@ Note that all these user input methods provide the user the option to “Cancel�
 ### Conditionally Require Manual User Input Steps
 
 When possible, a useful design pattern is to write your scripts such that they can run without prompting for any user input. This allows the scripts to be more easily tested and provides a documented default value for any user input choices or values. To implement this pattern, all manual steps such as ask(), prompt(), and infinite wait() statements need to be wrapped with an if statement that checks the value of the $manual variable. If $manual is set, then the manual steps should be executed. If not, then a default value should be used.
+
+Ruby Only:
 
 ```ruby
 # Set the $manual variable – Only needed outside of suites
@@ -305,17 +531,31 @@ When running suites, there is a checkbox at the top of the tool called “Manual
 
 ### Outputing Extra Information to a Report
 
-COSMOS Script Runner operating on a script suite automatically generates a report that shows the PASS/FAILED/SKIPPED state for each script. You can also inject arbitrary text into this report with using OpenC3::Group.puts “Your Text”. Alternatively, you can simply use puts to place text into the Script Runner message log.
+COSMOS Script Runner operating on a script suite automatically generates a report that shows the PASS/FAILED/SKIPPED state for each script. You can also inject arbitrary text into this report using the example as follows. Alternatively, you can simply use print text into the Script Runner message log.
+
+Ruby:
 
 ```ruby
 class MyGroup < OpenC3::Group
   def script_1
-    # The following text will be placed in the  report
+    # The following text will be placed in the report
     OpenC3::Group.puts "Verifies requirements 304, 306, 310"
     # This puts line will show up in the sr_messages log file
     puts "script_1 complete"
   end
 end
+```
+
+Python:
+
+```python
+from openc3.script.suite import Group
+class MyGroup(Group):
+    def script_1():
+        # The following text will be placed in the report
+        Group.print("Verifies requirements 304, 306, 310")
+        # This puts line will show up in the sr_messages log file
+        print("script_1 complete")
 ```
 
 ### Getting the Most Recent Value of a Telemetry Point from Multiple Packets
@@ -335,6 +575,8 @@ value = tlm("INST LATEST TEMP")
 
 When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using the COSMOS packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.
 
+Ruby:
+
 ```ruby
 id = subscribe_packets([['INST', 'HEALTH_STATUS'], ['INST', 'ADCS']])
 wait 1.5
@@ -346,9 +588,23 @@ end
 id, packets = get_packet(id)
 ```
 
+Python:
+
+```python
+id = subscribe_packets([['INST', 'HEALTH_STATUS'], ['INST', 'ADCS']])
+wait(1.5)
+id, packets = get_packet(id)
+for packet in packets:
+    print(f"{packet['PACKET_TIMESECONDS']}: {packet['target_name']} {packet['packet_name']}")
+# Wait for some time later and re-use the last returned ID
+id, packets = get_packet(id)
+```
+
 ### Using Variables in Mnemonics
 
 Because command and telemetry mnemonics are just strings in COSMOS scripts, you can make use of variables in some contexts to make reusable code. For example, a method can take a target name as an input to support multiple instances of a target. You could also pass in the value for a set of numbered telemetry points.
+
+Ruby:
 
 ```ruby
 def example(target_name, temp_number)
@@ -357,11 +613,21 @@ def example(target_name, temp_number)
 end
 ```
 
+Python:
+
+```python
+def example(target_name, temp_number):
+    cmd(f"{target_name} COLLECT with TYPE NORMAL")
+    wait_check(f"{target_name} TEMP{temp_number} > 50.0")
+```
+
 This can also be useful when looping through a numbered set of telemetry points but be considerate of the downsides of looping as discussed in the [Looping vs Unrolled Loops]({{site.baseurl}}/docs/v5/scripting_best_practices#looping-vs-unrolled-loops) section.
 
 ### Using Custom wait_check_expression
 
-The COSMOS wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.
+The COSMOS wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaluated until it passes, or a timeout occurs. It is important to not use string interpolation within the actual expression or the values inside of the string interpolation syntax will only be evaluated once when it is converted into a string.
+
+Ruby:
 
 ```ruby
 one = 1
@@ -370,12 +636,21 @@ two = 2
 wait_check_expression("one == two", 1)
 # ERROR: CHECK: one == two is FALSE after waiting 1.017035 seconds
 
-# With PROTIP to see the values at the first evaluation of the expression
-wait_check_expression("one == two # #{one} == #{two}", 1)
-# ERROR: CHECK: one == two # 1 == 2 is FALSE after waiting 1.015817 seconds
-
 # Checking an integer range
 wait_check_expression("one > 0 and one < 10 # init value one = #{one}", 1)
+```
+
+Python:
+
+```python
+one = 1
+two = 2
+
+wait_check_expression("one == two", 1, 0.25, locals())
+# ERROR: CHECK: one == two is FALSE after waiting 1.017035 seconds
+
+# Checking an integer range
+wait_check_expression("one > 0 and one < 10", 1, 0.25, locals())
 ```
 
 ### COSMOS Scripting Differences from Regular Ruby Scripting
@@ -462,7 +737,7 @@ ss = ExcelSpreadsheet.new('C:/git/cosmos/test.xlsx')
 puts ss[0][0][0]
 ```
 
-### When to use Modules
+### When to use Ruby Modules
 
 Modules in Ruby have two purposes: namespacing and mixins. Namespacing allows having classes and methods with the same name, but with different meanings. For example, if they are namespaced, COSMOS can have a Packet class and another Ruby library can have a Packet class. This isn't typically useful for COSMOS scripting though.
 
@@ -480,7 +755,3 @@ class MyTest < OpenC3::Group
   end
 end
 ```
-
-## Further Reading
-
-Please see the [Ruby Scripting Guide]({{site.baseurl}}/docs/v5/ruby-scripting) for the full list of available scripting methods provided by COSMOS.

@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Ruby Scripting Guide
+title: Scripting API Guide
 toc: true
 ---
 
@@ -8,75 +8,19 @@ This document provides the information necessary to write test procedures using 
 
 ## Concepts
 
-### Ruby Programming Language
+### Programming Languages
 
-COSMOS scripting is implemented using the Ruby Programming language. This should be largely transparent to the user, but if advanced processing needs to be done such as writing files, then knowledge of Ruby is necessary. Please see the Ruby Guide for more information about Ruby.
+COSMOS scripting is implemented using either Ruby or Python. Ruby and Python are very similar scripting languages and in many cases the COSMOS APIs are identical between the two. This guide is written to support both with additional language specific information found in the [Script Writing Guide](/docs/v5/script-writing).
 
-A basic summary of Ruby:
+### Using Script Runner
 
-1. There is no 80 character limit on line length. Lines can be as long as you like, but be careful to not make them too long as it makes printed reviews of scripts more difficult.
-1. Variables do not have to be declared ahead of time and can be reassigned later, i.e. Ruby is dynamically typed.
-1. Variable values can be placed into strings using the "#{variable}" syntax. This is called variable interpolation.
-1. A variable declared inside of a block or loop will not exist outside of that block unless it was already declared (see Ruby's variable scoping for more information).
+Script Runner is a graphical application that provides the ideal environment for running and implementing your test procedures. The Script Runner tool is broken into 4 main sections. At the top of the tool is a menu bar that allows you to do such things as open and save files, perform a syntax check, and execute your script.
 
-The Ruby programming language provides a script writer a lot of power. But with great power comes great responsibility. Remember when writing your scripts that you or someone else will come along later and need to understand them. Therefore use the following style guidelines:
+Next is a tool bar that displays the currently executing script and three buttons, "Start/Go", "Pause/Retry", and "Stop". The Start/Go button is used to start the script and continue past errors or waits. The Pause/Retry button will pause the executing script. If an error is encountered the Pause button changes to Retry to re-execute the errored line. Finally, the Stop button will stop the executing script at any time.
 
-- Use two spaces for indentation and do NOT use tabs
-- Constants should be all caps with underscores
-  - `SPEED_OF_LIGHT = 299792458 # meters per s`
-- Variable names and method names should be in lowercase with underscores
-  - `last_name = "Smith"`
-  - `perform_setup_operation()`
-- Class names (when used) should be camel case and the files which contain them should match but be lowercase with underscores
-  - `class DataUploader # in 'data_uploader.rb'`
-  - `class CcsdsUtility # in 'ccsds_utility.rb'`
-- Don't add useless comments but instead describe intent
+Third is the display of the actual script. While the script is not running, you may edit and compose scripts in this area. A handy code completion feature is provided that will list out the available commands or telemetry points as you are writing your script. Simply begin writing a cmd( or tlm( line to bring up code completion. This feature greatly reduces typos in command and telemetry mnemonics.
 
-<div style="clear:both;"></div>
-
-The following is an example of good style:
-
-```ruby
-load 'TARGET/lib/upload_utility.rb' # library we do NOT want to show executing
-load_utility 'TARGET/lib/helper_utility.rb' # library we do want to show executing
-
-# Declare constants
-OUR_TARGETS = ['INST','INST2']
-
-# Clear the collect counter of the passed in target name
-def clear_collects(target)
-  cmd("#{target} CLEAR")
-  wait_check("#{target} HEALTH_STATUS COLLECTS == 0", 5)
-end
-
-######################################
-# START
-######################################
-helper = HelperUtility.new
-helper.setup
-
-# Perform collects on all the targets
-OUR_TARGETS.each do |target|
-  collects = tlm("#{target} HEALTH_STATUS COLLECTS")
-  cmd("#{target} COLLECT with TYPE SPECIAL")
-  wait_check("#{target} HEALTH_STATUS COLLECTS == #{collects + 1}", 5)
-end
-
-clear_collects('INST')
-clear_collects('INST2')
-```
-
-This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening.
-
-Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.
-
-Then we declare our local methods of which we have one called clear_collects. Please provide a comment at the beginning of each method describing what it does and the parameters that it takes.
-
-The 'helper_utility' is then created by HelperUtility.new. Note the similarity in the class name and the file name we loaded.
-
-The collect example shows how you can iterate over the array of strings we previously created and use variables when commanding and checking telemetry. The pound bracket #{} notation puts whatever the variable holds inside the #{} into the string. You can even execute additional code inside the #{} like we do when checking for the collect count to increment.
-
-Finally we call our clear_collects method on each target by passing the target name. You'll notice there we used single quotes instead of double quotes. The only difference is that double quotes allow for the #{} syntax and support escape characters like newlines (\n) while single quotes do not. Otherwise it's just a personal style preference.
+Finally, the bottom of the display is the log messages. All commands that are sent, errors that occur, and user print statements appear in this area.
 
 ### Telemetry Types
 
@@ -89,247 +33,106 @@ There are four different ways that telemetry values can be retrieved in COSMOS. 
 | Formatted            | Formatted telemetry is converted telemetry that has gone through a printf style conversion into a string. Formatted telemetry will always have a string representation. If no format string is defined for a telemetry point, then formatted telemetry will be the same as converted telemetry except represented as string. |
 | Formatted with Units | Formatted with Units telemetry is the same as Formatted telemetry except that a space and the units of the telemetry item are appended to the end of the string. If no units are defined for a telemetry item then this type is the same as Formatted telemetry.                                                             |
 
-## Writing Test Procedures
+## Script Runner API
 
-### Using Subroutines
+The following methods are designed to be used in Script Runner procedures. Many can also be used in custom built COSMOS tools. Please see the COSMOS Tool API section for methods that are more efficient to use in custom tools.
 
-Subroutines in COSMOS scripting are first class citizens. They can allow you to perform repetitive tasks without copying the same code multiple times and in multiple different test procedures. This reduces errors and makes your test procedures more maintainable. For example, if multiple test procedures need to turn on a power supply and check telemetry, they can both use a common subroutine. If a change needs to be made to how the power supply is turned on, then it only has to be done in one location and all test procedures reap the benefits. No need to worry about forgetting to update one. Additionally using subroutines allows your high level procedure to read very cleanly and makes it easier for others to review. See the Subroutine Example example.
+<div class="note info">
+  <h5>Python Import Script API</h5>
+  <p style="margin-bottom:20px;">All Python examples assume you first import the openc3.script APIs by doing:</p>
 
-## Example Test Procedures
-
-### Subroutines
-
-```ruby
-# My Utility Procedure: program_utilities.rb
-# Author: Bob
-
-#################################################################
-# Define helpful subroutines useful by multiple test procedures
-#################################################################
-
-# This subroutine will put the instrument into safe mode
-def goto_safe_mode
-  cmd("INST SAFE")
-  wait_check("INST SOH MODE == 'SAFE'", 30)
-  check("INST SOH VOLTS1 < 1.0")
-  check("INST SOH TEMP1 > 20.0")
-  puts("The instrument is in SAFE mode")
-end
-
-# This subroutine will put the instrument into run mode
-def goto_run_mode
-  cmd("INST RUN")
-  wait_check("INST SOH MODE == 'RUN'", 30)
-  check("INST SOH VOLTS1 > 27.0")
-  check("INST SOH TEMP1 > 20.0")
-  puts("The instrument is in RUN mode")
-end
-
-# This subroutine will turn on the power supply
-def turn_on_power
-  cmd("GSE POWERON")
-  wait_check("GSE SOH VOLTAGE > 27.0")
-  check("GSE SOH CURRENT < 2.0")
-  puts("WARNING: Power supply is ON!")
-end
-
-# This subroutine will turn off the power supply
-def turn_off_power
-  cmd("GSE POWEROFF")
-  wait_check("GSE SOH VOLTAGE < 1.0")
-  check("GSE SOH CURRENT < 0.1")
-  puts("Power supply is OFF")
-end
-```
-
-```ruby
-# My Test Procedure: run_instrument.rb
-# Author: Larry
-
-load_utility("TARGET/lib/program_utilities.rb")
-
-turn_on_power()
-goto_run_mode()
-
-# Perform unique tests here
-
-goto_safe_mode()
-turn_off_power()
-```
-
-### Ruby Control Structures
-
-```ruby
-#if, elsif, else structure
-
-x = 3
-
-if tlm("INST HEALTH_STATUS COLLECTS") > 5
-  puts "More than 5 collects!"
-elsif (x == 4)
-  puts "variable equals 4!"
-else
-  puts "Nothing interesting going on"
-end
-
-# Endless loop and single-line if
-
-loop do
-  break if tlm("INST HEALTH_STATUS TEMP1") > 25.0
-  wait(1)
-end
-
-# Do something a given number of times
-
-5.times do
-  cmd("INST COLLECT")
-end
-```
-
-### Iterating over similarly named telemetry points
-
-```ruby
-# This block of code goes through the range of numbers 1 through 4 (1..4)
-# and checks telemetry items TEMP1, TEMP2, TEMP3, and TEMP4
-
-(1..4).each do |num|
-  check("INST HEALTH_STATUS TEMP#{num} > 25.0")
-end
-
-# You could also do
-num = 1
-4.times do
-  check("INST HEALTH_STATUS TEMP#{num} > 25.0")
-  num = num + 1
-end
-```
-
-### Prompting for User Input
-
-```ruby
-numloops = ask("Please enter the number of times to loop")
-
-numloops.times do
-  puts "Looping"
-end
-```
-
-### Skipping a test case in TestRunner
-
-```ruby
-def test_feature_x
-  continue = ask("Test feature x?")
-
-  if continue == 'y'
-    # Test goes here
-  else
-    raise SkipTestCase, "Skipping feature x test"
-  end
-end
-```
-
-## Running Test Procedures
-
-## Execution Environment
-
-### Using Script Runner
-
-Script Runner is a graphical application that provides the ideal environment for running and implementing your test procedures. The Script Runner tool is broken into 4 main sections. At the top of the tool is a menu bar that allows you to do such things as open and save files, perform a syntax check, and execute your script.
-
-Next is a tool bar that displays the currently executing script and three buttons, "Start/Go", "Pause/Retry", and "Stop". The Start/Go button is used to start the script and continue past errors or waits. The Pause/Retry button will pause the executing script. If an error is encountered the Pause button changes to Retry to re-execute the errored line. Finally, the Stop button will stop the executing script at any time.
-
-Third is the display of the actual script. While the script is not running, you may edit and compose scripts in this area. A handy code completion feature is provided that will list out the available commands or telemetry points as you are writing your script. Simply begin writing a cmd( or tlm( line to bring up code completion. This feature greatly reduces typos in command and telemetry mnemonics.
-
-Finally, displayed is the log messages. All commands that are sent, errors that occur, and user puts statements appear in this area.
-
-## Test Procedure API
-
-The following methods are designed to be used in test procedures. However, they can also be used in custom built COSMOS tools. Please see the COSMOS Tool API section for methods that are more efficient to use in custom tools.
+  <p><code>from openc3.script import *</code></p>
+</div>
 
 ### Migration from COSMOS v4
 
 The following API methods are either deprecated (will not be ported to COSMOS 5) or currently unimplemented (eventually will be ported to COSMOS 5):
 
-| Method                                | Tool                         | Status                                                |
-| ------------------------------------- | ---------------------------- | ----------------------------------------------------- |
-| clear                                 | Telemetry Viewer             | Deprecated, use clear_screen                          |
-| clear_all                             | Telemetry Viewer             | Deprecated, use clear_all_screens                     |
-| close_local_screens                   | Telemetry Viewer             | Deprecated, use clear_screen                          |
-| clear_disconnected_targets            | Script Runner                | Deprecated                                            |
-| cmd_tlm_clear_counters                | Command and Telemetry Server | Deprecated                                            |
-| cmd_tlm_reload                        | Command and Telemetry Server | Deprecated                                            |
-| display                               | Telemetry Viewer             | Deprecated, use display_screen                        |
-| get_all_packet_logger_info            | Command and Telemetry Server | Deprecated                                            |
-| get_all_target_info                   | Command and Telemetry Server | Deprecated, use get_target_interfaces                 |
-| get_background_tasks                  | Command and Telemetry Server | Deprecated                                            |
-| get_cmd_list                          | Command and Telemetry Server | Deprecated, use get_all_commands                      |
-| get_cmd_log_filename                  | Command and Telemetry Server | Deprecated                                            |
-| get_cmd_param_list                    | Command and Telemetry Server | Deprecated, use get_command                           |
-| get_cmd_tlm_disconnect                | Script Runner                | Deprecated, use $disconnect                           |
-| get_disconnected_targets              | Script Runner                | Unimplemented                                         |
-| get_interface_info                    | Command and Telemetry Server | Deprecated, use get_interface                         |
-| get_interface_targets                 | Command and Telemetry Server | Deprecated                                            |
-| get_output_logs_filenames             | Command and Telemetry Server | Deprecated                                            |
-| get_packet                            | Command and Telemetry Server | Deprecated, use get_packets                           |
-| get_packet_data                       | Command and Telemetry Server | Deprecated, use get_packets                           |
-| get_packet_logger_info                | Command and Telemetry Server | Deprecated                                            |
-| get_packet_loggers                    | Command and Telemetry Server | Deprecated                                            |
-| get_replay_mode                       | Replay                       | Deprecated                                            |
-| get_router_info                       | Command and Telemetry Server | Deprecated, use get_router                            |
-| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated                                            |
-| get_server_message                    | Command and Telemetry Server | Deprecated                                            |
-| get_server_message_log_filename       | Command and Telemetry Server | Deprecated                                            |
-| get_server_status                     | Command and Telemetry Server | Deprecated                                            |
-| get_target_ignored_items              | Command and Telemetry Server | Deprecated, use get_target                            |
-| get_target_ignored_parameters         | Command and Telemetry Server | Deprecated, use get_target                            |
-| get_target_info                       | Command and Telemetry Server | Deprecated, use get_target                            |
-| get_tlm_details                       | Command and Telemetry Server | Deprecated                                            |
-| get_tlm_item_list                     | Command and Telemetry Server | Deprecated                                            |
-| get_tlm_list                          | Command and Telemetry Server | Deprecated                                            |
-| get_tlm_log_filename                  | Command and Telemetry Server | Deprecated                                            |
-| interface_state                       | Command and Telemetry Server | Deprecated, use get_interface                         |
-| override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm                          |
-| open_directory_dialog                 | Script Runner                | Deprecated                                            |
-| replay_move_end                       | Replay                       | Deprecated                                            |
-| replay_move_index                     | Replay                       | Deprecated                                            |
-| replay_move_start                     | Replay                       | Deprecated                                            |
-| replay_play                           | Replay                       | Deprecated                                            |
-| replay_reverse_play                   | Replay                       | Deprecated                                            |
-| replay_select_file                    | Replay                       | Deprecated                                            |
-| replay_set_playback_delay             | Replay                       | Deprecated                                            |
-| replay_status                         | Replay                       | Deprecated                                            |
-| replay_step_back                      | Replay                       | Deprecated                                            |
-| replay_step_forward                   | Replay                       | Deprecated                                            |
-| replay_stop                           | Replay                       | Deprecated                                            |
-| router_state                          | Command and Telemetry Server | Deprecated, use get_router                            |
-| save_file_dialog                      | Script Runner                | Deprecated                                            |
-| set_cmd_tlm_disconnect                | Script Runner                | Deprecated, use disconnect_script                     |
-| set_disconnected_targets              | Script Runner                | Unimplemented                                         |
-| set_replay_mode                       | Replay                       | Deprecated                                            |
-| set_stdout_max_lines                  | Script Runner                | Deprecated                                            |
-| set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm                               |
-| show_backtrace                        | Script Runner                | Deprecated, backtrace always shown                    |
-| shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                                            |
-| start_cmd_log                         | Command and Telemetry Server | Deprecated                                            |
-| start_logging                         | Command and Telemetry Server | Deprecated                                            |
-| start_new_scriptrunner_message_log    | Command and Telemetry Server | Deprecated                                            |
-| start_new_server_message_log          | Command and Telemetry Server | Deprecated                                            |
-| start_tlm_log                         | Command and Telemetry Server | Deprecated                                            |
-| stop_background_task                  | Command and Telemetry Server | Deprecated                                            |
-| stop_cmd_log                          | Command and Telemetry Server | Deprecated                                            |
-| stop_logging                          | Command and Telemetry Server | Deprecated                                            |
-| stop_tlm_log                          | Command and Telemetry Server | Deprecated                                            |
-| subscribe_limits_events               | Command and Telemetry Server | Deprecated                                            |
-| subscribe_packet_data                 | Command and Telemetry Server | Deprecated, use subscribe_packets                     |
-| subscribe_server_messages             | Command and Telemetry Server | Unimplemented                                         |
-| tlm_variable                          | Script Runner                | Deprecated, use tlm() and pass type                   |
-| unsubscribe_limits_events             | Command and Telemetry Server | Deprecated                                            |
-| unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                                            |
-| unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                                            |
-| wait_raw                              | Script Runner                | Deprecated, use wait(..., type: :RAW)                 |
-| wait_check_raw                        | Script Runner                | Deprecated, use wait_check(..., type: :RAW)           |
-| wait_tolerance_raw                    | Script Runner                | Deprecated, use wait_tolerance(..., type: :RAW)       |
-| wait_check_tolerance_raw              | Script Runner                | Deprecated, use wait_check_tolerance(..., type: :RAW) |
+| Method                                | Tool                         | Status                                                                    |
+| ------------------------------------- | ---------------------------- | ------------------------------------------------------------------------- |
+| clear                                 | Telemetry Viewer             | Deprecated, use clear_screen                                              |
+| clear_all                             | Telemetry Viewer             | Deprecated, use clear_all_screens                                         |
+| close_local_screens                   | Telemetry Viewer             | Deprecated, use clear_screen                                              |
+| clear_disconnected_targets            | Script Runner                | Deprecated                                                                |
+| cmd_tlm_clear_counters                | Command and Telemetry Server | Deprecated                                                                |
+| cmd_tlm_reload                        | Command and Telemetry Server | Deprecated                                                                |
+| display                               | Telemetry Viewer             | Deprecated, use display_screen                                            |
+| get_all_packet_logger_info            | Command and Telemetry Server | Deprecated                                                                |
+| get_all_target_info                   | Command and Telemetry Server | Deprecated, use get_target_interfaces                                     |
+| get_background_tasks                  | Command and Telemetry Server | Deprecated                                                                |
+| get_all_cmd_info                      | Command and Telemetry Server | Deprecated, use get_all_commands                                          |
+| get_all_tlm_info                      | Command and Telemetry Server | Deprecated, use get_all_telemetry                                         |
+| get_cmd_list                          | Command and Telemetry Server | Deprecated, use get_all_commands                                          |
+| get_cmd_log_filename                  | Command and Telemetry Server | Deprecated                                                                |
+| get_cmd_param_list                    | Command and Telemetry Server | Deprecated, use get_command                                               |
+| get_cmd_tlm_disconnect                | Script Runner                | Deprecated, use $disconnect                                               |
+| get_disconnected_targets              | Script Runner                | Unimplemented                                                             |
+| get_interface_info                    | Command and Telemetry Server | Deprecated, use get_interface                                             |
+| get_interface_targets                 | Command and Telemetry Server | Deprecated                                                                |
+| get_output_logs_filenames             | Command and Telemetry Server | Deprecated                                                                |
+| get_packet                            | Command and Telemetry Server | Deprecated, use get_packets                                               |
+| get_packet_data                       | Command and Telemetry Server | Deprecated, use get_packets                                               |
+| get_packet_logger_info                | Command and Telemetry Server | Deprecated                                                                |
+| get_packet_loggers                    | Command and Telemetry Server | Deprecated                                                                |
+| get_replay_mode                       | Replay                       | Deprecated                                                                |
+| get_router_info                       | Command and Telemetry Server | Deprecated, use get_router                                                |
+| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated                                                                |
+| get_server_message                    | Command and Telemetry Server | Deprecated                                                                |
+| get_server_message_log_filename       | Command and Telemetry Server | Deprecated                                                                |
+| get_server_status                     | Command and Telemetry Server | Deprecated                                                                |
+| get_stale                             | Command and Telemetry Server | Deprecated                                                                |
+| get_target_ignored_items              | Command and Telemetry Server | Deprecated, use get_target                                                |
+| get_target_ignored_parameters         | Command and Telemetry Server | Deprecated, use get_target                                                |
+| get_target_info                       | Command and Telemetry Server | Deprecated, use get_target                                                |
+| get_target_list                       | Command and Telemetry Server | Deprecated, use get_target_names                                          |
+| get_tlm_details                       | Command and Telemetry Server | Deprecated                                                                |
+| get_tlm_item_list                     | Command and Telemetry Server | Deprecated                                                                |
+| get_tlm_list                          | Command and Telemetry Server | Deprecated                                                                |
+| get_tlm_log_filename                  | Command and Telemetry Server | Deprecated                                                                |
+| interface_state                       | Command and Telemetry Server | Deprecated, use get_interface                                             |
+| override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm                                              |
+| open_directory_dialog                 | Script Runner                | Deprecated                                                                |
+| replay_move_end                       | Replay                       | Deprecated                                                                |
+| replay_move_index                     | Replay                       | Deprecated                                                                |
+| replay_move_start                     | Replay                       | Deprecated                                                                |
+| replay_play                           | Replay                       | Deprecated                                                                |
+| replay_reverse_play                   | Replay                       | Deprecated                                                                |
+| replay_select_file                    | Replay                       | Deprecated                                                                |
+| replay_set_playback_delay             | Replay                       | Deprecated                                                                |
+| replay_status                         | Replay                       | Deprecated                                                                |
+| replay_step_back                      | Replay                       | Deprecated                                                                |
+| replay_step_forward                   | Replay                       | Deprecated                                                                |
+| replay_stop                           | Replay                       | Deprecated                                                                |
+| require_utility                       | Script Runner                | Deprecated but still exists for backwards compatibility, use load_utility |
+| router_state                          | Command and Telemetry Server | Deprecated, use get_router                                                |
+| save_file_dialog                      | Script Runner                | Deprecated                                                                |
+| set_cmd_tlm_disconnect                | Script Runner                | Deprecated, use disconnect_script                                         |
+| set_disconnected_targets              | Script Runner                | Unimplemented                                                             |
+| set_replay_mode                       | Replay                       | Deprecated                                                                |
+| set_stdout_max_lines                  | Script Runner                | Deprecated                                                                |
+| set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm                                                   |
+| show_backtrace                        | Script Runner                | Deprecated, backtrace always shown                                        |
+| shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                                                                |
+| start_cmd_log                         | Command and Telemetry Server | Deprecated                                                                |
+| start_logging                         | Command and Telemetry Server | Deprecated                                                                |
+| start_new_scriptrunner_message_log    | Command and Telemetry Server | Deprecated                                                                |
+| start_new_server_message_log          | Command and Telemetry Server | Deprecated                                                                |
+| start_tlm_log                         | Command and Telemetry Server | Deprecated                                                                |
+| stop_background_task                  | Command and Telemetry Server | Deprecated                                                                |
+| stop_cmd_log                          | Command and Telemetry Server | Deprecated                                                                |
+| stop_logging                          | Command and Telemetry Server | Deprecated                                                                |
+| stop_tlm_log                          | Command and Telemetry Server | Deprecated                                                                |
+| subscribe_limits_events               | Command and Telemetry Server | Deprecated                                                                |
+| subscribe_packet_data                 | Command and Telemetry Server | Deprecated, use subscribe_packets                                         |
+| subscribe_server_messages             | Command and Telemetry Server | Unimplemented                                                             |
+| tlm_variable                          | Script Runner                | Deprecated, use tlm() and pass type                                       |
+| unsubscribe_limits_events             | Command and Telemetry Server | Deprecated                                                                |
+| unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                                                                |
+| unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                                                                |
+| wait_raw                              | Script Runner                | Deprecated, use wait(..., type: :RAW)                                     |
+| wait_check_raw                        | Script Runner                | Deprecated, use wait_check(..., type: :RAW)                               |
+| wait_tolerance_raw                    | Script Runner                | Deprecated, use wait_tolerance(..., type: :RAW)                           |
+| wait_check_tolerance_raw              | Script Runner                | Deprecated, use wait_check_tolerance(..., type: :RAW)                     |
 
 ## Retrieving User Input
 
@@ -339,19 +142,19 @@ These methods allow the user to enter values that are needed by the script.
 
 Prompts the user for input with a question. User input is automatically converted from a string to the appropriate data type. For example if the user enters "1", the number 1 as an integer will be returned.
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
-ask("<question>")
+ask("<question>", <blank_or_default>, <password>)
 ```
 
 | Parameter        | Description                                                                                                                             |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | question         | Question to prompt the user with.                                                                                                       |
 | blank_or_default | Whether or not to allow empty responses (optional - defaults to false). If a non-boolean value is passed it is used as a default value. |
-| password         | Whether to treat the entry as a password which is displayed with dots and not logged.                                                   |
+| password         | Whether to treat the entry as a password which is displayed with dots and not logged. Default is false.                                 |
 
-Example:
+Ruby Example:
 
 ```ruby
 value = ask("Enter an integer")
@@ -360,29 +163,47 @@ value = ask("Enter a value", 10)
 password = ask("Enter your password", false, true)
 ```
 
+Python Example:
+
+```python
+value = ask("Enter an integer")
+value = ask("Enter a value or nothing", True)
+value = ask("Enter a value", 10)
+password = ask("Enter your password", False, True)
+```
+
 ### ask_string
 
 Prompts the user for input with a question. User input is always returned as a string. For exampe if the user enters "1", the string "1" will be returned.
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
-ask_string("<question>")
+ask_string("<question>", <blank_or_default>, <password>)
 ```
 
 | Parameter        | Description                                                                                                                             |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | question         | Question to prompt the user with.                                                                                                       |
 | blank_or_default | Whether or not to allow empty responses (optional - defaults to false). If a non-boolean value is passed it is used as a default value. |
-| password         | Whether to treat the entry as a password which is displayed with dots and not logged.                                                   |
+| password         | Whether to treat the entry as a password which is displayed with dots and not logged. Default is false.                                 |
 
-Example:
+Ruby Example:
 
 ```ruby
 string = ask_string("Enter a String")
 string = ask_string("Enter a value or nothing", true)
 string = ask_string("Enter a value", "test")
 password = ask_string("Enter your password", false, true)
+```
+
+Python Example:
+
+```python
+string = ask_string("Enter a String")
+string = ask_string("Enter a value or nothing", True)
+string = ask_string("Enter a value", "test")
+password = ask_string("Enter your password", False, True)
 ```
 
 ### message_box
@@ -393,7 +214,7 @@ password = ask_string("Enter your password", false, true)
 
 The message_box, vertical_message_box, and combo_box methods create a message box with arbitrary buttons or selections that the user can click. The text of the button clicked is returned.
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
 message_box("<message>", "<button text 1>", ...)
@@ -406,7 +227,7 @@ combo_box("<message>", "<selection text 1>", ...)
 | message               | Message to prompt the user with. |
 | button/selection text | Text for a button or selection   |
 
-Example:
+Ruby Example:
 
 ```ruby
 value = message_box("Select the sensor number", 'One', 'Two')
@@ -420,22 +241,41 @@ when 'Two'
 end
 ```
 
+Python Example:
+
+```python
+value = message_box("Select the sensor number", 'One', 'Two')
+value = vertical_message_box("Select the sensor number", 'One', 'Two')
+value = combo_box("Select the sensor number", 'One', 'Two')
+match value:
+    case 'One':
+        print('Sensor One')
+    case 'Two':
+        print('Sensor Two')
+```
+
 ### get_target_file
 
 Return a file handle to a file in the target directory
 
-Syntax:
+Ruby Syntax:
 
 ```ruby
 get_target_file("<File Path>", original: false)
 ```
 
-| Parameter | Description                                                                                                           |
-| --------- | --------------------------------------------------------------------------------------------------------------------- |
-| path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb |
-| original  | Whether to get the original file from the plug-in, or any modifications to the file                                   |
+Python Syntax:
 
-Example:
+```ruby
+get_target_file("<File Path>", original=False)
+```
+
+| Parameter | Description                                                                                                                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb                                                                                                                 |
+| original  | Whether to get the original file from the plug-in, or any modifications to the file. Default is false which means to grab the modified file. If the modified file does not exist the API will automatically try to pull the original. |
+
+Ruby Example:
 
 ```ruby
 file = get_target_file("INST/data/attitude.bin")
@@ -446,11 +286,24 @@ puts file.read()
 file.unlink # delete file
 ```
 
+Python Example:
+
+```python
+from openc3.utilities.string import formatted
+
+file = get_target_file("INST/data/attitude.bin")
+print(formatted(file.read())) # format a binary file
+file.close() # delete file
+file = get_target_file("INST/procedures/checks.rb", original=True)
+print(file.read())
+file.close() # delete file
+```
+
 ### put_target_file
 
 Writes a file to the target directory
 
-Syntax:
+Ruby or Python Syntax:
 
 ```ruby
 put_target_file("<File Path>", "IO or String")
@@ -461,7 +314,7 @@ put_target_file("<File Path>", "IO or String")
 | path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb. The file can previously exist or not. Note: The original file from the plug-in will not be modified, however existing modified files will be overwritten. |
 | data      | The data can be an IO object or String                                                                                                                                                                                                                                           |
 
-Example:
+Ruby Example:
 
 ```ruby
 put_target_file("INST/test1.txt", "this is a string test")
@@ -472,11 +325,22 @@ put_target_file("INST/test2.txt", file)
 put_target_file("INST/test3.bin", "\x00\x01\x02\x03\xFF\xEE\xDD\xCC") # binary
 ```
 
+Python Example:
+
+```python
+put_target_file("INST/test1.txt", "this is a string test")
+file = tempfile.NamedTemporaryFile(mode="w+t")
+file.write("this is a Io test")
+file.seek(0)
+put_target_file("INST/test2.txt", file)
+put_target_file("INST/test3.bin", b"\x00\x01\x02\x03\xFF\xEE\xDD\xCC") # binary
+```
+
 ### delete_target_file
 
 Delete a file in the target directory
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
 delete_target_file("<File Path>")
@@ -486,7 +350,7 @@ delete_target_file("<File Path>")
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb. Note: Only files created with put_target_file can be deleted. Original files from the plugin installation will remain. |
 
-Example:
+Ruby / Python Example:
 
 ```ruby
 put_target_file("INST/delete_me.txt", "to be deleted")
@@ -501,11 +365,18 @@ The open_file_dialog and open_files_dialog methods create a file dialog box so t
 
 Note: COSMOS 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn't make sense in new architecture so you must request individual files.
 
-Syntax:
+Ruby Syntax:
 
 ```ruby
 open_file_dialog("<title>", "<message>", filter: "<filter>")
 open_files_dialog("<title>", "<message>", filter: "<filter>")
+```
+
+Python Syntax:
+
+```python
+open_file_dialog("<title>", "<message>", filter="<filter>")
+open_files_dialog("<title>", "<message>", filter="<filter>")
 ```
 
 | Parameter | Description                                                                                                                                                                                                                        |
@@ -514,7 +385,7 @@ open_files_dialog("<title>", "<message>", filter: "<filter>")
 | Message   | The message to display in the dialog box. Optional parameter.                                                                                                                                                                      |
 | Filter    | Named parameter to filter allowed file types. Optional parameter, specified as comma delimited file types, e.g. ".txt,.doc". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept for more information. |
 
-Example:
+Ruby Example:
 
 ```ruby
 file = open_file_dialog("Open a single file", "Choose something interesting", filter: ".txt")
@@ -531,6 +402,22 @@ files.each do |file|
 end
 ```
 
+Python Example:
+
+```python
+file = open_file_dialog("Open a single file", "Choose something interesting", filter=".txt")
+print(file)
+print(file.read())
+file.close()
+
+files = open_files_dialog("Open multiple files") # message is optional
+print(files) # Array of File objects (even if you select only one)
+for file in files:
+    print(file)
+    print(file.read)
+    file.close()
+```
+
 ## Providing information to the user
 
 These methods notify the user that something has occurred.
@@ -539,7 +426,7 @@ These methods notify the user that something has occurred.
 
 Displays a message to the user and waits for them to press an ok button.
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
 prompt("<message>")
@@ -549,7 +436,7 @@ prompt("<message>")
 | --------- | -------------------------------- |
 | message   | Message to prompt the user with. |
 
-Example:
+Ruby Python Example:
 
 ```ruby
 prompt("Press OK to continue")
@@ -757,6 +644,35 @@ Example:
 ```ruby
 cmd_raw_no_checks("INST COLLECT with DURATION 11, TYPE 1")
 cmd_raw_no_checks("INST", "COLLECT", "DURATION" => 11, "TYPE" => 1)
+```
+
+### build_command (since 5.8.0)
+
+Builds a command binary string
+
+Ruby Syntax:
+
+```ruby
+build_command(<args>, range_check: true, raw: false)
+```
+
+Python Syntax:
+
+```python
+build_command(<args>, range_check=True, raw=False)
+```
+
+| Parameter   | Description                                                                             |
+| ----------- | --------------------------------------------------------------------------------------- |
+| args        | Command                                                                                 |
+| range_check | Whether to perform range checking on the command. Default is true.                      |
+| raw         | Whether to write the command arguments as RAW or CONVERTED value. Default is CONVERTED. |
+
+Ruby / Python Example:
+
+```ruby
+x = build_command("INST COLLECT with DURATION 10, TYPE NORMAL")
+print(x)  #=> {"id"=>"1696437370872-0", "result"=>"SUCCESS", "time"=>"1696437370872305961", "received_time"=>"1696437370872305961", "target_name"=>"INST", "packet_name"=>"COLLECT", "received_count"=>"3", "buffer"=>"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00A \x00\x00\xAB\x00\x00\x00\x00"}
 ```
 
 ### send_raw
@@ -987,19 +903,6 @@ Example:
 
 ```ruby
 cmd_cnt = get_cmd_cnt("INST", "COLLECT") # Number of times the INST COLLECT command has been sent
-```
-
-### get_all_cmd_info
-
-Returns the number of times each command has been sent. The return value is an array of arrays where each subarray contains the target name, command name, and packet count for a command.
-
-Syntax / Example:
-
-```ruby
-cmd_info = get_all_cmd_info()
-cmd_info.each do |target_name, cmd_name, pkt_count|
-  puts "Target: #{target_name}, Command: #{cmd_name}, Packet count: #{pkt_count}"
-end
 ```
 
 ## Handling Telemetry
@@ -1396,19 +1299,6 @@ Example:
 
 ```ruby
 tlm_cnt = get_tlm_cnt("INST", "HEALTH_STATUS") # Number of times the INST HEALTH_STATUS telemetry packet has been received.
-```
-
-### get_all_tlm_info
-
-Returns the number of times each telemetry packet has been received. The return value is an array of arrays where each subarray contains the target name, telemetry packet name, and packet count for a telemetry packet.
-
-Syntax / Example:
-
-```ruby
-tlm_info = get_all_tlm_info()
-tlm_info.each do |target_name, pkt_name, pkt_count|
-  puts "Target: #{target_name}, Packet: #{pkt_name}, Packet count: #{pkt_count}"
-end
 ```
 
 ### set_tlm
@@ -2064,32 +1954,6 @@ overall_limits_state = get_overall_limits_state()
 overall_limits_state = get_overall_limits_state([['INST', 'HEALTH_STATUS', 'TEMP1']])
 ```
 
-### get_stale
-
-Returns a list of stale packets. The return value is an array of arrays where each subarray contains the target name and packet name for a stale packet.
-
-Syntax:
-
-```ruby
-get_stale(with_limits_only: false, target_name: nil, staleness_sec: 30)
-```
-
-| Parameter         | Description                                                                                                                        |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| with_limits_only: | If true, return only the packets that have limits items and thus affect the overall limits state of the system. Defaults to false. |
-| target_name:      | If specified, return only the packets associated with the given target. Defaults to nil.                                           |
-| staleness_sec:    | Return packets that haven't been received since X seconds ago. Defaults to 30.                                                     |
-
-Example:
-
-```ruby
-stale_packets = get_stale()
-stale_packets.each do |target, packet|
-  puts "Stale packet: #{target} #{packet}"
-end
-inst_stale_packets = get_stale(target_name: "INST")
-```
-
 ### get_limits_events
 
 Returns limits events based on an offset returned from the last time it was called.
@@ -2140,14 +2004,14 @@ pp events
 
 Methods for getting knowledge about targets.
 
-### get_target_list
+### get_target_names
 
 Returns a list of the targets in the system in an array.
 
 Syntax / Example:
 
 ```ruby
-targets = get_target_list()
+targets = get_target_names()
 ```
 
 ### get_target
@@ -2802,6 +2666,36 @@ Syntax / Example:
 
 ```ruby
 curr_line_delay = get_line_delay()
+```
+
+### set_max_output
+
+This method sets the maximum number of characters to display in Script Runner output before truncating. Default is 50,000 characters.
+
+Syntax:
+
+```ruby
+set_max_output(<characters>)
+```
+
+| Parameter  | Description                                      |
+| ---------- | ------------------------------------------------ |
+| characters | Number of characters to output before truncating |
+
+Example:
+
+```ruby
+set_max_output(100)
+```
+
+### get_max_output
+
+The method gets the maximum number of characters to display in Script Runner output before truncating. Default is 50,000 characters.
+
+Syntax / Example:
+
+```ruby
+puts get_max_output()
 ```
 
 ### disable_instrumentation

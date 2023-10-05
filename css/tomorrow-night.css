@@ -59,7 +59,7 @@
 .highlight .sr { color: #b5bd68 !important; } /* Literal.String.Regex */
 .highlight .s1 { color: #b5bd68 !important; } /* Literal.String.Single */
 .highlight .ss { color: #b5bd68 !important; } /* Literal.String.Symbol */
-.highlight .bp { color: #c5c8c6 !important; } /* Name.Builtin.Pseudo */
+.highlight .bp { color: #b294bb !important; } /* Name.Builtin.Pseudo (previously c5c8c6) */
 .highlight .vc { color: #cc6666 !important; } /* Name.Variable.Class */
 .highlight .vg { color: #cc6666 !important; } /* Name.Variable.Global */
 .highlight .vi { color: #cc6666 !important; } /* Name.Variable.Instance */
