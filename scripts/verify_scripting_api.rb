@@ -35,14 +35,22 @@ File.open(File.join(File.dirname(__FILE__),'../_docs_v5/4_guides/scripting_api.m
         next
       end
       next unless apis
-      documented_methods << line.strip.split(' ')[1]
+      line = line.strip[4..-1]
+      # Split off comments like '(since 5.0.0)'
+      line = line.split('(')[0].strip if line.include?('(')
+      if line.include?(",") # Split lines like '### check, check_raw'
+        line.split(',').each do |method|
+          documented_methods << method.strip
+        end
+      else
+        documented_methods << line
+      end
     end
   end
 end
 documented_methods.uniq!
 
-DEPRECATED = %w(get_all_target_info)
-
+DEPRECATED = %w(require_utility get_all_target_info check_tolerance_raw wait_raw wait_check_raw wait_tolerance_raw wait_check_tolerance_raw)
 puts "Documented but doesn't exist:"
 puts documented_methods - api_methods.keys
 puts "\nExists but not documented:"
