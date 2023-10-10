@@ -47,8 +47,8 @@
     - monitoring
     - performance
     - raspberrypi
-    - scripting
-    - scripting_best_practices
+    - scripting_api
+    - script_writing
 
 - title: Development
   docs:
