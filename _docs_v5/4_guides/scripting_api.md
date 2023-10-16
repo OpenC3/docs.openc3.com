@@ -1607,6 +1607,38 @@ normalize_tlm("INST HEALTH_STATUS TEMP1") # clear all overrides
 normalize_tlm("INST HEALTH_STATUS TEMP1", type='RAW') # clear only the RAW override
 ```
 
+### get_overrides
+
+Returns an array of the the currently overriden values set by override_tlm. NOTE: This returns all the value types that are overriden which by default is all 4 values types when using override_tlm.
+
+Ruby / Python Syntax:
+
+```ruby
+get_overrides()
+```
+
+Ruby Example:
+
+```ruby
+override_tlm("INST HEALTH_STATUS TEMP1 = 5")
+puts get_overrides() #=>
+# [ {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"RAW", "value"=>5}
+#   {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"CONVERTED", "value"=>5}
+#   {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"FORMATTED", "value"=>"5"}
+#   {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"WITH_UNITS", "value"=>"5"} ]
+```
+
+Python Example:
+
+```python
+override_tlm("INST HEALTH_STATUS TEMP1 = 5")
+print(get_overrides()) #=>
+# [ {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'RAW', 'value': 5},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'CONVERTED', 'value': 5},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'FORMATTED', 'value': '5'},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'WITH_UNITS', 'value': '5'} ]
+```
+
 ## Packet Data Subscriptions
 
 Methods for subscribing to specific packets of data. This provides an interface to ensure that each telemetry packet is received and handled rather than relying on polling where some data may be missed.
@@ -3162,7 +3194,7 @@ local_screen("<Screen Name>" "<Definition>", <X Position (optional)>, <Y Positio
 | X Position  | X coordinate for the upper left hand corner of the screen |
 | Y Position  | Y coordinate for the upper left hand corner of the screen |
 
-NOTE: Is is possible to specify a X, Y location off the visible display. If you do so and try to re-create the screen it will not display (because it is already displayed). Try issuing a `clear_all_screens()` first to clear any screens off the visible display space.
+NOTE: It is possible to specify a X, Y location off the visible display. If you do so and try to re-create the screen it will not display (because it is already displayed). Try issuing a `clear_all_screens()` first to clear any screens off the visible display space.
 
 Ruby Example:
 
@@ -3441,4 +3473,88 @@ Ruby / Python Syntax / Example:
 
 ```ruby
 metadata_input()
+```
+
+## Script Runner Suite APIs
+
+Creating Script Runner suites utilizes APIs to add groups to the defined suites. For more information please see [running script suites]({{site.baseurl}}/docs/v5/script-runner#running-script-suites).
+
+### add_group, add_group_setup, add_group_teardown, add_script
+
+Adds a group's methods to the suite. The add_group method adds all the group methods including setup, teardown, and all the methods starting with 'script\_' or 'test\_'. The add_group_setup method adds just the setup method defined in the group class. The add_group_teardown method adds just the teardown method defined in the group class. The add_script method adds an individual method to the suite. NOTE: add_script can add any method including those not named with 'script\_' or 'test\_'.
+
+Ruby / Python Syntax:
+
+```ruby
+add_group(<Group Class>)
+add_group_setup(<Group Class>)
+add_group_teardown(<Group Class>)
+add_script(<Group Class>, <Method>)
+```
+
+| Parameter   | Description                                                                                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Group Class | Name of the previously defined class which inherits from the OpenC3 Group class. The Ruby API passes a String with the name of the group. The Python API passes the Group class directly. |
+| Method      | Name of the method in the OpenC3 Group class. The Ruby API passes a String with the name of the method. The Python API passes the Group class directly.                                   |
+
+Ruby Example:
+
+```ruby
+load 'openc3/script/suite.rb'
+
+class ExampleGroup < OpenC3::Group
+  def script_1
+    # Insert test code here ...
+  end
+end
+class WrapperGroup < OpenC3::Group
+  def setup
+    # Insert test code here ...
+  end
+  def my_method
+    # Insert test code here ...
+  end
+  def teardown
+    # Insert test code here ...
+  end
+end
+
+class MySuite < OpenC3::Suite
+  def initialize
+    super()
+    add_group('ExampleGroup')
+    add_group_setup('WrapperGroup')
+    add_script('WrapperGroup', 'my_method')
+    add_group_teardown('WrapperGroup')
+  end
+end
+```
+
+Python Example:
+
+```python
+from openc3.script import *
+from openc3.script.suite import Group, Suite
+
+class ExampleGroup(Group):
+    def script_1(self):
+        # Insert test code here ...
+        pass
+class WrapperGroup(Group):
+    def setup(self):
+        # Insert test code here ...
+        pass
+    def my_method(self):
+        # Insert test code here ...
+        pass
+    def teardown(self):
+        # Insert test code here ...
+        pass
+class MySuite(Suite):
+    def __init__(self):
+        super().__init__()
+        self.add_group(ExampleGroup)
+        self.add_group_setup(WrapperGroup)
+        self.add_script(WrapperGroup, 'my_method')
+        self.add_group_teardown(WrapperGroup)
 ```
