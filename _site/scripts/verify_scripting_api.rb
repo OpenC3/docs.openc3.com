@@ -1,6 +1,18 @@
 def parse_file(filename, methods)
   File.open(filename) do |file|
-    file.each do |line|
+    data = file.read
+    lines = data.split("\n")
+    # Check for our API indicator and strip out the excess
+    if data.include?("START PUBLIC API")
+      start = 0
+      end_line = -1
+      lines.each_with_index do |line, index|
+        start = index if line.include?("START PUBLIC API")
+        end_line = index if line.include?("END PUBLIC API")
+      end
+      lines = lines[start..end_line]
+    end
+    lines.each do |line|
       if line.strip =~ /^def /
         next if line.include?('def _')
         next if line.include?('initialize')
@@ -15,15 +27,32 @@ def parse_file(filename, methods)
   end
 end
 
-api_methods = {}
+ruby_api_methods = {}
 Dir[File.join(File.dirname(__FILE__),'../../cosmos/openc3/lib/openc3/script/*.rb')].each do |filename|
   next if filename.include?('extract')
-  parse_file(filename, api_methods)
+  next if filename.include?('web_socket_api')
+  next if filename.include?('suite_results')
+  next if filename.include?('suite_runner')
+  next if filename.include?('script_runner')
+  parse_file(filename, ruby_api_methods)
 end
 Dir[File.join(File.dirname(__FILE__),'../../cosmos/openc3/lib/openc3/api/*.rb')].each do |filename|
-  parse_file(filename, api_methods)
+  parse_file(filename, ruby_api_methods)
 end
-# api_methods.uniq!
+
+python_api_methods = {}
+Dir[File.join(File.dirname(__FILE__),'../../cosmos/openc3/python/openc3/script/*.py')].each do |filename|
+  next if filename.include?('authorization')
+  next if filename.include?('decorators')
+  next if filename.include?('server_proxy')
+  next if filename.include?('stream')
+  next if filename.include?('suite_results')
+  next if filename.include?('suite_runner')
+  parse_file(filename, python_api_methods)
+end
+Dir[File.join(File.dirname(__FILE__),'../../cosmos/openc3/python/openc3/api/*.py')].each do |filename|
+  parse_file(filename, python_api_methods)
+end
 
 documented_methods = []
 File.open(File.join(File.dirname(__FILE__),'../_docs_v5/4_guides/scripting_api.md')) do |file|
@@ -50,8 +79,43 @@ File.open(File.join(File.dirname(__FILE__),'../_docs_v5/4_guides/scripting_api.m
 end
 documented_methods.uniq!
 
-DEPRECATED = %w(require_utility get_all_target_info check_tolerance_raw wait_raw wait_check_raw wait_tolerance_raw wait_check_tolerance_raw)
-puts "Documented but doesn't exist:"
-puts documented_methods - api_methods.keys
-puts "\nExists but not documented:"
-puts api_methods.keys - documented_methods - DEPRECATED
+exit_code = 0
+deprecated = %w(require_utility get_all_target_info check_tolerance_raw wait_raw wait_check_raw wait_tolerance_raw wait_check_tolerance_raw)
+deprecated += %w(tlm_variable play_wav_file status_bar)
+deprecated += %w(method_missing self.included write puts) # shouldn't be included
+deprecated += %w(get_cmd_cnts) # internal APIs
+if (documented_methods - ruby_api_methods.keys - python_api_methods.keys).length > 0
+  puts "Documented but doesn't exist:"
+  puts documented_methods - ruby_api_methods.keys - python_api_methods.keys
+  exit_code = -1
+end
+if (ruby_api_methods.keys - documented_methods - deprecated).length > 0
+  puts "\nRuby exists but not documented:"
+  puts ruby_api_methods.keys - documented_methods - deprecated
+  exit_code = -1
+end
+if (python_api_methods.keys - documented_methods - deprecated).length > 0
+  puts "\nPython exists but not documented:"
+  puts python_api_methods.keys - documented_methods - deprecated
+  exit_code = -1
+end
+ruby_api_massaged = []
+ruby_api_methods.keys.each do |key|
+  # Remove ? and ! from method names as python can't use them
+  if key.include?('?') or key.include?('!')
+    ruby_api_massaged << key[0..-2]
+  else
+    ruby_api_massaged << key
+  end
+end
+if (ruby_api_massaged - python_api_methods.keys - deprecated).length > 0
+  puts "\nRuby but not Python:"
+  puts ruby_api_massaged - python_api_methods.keys - deprecated
+  exit_code = -1
+end
+if (python_api_methods.keys - ruby_api_massaged).length > 0
+  puts "\nPython but not Ruby:"
+  puts python_api_methods.keys - ruby_api_massaged
+  exit_code = -1
+end
+exit exit_code
