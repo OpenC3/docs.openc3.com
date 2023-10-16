@@ -149,6 +149,7 @@
 <li class="toc-entry toc-h3"><a href="#build_command-since-580">build_command (since 5.8.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#send_raw">send_raw</a></li>
 <li class="toc-entry toc-h3"><a href="#get_all_commands-since-500">get_all_commands (since 5.0.0)</a></li>
+<li class="toc-entry toc-h3"><a href="#get_all_command_names-since-506">get_all_command_names (since 5.0.6)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_command-since-500">get_command (since 5.0.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_parameter-since-500">get_parameter (since 5.0.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_cmd_buffer">get_cmd_buffer</a></li>
@@ -169,6 +170,7 @@
 <li class="toc-entry toc-h3"><a href="#get_tlm_packet">get_tlm_packet</a></li>
 <li class="toc-entry toc-h3"><a href="#get_tlm_values-modified-in-500">get_tlm_values (modified in 5.0.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_all_telemetry-since-500">get_all_telemetry (since 5.0.0)</a></li>
+<li class="toc-entry toc-h3"><a href="#get_all_telemetry_names-since-506">get_all_telemetry_names (since 5.0.6)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_telemetry-since-500">get_telemetry (since 5.0.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_item-since-500">get_item (since 5.0.0)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_tlm_cnt">get_tlm_cnt</a></li>
@@ -176,12 +178,16 @@
 <li class="toc-entry toc-h3"><a href="#inject_tlm">inject_tlm</a></li>
 <li class="toc-entry toc-h3"><a href="#override_tlm">override_tlm</a></li>
 <li class="toc-entry toc-h3"><a href="#normalize_tlm">normalize_tlm</a></li>
+<li class="toc-entry toc-h3"><a href="#get_overrides">get_overrides</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#packet-data-subscriptions">Packet Data Subscriptions</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#subscribe_packets-since-503">subscribe_packets (since 5.0.3)</a></li>
 <li class="toc-entry toc-h3"><a href="#get_packets-since-503">get_packets (since 5.0.3)</a></li>
+<li class="toc-entry toc-h3"><a href="#get_tlm_cnt-1">get_tlm_cnt</a></li>
+<li class="toc-entry toc-h3"><a href="#get_tlm_cnts">get_tlm_cnts</a></li>
+<li class="toc-entry toc-h3"><a href="#get_packet_derived_items">get_packet_derived_items</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#delays">Delays</a>
@@ -244,6 +250,17 @@
 <li class="toc-entry toc-h3"><a href="#get_all_router_info">get_all_router_info</a></li>
 <li class="toc-entry toc-h3"><a href="#start_raw_logging_router">start_raw_logging_router</a></li>
 <li class="toc-entry toc-h3"><a href="#stop_raw_logging_router">stop_raw_logging_router</a></li>
+<li class="toc-entry toc-h3"><a href="#router_cmd">router_cmd</a></li>
+<li class="toc-entry toc-h3"><a href="#router_protocol_cmd">router_protocol_cmd</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#stashing-data">Stashing Data</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#stash_set">stash_set</a></li>
+<li class="toc-entry toc-h3"><a href="#stash_get">stash_get</a></li>
+<li class="toc-entry toc-h3"><a href="#stash_all">stash_all</a></li>
+<li class="toc-entry toc-h3"><a href="#stash_keys">stash_keys</a></li>
+<li class="toc-entry toc-h3"><a href="#stash_delete">stash_delete</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#executing-other-procedures">Executing Other Procedures</a>
@@ -257,9 +274,11 @@
 <li class="toc-entry toc-h3"><a href="#display_screen">display_screen</a></li>
 <li class="toc-entry toc-h3"><a href="#clear_screen">clear_screen</a></li>
 <li class="toc-entry toc-h3"><a href="#clear_all_screens">clear_all_screens</a></li>
+<li class="toc-entry toc-h3"><a href="#delete_screen">delete_screen</a></li>
 <li class="toc-entry toc-h3"><a href="#get_screen_list">get_screen_list</a></li>
 <li class="toc-entry toc-h3"><a href="#get_screen_definition">get_screen_definition</a></li>
 <li class="toc-entry toc-h3"><a href="#create_screen">create_screen</a></li>
+<li class="toc-entry toc-h3"><a href="#local_screen">local_screen</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#script-runner-specific-functionality">Script Runner Specific Functionality</a>
@@ -276,6 +295,20 @@
 <li class="toc-entry toc-h3"><a href="#step_mode">step_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#run_mode">run_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#disconnect_script">disconnect_script</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#metadata">Metadata</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#metadata_all">metadata_all</a></li>
+<li class="toc-entry toc-h3"><a href="#metadata_get">metadata_get</a></li>
+<li class="toc-entry toc-h3"><a href="#metadata_set">metadata_set</a></li>
+<li class="toc-entry toc-h3"><a href="#metadata_update">metadata_update</a></li>
+<li class="toc-entry toc-h3"><a href="#metadata_input">metadata_input</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#script-runner-suite-apis">Script Runner Suite APIs</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#add_group-add_group_setup-add_group_teardown-add_script">add_group, add_group_setup, add_group_teardown, add_script</a></li>
 </ul>
 </li>
 </ul></div>
@@ -1672,11 +1705,17 @@
   </tbody>
 </table>
 
-<p>Ruby / Python Example:</p>
+<p>Ruby Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">build_command</span><span class="p">(</span><span class="s2">"INST COLLECT with DURATION 10, TYPE NORMAL"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1">#=&gt; {"id"=&gt;"1696437370872-0", "result"=&gt;"SUCCESS", "time"=&gt;"1696437370872305961", "received_time"=&gt;"1696437370872305961", "target_name"=&gt;"INST", "packet_name"=&gt;"COLLECT", "received_count"=&gt;"3", "buffer"=&gt;"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00A \x00\x00\xAB\x00\x00\x00\x00"}</span>
+<span class="nb">puts</span> <span class="n">x</span>  <span class="c1">#=&gt; {"id"=&gt;"1696437370872-0", "result"=&gt;"SUCCESS", "time"=&gt;"1696437370872305961", "received_time"=&gt;"1696437370872305961", "target_name"=&gt;"INST", "packet_name"=&gt;"COLLECT", "received_count"=&gt;"3", "buffer"=&gt;"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00A \x00\x00\xAB\x00\x00\x00\x00"}</span>
 </code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">build_command</span><span class="p">(</span><span class="sh">"</span><span class="s">INST COLLECT with DURATION 10, TYPE NORMAL</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1">#=&gt; {'id': '1697298167748-0', 'result': 'SUCCESS', 'time': '1697298167749155717', 'received_time': '1697298167749155717', 'target_name': 'INST', 'packet_name': 'COLLECT', 'received_count': '2', 'buffer': bytearray(b'\x13\xe7\xc0\x00\x00\x0c\x00\x01\x00\x00A \x00\x00\xab\x00\x00\x00\x00')}
+</span></code></pre></div></div>
 
 <h3 id="send_raw">
 <a class="anchor" href="#send_raw" aria-hidden="true"><span class="octicon octicon-link"></span></a>send_raw</h3>
@@ -1737,21 +1776,68 @@
   </tbody>
 </table>
 
-<p>Ruby / Python Example:</p>
+<p>Ruby Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd_list</span> <span class="o">=</span> <span class="n">get_all_commands</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
-<span class="c1">#[{"target_name"=&gt;"INST",</span>
-<span class="c1">#  "packet_name"=&gt;"ABORT",</span>
-<span class="c1">#  "endianness"=&gt;"BIG_ENDIAN",</span>
-<span class="c1">#  "description"=&gt;"Aborts a collect on the instrument",</span>
-<span class="c1">#  "stale"=&gt;true,</span>
-<span class="c1">#  "items"=&gt;</span>
-<span class="c1">#   [{"name"=&gt;"CCSDSVER",</span>
-<span class="c1">#     "bit_offset"=&gt;0,</span>
-<span class="c1">#     "bit_size"=&gt;3,</span>
-<span class="c1">#     ...</span>
+<span class="nb">puts</span> <span class="n">cmd_list</span>  <span class="c1">#=&gt;</span>
+<span class="c1"># [{"target_name"=&gt;"INST",</span>
+<span class="c1">#   "packet_name"=&gt;"ABORT",</span>
+<span class="c1">#   "endianness"=&gt;"BIG_ENDIAN",</span>
+<span class="c1">#   "description"=&gt;"Aborts a collect on the instrument",</span>
+<span class="c1">#   "items"=&gt; [{"name"=&gt;"CCSDSVER", "bit_offset"=&gt;0, "bit_size"=&gt;3, ... }]</span>
+<span class="c1"># ...</span>
+<span class="c1"># }]</span>
 </code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd_list</span> <span class="o">=</span> <span class="nf">get_all_commands</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>  <span class="c1">#=&gt;
+# [{'target_name': 'INST',
+#   'packet_name': 'ABORT',
+#   'endianness': 'BIG_ENDIAN',
+#   'description': 'Aborts a collect on the INST instrument',
+#   'items': [{'name': 'CCSDSVER', 'bit_offset': 0, 'bit_size': 3, ... }]
+# ...
+# }]
+</span></code></pre></div></div>
+
+<h3 id="get_all_command_names-since-506">
+<a class="anchor" href="#get_all_command_names-since-506" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_all_command_names (since 5.0.6)</h3>
+
+<p>Returns an array of the command names for a particular target.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_all_command_names</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Name of the target</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd_list</span> <span class="o">=</span> <span class="n">get_all_command_names</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">cmd_list</span>  <span class="c1">#=&gt; ['ABORT', 'ARYCMD', 'ASCIICMD', ...]</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd_list</span> <span class="o">=</span> <span class="nf">get_all_command_names</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>  <span class="c1">#=&gt; ['ABORT', 'ARYCMD', 'ASCIICMD', ...]
+</span></code></pre></div></div>
 
 <h3 id="get_command-since-500">
 <a class="anchor" href="#get_command-since-500" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_command (since 5.0.0)</h3>
@@ -1784,19 +1870,29 @@
 
 <p>Ruby / Python Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cmd</span> <span class="o">=</span> <span class="n">get_command</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"ABORT"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
-<span class="c1">#[{"target_name"=&gt;"INST",</span>
-<span class="c1">#  "packet_name"=&gt;"ABORT",</span>
-<span class="c1">#  "endianness"=&gt;"BIG_ENDIAN",</span>
-<span class="c1">#  "description"=&gt;"Aborts a collect on the instrument",</span>
-<span class="c1">#  "stale"=&gt;true,</span>
-<span class="c1">#  "items"=&gt;</span>
-<span class="c1">#   [{"name"=&gt;"CCSDSVER",</span>
-<span class="c1">#     "bit_offset"=&gt;0,</span>
-<span class="c1">#     "bit_size"=&gt;3,</span>
-<span class="c1">#     ...</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">abort_cmd</span> <span class="o">=</span> <span class="n">get_command</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"ABORT"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">abort_cmd</span>  <span class="c1">#=&gt;</span>
+<span class="c1"># [{"target_name"=&gt;"INST",</span>
+<span class="c1">#   "packet_name"=&gt;"ABORT",</span>
+<span class="c1">#   "endianness"=&gt;"BIG_ENDIAN",</span>
+<span class="c1">#   "description"=&gt;"Aborts a collect on the instrument",</span>
+<span class="c1">#   "items"=&gt; [{"name"=&gt;"CCSDSVER", "bit_offset"=&gt;0, "bit_size"=&gt;3, ... }]</span>
+<span class="c1"># ...</span>
+<span class="c1"># }]</span>
 </code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">abort_cmd</span> <span class="o">=</span> <span class="nf">get_command</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">abort_cmd</span><span class="p">)</span>  <span class="c1">#=&gt;
+# [{'target_name': 'INST',
+#   'packet_name': 'ABORT',
+#   'endianness': 'BIG_ENDIAN',
+#   'description': 'Aborts a collect on the INST instrument',
+#   'items': [{'name': 'CCSDSVER', 'bit_offset': 0, 'bit_size': 3, ... }]
+# ...
+# }]
+</span></code></pre></div></div>
 
 <h3 id="get_parameter-since-500">
 <a class="anchor" href="#get_parameter-since-500" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_parameter (since 5.0.0)</h3>
@@ -1831,23 +1927,25 @@
   </tbody>
 </table>
 
-<p>Ruby / Python Example:</p>
+<p>Ruby Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">param</span> <span class="o">=</span> <span class="n">get_parameter</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">,</span> <span class="s2">"TYPE"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-<span class="c1"># {"name"=&gt;"TYPE",</span>
-<span class="c1"># "bit_offset"=&gt;64,</span>
-<span class="c1"># "bit_size"=&gt;16,</span>
-<span class="c1"># "data_type"=&gt;"UINT",</span>
-<span class="c1"># "description"=&gt;"Collect type",</span>
-<span class="c1"># "default"=&gt;0,</span>
-<span class="c1"># "minimum"=&gt;0,</span>
-<span class="c1"># "maximum"=&gt;65535,</span>
-<span class="c1"># "endianness"=&gt;"BIG_ENDIAN",</span>
-<span class="c1"># "required"=&gt;true,</span>
-<span class="c1"># "overflow"=&gt;"ERROR",</span>
-<span class="c1"># "states"=&gt;{"NORMAL"=&gt;{"value"=&gt;0}, "SPECIAL"=&gt;{"value"=&gt;1, "hazardous"=&gt;""}}}</span>
+<span class="nb">puts</span> <span class="n">param</span>  <span class="c1">#=&gt;</span>
+<span class="c1"># {"name"=&gt;"TYPE", "bit_offset"=&gt;64, "bit_size"=&gt;16, "data_type"=&gt;"UINT",</span>
+<span class="c1">#  "description"=&gt;"Collect type which can be normal or special", "default"=&gt;0,</span>
+<span class="c1">#  "minimum"=&gt;0, "maximum"=&gt;65535, "endianness"=&gt;"BIG_ENDIAN", "required"=&gt;true, "overflow"=&gt;"ERROR",</span>
+<span class="c1">#  "states"=&gt;{"NORMAL"=&gt;{"value"=&gt;0}, "SPECIAL"=&gt;{"value"=&gt;1, "hazardous"=&gt;""}}, "limits"=&gt;{}}</span>
 </code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">param</span> <span class="o">=</span> <span class="nf">get_parameter</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">COLLECT</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">TYPE</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>  <span class="c1">#=&gt;
+# {'name': 'TYPE', 'bit_offset': 64, 'bit_size': 16, 'data_type': 'UINT',
+#  'description': 'Collect type which can be normal or special', 'default': 0,
+#  'minimum': 0, 'maximum': 65535, 'endianness': 'BIG_ENDIAN', 'required': True, 'overflow': 'ERROR',
+#  'states': {'NORMAL': {'value': 0}, 'SPECIAL': {'value': 1, 'hazardous': ''}}, 'limits': {}}
+</span></code></pre></div></div>
 
 <h3 id="get_cmd_buffer">
 <a class="anchor" href="#get_cmd_buffer" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_buffer</h3>
@@ -1878,11 +1976,23 @@
   </tbody>
 </table>
 
-<p>Ruby / Python Example:</p>
+<p>Ruby Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">packet</span> <span class="o">=</span> <span class="n">get_cmd_buffer</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">packet</span><span class="p">[</span><span class="s1">'buffer'</span><span class="p">])</span>
+<span class="nb">puts</span> <span class="n">packet</span>  <span class="c1">#=&gt;</span>
+<span class="c1"># {"time"=&gt;"1697298846752053420", "received_time"=&gt;"1697298846752053420",</span>
+<span class="c1">#  "target_name"=&gt;"INST", "packet_name"=&gt;"COLLECT", "received_count"=&gt;"20", "stored"=&gt;"false",</span>
+<span class="c1">#  "buffer"=&gt;"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00@\xE0\x00\x00\xAB\x00\x00\x00\x00"}</span>
 </code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">packet</span> <span class="o">=</span> <span class="nf">get_cmd_buffer</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">COLLECT</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>  <span class="c1">#=&gt;
+# {'time': '1697298923745982470', 'received_time': '1697298923745982470',
+#  'target_name': 'INST', 'packet_name': 'COLLECT', 'received_count': '21', 'stored': 'false',
+#  'buffer': bytearray(b'\x13\xe7\xc0\x00\x00\x0c\x00\x01\x00\x00@\xe0\x00\x00\xab\x00\x00\x00\x00')}
+</span></code></pre></div></div>
 
 <h3 id="get_cmd_hazardous">
 <a class="anchor" href="#get_cmd_hazardous" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_hazardous</h3>
@@ -1920,12 +2030,14 @@
 <p>Ruby Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hazardous</span> <span class="o">=</span> <span class="n">get_cmd_hazardous</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">,</span> <span class="p">{</span><span class="s1">'TYPE'</span> <span class="o">=&gt;</span> <span class="s1">'SPECIAL'</span><span class="p">})</span>
+<span class="nb">puts</span> <span class="n">hazardous</span>  <span class="c1">#=&gt; true</span>
 </code></pre></div></div>
 
 <p>Python Example:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hazardous</span> <span class="o">=</span> <span class="nf">get_cmd_hazardous</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">COLLECT</span><span class="sh">"</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">TYPE</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">SPECIAL</span><span class="sh">'</span><span class="p">})</span>
-</code></pre></div></div>
+<span class="nf">print</span><span class="p">(</span><span class="n">hazardous</span><span class="p">)</span> <span class="c1">#=&gt; True
+</span></code></pre></div></div>
 
 <h3 id="get_cmd_value">
 <a class="anchor" href="#get_cmd_value" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_value</h3>
@@ -1967,12 +2079,14 @@
 <p>Ruby Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">get_cmd_value</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">,</span> <span class="s2">"TEMP"</span><span class="p">,</span> <span class="ss">:RAW</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">value</span>  <span class="c1">#=&gt; 0.0</span>
 </code></pre></div></div>
 
 <p>Python Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="n">get_cmd_value</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"COLLECT"</span><span class="p">,</span> <span class="s2">"TEMP"</span><span class="p">,</span> <span class="s2">"RAW"</span><span class="p">)</span>
-</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value</span> <span class="o">=</span> <span class="nf">get_cmd_value</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">COLLECT</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">TEMP</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RAW</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>  <span class="c1">#=&gt; 0.0
+</span></code></pre></div></div>
 
 <h3 id="get_cmd_time">
 <a class="anchor" href="#get_cmd_time" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_time</h3>
@@ -2449,6 +2563,36 @@
 <span class="c1">#     ...</span>
 </code></pre></div></div>
 
+<h3 id="get_all_telemetry_names-since-506">
+<a class="anchor" href="#get_all_telemetry_names-since-506" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_all_telemetry_names (since 5.0.6)</h3>
+
+<p>Returns an array of all target packet names.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_all_telemetry_names</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Name of the target</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_all_telemetry_names</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">)</span>  <span class="c1">#=&gt; ["ADCS", "HEALTH_STATUS", ...]</span>
+</code></pre></div></div>
+
 <h3 id="get_telemetry-since-500">
 <a class="anchor" href="#get_telemetry-since-500" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_telemetry (since 5.0.0)</h3>
 
@@ -2788,6 +2932,36 @@
 </span><span class="nf">normalize_tlm</span><span class="p">(</span><span class="sh">"</span><span class="s">INST HEALTH_STATUS TEMP1</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="sh">'</span><span class="s">RAW</span><span class="sh">'</span><span class="p">)</span> <span class="c1"># clear only the RAW override
 </span></code></pre></div></div>
 
+<h3 id="get_overrides">
+<a class="anchor" href="#get_overrides" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_overrides</h3>
+
+<p>Returns an array of the the currently overriden values set by override_tlm. NOTE: This returns all the value types that are overriden which by default is all 4 values types when using override_tlm.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_overrides</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">override_tlm</span><span class="p">(</span><span class="s2">"INST HEALTH_STATUS TEMP1 = 5"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">get_overrides</span><span class="p">()</span> <span class="c1">#=&gt;</span>
+<span class="c1"># [ {"target_name"=&gt;"INST", "packet_name"=&gt;"HEALTH_STATUS", "item_name"=&gt;"TEMP1", "value_type"=&gt;"RAW", "value"=&gt;5}</span>
+<span class="c1">#   {"target_name"=&gt;"INST", "packet_name"=&gt;"HEALTH_STATUS", "item_name"=&gt;"TEMP1", "value_type"=&gt;"CONVERTED", "value"=&gt;5}</span>
+<span class="c1">#   {"target_name"=&gt;"INST", "packet_name"=&gt;"HEALTH_STATUS", "item_name"=&gt;"TEMP1", "value_type"=&gt;"FORMATTED", "value"=&gt;"5"}</span>
+<span class="c1">#   {"target_name"=&gt;"INST", "packet_name"=&gt;"HEALTH_STATUS", "item_name"=&gt;"TEMP1", "value_type"=&gt;"WITH_UNITS", "value"=&gt;"5"} ]</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">override_tlm</span><span class="p">(</span><span class="sh">"</span><span class="s">INST HEALTH_STATUS TEMP1 = 5</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">get_overrides</span><span class="p">())</span> <span class="c1">#=&gt;
+# [ {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'RAW', 'value': 5},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'CONVERTED', 'value': 5},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'FORMATTED', 'value': '5'},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'WITH_UNITS', 'value': '5'} ]
+</span></code></pre></div></div>
+
 <h2 id="packet-data-subscriptions">
 <a class="anchor" href="#packet-data-subscriptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Data Subscriptions</h2>
 
@@ -2888,6 +3062,108 @@
 </span><span class="nb">id</span><span class="p">,</span> <span class="n">packets</span> <span class="o">=</span> <span class="nf">get_packets</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
     <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">packet</span><span class="p">[</span><span class="sh">'</span><span class="s">PACKET_TIMESECONDS</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">packet</span><span class="p">[</span><span class="sh">'</span><span class="s">target_name</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">packet</span><span class="p">[</span><span class="sh">'</span><span class="s">packet_name</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="get_tlm_cnt-1">
+<a class="anchor" href="#get_tlm_cnt-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_tlm_cnt</h3>
+
+<p>Get the receive count for a telemetry packet</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_tlm_cnt</span><span class="p">(</span><span class="s2">"&lt;Target&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target</td>
+      <td>Target name</td>
+    </tr>
+    <tr>
+      <td>Packet</td>
+      <td>Packet name</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_tlm_cnt</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">)</span>  <span class="c1">#=&gt; 10</span>
+</code></pre></div></div>
+
+<h3 id="get_tlm_cnts">
+<a class="anchor" href="#get_tlm_cnts" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_tlm_cnts</h3>
+
+<p>Get the receive counts for an array of telemetry packets</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_tlm_cnts</span><span class="p">([[</span><span class="s2">"&lt;Target&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet&gt;"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"&lt;Target&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet&gt;"</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target</td>
+      <td>Target name</td>
+    </tr>
+    <tr>
+      <td>Packet</td>
+      <td>Packet name</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_tlm_cnts</span><span class="p">([[</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"ADCS"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">]])</span>  <span class="c1">#=&gt; [100, 10]</span>
+</code></pre></div></div>
+
+<h3 id="get_packet_derived_items">
+<a class="anchor" href="#get_packet_derived_items" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_packet_derived_items</h3>
+
+<p>Get the list of derived telemetry items for a packet</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_packet_derived_items</span><span class="p">(</span><span class="s2">"&lt;Target&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Packet&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target</td>
+      <td>Target name</td>
+    </tr>
+    <tr>
+      <td>Packet</td>
+      <td>Packet name</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_packet_derived_items</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">)</span>  <span class="c1">#=&gt; ['PACKET_TIMESECONDS', 'PACKET_TIMEFORMATTED', ...]</span>
 </code></pre></div></div>
 
 <h2 id="delays">
@@ -4193,7 +4469,7 @@
 
 <p>Send a command directly to an interface. This has no effect in the standard COSMOS interfaces but can be implemented by a custom interface to change behavior.</p>
 
-<p>Syntax:</p>
+<p>Ruby / Python Syntax:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_cmd</span><span class="p">(</span><span class="s2">"&lt;Interface Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Parameters&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
@@ -4221,7 +4497,7 @@
   </tbody>
 </table>
 
-<p>Example:</p>
+<p>Ruby / Python Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">)</span>
 </code></pre></div></div>
@@ -4231,7 +4507,7 @@
 
 <p>Send a command directly to an interface protocol. This has no effect in the standard COSMOS protocols but can be implemented by a custom protocol to change behavior.</p>
 
-<p>Syntax:</p>
+<p>Ruby / Python Syntax:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_protocol_cmd</span><span class="p">(</span><span class="s2">"&lt;Interface Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Parameters&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
@@ -4257,15 +4533,24 @@
       <td>Any parameters to send with the command</td>
     </tr>
     <tr>
-      <td>read_write:</td>
-      <td>Whether command gets send to read or write protocols. Must be one of :READ, :WRITE, or :READ_WRITE. (default: :READ_WRITE)</td>
+      <td>read_write</td>
+      <td>Whether command gets send to read or write protocols. Must be one of READ, WRITE, or READ_WRITE (Ruby symbols, Python strings). The default is READ_WRITE.</td>
+    </tr>
+    <tr>
+      <td>index</td>
+      <td>Which protocol in the stack the command should apply to. The default is -1 which applies the command to all.</td>
     </tr>
   </tbody>
 </table>
 
-<p>Example:</p>
+<p>Ruby Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_protocol_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">interface_protocol_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">,</span> <span class="ss">read_write: :READ_WRITE</span><span class="p">,</span> <span class="ss">index: </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">interface_protocol_cmd</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">DISABLE_CRC</span><span class="sh">"</span><span class="p">,</span> <span class="n">read_write</span><span class="o">=</span><span class="sh">'</span><span class="s">READ_WRITE</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="routers">
@@ -4485,6 +4770,220 @@
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stop_raw_logging_router</span><span class="p">(</span><span class="s2">"router1"</span><span class="p">)</span>
 </code></pre></div></div>
 
+<h3 id="router_cmd">
+<a class="anchor" href="#router_cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>router_cmd</h3>
+
+<p>Send a command directly to a router. This has no effect in the standard COSMOS routers but can be implemented by a custom router to change behavior.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">router_cmd</span><span class="p">(</span><span class="s2">"&lt;Router Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Parameters&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Router Name</td>
+      <td>Name of the router</td>
+    </tr>
+    <tr>
+      <td>Command Name</td>
+      <td>Name of the command to send</td>
+    </tr>
+    <tr>
+      <td>Command Parameters</td>
+      <td>Any parameters to send with the command</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">router_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="router_protocol_cmd">
+<a class="anchor" href="#router_protocol_cmd" aria-hidden="true"><span class="octicon octicon-link"></span></a>router_protocol_cmd</h3>
+
+<p>Send a command directly to an router protocol. This has no effect in the standard COSMOS protocols but can be implemented by a custom protocol to change behavior.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">router_protocol_cmd</span><span class="p">(</span><span class="s2">"&lt;Router Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Command Parameters&gt;"</span><span class="p">,</span> <span class="n">read_write</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Router Name</td>
+      <td>Name of the router</td>
+    </tr>
+    <tr>
+      <td>Command Name</td>
+      <td>Name of the command to send</td>
+    </tr>
+    <tr>
+      <td>Command Parameters</td>
+      <td>Any parameters to send with the command</td>
+    </tr>
+    <tr>
+      <td>read_write</td>
+      <td>Whether command gets send to read or write protocols. Must be one of READ, WRITE, or READ_WRITE (Ruby symbols, Python strings). The default is READ_WRITE.</td>
+    </tr>
+    <tr>
+      <td>index</td>
+      <td>Which protocol in the stack the command should apply to. The default is -1 which applies the command to all.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">router_protocol_cmd</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"DISABLE_CRC"</span><span class="p">,</span> <span class="ss">read_write: :READ_WRITE</span><span class="p">,</span> <span class="ss">index: </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">router_protocol_cmd</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">DISABLE_CRC</span><span class="sh">"</span><span class="p">,</span> <span class="n">read_write</span><span class="o">=</span><span class="sh">'</span><span class="s">READ_WRITE</span><span class="sh">'</span><span class="p">,</span> <span class="n">index</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="stashing-data">
+<a class="anchor" href="#stashing-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stashing Data</h2>
+
+<p>These methods allow the user to store temporary data into COSMOS and retrieve it. The storage is implemented as a key / value storage (Ruby hash or Python dict). This can be used in scripts to store information that applies across multiple scripts or multiple runs of a single script.</p>
+
+<h3 id="stash_set">
+<a class="anchor" href="#stash_set" aria-hidden="true"><span class="octicon octicon-link"></span></a>stash_set</h3>
+
+<p>Sets a stash item.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_set</span><span class="p">(</span><span class="s2">"&lt;Stash Key&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Stash</span> <span class="no">Value</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stash Key</td>
+      <td>Name of the stash key to set</td>
+    </tr>
+    <tr>
+      <td>Stash Value</td>
+      <td>Value to set</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_set</span><span class="p">(</span><span class="s1">'run_count'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">stash_set</span><span class="p">(</span><span class="s1">'setpoint'</span><span class="p">,</span> <span class="mf">23.4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="stash_get">
+<a class="anchor" href="#stash_get" aria-hidden="true"><span class="octicon octicon-link"></span></a>stash_get</h3>
+
+<p>Returns the specified stash item.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_get</span><span class="p">(</span><span class="s2">"&lt;Stash Key&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stash Key</td>
+      <td>Name of the stash key to return</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_get</span><span class="p">(</span><span class="s1">'run_count'</span><span class="p">)</span>  <span class="c1">#=&gt; 5</span>
+</code></pre></div></div>
+
+<h3 id="stash_all">
+<a class="anchor" href="#stash_all" aria-hidden="true"><span class="octicon octicon-link"></span></a>stash_all</h3>
+
+<p>Returns all the stash items as a Ruby hash or Python dict.</p>
+
+<p>Ruby Syntax / Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_all</span><span class="p">()</span>  <span class="c1">#=&gt; ['run_count' =&gt; 5, 'setpoint' =&gt; 23.4]</span>
+</code></pre></div></div>
+
+<p>Python Syntax / Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_all</span><span class="p">()</span>  <span class="c1">#=&gt; ['run_count': 5, 'setpoint': 23.4]</span>
+</code></pre></div></div>
+
+<h3 id="stash_keys">
+<a class="anchor" href="#stash_keys" aria-hidden="true"><span class="octicon octicon-link"></span></a>stash_keys</h3>
+
+<p>Returns all the stash keys.</p>
+
+<p>Ruby / Python Syntax / Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_keys</span><span class="p">()</span>  <span class="c1">#=&gt; ['run_count', 'setpoint']</span>
+</code></pre></div></div>
+
+<h3 id="stash_delete">
+<a class="anchor" href="#stash_delete" aria-hidden="true"><span class="octicon octicon-link"></span></a>stash_delete</h3>
+
+<p>Deletes a stash item. Note this actions is permanent!</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_delete</span><span class="p">(</span><span class="s2">"&lt;Stash Key&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stash Key</td>
+      <td>Name of the stash key to delete</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stash_delete</span><span class="p">(</span><span class="s2">"run_count"</span><span class="p">)</span>
+</code></pre></div></div>
+
 <h2 id="executing-other-procedures">
 <a class="anchor" href="#executing-other-procedures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Executing Other Procedures</h2>
 
@@ -4563,7 +5062,7 @@
 
 <p>Ruby / Python Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display_screen</span><span class="p">(</span><span class="s2">"&lt;Display Name&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">X</span> <span class="no">Position</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Y</span> <span class="no">Position</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display_screen</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Screen Name&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">X</span> <span class="no">Position</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Y</span> <span class="no">Position</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -4575,23 +5074,27 @@
   </thead>
   <tbody>
     <tr>
-      <td>Display Name</td>
-      <td>Name of the telemetry screen to display. Screens are normally named by “TARGET_NAME SCREEN_NAME”</td>
+      <td>Target Name</td>
+      <td>Telemetry screen target name</td>
+    </tr>
+    <tr>
+      <td>Screen Name</td>
+      <td>Screen name within the specified target</td>
     </tr>
     <tr>
       <td>X Position</td>
-      <td>The X coordinate on screen where the top left corner of the telemetry screen will be placed.</td>
+      <td>X coordinate for the upper left hand corner of the screen</td>
     </tr>
     <tr>
       <td>Y Position</td>
-      <td>The Y coordinate on screen where the top left corner of the telemetry screen will be placed.</td>
+      <td>Y coordinate for the upper left hand corner of the screen</td>
     </tr>
   </tbody>
 </table>
 
 <p>Ruby / Python Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">display</span><span class="p">(</span><span class="s2">"INST ADCS"</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display_screen</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"ADCS"</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="clear_screen">
@@ -4601,7 +5104,7 @@
 
 <p>Ruby / Python Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clear_screen</span><span class="p">(</span><span class="s2">"&lt;Display Name&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clear_screen</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Screen Name&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -4613,15 +5116,19 @@
   </thead>
   <tbody>
     <tr>
-      <td>Display Name</td>
-      <td>Name of the telemetry screen to close. Screens are normally named by “TARGET_NAME SCREEN_NAME”</td>
+      <td>Target Name</td>
+      <td>Telemetry screen target name</td>
+    </tr>
+    <tr>
+      <td>Screen Name</td>
+      <td>Screen name within the specified target</td>
     </tr>
   </tbody>
 </table>
 
 <p>Ruby / Python Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clear_screen</span><span class="p">(</span><span class="s2">"INST ADCS"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clear_screen</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"ADCS"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="clear_all_screens">
@@ -4632,6 +5139,40 @@
 <p>Ruby / Python Syntax / Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clear_all_screens</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="delete_screen">
+<a class="anchor" href="#delete_screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>delete_screen</h3>
+
+<p>Deletes an existing Telemetry Viewer screen.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">delete_screen</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Screen Name&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Telemetry screen target name</td>
+    </tr>
+    <tr>
+      <td>Screen Name</td>
+      <td>Screen name within the specified target</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby / Python Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">delete_screen</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"ADCS"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="get_screen_list">
@@ -4651,7 +5192,7 @@
 
 <p>Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_screen_definition</span><span class="p">(</span><span class="s2">"&lt;target name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;screen name&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_screen_definition</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Screen Name&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -4663,11 +5204,11 @@
   </thead>
   <tbody>
     <tr>
-      <td>Screen target name</td>
-      <td>Telemetry screen target name.</td>
+      <td>Target Name</td>
+      <td>Telemetry screen target name</td>
     </tr>
     <tr>
-      <td>Screen name</td>
+      <td>Screen Name</td>
       <td>Screen name within the specified target</td>
     </tr>
   </tbody>
@@ -4681,11 +5222,11 @@
 <h3 id="create_screen">
 <a class="anchor" href="#create_screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>create_screen</h3>
 
-<p>The create_screen allows you to create a screen directly from a script.</p>
+<p>The create_screen allows you to create a screen directly from a script. This screen is saved to Telemetry Viewer for future use in that application.</p>
 
 <p>Python / Ruby Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">create_screen</span><span class="p">(</span><span class="s2">"&lt;target name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;screen name&gt;"</span> <span class="s2">"&lt;screen definition&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">create_screen</span><span class="p">(</span><span class="s2">"&lt;Target Name&gt;"</span><span class="p">,</span> <span class="s2">"&lt;Screen Name&gt;"</span> <span class="s2">"&lt;Definition&gt;"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -4697,15 +5238,15 @@
   </thead>
   <tbody>
     <tr>
-      <td>Screen target name</td>
+      <td>Target Name</td>
       <td>Telemetry screen target name</td>
     </tr>
     <tr>
-      <td>Screen name</td>
+      <td>Screen Name</td>
       <td>Screen name within the specified target</td>
     </tr>
     <tr>
-      <td>Screen Definition</td>
+      <td>Definition</td>
       <td>The entire screen definition as a String</td>
     </tr>
   </tbody>
@@ -4716,7 +5257,7 @@
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">screen_def</span> <span class="o">=</span> <span class="s1">'
   SCREEN AUTO AUTO 0.1 FIXED
   VERTICAL
-    TITLE "Local Screen"
+    TITLE "New Screen"
     VERTICALBOX
       LABELVALUE INST HEALTH_STATUS TEMP1
     END
@@ -4731,7 +5272,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">screen_def</span> <span class="o">=</span> <span class="sh">'</span><span class="s">
   SCREEN AUTO AUTO 0.1 FIXED
   VERTICAL
-    TITLE </span><span class="sh">"</span><span class="s">Local Screen</span><span class="sh">"</span><span class="s">
+    TITLE </span><span class="sh">"</span><span class="s">New Screen</span><span class="sh">"</span><span class="s">
     VERTICALBOX
       LABELVALUE INST HEALTH_STATUS TEMP1
     END
@@ -4739,6 +5280,75 @@
 </span><span class="sh">'</span>
 <span class="c1"># Here we pass in the screen definition as a string
 </span><span class="nf">create_screen</span><span class="p">(</span><span class="sh">"</span><span class="s">INST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">LOCAL</span><span class="sh">"</span><span class="p">,</span> <span class="n">screen_def</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="local_screen">
+<a class="anchor" href="#local_screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>local_screen</h3>
+
+<p>The local_screen allows you to create a local screen directly from a script which is not permanently saved to the Telemetry Viewer screen list. This is useful for one off screens that help users interact with scripts.</p>
+
+<p>Python / Ruby Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">local_screen</span><span class="p">(</span><span class="s2">"&lt;Screen Name&gt;"</span> <span class="s2">"&lt;Definition&gt;"</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">X</span> <span class="no">Position</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Y</span> <span class="no">Position</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Screen Name</td>
+      <td>Screen name within the specified target</td>
+    </tr>
+    <tr>
+      <td>Definition</td>
+      <td>The entire screen definition as a String</td>
+    </tr>
+    <tr>
+      <td>X Position</td>
+      <td>X coordinate for the upper left hand corner of the screen</td>
+    </tr>
+    <tr>
+      <td>Y Position</td>
+      <td>Y coordinate for the upper left hand corner of the screen</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>NOTE: It is possible to specify a X, Y location off the visible display. If you do so and try to re-create the screen it will not display (because it is already displayed). Try issuing a <code class="language-plaintext highlighter-rouge">clear_all_screens()</code> first to clear any screens off the visible display space.</p>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">screen_def</span> <span class="o">=</span> <span class="s1">'
+  SCREEN AUTO AUTO 0.1 FIXED
+  VERTICAL
+    TITLE "Local Screen"
+    VERTICALBOX
+      LABELVALUE INST HEALTH_STATUS TEMP1
+    END
+  END
+'</span>
+<span class="c1"># Here we pass in the screen definition as a string</span>
+<span class="n">local_screen</span><span class="p">(</span><span class="s2">"TESTING"</span><span class="p">,</span> <span class="n">screen_def</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">screen_def</span> <span class="o">=</span> <span class="sh">'</span><span class="s">
+  SCREEN AUTO AUTO 0.1 FIXED
+  VERTICAL
+    TITLE </span><span class="sh">"</span><span class="s">Local Screen</span><span class="sh">"</span><span class="s">
+    VERTICALBOX
+      LABELVALUE INST HEALTH_STATUS TEMP1
+    END
+  END
+</span><span class="sh">'</span>
+<span class="c1"># Here we pass in the screen definition as a string
+</span><span class="nf">local_screen</span><span class="p">(</span><span class="sh">"</span><span class="s">TESTING</span><span class="sh">"</span><span class="p">,</span> <span class="n">screen_def</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="script-runner-specific-functionality">
@@ -4883,6 +5493,276 @@ Consider breaking code like this into a seperate file and using either require/l
 <p>Ruby / Python Syntax / Example:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">disconnect_script</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="metadata">
+<a class="anchor" href="#metadata" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metadata</h2>
+
+<p>Metadata allows you to mark the regular target / packet data logged in COSMOS with your own fields. This metadata can then be searched and used to filter data when using other COSMOS tools.</p>
+
+<h3 id="metadata_all">
+<a class="anchor" href="#metadata_all" aria-hidden="true"><span class="octicon octicon-link"></span></a>metadata_all</h3>
+
+<p>Returns all the metadata that was previously set</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_all</span><span class="p">()</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>limit</td>
+      <td>Amount of metadata items to return. Default is 100.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_all</span><span class="p">(</span><span class="ss">limit: </span><span class="mi">500</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">metadata_all</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="sh">'</span><span class="s">500</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="metadata_get">
+<a class="anchor" href="#metadata_get" aria-hidden="true"><span class="octicon octicon-link"></span></a>metadata_get</h3>
+
+<p>Returns metadata that was previously set</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_get</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>start</td>
+      <td>Named parameter, time at which to retrieve metadata as integer seconds from epoch</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_get</span><span class="p">(</span><span class="ss">start: </span><span class="mi">500</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">metadata_get</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="sh">'</span><span class="s">500</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="metadata_set">
+<a class="anchor" href="#metadata_set" aria-hidden="true"><span class="octicon octicon-link"></span></a>metadata_set</h3>
+
+<p>Returns metadata that was previously set</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_set</span><span class="p">(</span><span class="o">&lt;</span><span class="n">metadata</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>metadata</td>
+      <td>Hash or dict of key value pairs to store as metadata.</td>
+    </tr>
+    <tr>
+      <td>start</td>
+      <td>Named parameter, time at which to store metadata. Default is now.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Named parameter, color to display metadat in the calendar. Default is #003784.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_set</span><span class="p">({</span> <span class="s1">'key'</span> <span class="o">=&gt;</span> <span class="s1">'value'</span> <span class="p">})</span>
+<span class="n">metadata_set</span><span class="p">({</span> <span class="s1">'key'</span> <span class="o">=&gt;</span> <span class="s1">'value'</span> <span class="p">},</span> <span class="ss">color: </span><span class="s1">'#ff5252'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">metadata_set</span><span class="p">({</span> <span class="sh">'</span><span class="s">key</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">value</span><span class="sh">'</span> <span class="p">})</span>
+<span class="nf">metadata_set</span><span class="p">({</span> <span class="sh">'</span><span class="s">key</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">value</span><span class="sh">'</span> <span class="p">},</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">ff5252</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="metadata_update">
+<a class="anchor" href="#metadata_update" aria-hidden="true"><span class="octicon octicon-link"></span></a>metadata_update</h3>
+
+<p>Updates metadata that was previously set</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_update</span><span class="p">(</span><span class="o">&lt;</span><span class="n">metadata</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>metadata</td>
+      <td>Hash or dict of key value pairs to update as metadata.</td>
+    </tr>
+    <tr>
+      <td>start</td>
+      <td>Named parameter, time at which to update metadata. Default is latest metadata.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Named parameter, color to display metadat in the calendar. Default is #003784.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_update</span><span class="p">({</span> <span class="s1">'key'</span> <span class="o">=&gt;</span> <span class="s1">'value'</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">metadata_update</span><span class="p">({</span> <span class="sh">'</span><span class="s">key</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">value</span><span class="sh">'</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="metadata_input">
+<a class="anchor" href="#metadata_input" aria-hidden="true"><span class="octicon octicon-link"></span></a>metadata_input</h3>
+
+<p>Prompts the user to set existing metadata values or create new a new one.</p>
+
+<p>Ruby / Python Syntax / Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">metadata_input</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="script-runner-suite-apis">
+<a class="anchor" href="#script-runner-suite-apis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Runner Suite APIs</h2>
+
+<p>Creating Script Runner suites utilizes APIs to add groups to the defined suites. For more information please see <a href="/docs/v5/script-runner#running-script-suites">running script suites</a>.</p>
+
+<h3 id="add_group-add_group_setup-add_group_teardown-add_script">
+<a class="anchor" href="#add_group-add_group_setup-add_group_teardown-add_script" aria-hidden="true"><span class="octicon octicon-link"></span></a>add_group, add_group_setup, add_group_teardown, add_script</h3>
+
+<p>Adds a group’s methods to the suite. The add_group method adds all the group methods including setup, teardown, and all the methods starting with ‘script_’ or ‘test_’. The add_group_setup method adds just the setup method defined in the group class. The add_group_teardown method adds just the teardown method defined in the group class. The add_script method adds an individual method to the suite. NOTE: add_script can add any method including those not named with ‘script_’ or ‘test_’.</p>
+
+<p>Ruby / Python Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">add_group</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Group</span> <span class="no">Class</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">add_group_setup</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Group</span> <span class="no">Class</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">add_group_teardown</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Group</span> <span class="no">Class</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">add_script</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Group</span> <span class="no">Class</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Method</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Group Class</td>
+      <td>Name of the previously defined class which inherits from the OpenC3 Group class. The Ruby API passes a String with the name of the group. The Python API passes the Group class directly.</td>
+    </tr>
+    <tr>
+      <td>Method</td>
+      <td>Name of the method in the OpenC3 Group class. The Ruby API passes a String with the name of the method. The Python API passes the Group class directly.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ruby Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">load</span> <span class="s1">'openc3/script/suite.rb'</span>
+
+<span class="k">class</span> <span class="nc">ExampleGroup</span> <span class="o">&lt;</span> <span class="no">OpenC3</span><span class="o">::</span><span class="no">Group</span>
+  <span class="k">def</span> <span class="nf">script_1</span>
+    <span class="c1"># Insert test code here ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">class</span> <span class="nc">WrapperGroup</span> <span class="o">&lt;</span> <span class="no">OpenC3</span><span class="o">::</span><span class="no">Group</span>
+  <span class="k">def</span> <span class="nf">setup</span>
+    <span class="c1"># Insert test code here ...</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">my_method</span>
+    <span class="c1"># Insert test code here ...</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">teardown</span>
+    <span class="c1"># Insert test code here ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MySuite</span> <span class="o">&lt;</span> <span class="no">OpenC3</span><span class="o">::</span><span class="no">Suite</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="k">super</span><span class="p">()</span>
+    <span class="n">add_group</span><span class="p">(</span><span class="s1">'ExampleGroup'</span><span class="p">)</span>
+    <span class="n">add_group_setup</span><span class="p">(</span><span class="s1">'WrapperGroup'</span><span class="p">)</span>
+    <span class="n">add_script</span><span class="p">(</span><span class="s1">'WrapperGroup'</span><span class="p">,</span> <span class="s1">'my_method'</span><span class="p">)</span>
+    <span class="n">add_group_teardown</span><span class="p">(</span><span class="s1">'WrapperGroup'</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Python Example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">openc3.script</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="n">openc3.script.suite</span> <span class="kn">import</span> <span class="n">Group</span><span class="p">,</span> <span class="n">Suite</span>
+
+<span class="k">class</span> <span class="nc">ExampleGroup</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">script_1</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Insert test code here ...
+</span>        <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">WrapperGroup</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Insert test code here ...
+</span>        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Insert test code here ...
+</span>        <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Insert test code here ...
+</span>        <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">MySuite</span><span class="p">(</span><span class="n">Suite</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">add_group</span><span class="p">(</span><span class="n">ExampleGroup</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">add_group_setup</span><span class="p">(</span><span class="n">WrapperGroup</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">add_script</span><span class="p">(</span><span class="n">WrapperGroup</span><span class="p">,</span> <span class="sh">'</span><span class="s">my_method</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">add_group_teardown</span><span class="p">(</span><span class="n">WrapperGroup</span><span class="p">)</span>
 </code></pre></div></div>
 
       </article>

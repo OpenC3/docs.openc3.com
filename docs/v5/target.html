@@ -106,6 +106,7 @@
         <div class="toc"><ul id="toc" class="section-nav">
 <li class="toc-entry toc-h1"><a href="#targettxt-keywords">target.txt Keywords</a>
 <ul>
+<li class="toc-entry toc-h2"><a href="#language">LANGUAGE</a></li>
 <li class="toc-entry toc-h2"><a href="#require">REQUIRE</a></li>
 <li class="toc-entry toc-h2"><a href="#ignore_parameter">IGNORE_PARAMETER</a></li>
 <li class="toc-entry toc-h2"><a href="#ignore_item">IGNORE_ITEM</a></li>
@@ -122,6 +123,35 @@
 
 <h1 id="targettxt-keywords">
 <a class="anchor" href="#targettxt-keywords" aria-hidden="true"><span class="octicon octicon-link"></span></a>target.txt Keywords</h1>
+
+<h2 id="language">
+<a class="anchor" href="#language" aria-hidden="true"><span class="octicon octicon-link"></span></a>LANGUAGE</h2>
+<div class="right">(Since 5.11.1)</div>
+<p><strong>Programming language of the target interfaces and microservices</strong></p>
+
+<p>The target language must be either Ruby or Python. The language determines how the target’s interfaces and microservices are run. Note that both Ruby and Python still use ERB to perform templating.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>Ruby or Python<br><br>Valid Values: <span class="values">ruby, python</span>
+</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">LANGUAGE</span> <span class="n">python</span>
+</code></pre></div></div>
 
 <h2 id="require">
 <a class="anchor" href="#require" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIRE</h2>
