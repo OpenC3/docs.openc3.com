@@ -768,11 +768,18 @@ build_command(<args>, range_check=True, raw=False)
 | range_check | Whether to perform range checking on the command. Default is true.                      |
 | raw         | Whether to write the command arguments as RAW or CONVERTED value. Default is CONVERTED. |
 
-Ruby / Python Example:
+Ruby Example:
 
 ```ruby
 x = build_command("INST COLLECT with DURATION 10, TYPE NORMAL")
-print(x)  #=> {"id"=>"1696437370872-0", "result"=>"SUCCESS", "time"=>"1696437370872305961", "received_time"=>"1696437370872305961", "target_name"=>"INST", "packet_name"=>"COLLECT", "received_count"=>"3", "buffer"=>"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00A \x00\x00\xAB\x00\x00\x00\x00"}
+puts x  #=> {"id"=>"1696437370872-0", "result"=>"SUCCESS", "time"=>"1696437370872305961", "received_time"=>"1696437370872305961", "target_name"=>"INST", "packet_name"=>"COLLECT", "received_count"=>"3", "buffer"=>"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00A \x00\x00\xAB\x00\x00\x00\x00"}
+```
+
+Python Example:
+
+```python
+x = build_command("INST COLLECT with DURATION 10, TYPE NORMAL")
+print(x)  #=> {'id': '1697298167748-0', 'result': 'SUCCESS', 'time': '1697298167749155717', 'received_time': '1697298167749155717', 'target_name': 'INST', 'packet_name': 'COLLECT', 'received_count': '2', 'buffer': bytearray(b'\x13\xe7\xc0\x00\x00\x0c\x00\x01\x00\x00A \x00\x00\xab\x00\x00\x00\x00')}
 ```
 
 ### send_raw
@@ -810,21 +817,60 @@ get_all_commands("<Target Name>")
 | ----------- | ------------------- |
 | Target Name | Name of the target. |
 
-Ruby / Python Example:
+Ruby Example:
 
 ```ruby
 cmd_list = get_all_commands("INST")
-print(cmd_list)
-#[{"target_name"=>"INST",
-#  "packet_name"=>"ABORT",
-#  "endianness"=>"BIG_ENDIAN",
-#  "description"=>"Aborts a collect on the instrument",
-#  "stale"=>true,
-#  "items"=>
-#   [{"name"=>"CCSDSVER",
-#     "bit_offset"=>0,
-#     "bit_size"=>3,
-#     ...
+puts cmd_list  #=>
+# [{"target_name"=>"INST",
+#   "packet_name"=>"ABORT",
+#   "endianness"=>"BIG_ENDIAN",
+#   "description"=>"Aborts a collect on the instrument",
+#   "items"=> [{"name"=>"CCSDSVER", "bit_offset"=>0, "bit_size"=>3, ... }]
+# ...
+# }]
+```
+
+Python Example:
+
+```python
+cmd_list = get_all_commands("INST")
+print(cmd_list)  #=>
+# [{'target_name': 'INST',
+#   'packet_name': 'ABORT',
+#   'endianness': 'BIG_ENDIAN',
+#   'description': 'Aborts a collect on the INST instrument',
+#   'items': [{'name': 'CCSDSVER', 'bit_offset': 0, 'bit_size': 3, ... }]
+# ...
+# }]
+```
+
+### get_all_command_names (since 5.0.6)
+
+Returns an array of the command names for a particular target.
+
+Ruby / Python Syntax:
+
+```ruby
+get_all_command_names("<Target Name>")
+```
+
+| Parameter   | Description        |
+| ----------- | ------------------ |
+| Target Name | Name of the target |
+
+Ruby Example:
+
+```ruby
+cmd_list = get_all_command_names("INST")
+puts cmd_list  #=> ['ABORT', 'ARYCMD', 'ASCIICMD', ...]
+```
+
+Python Example:
+
+```python
+cmd_list = get_all_command_names("INST")
+print(cmd_list)  #=> ['ABORT', 'ARYCMD', 'ASCIICMD', ...]
 ```
 
 ### get_command (since 5.0.0)
@@ -845,18 +891,29 @@ get_command("<Target Name>", "<Packet Name>")
 Ruby / Python Example:
 
 ```ruby
-cmd = get_command("INST", "ABORT")
-print(cmd)
-#[{"target_name"=>"INST",
-#  "packet_name"=>"ABORT",
-#  "endianness"=>"BIG_ENDIAN",
-#  "description"=>"Aborts a collect on the instrument",
-#  "stale"=>true,
-#  "items"=>
-#   [{"name"=>"CCSDSVER",
-#     "bit_offset"=>0,
-#     "bit_size"=>3,
-#     ...
+abort_cmd = get_command("INST", "ABORT")
+puts abort_cmd  #=>
+# [{"target_name"=>"INST",
+#   "packet_name"=>"ABORT",
+#   "endianness"=>"BIG_ENDIAN",
+#   "description"=>"Aborts a collect on the instrument",
+#   "items"=> [{"name"=>"CCSDSVER", "bit_offset"=>0, "bit_size"=>3, ... }]
+# ...
+# }]
+```
+
+Python Example:
+
+```python
+abort_cmd = get_command("INST")
+print(abort_cmd)  #=>
+# [{'target_name': 'INST',
+#   'packet_name': 'ABORT',
+#   'endianness': 'BIG_ENDIAN',
+#   'description': 'Aborts a collect on the INST instrument',
+#   'items': [{'name': 'CCSDSVER', 'bit_offset': 0, 'bit_size': 3, ... }]
+# ...
+# }]
 ```
 
 ### get_parameter (since 5.0.0)
@@ -875,23 +932,26 @@ get_parameter("<Target Name>", "<Command Name>", "<Parameter Name>")
 | Command Name   | Name of the command.   |
 | Parameter Name | Name of the parameter. |
 
-Ruby / Python Example:
+Ruby Example:
 
 ```ruby
 param = get_parameter("INST", "COLLECT", "TYPE")
-print(param)
-# {"name"=>"TYPE",
-# "bit_offset"=>64,
-# "bit_size"=>16,
-# "data_type"=>"UINT",
-# "description"=>"Collect type",
-# "default"=>0,
-# "minimum"=>0,
-# "maximum"=>65535,
-# "endianness"=>"BIG_ENDIAN",
-# "required"=>true,
-# "overflow"=>"ERROR",
-# "states"=>{"NORMAL"=>{"value"=>0}, "SPECIAL"=>{"value"=>1, "hazardous"=>""}}}
+puts param  #=>
+# {"name"=>"TYPE", "bit_offset"=>64, "bit_size"=>16, "data_type"=>"UINT",
+#  "description"=>"Collect type which can be normal or special", "default"=>0,
+#  "minimum"=>0, "maximum"=>65535, "endianness"=>"BIG_ENDIAN", "required"=>true, "overflow"=>"ERROR",
+#  "states"=>{"NORMAL"=>{"value"=>0}, "SPECIAL"=>{"value"=>1, "hazardous"=>""}}, "limits"=>{}}
+```
+
+Python Example:
+
+```python
+param = get_parameter("INST", "COLLECT", "TYPE")
+print(param)  #=>
+# {'name': 'TYPE', 'bit_offset': 64, 'bit_size': 16, 'data_type': 'UINT',
+#  'description': 'Collect type which can be normal or special', 'default': 0,
+#  'minimum': 0, 'maximum': 65535, 'endianness': 'BIG_ENDIAN', 'required': True, 'overflow': 'ERROR',
+#  'states': {'NORMAL': {'value': 0}, 'SPECIAL': {'value': 1, 'hazardous': ''}}, 'limits': {}}
 ```
 
 ### get_cmd_buffer
@@ -909,11 +969,24 @@ buffer = get_cmd_buffer("<Target Name>", "<Packet Name>")['buffer']
 | Target Name | Name of the target. |
 | Packet Name | Name of the packet. |
 
-Ruby / Python Example:
+Ruby Example:
 
 ```ruby
 packet = get_cmd_buffer("INST", "COLLECT")
-print(packet['buffer'])
+puts packet  #=>
+# {"time"=>"1697298846752053420", "received_time"=>"1697298846752053420",
+#  "target_name"=>"INST", "packet_name"=>"COLLECT", "received_count"=>"20", "stored"=>"false",
+#  "buffer"=>"\x13\xE7\xC0\x00\x00\f\x00\x01\x00\x00@\xE0\x00\x00\xAB\x00\x00\x00\x00"}
+```
+
+Python Example:
+
+```python
+packet = get_cmd_buffer("INST", "COLLECT")
+print(packet)  #=>
+# {'time': '1697298923745982470', 'received_time': '1697298923745982470',
+#  'target_name': 'INST', 'packet_name': 'COLLECT', 'received_count': '21', 'stored': 'false',
+#  'buffer': bytearray(b'\x13\xe7\xc0\x00\x00\x0c\x00\x01\x00\x00@\xe0\x00\x00\xab\x00\x00\x00\x00')}
 ```
 
 ### get_cmd_hazardous
@@ -936,12 +1009,14 @@ Ruby Example:
 
 ```ruby
 hazardous = get_cmd_hazardous("INST", "COLLECT", {'TYPE' => 'SPECIAL'})
+puts hazardous  #=> true
 ```
 
 Python Example:
 
 ```python
 hazardous = get_cmd_hazardous("INST", "COLLECT", {'TYPE': 'SPECIAL'})
+print(hazardous) #=> True
 ```
 
 ### get_cmd_value
@@ -965,12 +1040,14 @@ Ruby Example:
 
 ```ruby
 value = get_cmd_value("INST", "COLLECT", "TEMP", :RAW)
+puts value  #=> 0.0
 ```
 
 Python Example:
 
-```ruby
+```python
 value = get_cmd_value("INST", "COLLECT", "TEMP", "RAW")
+print(value)  #=> 0.0
 ```
 
 ### get_cmd_time
@@ -1291,6 +1368,26 @@ print(packets)
 #     ...
 ```
 
+### get_all_telemetry_names (since 5.0.6)
+
+Returns an array of all target packet names.
+
+Ruby / Python Syntax:
+
+```ruby
+get_all_telemetry_names("<Target Name>")
+```
+
+| Parameter   | Description        |
+| ----------- | ------------------ |
+| Target Name | Name of the target |
+
+Ruby / Python Example:
+
+```ruby
+get_all_telemetry_names("INST")  #=> ["ADCS", "HEALTH_STATUS", ...]
+```
+
 ### get_telemetry (since 5.0.0)
 
 Returns a packet hash.
@@ -1510,6 +1607,38 @@ normalize_tlm("INST HEALTH_STATUS TEMP1") # clear all overrides
 normalize_tlm("INST HEALTH_STATUS TEMP1", type='RAW') # clear only the RAW override
 ```
 
+### get_overrides
+
+Returns an array of the the currently overriden values set by override_tlm. NOTE: This returns all the value types that are overriden which by default is all 4 values types when using override_tlm.
+
+Ruby / Python Syntax:
+
+```ruby
+get_overrides()
+```
+
+Ruby Example:
+
+```ruby
+override_tlm("INST HEALTH_STATUS TEMP1 = 5")
+puts get_overrides() #=>
+# [ {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"RAW", "value"=>5}
+#   {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"CONVERTED", "value"=>5}
+#   {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"FORMATTED", "value"=>"5"}
+#   {"target_name"=>"INST", "packet_name"=>"HEALTH_STATUS", "item_name"=>"TEMP1", "value_type"=>"WITH_UNITS", "value"=>"5"} ]
+```
+
+Python Example:
+
+```python
+override_tlm("INST HEALTH_STATUS TEMP1 = 5")
+print(get_overrides()) #=>
+# [ {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'RAW', 'value': 5},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'CONVERTED', 'value': 5},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'FORMATTED', 'value': '5'},
+#   {'target_name': 'INST', 'packet_name': 'HEALTH_STATUS', 'item_name': 'TEMP1', 'value_type': 'WITH_UNITS', 'value': '5'} ]
+```
+
 ## Packet Data Subscriptions
 
 Methods for subscribing to specific packets of data. This provides an interface to ensure that each telemetry packet is received and handled rather than relying on polling where some data may be missed.
@@ -1585,6 +1714,69 @@ for packet in packets:
 id, packets = get_packets(id, block=1000, count=1)
 for packet in packets:
     print(f"{packet['PACKET_TIMESECONDS']}: {packet['target_name']} {packet['packet_name']}")
+```
+
+### get_tlm_cnt
+
+Get the receive count for a telemetry packet
+
+Ruby / Python Syntax:
+
+```ruby
+get_tlm_cnt("<Target>", "<Packet>")
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| Target    | Target name |
+| Packet    | Packet name |
+
+Ruby / Python Example:
+
+```ruby
+get_tlm_cnt("INST", "HEALTH_STATUS")  #=> 10
+```
+
+### get_tlm_cnts
+
+Get the receive counts for an array of telemetry packets
+
+Ruby / Python Syntax:
+
+```ruby
+get_tlm_cnts([["<Target>", "<Packet>"], ["<Target>", "<Packet>"]])
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| Target    | Target name |
+| Packet    | Packet name |
+
+Ruby / Python Example:
+
+```ruby
+get_tlm_cnts([["INST", "ADCS"], ["INST", "HEALTH_STATUS"]])  #=> [100, 10]
+```
+
+### get_packet_derived_items
+
+Get the list of derived telemetry items for a packet
+
+Ruby / Python Syntax:
+
+```ruby
+get_packet_derived_items("<Target>", "<Packet>")
+```
+
+| Parameter | Description |
+| --------- | ----------- |
+| Target    | Target name |
+| Packet    | Packet name |
+
+Ruby / Python Example:
+
+```ruby
+get_packet_derived_items("INST", "HEALTH_STATUS")  #=> ['PACKET_TIMESECONDS', 'PACKET_TIMEFORMATTED', ...]
 ```
 
 ## Delays
@@ -2426,7 +2618,7 @@ map_target_to_interface("INST", "INST_INT", unmap_old=False)
 
 Send a command directly to an interface. This has no effect in the standard COSMOS interfaces but can be implemented by a custom interface to change behavior.
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
 interface_cmd("<Interface Name>", "<Command Name>", "<Command Parameters>")
@@ -2438,7 +2630,7 @@ interface_cmd("<Interface Name>", "<Command Name>", "<Command Parameters>")
 | Command Name       | Name of the command to send             |
 | Command Parameters | Any parameters to send with the command |
 
-Example:
+Ruby / Python Example:
 
 ```ruby
 interface_cmd("INST", "DISABLE_CRC")
@@ -2448,23 +2640,30 @@ interface_cmd("INST", "DISABLE_CRC")
 
 Send a command directly to an interface protocol. This has no effect in the standard COSMOS protocols but can be implemented by a custom protocol to change behavior.
 
-Syntax:
+Ruby / Python Syntax:
 
 ```ruby
 interface_protocol_cmd("<Interface Name>", "<Command Name>", "<Command Parameters>")
 ```
 
-| Parameter          | Description                                                                                                                |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| Interface Name     | Name of the interface                                                                                                      |
-| Command Name       | Name of the command to send                                                                                                |
-| Command Parameters | Any parameters to send with the command                                                                                    |
-| read_write:        | Whether command gets send to read or write protocols. Must be one of :READ, :WRITE, or :READ_WRITE. (default: :READ_WRITE) |
+| Parameter          | Description                                                                                                                                                |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Interface Name     | Name of the interface                                                                                                                                      |
+| Command Name       | Name of the command to send                                                                                                                                |
+| Command Parameters | Any parameters to send with the command                                                                                                                    |
+| read_write         | Whether command gets send to read or write protocols. Must be one of READ, WRITE, or READ_WRITE (Ruby symbols, Python strings). The default is READ_WRITE. |
+| index              | Which protocol in the stack the command should apply to. The default is -1 which applies the command to all.                                               |
 
-Example:
+Ruby Example:
 
 ```ruby
-interface_protocol_cmd("INST", "DISABLE_CRC")
+interface_protocol_cmd("INST", "DISABLE_CRC", read_write: :READ_WRITE, index: -1)
+```
+
+Python Example:
+
+```python
+interface_protocol_cmd("INST", "DISABLE_CRC", read_write='READ_WRITE', index=-1)
 ```
 
 ## Routers
@@ -2631,6 +2830,150 @@ Ruby / Python Example:
 stop_raw_logging_router("router1")
 ```
 
+### router_cmd
+
+Send a command directly to a router. This has no effect in the standard COSMOS routers but can be implemented by a custom router to change behavior.
+
+Ruby / Python Syntax:
+
+```ruby
+router_cmd("<Router Name>", "<Command Name>", "<Command Parameters>")
+```
+
+| Parameter          | Description                             |
+| ------------------ | --------------------------------------- |
+| Router Name        | Name of the router                      |
+| Command Name       | Name of the command to send             |
+| Command Parameters | Any parameters to send with the command |
+
+Ruby / Python Example:
+
+```ruby
+router_cmd("INST", "DISABLE_CRC")
+```
+
+### router_protocol_cmd
+
+Send a command directly to an router protocol. This has no effect in the standard COSMOS protocols but can be implemented by a custom protocol to change behavior.
+
+Ruby / Python Syntax:
+
+```ruby
+router_protocol_cmd("<Router Name>", "<Command Name>", "<Command Parameters>", read_write, index)
+```
+
+| Parameter          | Description                                                                                                                                                |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Router Name        | Name of the router                                                                                                                                         |
+| Command Name       | Name of the command to send                                                                                                                                |
+| Command Parameters | Any parameters to send with the command                                                                                                                    |
+| read_write         | Whether command gets send to read or write protocols. Must be one of READ, WRITE, or READ_WRITE (Ruby symbols, Python strings). The default is READ_WRITE. |
+| index              | Which protocol in the stack the command should apply to. The default is -1 which applies the command to all.                                               |
+
+Ruby Example:
+
+```ruby
+router_protocol_cmd("INST", "DISABLE_CRC", read_write: :READ_WRITE, index: -1)
+```
+
+Python Example:
+
+```python
+router_protocol_cmd("INST", "DISABLE_CRC", read_write='READ_WRITE', index=-1)
+```
+
+## Stashing Data
+
+These methods allow the user to store temporary data into COSMOS and retrieve it. The storage is implemented as a key / value storage (Ruby hash or Python dict). This can be used in scripts to store information that applies across multiple scripts or multiple runs of a single script.
+
+### stash_set
+
+Sets a stash item.
+
+Ruby / Python Syntax:
+
+```ruby
+stash_set("<Stash Key>", <Stash Value>)
+```
+
+| Parameter   | Description                  |
+| ----------- | ---------------------------- |
+| Stash Key   | Name of the stash key to set |
+| Stash Value | Value to set                 |
+
+Ruby / Python Example:
+
+```ruby
+stash_set('run_count', 5)
+stash_set('setpoint', 23.4)
+```
+
+### stash_get
+
+Returns the specified stash item.
+
+Ruby / Python Syntax:
+
+```ruby
+stash_get("<Stash Key>")
+```
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| Stash Key | Name of the stash key to return |
+
+Ruby / Python Example:
+
+```ruby
+stash_get('run_count')  #=> 5
+```
+
+### stash_all
+
+Returns all the stash items as a Ruby hash or Python dict.
+
+Ruby Syntax / Example:
+
+```ruby
+stash_all()  #=> ['run_count' => 5, 'setpoint' => 23.4]
+```
+
+Python Syntax / Example:
+
+```ruby
+stash_all()  #=> ['run_count': 5, 'setpoint': 23.4]
+```
+
+### stash_keys
+
+Returns all the stash keys.
+
+Ruby / Python Syntax / Example:
+
+```ruby
+stash_keys()  #=> ['run_count', 'setpoint']
+```
+
+### stash_delete
+
+Deletes a stash item. Note this actions is permanent!
+
+Ruby / Python Syntax:
+
+```ruby
+stash_delete("<Stash Key>")
+```
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| Stash Key | Name of the stash key to delete |
+
+Ruby / Python Example:
+
+```ruby
+stash_delete("run_count")
+```
+
 ## Executing Other Procedures
 
 These methods allow the user to bring in files of subroutines and execute other test procedures.
@@ -2687,19 +3030,20 @@ Opens a telemetry screen at the specified position.
 Ruby / Python Syntax:
 
 ```ruby
-display_screen("<Display Name>", <X Position (optional)>, <Y Position (optional)>)
+display_screen("<Target Name>", "<Screen Name>", <X Position (optional)>, <Y Position (optional)>)
 ```
 
-| Parameter    | Description                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------------ |
-| Display Name | Name of the telemetry screen to display. Screens are normally named by "TARGET_NAME SCREEN_NAME" |
-| X Position   | The X coordinate on screen where the top left corner of the telemetry screen will be placed.     |
-| Y Position   | The Y coordinate on screen where the top left corner of the telemetry screen will be placed.     |
+| Parameter   | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| Target Name | Telemetry screen target name                              |
+| Screen Name | Screen name within the specified target                   |
+| X Position  | X coordinate for the upper left hand corner of the screen |
+| Y Position  | Y coordinate for the upper left hand corner of the screen |
 
 Ruby / Python Example:
 
 ```ruby
-display("INST ADCS", 100, 200)
+display_screen("INST", "ADCS", 100, 200)
 ```
 
 ### clear_screen
@@ -2709,17 +3053,18 @@ Closes an open telemetry screen.
 Ruby / Python Syntax:
 
 ```ruby
-clear_screen("<Display Name>")
+clear_screen("<Target Name>", "<Screen Name>")
 ```
 
-| Parameter    | Description                                                                                    |
-| ------------ | ---------------------------------------------------------------------------------------------- |
-| Display Name | Name of the telemetry screen to close. Screens are normally named by "TARGET_NAME SCREEN_NAME" |
+| Parameter   | Description                             |
+| ----------- | --------------------------------------- |
+| Target Name | Telemetry screen target name            |
+| Screen Name | Screen name within the specified target |
 
 Ruby / Python Example:
 
 ```ruby
-clear_screen("INST ADCS")
+clear_screen("INST", "ADCS")
 ```
 
 ### clear_all_screens
@@ -2730,6 +3075,27 @@ Ruby / Python Syntax / Example:
 
 ```ruby
 clear_all_screens()
+```
+
+### delete_screen
+
+Deletes an existing Telemetry Viewer screen.
+
+Ruby / Python Syntax:
+
+```ruby
+delete_screen("<Target Name>", "<Screen Name>")
+```
+
+| Parameter   | Description                             |
+| ----------- | --------------------------------------- |
+| Target Name | Telemetry screen target name            |
+| Screen Name | Screen name within the specified target |
+
+Ruby / Python Example:
+
+```ruby
+delete_screen("INST", "ADCS")
 ```
 
 ### get_screen_list
@@ -2749,13 +3115,13 @@ The get_screen_definition returns the text file contents of a telemetry screen d
 Syntax:
 
 ```ruby
-get_screen_definition("<target name>", "<screen name>")
+get_screen_definition("<Target Name>", "<Screen Name>")
 ```
 
-| Parameter          | Description                             |
-| ------------------ | --------------------------------------- |
-| Screen target name | Telemetry screen target name.           |
-| Screen name        | Screen name within the specified target |
+| Parameter   | Description                             |
+| ----------- | --------------------------------------- |
+| Target Name | Telemetry screen target name            |
+| Screen Name | Screen name within the specified target |
 
 Ruby / Python Example:
 
@@ -2765,19 +3131,19 @@ screen_definition = get_screen_definition("INST", "HS")
 
 ### create_screen
 
-The create_screen allows you to create a screen directly from a script.
+The create_screen allows you to create a screen directly from a script. This screen is saved to Telemetry Viewer for future use in that application.
 
 Python / Ruby Syntax:
 
 ```ruby
-create_screen("<target name>", "<screen name>" "<screen definition>")
+create_screen("<Target Name>", "<Screen Name>" "<Definition>")
 ```
 
-| Parameter          | Description                              |
-| ------------------ | ---------------------------------------- |
-| Screen target name | Telemetry screen target name             |
-| Screen name        | Screen name within the specified target  |
-| Screen Definition  | The entire screen definition as a String |
+| Parameter   | Description                              |
+| ----------- | ---------------------------------------- |
+| Target Name | Telemetry screen target name             |
+| Screen Name | Screen name within the specified target  |
+| Definition  | The entire screen definition as a String |
 
 Ruby Example:
 
@@ -2785,7 +3151,7 @@ Ruby Example:
 screen_def = '
   SCREEN AUTO AUTO 0.1 FIXED
   VERTICAL
-    TITLE "Local Screen"
+    TITLE "New Screen"
     VERTICALBOX
       LABELVALUE INST HEALTH_STATUS TEMP1
     END
@@ -2801,7 +3167,7 @@ Python Example:
 screen_def = '
   SCREEN AUTO AUTO 0.1 FIXED
   VERTICAL
-    TITLE "Local Screen"
+    TITLE "New Screen"
     VERTICALBOX
       LABELVALUE INST HEALTH_STATUS TEMP1
     END
@@ -2809,6 +3175,57 @@ screen_def = '
 '
 # Here we pass in the screen definition as a string
 create_screen("INST", "LOCAL", screen_def)
+```
+
+### local_screen
+
+The local_screen allows you to create a local screen directly from a script which is not permanently saved to the Telemetry Viewer screen list. This is useful for one off screens that help users interact with scripts.
+
+Python / Ruby Syntax:
+
+```ruby
+local_screen("<Screen Name>" "<Definition>", <X Position (optional)>, <Y Position (optional)>)
+```
+
+| Parameter   | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| Screen Name | Screen name within the specified target                   |
+| Definition  | The entire screen definition as a String                  |
+| X Position  | X coordinate for the upper left hand corner of the screen |
+| Y Position  | Y coordinate for the upper left hand corner of the screen |
+
+NOTE: It is possible to specify a X, Y location off the visible display. If you do so and try to re-create the screen it will not display (because it is already displayed). Try issuing a `clear_all_screens()` first to clear any screens off the visible display space.
+
+Ruby Example:
+
+```ruby
+screen_def = '
+  SCREEN AUTO AUTO 0.1 FIXED
+  VERTICAL
+    TITLE "Local Screen"
+    VERTICALBOX
+      LABELVALUE INST HEALTH_STATUS TEMP1
+    END
+  END
+'
+# Here we pass in the screen definition as a string
+local_screen("TESTING", screen_def, 600, 75)
+```
+
+Python Example:
+
+```python
+screen_def = '
+  SCREEN AUTO AUTO 0.1 FIXED
+  VERTICAL
+    TITLE "Local Screen"
+    VERTICALBOX
+      LABELVALUE INST HEALTH_STATUS TEMP1
+    END
+  END
+'
+# Here we pass in the screen definition as a string
+local_screen("TESTING", screen_def, 600, 75)
 ```
 
 ## Script Runner Specific Functionality
@@ -2932,4 +3349,212 @@ Ruby / Python Syntax / Example:
 
 ```ruby
 disconnect_script()
+```
+
+## Metadata
+
+Metadata allows you to mark the regular target / packet data logged in COSMOS with your own fields. This metadata can then be searched and used to filter data when using other COSMOS tools.
+
+### metadata_all
+
+Returns all the metadata that was previously set
+
+Ruby / Python Syntax:
+
+```ruby
+metadata_all()
+```
+
+| Parameter | Description                                         |
+| --------- | --------------------------------------------------- |
+| limit     | Amount of metadata items to return. Default is 100. |
+
+Ruby Example:
+
+```ruby
+metadata_all(limit: 500)
+```
+
+Python Example:
+
+```python
+metadata_all(limit='500')
+```
+
+### metadata_get
+
+Returns metadata that was previously set
+
+Ruby / Python Syntax:
+
+```ruby
+metadata_get(start)
+```
+
+| Parameter | Description                                                                       |
+| --------- | --------------------------------------------------------------------------------- |
+| start     | Named parameter, time at which to retrieve metadata as integer seconds from epoch |
+
+Ruby Example:
+
+```ruby
+metadata_get(start: 500)
+```
+
+Python Example:
+
+```python
+metadata_get(start='500')
+```
+
+### metadata_set
+
+Returns metadata that was previously set
+
+Ruby / Python Syntax:
+
+```ruby
+metadata_set(<metadata>, start, color)
+```
+
+| Parameter | Description                                                                    |
+| --------- | ------------------------------------------------------------------------------ |
+| metadata  | Hash or dict of key value pairs to store as metadata.                          |
+| start     | Named parameter, time at which to store metadata. Default is now.              |
+| color     | Named parameter, color to display metadat in the calendar. Default is #003784. |
+
+Ruby Example:
+
+```ruby
+metadata_set({ 'key' => 'value' })
+metadata_set({ 'key' => 'value' }, color: '#ff5252')
+```
+
+Python Example:
+
+```python
+metadata_set({ 'key': 'value' })
+metadata_set({ 'key': 'value' }, color='ff5252')
+```
+
+### metadata_update
+
+Updates metadata that was previously set
+
+Ruby / Python Syntax:
+
+```ruby
+metadata_update(<metadata>, start, color)
+```
+
+| Parameter | Description                                                                    |
+| --------- | ------------------------------------------------------------------------------ |
+| metadata  | Hash or dict of key value pairs to update as metadata.                         |
+| start     | Named parameter, time at which to update metadata. Default is latest metadata. |
+| color     | Named parameter, color to display metadat in the calendar. Default is #003784. |
+
+Ruby Example:
+
+```ruby
+metadata_update({ 'key' => 'value' })
+```
+
+Python Example:
+
+```python
+metadata_update({ 'key': 'value' })
+```
+
+### metadata_input
+
+Prompts the user to set existing metadata values or create new a new one.
+
+Ruby / Python Syntax / Example:
+
+```ruby
+metadata_input()
+```
+
+## Script Runner Suite APIs
+
+Creating Script Runner suites utilizes APIs to add groups to the defined suites. For more information please see [running script suites]({{site.baseurl}}/docs/v5/script-runner#running-script-suites).
+
+### add_group, add_group_setup, add_group_teardown, add_script
+
+Adds a group's methods to the suite. The add_group method adds all the group methods including setup, teardown, and all the methods starting with 'script\_' or 'test\_'. The add_group_setup method adds just the setup method defined in the group class. The add_group_teardown method adds just the teardown method defined in the group class. The add_script method adds an individual method to the suite. NOTE: add_script can add any method including those not named with 'script\_' or 'test\_'.
+
+Ruby / Python Syntax:
+
+```ruby
+add_group(<Group Class>)
+add_group_setup(<Group Class>)
+add_group_teardown(<Group Class>)
+add_script(<Group Class>, <Method>)
+```
+
+| Parameter   | Description                                                                                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Group Class | Name of the previously defined class which inherits from the OpenC3 Group class. The Ruby API passes a String with the name of the group. The Python API passes the Group class directly. |
+| Method      | Name of the method in the OpenC3 Group class. The Ruby API passes a String with the name of the method. The Python API passes the Group class directly.                                   |
+
+Ruby Example:
+
+```ruby
+load 'openc3/script/suite.rb'
+
+class ExampleGroup < OpenC3::Group
+  def script_1
+    # Insert test code here ...
+  end
+end
+class WrapperGroup < OpenC3::Group
+  def setup
+    # Insert test code here ...
+  end
+  def my_method
+    # Insert test code here ...
+  end
+  def teardown
+    # Insert test code here ...
+  end
+end
+
+class MySuite < OpenC3::Suite
+  def initialize
+    super()
+    add_group('ExampleGroup')
+    add_group_setup('WrapperGroup')
+    add_script('WrapperGroup', 'my_method')
+    add_group_teardown('WrapperGroup')
+  end
+end
+```
+
+Python Example:
+
+```python
+from openc3.script import *
+from openc3.script.suite import Group, Suite
+
+class ExampleGroup(Group):
+    def script_1(self):
+        # Insert test code here ...
+        pass
+class WrapperGroup(Group):
+    def setup(self):
+        # Insert test code here ...
+        pass
+    def my_method(self):
+        # Insert test code here ...
+        pass
+    def teardown(self):
+        # Insert test code here ...
+        pass
+class MySuite(Suite):
+    def __init__(self):
+        super().__init__()
+        self.add_group(ExampleGroup)
+        self.add_group_setup(WrapperGroup)
+        self.add_script(WrapperGroup, 'my_method')
+        self.add_group_teardown(WrapperGroup)
 ```
